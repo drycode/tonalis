@@ -1,0 +1,207 @@
+from __future__ import annotations
+
+from functools import cache
+from typing import Union
+from typing_extensions import Self, TypeAlias
+
+
+from music_dsl.domain.static import Intervals, HarmonicFunctions
+from music_dsl.helpers import semitones_apart, m_or_M_scaledegree
+from music_dsl.transactions import modulate
+
+from .abstract_chord import AbstractChord, ChordAttrs, make_chord_attrs
+from .chord import Chord
+
+EMPTY_CHORD_ENCODING = int("1000000000000000000", 2)
+
+from music_dsl.domain.static import (
+    SCALE_DEGREES,
+    Notes,
+    ScaleDegree,
+    Triad,
+    Seventh,
+    Extensions,
+)
+
+
+class NumericChord(AbstractChord):
+    __regex__ = (
+        r"(([b#])?([ivVI]){1,4})((sus4|sus2|[ho\-])?)(([\^7]{1,2})?)(([b9136#]{1,})?)"
+    )
+
+    def __init__(
+        self,
+        diatonic_key_root: Notes,
+        numerator: Chord,
+        denominator: AbstractChord = None,
+        substitution=False,
+    ):
+
+        denominator = self.make_denominator(diatonic_key_root, denominator)
+        self._chord_attrs = self._from_chord(
+            diatonic_key_root if not denominator else denominator.root,
+            numerator,
+            substitution,
+        )
+
+        self._denominator: NumericChord = denominator
+
+    def make_denominator(self, diatonic_key_root, denominator):
+        if (
+            denominator
+            and denominator is not self
+            and denominator.root != diatonic_key_root
+        ):
+            if isinstance(denominator, Chord):
+                denominator = NumericChord.from_attrs(
+                    self._from_chord(diatonic_key_root, denominator)
+                )
+            return denominator
+
+    @property
+    def root(self) -> ScaleDegree:
+        return self._chord_attrs.root
+
+    @property
+    def denominator(self) -> NumericChord:
+        return self._denominator
+
+    @property
+    def is_substitution(self):
+        return self._chord_attrs.substitution
+
+    @classmethod
+    def from_chord_string(cls, chord_str: str):
+        numerator, denominator = NumericChord._get_numerator_denominator(chord_str)
+        return cls._make_new(numerator, denominator)
+
+    @staticmethod
+    def _get_numerator_denominator(chord_str: str):
+        _split = chord_str.split("/")
+        numerator, denominator = _split[0], None
+        if len(_split) == 2:
+            denominator = _split[1]
+        return numerator, denominator
+
+    @classmethod
+    def _make_new(cls, numerator_str, denominator_str):
+        num_substitution = False
+        if numerator_str[0] == "s":
+            num_substitution = True
+            numerator_str = numerator_str[1:]
+
+        _chord_attrs = cls._parse_chord_string(
+            numerator_str, substitution=num_substitution
+        )
+
+        if denominator_str:
+            _den = cls.from_chord_string(denominator_str)
+            key = super()._singleton_key(_chord_attrs, _den._chord_attrs)
+            _new = cls._new(key)
+            _new._denominator = _den
+        else:
+            key = super()._singleton_key(_chord_attrs)
+            _new = cls._new(key)
+        _new._chord_attrs = _chord_attrs
+        return _new
+
+    @classmethod
+    def from_attrs(cls, chord_attrs: ChordAttrs, denominator: ChordAttrs = None):
+        key = super()._singleton_key(chord_attrs, denominator)
+        _new = cls._new(key)
+        _new._chord_attrs = chord_attrs
+        return _new
+
+    @cache
+    @staticmethod
+    def _find_scale_degree(
+        root: Notes, note: Notes, triad: Triad = None
+    ) -> ScaleDegree:
+        scale_degree = SCALE_DEGREES[semitones_apart(root, note)]
+        return m_or_M_scaledegree(scale_degree, triad)
+
+    @classmethod
+    def _parse_root(cls, match):
+        return ScaleDegree(match)
+
+    @classmethod
+    def _from_chord(
+        cls, diatonic_key_root: Notes, chord: AbstractChord, substitution=False
+    ) -> ChordAttrs:
+        scale_degree = NumericChord._find_scale_degree(
+            diatonic_key_root, chord.root, chord.triad
+        )
+        if substitution:
+            if (
+                Intervals(semitones_apart(chord.root, diatonic_key_root))
+                == Intervals.Tritone
+            ):
+                ### Subdominant variations like Db-7 Ab7 G
+                assert chord.harmonic_function == HarmonicFunctions.Subdominant
+                scale_degree = modulate(
+                    Intervals.Tritone.value + Intervals.M2.value, scale_degree
+                )
+            elif chord.harmonic_function == HarmonicFunctions.Dominant:
+                # Dominant Variations
+                assert chord.harmonic_function == HarmonicFunctions.Dominant
+                scale_degree = modulate(
+                    Intervals.Tritone.value,
+                    scale_degree,
+                )
+            elif (
+                Intervals(semitones_apart(chord.root, diatonic_key_root))
+                == Intervals.m6
+            ):
+                ### Subdominant variations like Db-7 D7 G
+                scale_degree = modulate(
+                    Intervals.m6.down() + Intervals.M2.value, scale_degree
+                )
+
+        return make_chord_attrs(
+            scale_degree,
+            chord.triad,
+            chord._7th,
+            chord.extensions,
+            cls._get_harmonic_function(scale_degree, chord.triad, chord._7th),
+            substitution,
+        )
+
+    def __new__(
+        cls: TypeAlias[Self],
+        tonic: Notes,
+        numerator: Chord,
+        denominator: Chord = None,
+        substitution=False,
+    ) -> TypeAlias[Self]:
+        chord_attrs = cls._from_chord(tonic, numerator, substitution=substitution)
+        den_chord_attrs = (
+            cls._from_chord(tonic, denominator, substitution=substitution)
+            if denominator
+            else None
+        )
+        key = super()._singleton_key(chord_attrs, resolves_to=den_chord_attrs)
+        _new = cls._new(key)
+        _new._denominator = cls._new(super()._singleton_key(chord_attrs))
+        return _new
+
+    def __repr__(self):
+        numerator = repr(self._chord_attrs)
+        if hasattr(self, "_denominator"):
+            denominator = "/" + repr(self._denominator) if self._denominator else ""
+            return numerator + denominator
+
+        return numerator
+
+
+def build_numeric_chord(
+    root: ScaleDegree, triad: Triad, _7th: Seventh, extensions: Extensions
+):
+    return NumericChord.from_attrs(
+        ChordAttrs(
+            root,
+            triad,
+            _7th,
+            extensions,
+            Chord._get_harmonic_function(root, triad, _7th),
+        )
+    )

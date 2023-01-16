@@ -1,0 +1,8 @@
+assets/
+*.code-workspace
+*.pytest_cache
+__pycache__*
+*.hypothesis
+.coverage
+*.vscode
+*.egg-info
