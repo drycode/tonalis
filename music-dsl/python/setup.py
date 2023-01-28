@@ -1,3 +1,4 @@
+from music_dsl import __version__
 from setuptools import find_packages, setup
 
 setup(
@@ -37,7 +38,7 @@ setup(
         "tomli==2.0.1",
         "typing_extensions==4.2.0",
     ],
-    version="0.1.0",
+    version=__version__,
     description="A library of music domain specific objects.",
     author="Daniel Young",
     license="MIT",

@@ -63,6 +63,10 @@ def make_chord_attrs(
     return ChordAttrs(root, triad, _7th, extensions, harmonic_function, substitution)
 
 
+class InvalidChordStringException(Exception):
+    ...
+
+
 class AbstractChord:
     __regex__ = ...
     __instances__ = dict()
@@ -105,9 +109,8 @@ class AbstractChord:
     @classmethod
     @cache
     def _parse_chord_string(cls, raw_chord, substitution=False) -> ChordAttrs:
-        if "|" in raw_chord:
-            raise Exception("There's more than one chord in this attempt to parse")
         match_groups = re.match(cls.__regex__, raw_chord)
+        AbstractChord._verify_chord_string(raw_chord, match_groups)
         _root = cls._parse_root(match_groups[_ROOT_IDX])
         _triad = Triad(match_groups[_TRIAD_IDX])
         assert isinstance(_triad, Triad)
@@ -117,6 +120,18 @@ class AbstractChord:
         return make_chord_attrs(
             _root, _triad, _7th, _extensions, _harmonic_function, substitution
         )
+
+    @staticmethod
+    def _verify_chord_string(raw_chord, match_groups):
+        if "|" in raw_chord:
+            raise InvalidChordStringException(
+                "There's more than one chord in this attempt to parse"
+            )
+
+        if not match_groups:
+            raise InvalidChordStringException(
+                f'Attempted to parse "{raw_chord}" which is invalid'
+            )
 
     @abstractclassmethod
     def _parse_root(cls, match):

@@ -22,7 +22,7 @@ from music_dsl.domain.static import (
 
 class Chord(AbstractChord):
     __regex__ = (
-        r"(([A-Z]){1}([b#])?)((sus4|sus2|[ho\-])?)(([\^7]{1,2})?)(([b9136#]{1,})?)"
+        r"^(([A-G]{1}){1}([b#])?)((sus4|sus2|[ho\-])?)(([\^7]{1,2})?)(([b9136#]{1,})?)$"
     )
 
     def __init__(self, raw_chord):

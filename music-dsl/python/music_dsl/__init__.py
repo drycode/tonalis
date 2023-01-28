@@ -8,3 +8,6 @@ from music_dsl.encode import Scales
 class Key:
     root: Notes
     scale: Scales
+
+
+__version__ = "0.1.1"

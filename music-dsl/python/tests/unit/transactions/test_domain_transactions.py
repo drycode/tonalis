@@ -65,7 +65,7 @@ def test_fuzz_build_chord(root, triad, _7th, extensions):
         ((Notes.D, Scales.Major, Chord("D-7")), False),
         ((Notes.D, Scales.Major, Chord("F#-")), True),
         ((Notes.Fs, Scales.Major, Chord("D-7")), False),
-        ((Notes.C, Scales.Major, Chord("Bh5")), True),
+        ((Notes.C, Scales.Major, Chord("Bh7")), True),
         ((Notes.C, Scales.Major, Chord("E7b9")), False),
     ],
 )
