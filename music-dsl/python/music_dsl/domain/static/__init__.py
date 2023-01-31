@@ -1,3 +1,4 @@
+from types import SimpleNamespace
 from .chord import *
 from .notes import *
 from .scale_degree import *
@@ -25,4 +26,26 @@ SUBDOMINANT_RESOLUTIONS = (
         Intervals.M2.up(),
         Intervals.M7.up(),
     }
+)
+
+
+MAJOR_HARMONIC_FUNCTIONS = SimpleNamespace(
+    tonic={
+        Intervals.M3.up(),
+        Intervals.m6.down(),
+        Intervals.m6.up(),
+        Intervals.M3.down(),
+    },
+    dominant={
+        Intervals.M7.up(),
+        Intervals.m2.down(),
+        Intervals.P5.up(),
+        Intervals.P4.down(),
+    },
+    subdominant={
+        Intervals.M2.up(),
+        Intervals.m7.down(),
+        Intervals.P4.up(),
+        Intervals.P5.down(),
+    },
 )
