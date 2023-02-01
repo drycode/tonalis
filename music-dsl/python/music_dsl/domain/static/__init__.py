@@ -33,8 +33,8 @@ MAJOR_HARMONIC_FUNCTIONS = SimpleNamespace(
     tonic={
         Intervals.M3.up(),
         Intervals.m6.down(),
-        Intervals.m6.up(),
-        Intervals.M3.down(),
+        Intervals.M6.up(),
+        Intervals.m3.down(),
     },
     dominant={
         Intervals.M7.up(),

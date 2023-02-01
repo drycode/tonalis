@@ -49,7 +49,7 @@ def validate_attr_inputs(_7th, extensions):
 
 
 @cache
-def semitones_apart(root: Notes, note: Notes) -> int:
+def semitones_apart_ascending(root: Notes, note: Notes) -> int:
     return (get_index(note) + 12 - get_index(root)) % 12
 
 

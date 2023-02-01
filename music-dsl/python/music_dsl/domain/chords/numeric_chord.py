@@ -6,7 +6,7 @@ from typing_extensions import Self, TypeAlias
 
 
 from music_dsl.domain.static import Intervals, HarmonicFunctions
-from music_dsl.helpers import semitones_apart, m_or_M_scaledegree
+from music_dsl.helpers import semitones_apart_ascending, m_or_M_scaledegree
 from music_dsl.transactions import modulate
 
 from .abstract_chord import AbstractChord, ChordAttrs, make_chord_attrs
@@ -117,7 +117,7 @@ class NumericChord(AbstractChord):
     def _find_scale_degree(
         root: Notes, note: Notes, triad: Triad = None
     ) -> ScaleDegree:
-        scale_degree = SCALE_DEGREES[semitones_apart(root, note)]
+        scale_degree = SCALE_DEGREES[semitones_apart_ascending(root, note)]
         return m_or_M_scaledegree(scale_degree, triad)
 
     @classmethod
@@ -133,7 +133,7 @@ class NumericChord(AbstractChord):
         )
         if substitution:
             if (
-                Intervals(semitones_apart(chord.root, diatonic_key_root))
+                Intervals(semitones_apart_ascending(chord.root, diatonic_key_root))
                 == Intervals.Tritone
             ):
                 ### Subdominant variations like Db-7 Ab7 G
@@ -149,7 +149,7 @@ class NumericChord(AbstractChord):
                     scale_degree,
                 )
             elif (
-                Intervals(semitones_apart(chord.root, diatonic_key_root))
+                Intervals(semitones_apart_ascending(chord.root, diatonic_key_root))
                 == Intervals.m6
             ):
                 ### Subdominant variations like Db-7 D7 G

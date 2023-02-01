@@ -10,7 +10,7 @@ from music_dsl.domain.static import (
     ScaleDegree,
 )
 from music_dsl.encode import Scales, strip_left, strip_right
-from music_dsl.helpers import get_index, semitones_apart
+from music_dsl.helpers import get_index, semitones_apart_ascending
 
 
 def normalize_to_c(root: Notes, chords: List[Chord]) -> None:
@@ -31,7 +31,9 @@ def modulate(
 
 def _get_key(from_segment: Chord, pattern: "NumericChord"):
     return TWELVE_TONES[
-        semitones_apart(from_segment.root.normalized(), pattern.root.normalized())
+        semitones_apart_ascending(
+            from_segment.root.normalized(), pattern.root.normalized()
+        )
     ]
 
 
@@ -51,7 +53,7 @@ def is_diatonic(root: Notes, scale: Scales, chord: Chord):
     def _root_is_diatonic(scale, scale_length, semitones):
         return scale.value & 1 << (scale_length - semitones - 1)
 
-    semitones = semitones_apart(root, chord.root)
+    semitones = semitones_apart_ascending(root, chord.root)
     scale_length = int.bit_length(scale.value)
 
     # Checks the Nth bit from the left is set, which determines if the root is diatonic to the scale

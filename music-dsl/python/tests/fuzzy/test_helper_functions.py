@@ -3,7 +3,7 @@ from hypothesis import strategies as st
 
 from music_dsl.domain.chords.numeric_chord import NumericChord
 from music_dsl.domain.static import TWELVE_TONES, Notes, ScaleDegree
-from music_dsl.helpers import get_index
+from music_dsl.helpers import get_index, semitones_apart_ascending
 from music_dsl.builders import build_from_chord_string
 from music_dsl.transactions import _get_key
 from tests.testdata.fuzzy_test_supersets import (
@@ -50,3 +50,12 @@ def test_multi_dimensional_numeric_chord(pattern):
         else numerator.lower() + "/" + denominator
     )
     assert str(build_from_chord_string(pattern, NumericChord)) == expected
+
+
+@given(st.sampled_from(Notes), st.sampled_from(Notes))
+def test_semitones_apart_ascending(note1, note2):
+    """
+    Validates that semitones_apart_ascending always returns a values between 0 and 12
+    """
+    if not isinstance(note1.value, dict) and not isinstance(note2.value, dict):
+        assert 0 <= semitones_apart_ascending(note1, note2) < 12
