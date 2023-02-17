@@ -49,7 +49,11 @@ def test_multi_dimensional_numeric_chord(pattern):
         if ("-" not in numerator and "h" not in numerator and "o" not in numerator)
         else numerator.lower() + "/" + denominator
     )
-    assert str(build_from_chord_string(pattern, NumericChord)) == expected
+    numeric_chord = build_from_chord_string(pattern, NumericChord)
+    if numeric_chord.denominator._chord_attrs.root == ScaleDegree.I:
+        expected = expected.split("/")[0]
+
+    assert str(numeric_chord) == expected
 
 
 @given(st.sampled_from(Notes), st.sampled_from(Notes))

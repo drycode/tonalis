@@ -186,7 +186,11 @@ class NumericChord(AbstractChord):
 
     def __repr__(self):
         numerator = repr(self._chord_attrs)
-        if hasattr(self, "_denominator"):
+        if (
+            hasattr(self, "_denominator")
+            and self.denominator
+            and self.denominator._chord_attrs.root != ScaleDegree.I
+        ):
             denominator = "/" + repr(self._denominator) if self._denominator else ""
             return numerator + denominator
 
