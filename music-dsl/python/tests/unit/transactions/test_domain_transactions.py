@@ -67,6 +67,7 @@ def test_fuzz_build_chord(root, triad, _7th, extensions):
         ((Notes.Fs, Scales.Major, Chord("D-7")), False),
         ((Notes.C, Scales.Major, Chord("Bh7")), True),
         ((Notes.C, Scales.Major, Chord("E7b9")), False),
+        ((Notes.Bb, Scales.Major, Chord("Bb")), True),
     ],
 )
 def test_is_diatonic_to_Major(_input, expected):

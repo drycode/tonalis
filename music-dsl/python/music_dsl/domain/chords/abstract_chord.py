@@ -5,8 +5,11 @@ import re
 from abc import abstractclassmethod
 from functools import cache, reduce
 from typing import List, Tuple, Union
-
 from music_dsl.helpers import m_or_M_scaledegree, validate_attr_inputs
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 EMPTY_CHORD_ENCODING = int("1000000000000000000", 2)
 
@@ -23,7 +26,8 @@ from music_dsl.domain.static import (
 _ROOT_IDX = 1
 _TRIAD_IDX = 4
 _7TH_IDX = 6
-_EXT_IDX = 8
+_SUS_IDX = 9
+_EXT_IDX = 10
 
 
 @dataclass
@@ -39,12 +43,15 @@ class ChordAttrs:
         return hash(tuple(self.__dict__.values()))
 
     def __repr__(self):
+        sev_triad = (self.triad, self._7th)
+        if self.triad in {Triad.Sus, Triad.Sus2, Triad.Sus4}:
+            sev_triad = (self._7th, self.triad)
         return reduce(
             lambda x, y: x + str(y.value),
             self.extensions,
             reduce(
                 lambda x, y: str(x) + str(y.value) if y else str(x),
-                (self.triad, self._7th),
+                sev_triad,
                 f"{self.root.value}",
             ),
         )
@@ -69,6 +76,9 @@ class InvalidChordStringException(Exception):
 
 class AbstractChord:
     __regex__ = ...
+    __regex_suffix__ = (
+        r"((sus|sus4|sus2|[ho\-])?)(([\^7]{1,2})?)((sus|sus4|sus2)?([b95136#]{1,})?)$"
+    )
     __instances__ = dict()
 
     def __init__(self):
@@ -109,11 +119,18 @@ class AbstractChord:
     @classmethod
     @cache
     def _parse_chord_string(cls, raw_chord, substitution=False) -> ChordAttrs:
+        if "/" in raw_chord:
+            logger.info("Doesn't currently support slash chords.")
+            raw_chord = raw_chord.split("/")[0]
         match_groups = re.match(cls.__regex__, raw_chord)
         AbstractChord._verify_chord_string(raw_chord, match_groups)
         _root = cls._parse_root(match_groups[_ROOT_IDX])
-        _triad = Triad(match_groups[_TRIAD_IDX])
-        assert isinstance(_triad, Triad)
+        _sus = match_groups[_SUS_IDX]
+        if _sus and match_groups[_TRIAD_IDX]:
+            raise Exception(
+                "Shouldn't be able to have a Triad and a Sus defined at the same time."
+            )
+        _triad = Triad(_sus) if _sus else Triad(match_groups[_TRIAD_IDX])
         _7th = Seventh(match_groups[_7TH_IDX])
         _extensions = cls._get_extensions(match_groups[_EXT_IDX])
         _harmonic_function = cls._get_harmonic_function(_root, _triad, _7th)

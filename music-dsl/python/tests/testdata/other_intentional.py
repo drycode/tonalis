@@ -47,6 +47,12 @@ EXAMPLE_CHORD_STRS = [
     "Ab7#11",
     "G^7",
     "Gsus4",
+    "Bb7sus",
+    "Bb7sus#9",
+    "Bb7sus4",
+    "Bb7sus4#9",
+    "Bb7sus2",
+    "Bb7sus2#9",
 ]
 
 EXAMPLE_CHORD_ATTRS = [
@@ -104,6 +110,12 @@ EXAMPLE_CHORD_ATTRS = [
     make_chord_attrs(Notes("Ab"), Triad.Major, Seventh.Minor, [Extensions("#11")], ""),
     make_chord_attrs(Notes("G"), Triad.Major, Seventh.Major, [Extensions("")], ""),
     make_chord_attrs(Notes("G"), Triad.Sus4, Seventh._None, [Extensions("")], ""),
+    make_chord_attrs(Notes("Bb"), Triad.Sus, Seventh.Minor, [Extensions("")], ""),
+    make_chord_attrs(Notes("Bb"), Triad.Sus, Seventh.Minor, [Extensions("#9")], ""),
+    make_chord_attrs(Notes("Bb"), Triad.Sus4, Seventh.Minor, [Extensions("")], ""),
+    make_chord_attrs(Notes("Bb"), Triad.Sus4, Seventh.Minor, [Extensions("#9")], ""),
+    make_chord_attrs(Notes("Bb"), Triad.Sus2, Seventh.Minor, [Extensions("")], ""),
+    make_chord_attrs(Notes("Bb"), Triad.Sus2, Seventh.Minor, [Extensions("#9")], ""),
 ]
 
 EXAMPLE_CHORDS = zip(EXAMPLE_CHORD_STRS, EXAMPLE_CHORD_ATTRS)

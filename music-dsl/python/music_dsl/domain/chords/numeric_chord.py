@@ -24,10 +24,16 @@ from music_dsl.domain.static import (
 )
 
 
+class IncorrectHarmonicFunctionException(Exception):
+    def __init__(self, chord, diatonic_key_root, harmonic_function) -> None:
+        self.message = (
+            f"{chord} in the key of {diatonic_key_root} is not {harmonic_function}"
+        )
+        super().__init__(self.message)
+
+
 class NumericChord(AbstractChord):
-    __regex__ = (
-        r"(([b#])?([ivVI]){1,4})((sus4|sus2|[ho\-])?)(([\^7]{1,2})?)(([b9136#]{1,})?)"
-    )
+    __regex__ = r"^(([b#])?([ivVI]){1,4})" + AbstractChord.__regex_suffix__
 
     def __init__(
         self,
@@ -137,13 +143,19 @@ class NumericChord(AbstractChord):
                 == Intervals.Tritone
             ):
                 ### Subdominant variations like Db-7 Ab7 G
-                assert chord.harmonic_function == HarmonicFunctions.Subdominant
+                if chord.harmonic_function != HarmonicFunctions.Subdominant:
+                    raise IncorrectHarmonicFunctionException(
+                        chord, diatonic_key_root, HarmonicFunctions.Subdominant
+                    )
                 scale_degree = modulate(
                     Intervals.Tritone.value + Intervals.M2.value, scale_degree
                 )
             elif chord.harmonic_function == HarmonicFunctions.Dominant:
                 # Dominant Variations
-                assert chord.harmonic_function == HarmonicFunctions.Dominant
+                if chord.harmonic_function != HarmonicFunctions.Dominant:
+                    raise IncorrectHarmonicFunctionException(
+                        chord, diatonic_key_root, HarmonicFunctions.Dominant
+                    )
                 scale_degree = modulate(
                     Intervals.Tritone.value,
                     scale_degree,

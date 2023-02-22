@@ -12,6 +12,8 @@ class Triad(Enum):
     Minor = "-"
     HalfDiminished = "h"
     Diminished = "o"
+    Sus = "sus"
+    Sus2 = "sus2"
     Sus4 = "sus4"
 
 
@@ -23,6 +25,8 @@ class Seventh(Enum):
 
 class Extensions(Enum):
     _None = ""
+    b5 = "b5"
+    s5 = "#5"
     add6 = "6"
     b9 = "b9"
     add9 = "9"
@@ -34,6 +38,8 @@ class Extensions(Enum):
 
 
 SupportedExtensions = [
+    Extensions.b5,
+    Extensions.s5,
     Extensions.b13,
     Extensions.b9,
     Extensions._None,

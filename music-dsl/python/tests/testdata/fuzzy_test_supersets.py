@@ -15,7 +15,15 @@ NUMERIC_CHORD_SUPERSET = [
     "".join(tup)
     for tup in itertools.product(
         members(ScaleDegree),
-        members(Triad),
+        [
+            member.value
+            for member in [
+                Triad.Major,
+                Triad.Minor,
+                Triad.Diminished,
+                Triad.HalfDiminished,
+            ]
+        ],
         members(Seventh),
         [member.value for member in SupportedExtensions],
     )
