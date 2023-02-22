@@ -53,6 +53,30 @@ class Notes(Enum):
     def __hash__(self):
         return hash(Notes.sharps_to_flats.value.get(self.name) or self.name)
 
+    def __dict__(self):
+        return {
+            note.value: note.name
+            for note in [
+                Notes.C,
+                Notes.Cs,
+                Notes.Db,
+                Notes.D,
+                Notes.Ds,
+                Notes.Eb,
+                Notes.E,
+                Notes.F,
+                Notes.Fs,
+                Notes.Gb,
+                Notes.G,
+                Notes.Gs,
+                Notes.Ab,
+                Notes.A,
+                Notes.As,
+                Notes.Bb,
+                Notes.B,
+            ]
+        }
+
 
 TO_C = {
     Notes.C: 0,
@@ -90,7 +114,7 @@ TWELVE_TONES = [
 ]
 
 
-class Intervals(Enum):
+class Intervals(int, Enum):
     Unison = 0
     m2 = 1
     M2 = 2
