@@ -71,3 +71,9 @@ def test_resolution_to_self():
 def test_from_chord_string(chord_str, attrs):
     x = NumericChord.from_chord_string(chord_str)
     assert x._chord_attrs == attrs
+
+
+def test_chords_not_equal():
+    assert NumericChord.from_chord_string("ii-7/V7") != NumericChord.from_chord_string(
+        "V7/ii-7"
+    )

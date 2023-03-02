@@ -169,7 +169,9 @@ class AbstractChord:
     @staticmethod
     def _singleton_key(chord_attrs: ChordAttrs, resolves_to: ChordAttrs = None):
         return (
-            hash(chord_attrs) + hash(resolves_to) if resolves_to else hash(chord_attrs)
+            hash(repr(chord_attrs) + repr(resolves_to))
+            if resolves_to
+            else hash(repr(chord_attrs))
         )
 
     @classmethod

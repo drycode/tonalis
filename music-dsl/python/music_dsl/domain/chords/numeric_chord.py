@@ -42,7 +42,6 @@ class NumericChord(AbstractChord):
         denominator: AbstractChord = None,
         substitution=False,
     ):
-
         denominator = self.make_denominator(diatonic_key_root, denominator)
         self._chord_attrs = self._from_chord(
             diatonic_key_root if not denominator else denominator.root,

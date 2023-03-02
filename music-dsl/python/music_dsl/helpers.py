@@ -1,3 +1,4 @@
+import logging
 from functools import cache
 from typing import Iterable, Union
 
@@ -13,6 +14,7 @@ from music_dsl.domain.static import (
 
 MIN_SUPPORTED = int("1000000000000", 2)
 MAX_SUPPORTED = int("1111111111111" * 3, 2)
+logger = logging.getLogger(__name__)
 
 
 def m_or_M_scaledegree(root: ScaleDegree, triad) -> ScaleDegree:
@@ -50,7 +52,13 @@ def validate_attr_inputs(_7th, extensions):
 
 @cache
 def semitones_apart_ascending(root: Notes, note: Notes) -> int:
-    return (get_index(note) + 12 - get_index(root)) % 12
+    try:
+        return (get_index(note) + 12 - get_index(root)) % 12
+    except TypeError as exc:
+        logger.exception(
+            f"Incorrect values passed to semitones_apart_ascending(root={root}, note={note})"
+        )
+        raise exc
 
 
 @cache
