@@ -183,7 +183,7 @@ class AbstractChord:
         return _new
 
     def __hash__(self) -> int:
-        return hash(self._chord_attrs)
+        return hash(repr(self._chord_attrs))
 
     def __eq__(self, __o: object) -> bool:
         return (

@@ -69,7 +69,7 @@ class NumericChord(AbstractChord):
 
     @property
     def denominator(self) -> NumericChord:
-        return self._denominator
+        return self._denominator if hasattr(self, "_denominator") else None
 
     @property
     def is_substitution(self):
@@ -195,6 +195,12 @@ class NumericChord(AbstractChord):
         _new._denominator = cls._new(super()._singleton_key(chord_attrs))
         return _new
 
+    def __hash__(self) -> int:
+        return self._singleton_key(
+            self._chord_attrs,
+            self.denominator._chord_attrs if self.denominator else None,
+        )
+
     def __repr__(self):
         numerator = repr(self._chord_attrs)
         if (
@@ -202,10 +208,19 @@ class NumericChord(AbstractChord):
             and self.denominator
             and self.denominator._chord_attrs.root != ScaleDegree.I
         ):
-            denominator = "/" + repr(self._denominator) if self._denominator else ""
+            denominator = "/" + repr(self.denominator) if self.denominator else ""
             return numerator + denominator
 
         return numerator
+
+    def __eq__(self, __o: object) -> bool:
+        if (
+            self.denominator
+            and self.denominator.root != ScaleDegree.I
+            and __o.denominator
+        ):
+            return super().__eq__(__o) and self.denominator.root == __o.denominator.root
+        return super().__eq__(__o)
 
 
 def build_numeric_chord(
