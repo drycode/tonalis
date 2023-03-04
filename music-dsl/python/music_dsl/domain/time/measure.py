@@ -1,13 +1,50 @@
 from abc import ABC
+from dataclasses import dataclass
 import string
+from typing import Literal
 from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.time import TimeSignature
 from music_dsl.domain.chords.abstract_chord import AbstractChord
 
 
+class AbstractBeatLocation(ABC):
+    measure_number: int
+    beat_number: int
+
+
 class AbstractBeatContainer(ABC):
-    def __init__(self, chord: AbstractChord) -> None:
+    def __init__(
+        self, beat_location: AbstractBeatLocation, chord: AbstractChord
+    ) -> None:
         self.chord: AbstractChord = chord
+        self.beat_location: AbstractBeatLocation = beat_location
+
+
+@dataclass(frozen=True)
+class BeatLocation(AbstractBeatLocation):
+    measure_number: int
+    beat_number: int
+
+    def __repr__(self) -> str:
+        return f"m.{self.measure_number} - beat: {self.beat_number}"
+
+
+@dataclass(frozen=True)
+class MeasurelessBeatLocation(AbstractBeatLocation):
+    beat_number: int
+    measure_number: Literal[-1] = -1
+
+    def __repr__(self) -> str:
+        return f"m.{self.measure_number} - beat: {self.beat_number}"
+
+
+class BeatType(AbstractBeatContainer):
+    def __init__(self, beat_location: BeatLocation, chord: Chord) -> None:
+        self.beat_location: BeatLocation = beat_location
+        self.chord: Chord = chord
+
+    def __eq__(self, __o: object) -> bool:
+        return self.beat_location == __o.beat_location and self.chord == __o.chord
 
 
 class Measure:
@@ -33,16 +70,20 @@ class Measure:
         while chords_list[-1] == "":
             chords_list.pop()
         write = -1
-        beat = None
         for chord in chords_list:
             times = 1 + chord.count("%")
-            beat = self.beat_type(0, self.chord_type(chord.strip("%")))
             for _ in range(times):
                 write += 1
-                self.beat_containers[write] = beat
+                self.beat_containers[write] = self.beat_type(
+                    BeatLocation(self.m_number, write),
+                    self.chord_type(chord.strip("%")),
+                )
 
         while write < self.time_signature.denominator:
-            self.beat_containers[write] = beat
+            self.beat_containers[write] = self.beat_type(
+                BeatLocation(self.m_number, write),
+                self.chord_type(chord.strip("%")),
+            )
             write += 1
 
     def __repr__(self) -> str:
