@@ -1,7 +1,7 @@
-from enum import Enum
+from music_dsl.utils import JsonSerializableEnum
 
 
-class ScaleDegree(Enum):
+class ScaleDegree(JsonSerializableEnum):
     I = "I"
     i = "i"
     sI = "#I"

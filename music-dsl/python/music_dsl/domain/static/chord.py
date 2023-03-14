@@ -1,13 +1,17 @@
-from enum import Enum, auto
+"""
+SCRUBBED format supported chords can be found here https://www.irealpro.com/ireal-pro-file-format
+"""
+from enum import auto
+from music_dsl.utils import JsonSerializableEnum
 
 
-class HarmonicFunctions(Enum):
+class HarmonicFunctions(JsonSerializableEnum):
     Dominant = auto()
     Subdominant = auto()
     Tonic = auto()
 
 
-class Triad(Enum):
+class Triad(JsonSerializableEnum):
     Major = ""
     Minor = "-"
     HalfDiminished = "h"
@@ -17,13 +21,13 @@ class Triad(Enum):
     Sus4 = "sus4"
 
 
-class Seventh(Enum):
+class Seventh(JsonSerializableEnum):
     Major = "^7"
     Minor = "7"
     _None = ""
 
 
-class Extensions(Enum):
+class Extensions(JsonSerializableEnum):
     _None = ""
     b5 = "b5"
     s5 = "#5"

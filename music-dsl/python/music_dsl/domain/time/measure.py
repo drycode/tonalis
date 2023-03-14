@@ -25,6 +25,9 @@ class BeatLocation(AbstractBeatLocation):
     measure_number: int
     beat_number: int
 
+    def to_json(self):
+        return self.__dict__
+
     def __repr__(self) -> str:
         return f"m.{self.measure_number} - beat: {self.beat_number}"
 
@@ -34,6 +37,9 @@ class MeasurelessBeatLocation(AbstractBeatLocation):
     beat_number: int
     measure_number: Literal[-1] = -1
 
+    def to_json(self):
+        return {"measureless_beat_number": self.beat_number}
+
     def __repr__(self) -> str:
         return f"m.{self.measure_number} - beat: {self.beat_number}"
 
@@ -42,6 +48,11 @@ class BeatType(AbstractBeatContainer):
     def __init__(self, beat_location: BeatLocation, chord: Chord) -> None:
         self.beat_location: BeatLocation = beat_location
         self.chord: Chord = chord
+
+    def to_json(self):
+        return {
+            key: val for key, val in self.__dict__.items() if not key.startswith("_")
+        }
 
     def __eq__(self, __o: object) -> bool:
         return self.beat_location == __o.beat_location and self.chord == __o.chord
@@ -64,6 +75,12 @@ class Measure:
         self.time_signature = time_signature
         self.beat_containers = [None] * time_signature.denominator
         self._setup_beats(delimiter)
+
+    def to_json(self):
+        result = self.__dict__
+        result["beat_type"] = str(self.beat_type)
+        result["chord_type"] = str(self.chord_type)
+        return result
 
     def _setup_beats(self, delimiter=" "):
         chords_list = self.raw_measure.replace(delimiter, "% ").split(delimiter)

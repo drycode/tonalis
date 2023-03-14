@@ -80,6 +80,12 @@ class NumericChord(AbstractChord):
         numerator, denominator = NumericChord._get_numerator_denominator(chord_str)
         return cls._make_new(numerator, denominator)
 
+    def to_json(self):
+        return {
+            "numerator": self._chord_attrs,
+            "denominator": self.denominator._chord_attrs if self.denominator else None,
+        }
+
     @staticmethod
     def _get_numerator_denominator(chord_str: str):
         _split = chord_str.split("/")

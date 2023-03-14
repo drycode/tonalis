@@ -39,6 +39,9 @@ class ChordAttrs:
     harmonic_function: HarmonicFunctions
     substitution: bool = False
 
+    def to_json(self):
+        return self.__dict__
+
     def __hash__(self):
         return hash(tuple(self.__dict__.values()))
 
@@ -103,6 +106,9 @@ class AbstractChord:
     @property
     def harmonic_function(self):
         return self._chord_attrs.harmonic_function
+
+    def to_json(self):
+        return self._chord_attrs
 
     @classmethod
     def _get_extensions(cls, ext_string: str) -> Tuple[Extensions, ...]:

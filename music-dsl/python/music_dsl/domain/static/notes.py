@@ -1,7 +1,7 @@
-from enum import Enum
+from music_dsl.utils import JsonSerializableEnum
 
 
-class Notes(Enum):
+class Notes(JsonSerializableEnum):
     C = "C"
     Cs = "C#"
     Db = "Db"
@@ -114,7 +114,7 @@ TWELVE_TONES = [
 ]
 
 
-class Intervals(int, Enum):
+class Intervals(int, JsonSerializableEnum):
     Unison = 0
     m2 = 1
     M2 = 2
