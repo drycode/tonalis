@@ -17,7 +17,12 @@ from music_dsl.domain.static import (
 
 
 from music_dsl.builders import build_chord
-from music_dsl.transactions import is_diatonic, modulate
+from music_dsl.transactions import (
+    harmonic_function_in_key,
+    is_diatonic,
+    modulate,
+)
+from music_dsl.domain.static import HarmonicFunctions
 
 instances: Set[NumericChord] = set()
 
@@ -72,6 +77,54 @@ def test_fuzz_build_chord(root, triad, _7th, extensions):
 )
 def test_is_diatonic_to_Major(_input, expected):
     assert is_diatonic(*_input) == expected
+
+
+@pytest.mark.parametrize(
+    ["_input", "expected"],
+    [
+        # Natural-minor diatonic chords of C minor
+        ((Notes.C, Scales.Minor, Chord("C-7")), True),
+        ((Notes.C, Scales.Minor, Chord("Dh7")), True),
+        ((Notes.C, Scales.Minor, Chord("Eb^7")), True),
+        ((Notes.C, Scales.Minor, Chord("F-7")), True),
+        ((Notes.C, Scales.Minor, Chord("G-7")), True),
+        ((Notes.C, Scales.Minor, Chord("Ab^7")), True),
+        ((Notes.C, Scales.Minor, Chord("Bb7")), True),
+        # The dominant V7 needs the raised 7th (harmonic minor), so it is NOT
+        # diatonic to natural minor.
+        ((Notes.C, Scales.Minor, Chord("G7")), False),
+        ((Notes.C, Scales.Minor, Chord("C^7")), False),
+        # Harmonic-minor: the V7 becomes diatonic.
+        ((Notes.C, Scales.HarmonicMinor, Chord("G7")), True),
+        ((Notes.C, Scales.HarmonicMinor, Chord("C-7")), False),
+    ],
+)
+def test_is_diatonic_to_Minor(_input, expected):
+    assert is_diatonic(*_input) == expected
+
+
+@pytest.mark.parametrize(
+    ["key_root", "key_is_minor", "chord", "expected"],
+    [
+        # Minor tonic: the i-7 of a minor key is Tonic (quality-only mapping
+        # would call it Subdominant).
+        (Notes.C, True, Chord("C-7"), HarmonicFunctions.Tonic),
+        # Other minor-key degrees keep their quality-based function.
+        (Notes.C, True, Chord("Dh7"), HarmonicFunctions.Subdominant),
+        (Notes.C, True, Chord("F-7"), HarmonicFunctions.Subdominant),
+        (Notes.C, True, Chord("G7"), HarmonicFunctions.Dominant),
+        # Major key: the tonic-degree change is a no-op; behavior matches the
+        # quality-only mapping.
+        (Notes.C, False, Chord("C^7"), HarmonicFunctions.Tonic),
+        (Notes.C, False, Chord("D-7"), HarmonicFunctions.Subdominant),
+        (Notes.C, False, Chord("G7"), HarmonicFunctions.Dominant),
+        # A blues I7 (dominant quality on the tonic degree) keeps its quality so
+        # it can still be labeled I7, even in a minor-key context.
+        (Notes.Bb, False, Chord("Bb7"), HarmonicFunctions.Dominant),
+    ],
+)
+def test_harmonic_function_in_key(key_root, key_is_minor, chord, expected):
+    assert harmonic_function_in_key(key_root, key_is_minor, chord) == expected
 
 
 @pytest.mark.parametrize(

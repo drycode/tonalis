@@ -50,7 +50,9 @@ def test_multi_dimensional_numeric_chord(pattern):
         else numerator.lower() + "/" + denominator
     )
     numeric_chord = build_from_chord_string(pattern, NumericChord)
-    if numeric_chord.denominator._chord_attrs.root == ScaleDegree.I:
+    # A denominator on the tonic scale degree (I or its minor i) is the home
+    # tonic, so the slash is redundant and suppressed in the repr.
+    if numeric_chord.denominator._chord_attrs.root.to_major() == ScaleDegree.I:
         expected = expected.split("/")[0]
 
     assert str(numeric_chord) == expected

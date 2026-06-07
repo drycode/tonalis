@@ -91,6 +91,11 @@ class Encoding:
 
 class Scales(Enum):
     Major = int("101011010101" * 3, 2)
+    # Natural minor (Aeolian). Repeated 3x like Major so the modal-distance
+    # scan in `is_diatonic`/`scan_scale` can align the scale to any root.
+    Minor = int("101101011010" * 3, 2)
+    # Harmonic minor: raised 7th gives the diatonic V7 of a minor key.
+    HarmonicMinor = int("101101011001" * 3, 2)
 
 
 @cache

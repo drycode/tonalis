@@ -212,7 +212,7 @@ class NumericChord(AbstractChord):
         if (
             hasattr(self, "_denominator")
             and self.denominator
-            and self.denominator._chord_attrs.root != ScaleDegree.I
+            and self.denominator._chord_attrs.root.to_major() != ScaleDegree.I
         ):
             denominator = "/" + repr(self.denominator) if self.denominator else ""
             return numerator + denominator
@@ -222,7 +222,7 @@ class NumericChord(AbstractChord):
     def __eq__(self, __o: object) -> bool:
         if (
             self.denominator
-            and self.denominator.root != ScaleDegree.I
+            and self.denominator.root.to_major() != ScaleDegree.I
             and __o.denominator
         ):
             return super().__eq__(__o) and self.denominator.root == __o.denominator.root
