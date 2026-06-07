@@ -129,6 +129,11 @@ class NumericChord(AbstractChord):
         root: Notes, note: Notes, triad: Triad = None
     ) -> ScaleDegree:
         scale_degree = SCALE_DEGREES[semitones_apart_ascending(root, note)]
+        # Passing/auxiliary diminished chords are conventionally spelled with a
+        # sharp on a chromatic degree (they ascend by half-step): #io7, #ivo7 --
+        # not the flat default (bIIo7, bVo7) that SCALE_DEGREES carries.
+        if triad == Triad.Diminished and scale_degree.is_flat:
+            scale_degree = scale_degree.to_sharp()
         return m_or_M_scaledegree(scale_degree, triad)
 
     @classmethod

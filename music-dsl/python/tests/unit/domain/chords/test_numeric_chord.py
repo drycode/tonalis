@@ -77,3 +77,17 @@ def test_chords_not_equal():
     assert NumericChord.from_chord_string("ii-7/V7") != NumericChord.from_chord_string(
         "V7/ii-7"
     )
+
+
+@mark.parametrize(
+    "key, chord, expected",
+    [
+        # Passing diminished chords on chromatic degrees are sharp-spelled.
+        (Notes.C, Chord("C#o7"), "#io7"),
+        (Notes.Bb, Chord("Eo7"), "#ivo7"),
+        # Diatonic-degree diminished keeps its plain degree (no accidental flip).
+        (Notes.C, Chord("Bo7"), "viio7"),
+    ],
+)
+def test_diminished_sharp_spelling(key, chord, expected):
+    assert repr(NumericChord(key, chord)) == expected
