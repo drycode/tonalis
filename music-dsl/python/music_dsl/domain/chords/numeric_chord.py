@@ -33,7 +33,7 @@ class IncorrectHarmonicFunctionException(Exception):
 
 
 class NumericChord(AbstractChord):
-    __regex__ = r"^(([b#])?([ivVI]){1,4})" + AbstractChord.__regex_suffix__
+    __regex__ = r"^(?P<root>[b#]?[ivVI]{1,4})" + AbstractChord.__regex_suffix__
 
     def __init__(
         self,

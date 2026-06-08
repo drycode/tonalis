@@ -73,7 +73,10 @@ class Measure:
         self.m_number = m_number
         self.raw_measure = raw_measure
         self.time_signature = time_signature
-        self.beat_containers = [None] * time_signature.denominator
+        # beat_containers is sized dynamically in _setup_beats so that measures
+        # carrying more chord-beats than the time signature's denominator (e.g.
+        # "F^7 Eh A7" expanding to 5 beats in 4/4) do not overflow the array.
+        self.beat_containers = []
         self._setup_beats(delimiter)
 
     def to_json(self):
@@ -84,22 +87,38 @@ class Measure:
 
     def _setup_beats(self, delimiter=" "):
         chords_list = self.raw_measure.replace(delimiter, "% ").split(delimiter)
-        while chords_list[-1] == "":
+        while chords_list and chords_list[-1] == "":
             chords_list.pop()
-        write = -1
+
+        # Total beats requested by the chord tokens; a measure may legitimately
+        # ask for more beats than the denominator (multiple chords per beat),
+        # so size the backing list to accommodate the larger of the two.
+        total_beats = sum(1 + chord.count("%") for chord in chords_list)
+        denominator = self.time_signature.denominator
+        size = max(denominator, total_beats)
+        self.beat_containers = [None] * size
+
+        write = 0
+        last_chord = None
         for chord in chords_list:
+            last_chord = chord.strip("%")
             times = 1 + chord.count("%")
             for _ in range(times):
-                write += 1
                 self.beat_containers[write] = self.beat_type(
                     BeatLocation(self.m_number, write),
-                    self.chord_type(chord.strip("%")),
+                    self.chord_type(last_chord),
                 )
+                write += 1
 
-        while write < self.time_signature.denominator:
+        # Pad any remaining slots (when total_beats < denominator) with the LAST
+        # chord seen so the measure spans the full bar. Uses last_chord rather
+        # than the loop variable to avoid reusing a stale token. If the measure
+        # had no chords at all there is nothing to pad with, so leave the
+        # remaining slots as None.
+        while last_chord is not None and write < size:
             self.beat_containers[write] = self.beat_type(
                 BeatLocation(self.m_number, write),
-                self.chord_type(chord.strip("%")),
+                self.chord_type(last_chord),
             )
             write += 1
 

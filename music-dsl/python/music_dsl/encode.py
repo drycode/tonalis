@@ -19,11 +19,16 @@ EncodingMap = {
     Triad.Minor: [3, 7],
     Triad.Diminished: [3, 6],
     Triad.HalfDiminished: [3, 6],
+    Triad.Augmented: [4, 8],
     Triad.Sus2: [2, 7],
     Triad.Sus: [5, 7],
     Triad.Sus4: [5, 7],
+    Extensions.add2: [2],  # major 2nd
+    Extensions.add3: [4],  # major 3rd
     Extensions.b5: [6],
+    Extensions.add5: [7],  # perfect 5th
     Extensions.s5: [8],
+    Extensions.b6: [8],  # minor 6th, enharmonic with #5
     Extensions.add6: [9],
     Seventh.Minor: [10],
     Seventh.Major: [11],
@@ -34,6 +39,10 @@ EncodingMap = {
     Extensions.s11: [16],
     Extensions.b13: [17],
     Extensions.add13: [18],
+    # An altered dominant carries the altered tensions b9/#9/#11/b13. This is a
+    # minimal, sane interval set so `7alt` parses and encodes deterministically;
+    # full chord-scale spelling is out of scope here.
+    Extensions.alt: [12, 14, 16, 17],
     Seventh._None: [],
 }
 

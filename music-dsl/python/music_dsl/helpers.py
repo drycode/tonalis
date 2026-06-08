@@ -18,7 +18,9 @@ logger = logging.getLogger(__name__)
 
 
 def m_or_M_scaledegree(root: ScaleDegree, triad) -> ScaleDegree:
-    if triad and (triad != Triad.Major and triad != Triad.Sus4):
+    # Major-third triads (major, augmented) and sus4 keep the major scale degree;
+    # everything else (minor, dim, half-dim) lowers it.
+    if triad and triad not in (Triad.Major, Triad.Augmented, Triad.Sus4):
         return root.to_minor()
     return root
 
@@ -27,27 +29,9 @@ def validate_attr_inputs(_7th, extensions):
     if not isinstance(extensions, Iterable):
         raise Exception("Extensions is not iterable")
 
-    if _7th != Seventh._None:
-        if set(extensions) & set(
-            [
-                Extensions.add6,
-                Extensions.add11,
-                Extensions.add9,
-                Extensions.add13,
-            ]
-        ):
-            raise Exception(
-                "We currently don't support 6,9,11,13 chords. Found {}",
-                set(extensions)
-                & set(
-                    [
-                        Extensions.add6,
-                        Extensions.add11,
-                        Extensions.add9,
-                        Extensions.add13,
-                    ]
-                ),
-            )
+    # Added tensions (6/9/11/13) alongside a 7th are legitimate jazz voicings
+    # (e.g. C13, C^9). They are encoded as plain interval bits, so we no longer
+    # reject them here; doing so previously turned parseable chords into crashes.
 
 
 @cache

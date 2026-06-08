@@ -22,12 +22,13 @@ from music_dsl.domain.static import (
     Triad,
 )
 
-
-_ROOT_IDX = 1
-_TRIAD_IDX = 4
-_7TH_IDX = 6
-_SUS_IDX = 9
-_EXT_IDX = 10
+# Chord suffix is parsed with named groups (see ``__regex_suffix__``):
+#   triad   - triad quality token (-, h, o, +, sus...)
+#   seventh - 7th token (^7, ^, 7)
+#   alt     - literal "alt" (altered dominant)
+#   ext     - run of extension tokens (b9, #11, 13, add9, 6, 9 ...)
+#   sus2    - a sus token appearing AFTER the 7th/extensions (e.g. 9sus, 7b9sus)
+# Subclasses contribute a leading named ``root`` group.
 
 
 @dataclass
@@ -73,14 +74,24 @@ def make_chord_attrs(
     return ChordAttrs(root, triad, _7th, extensions, harmonic_function, substitution)
 
 
-class InvalidChordStringException(Exception):
-    ...
+class InvalidChordStringException(Exception): ...
 
 
 class AbstractChord:
     __regex__ = ...
+    # sus can appear in three places across iReal/legacy notations:
+    #   * before the 7th, as a triad  (Csus, Gsus4)
+    #   * after the 7th, canonical    (Bb7sus#9)
+    #   * after the extensions        (F9sus, G7b9sus)
+    # Each is captured separately and consolidated in _parse_chord_string.
     __regex_suffix__ = (
-        r"((sus|sus4|sus2|[ho\-])?)(([\^7]{1,2})?)((sus|sus4|sus2)?([b95136#]{1,})?)$"
+        r"(?P<triad>sus4|sus2|sus|[ho+\-])?"
+        r"(?P<seventh>\^7|\^|7)?"
+        r"(?P<alt>alt)?"
+        r"(?P<sus1>sus4|sus2|sus)?"
+        r"(?P<ext>(?:add|[b#]?\d{1,2})*?)"
+        r"(?P<sus2>sus4|sus2|sus)?"
+        r"$"
     )
     __instances__ = dict()
 
@@ -112,15 +123,35 @@ class AbstractChord:
 
     @classmethod
     def _get_extensions(cls, ext_string: str) -> Tuple[Extensions, ...]:
+        if not ext_string:
+            return tuple()
+        # iReal writes "add9" for an added 9th and "69" as a compound 6/9 token;
+        # normalise both before tokenising into individual extensions.
+        ext_string = ext_string.replace("add", "")
+        ext_string = ext_string.replace("69", "6,9")
+
         extensions_regex = r"([b#]?[\d]{1,2})"
         matches = []
-        while ext_string:
-            result = re.match(extensions_regex, ext_string)
+        pos = 0
+        while pos < len(ext_string):
+            result = re.match(extensions_regex, ext_string[pos:])
+            if result is None:
+                # Skip a separator (or any unexpected char) rather than crash;
+                # the suffix regex already validated the overall shape.
+                pos += 1
+                continue
             start, end = result.regs[0]
-            matches.append(Extensions(ext_string[start:end]))
-            ext_string = ext_string[end:]
+            matches.append(Extensions(ext_string[pos + start : pos + end]))
+            pos += end
 
         return tuple(matches)
+
+    @staticmethod
+    def _normalize_seventh(token: str) -> str:
+        # iReal uses a bare "^" as shorthand for a major 7th ("C^" == "C^7").
+        if token == "^":
+            return "^7"
+        return token or ""
 
     @classmethod
     @cache
@@ -130,15 +161,26 @@ class AbstractChord:
             raw_chord = raw_chord.split("/")[0]
         match_groups = re.match(cls.__regex__, raw_chord)
         AbstractChord._verify_chord_string(raw_chord, match_groups)
-        _root = cls._parse_root(match_groups[_ROOT_IDX])
-        _sus = match_groups[_SUS_IDX]
-        if _sus and match_groups[_TRIAD_IDX]:
+        _root = cls._parse_root(match_groups["root"])
+        _triad_token = match_groups["triad"]
+        # A sus token may surface from any of the three positions; collect it.
+        _sus = match_groups["sus1"] or match_groups["sus2"]
+        _triad_is_sus = _triad_token in ("sus", "sus4", "sus2")
+        if _sus and _triad_token and not _triad_is_sus:
             raise Exception(
                 "Shouldn't be able to have a Triad and a Sus defined at the same time."
             )
-        _triad = Triad(_sus) if _sus else Triad(match_groups[_TRIAD_IDX])
-        _7th = Seventh(match_groups[_7TH_IDX])
-        _extensions = cls._get_extensions(match_groups[_EXT_IDX])
+        _triad = Triad(_sus or _triad_token or "")
+        _7th = Seventh(cls._normalize_seventh(match_groups["seventh"]))
+
+        _ext_token = match_groups["ext"] or ""
+        if match_groups["alt"]:
+            # An altered dominant is a dominant 7 carrying altered tensions.
+            _7th = Seventh.Minor
+            _extensions = (Extensions.alt,) + cls._get_extensions(_ext_token)
+        else:
+            _extensions = cls._get_extensions(_ext_token)
+
         _harmonic_function = cls._get_harmonic_function(_root, _triad, _7th)
         return make_chord_attrs(
             _root, _triad, _7th, _extensions, _harmonic_function, substitution
@@ -157,8 +199,7 @@ class AbstractChord:
             )
 
     @abstractclassmethod
-    def _parse_root(cls, match):
-        ...
+    def _parse_root(cls, match): ...
 
     @staticmethod
     def _get_harmonic_function(

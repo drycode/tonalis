@@ -21,7 +21,7 @@ from music_dsl.domain.static import (
 
 
 class Chord(AbstractChord):
-    __regex__ = r"^(([A-G]{1}){1}([b#])?)" + AbstractChord.__regex_suffix__
+    __regex__ = r"^(?P<root>[A-G][b#]?)" + AbstractChord.__regex_suffix__
 
     def __init__(self, raw_chord):
         self._chord_attrs = self._parse_chord_string(raw_chord)
@@ -63,8 +63,12 @@ class Chord(AbstractChord):
         _new._chord_attrs = _chord_attrs
         return _new
 
+    # White-key enharmonic spellings that the Notes enum does not carry directly.
+    _ENHARMONIC_ROOTS = {"Cb": "B", "Fb": "E", "B#": "C", "E#": "F"}
+
     @classmethod
     def _parse_root(cls, match):
+        match = cls._ENHARMONIC_ROOTS.get(match, match)
         return Notes(match).to_flat()
 
     def _encode(self):
