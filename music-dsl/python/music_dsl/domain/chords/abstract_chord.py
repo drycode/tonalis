@@ -50,7 +50,11 @@ class ChordAttrs:
         sev_triad = (self.triad, self._7th)
         if self.triad in {Triad.Sus, Triad.Sus2, Triad.Sus4}:
             sev_triad = (self._7th, self.triad)
-        return reduce(
+        # A tritone substitution carries an "s" prefix (sV7/V) so the repr
+        # round-trips through from_chord_string and stays distinct from the plain
+        # dominant it sits a tritone from. Absolute Chords never set this flag.
+        prefix = "s" if self.substitution else ""
+        return prefix + reduce(
             lambda x, y: x + str(y.value),
             self.extensions,
             reduce(
