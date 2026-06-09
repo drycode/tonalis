@@ -160,6 +160,24 @@ class AbstractChord:
     @classmethod
     @cache
     def _parse_chord_string(cls, raw_chord, substitution=False) -> ChordAttrs:
+        # Robustness contract: a malformed chord string must raise exactly one
+        # catchable InvalidChordStringException -- never a raw ValueError /
+        # IndexError / KeyError / TypeError leaking from enum construction,
+        # extension tokenising, or a None/non-str input. The permissive regex can
+        # match shapes the downstream parsers reject (e.g. "VIII", "Cadd9add11"),
+        # so we funnel every low-level failure through one clean exception.
+        try:
+            return cls._parse_chord_string_impl(raw_chord, substitution)
+        except InvalidChordStringException:
+            raise
+        except (ValueError, IndexError, KeyError, TypeError) as exc:
+            raise InvalidChordStringException(
+                f'Attempted to parse "{raw_chord}" which is invalid '
+                f'({type(exc).__name__}: {exc})'
+            ) from exc
+
+    @classmethod
+    def _parse_chord_string_impl(cls, raw_chord, substitution=False) -> ChordAttrs:
         if "/" in raw_chord:
             logger.info("Doesn't currently support slash chords.")
             raw_chord = raw_chord.split("/")[0]
@@ -171,15 +189,23 @@ class AbstractChord:
         _sus = match_groups["sus1"] or match_groups["sus2"]
         _triad_is_sus = _triad_token in ("sus", "sus4", "sus2")
         if _sus and _triad_token and not _triad_is_sus:
-            raise Exception(
-                "Shouldn't be able to have a Triad and a Sus defined at the same time."
+            raise InvalidChordStringException(
+                f'Attempted to parse "{raw_chord}": a triad and a sus cannot '
+                f"coexist ({_triad_token!r} + {_sus!r})"
             )
         _triad = Triad(_sus or _triad_token or "")
         _7th = Seventh(cls._normalize_seventh(match_groups["seventh"]))
 
         _ext_token = match_groups["ext"] or ""
         if match_groups["alt"]:
-            # An altered dominant is a dominant 7 carrying altered tensions.
+            # An altered dominant is a dominant 7 carrying altered tensions; it is
+            # a dominant-only modifier and does not combine with a sus chord
+            # (which has no 3rd to alter) -- reject rather than build a chord whose
+            # canonical form (`C7susalt`) cannot be re-parsed.
+            if _triad in (Triad.Sus, Triad.Sus2, Triad.Sus4):
+                raise InvalidChordStringException(
+                    f'Attempted to parse "{raw_chord}": "alt" cannot modify a sus chord'
+                )
             _7th = Seventh.Minor
             _extensions = (Extensions.alt,) + cls._get_extensions(_ext_token)
         else:

@@ -9,7 +9,12 @@ from music_dsl.domain.static import Intervals, HarmonicFunctions
 from music_dsl.helpers import semitones_apart_ascending, m_or_M_scaledegree
 from music_dsl.transactions import modulate
 
-from .abstract_chord import AbstractChord, ChordAttrs, make_chord_attrs
+from .abstract_chord import (
+    AbstractChord,
+    ChordAttrs,
+    InvalidChordStringException,
+    make_chord_attrs,
+)
 from .chord import Chord
 
 EMPTY_CHORD_ENCODING = int("1000000000000000000", 2)
@@ -96,6 +101,10 @@ class NumericChord(AbstractChord):
 
     @classmethod
     def _make_new(cls, numerator_str, denominator_str):
+        if not numerator_str:
+            raise InvalidChordStringException(
+                "Attempted to parse a numeric chord with an empty numerator"
+            )
         num_substitution = False
         if numerator_str[0] == "s":
             num_substitution = True
