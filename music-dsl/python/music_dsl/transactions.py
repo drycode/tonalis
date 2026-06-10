@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from functools import cache
-from typing import List, Union
+from typing import TYPE_CHECKING, List, Union
 
 from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.static import (
@@ -13,6 +15,9 @@ from music_dsl.domain.static import (
 )
 from music_dsl.encode import Scales, strip_left, strip_right
 from music_dsl.helpers import get_index, semitones_apart_ascending
+
+if TYPE_CHECKING:
+    from music_dsl.domain.chords.numeric_chord import NumericChord
 
 
 def normalize_to_c(root: Notes, chords: List[Chord]) -> None:
@@ -108,3 +113,23 @@ def is_diatonic(root: Notes, scale: Scales, chord: Chord):
             return True
 
     return False
+
+
+def _quality_suffix(numeric) -> str:
+    """Chord-parseable suffix from the numeric chord's enum values (NOT repr)."""
+    triad = numeric.triad.value
+    seventh = numeric._7th.value
+    exts = "".join(e.value for e in (numeric.extensions or ()))
+    return triad + seventh + exts
+
+
+def chord_in_key(numeric: "NumericChord", key_root: Notes) -> Chord:
+    """Realize a key-relative NumericChord into a playable absolute Chord by
+    PITCH CLASS. Flat-spelled (Notes has no double-accidentals); exact for the
+    realized pitches. Slash chords resolve recursively against major parents."""
+    if numeric.denominator:
+        denom_root = modulate(get_index(numeric.denominator.root), key_root)
+        abs_root = modulate(get_index(numeric.root), denom_root)
+    else:
+        abs_root = modulate(get_index(numeric.root), key_root)
+    return Chord(abs_root.value + _quality_suffix(numeric))

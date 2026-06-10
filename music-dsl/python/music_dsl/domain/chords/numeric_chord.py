@@ -242,6 +242,13 @@ class NumericChord(AbstractChord):
             return super().__eq__(__o) and self.denominator.root == __o.denominator.root
         return super().__eq__(__o)
 
+    def in_key(self, key_root):
+        """Realize this numeral into an absolute Chord in the given key.
+        Thin delegator to transactions.chord_in_key (local import: the
+        transactions module imports from this one)."""
+        from music_dsl.transactions import chord_in_key
+        return chord_in_key(self, key_root)
+
 
 def build_numeric_chord(
     root: ScaleDegree, triad: Triad, _7th: Seventh, extensions: Extensions

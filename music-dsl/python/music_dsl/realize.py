@@ -13,7 +13,7 @@ from __future__ import annotations
 from typing import List, Union
 
 from music_dsl.domain.chords.chord import Chord
-from music_dsl.domain.static import Intervals, Notes, ScaleDegree
+from music_dsl.domain.static import Intervals, Notes, ScaleDegree, Seventh, Triad
 from music_dsl.encode import EncodingMap, Scales
 from music_dsl.helpers import get_index, semitones_apart_ascending
 from music_dsl.transactions import modulate
@@ -58,7 +58,13 @@ def chord_pitches(chord: Chord, octave: int = DEFAULT_OCTAVE) -> List[int]:
     """MIDI notes of a chord (root position), read straight from EncodingMap's
     semitone offsets — not the lossy 19-bit packed encoding."""
     base = note_to_midi(chord.root, octave)
-    offsets = [0] + list(EncodingMap[chord.triad]) + list(EncodingMap[chord._7th])
+    seventh = list(EncodingMap[chord._7th])
+    # A diminished triad with a seventh is a diminished-7th chord: its seventh is
+    # a *diminished* 7th (9 semitones), not the minor 7th (10) the shared
+    # Seventh.Minor entry encodes. (HalfDiminished keeps the minor 7th.)
+    if chord.triad == Triad.Diminished and chord._7th == Seventh.Minor:
+        seventh = [9]
+    offsets = [0] + list(EncodingMap[chord.triad]) + seventh
     for ext in (chord.extensions or ()):
         offsets += list(EncodingMap.get(ext, []))
     return [base + off for off in sorted(set(offsets))]
