@@ -75,6 +75,29 @@ def make_chord_attrs(
     if isinstance(root, ScaleDegree):
         root = m_or_M_scaledegree(root, triad)
 
+    # Reject the notationally-unspellable "natural root + leading flat/sharp tension,
+    # no seventh, bare major triad" combination. In the chord-string grammar a
+    # flat/sharp directly after a natural letter binds to the ROOT (`Cb9` parses as
+    # Cb+9, not C+b9), and a bare major triad emits no quality token to separate the
+    # root from the tension. So a chord like a C-major triad carrying a b9 (only
+    # reachable via an enharmonic-normalizing root such as B#->C) has no
+    # round-trippable repr: `repr` would emit `Cb9`, which re-parses as Cb+9 -> B add9.
+    # Such altered tensions also require a seventh to be musically well-formed. A
+    # non-major triad ("-"/"h"/"o"/"+") or a seventh provides a separator, so those
+    # are unaffected; a root that already carries an accidental (Db, F#) cannot collide.
+    if (
+        isinstance(root, Notes)
+        and triad is Triad.Major
+        and _7th is Seventh._None
+        and len(root.value) == 1
+        and extensions
+        and extensions[0].value[:1] in ("b", "#")
+    ):
+        raise InvalidChordStringException(
+            f"{root.value}{extensions[0].value}: an altered tension with no seventh "
+            "binds its accidental to the root and has no spellable canonical form"
+        )
+
     return ChordAttrs(root, triad, _7th, extensions, harmonic_function, substitution)
 
 

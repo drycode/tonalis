@@ -88,18 +88,34 @@ def test_chord_canonical_form_is_a_parse_fixed_point(root, triad, sev, ext):
         chord = Chord(raw)
     except InvalidChordStringException:
         return  # not every combination is a legal chord; only round-trip legal ones
-    # Scope out every enharmonic-normalizing root (B#, E#, Cb, Fb): after `Chord`
-    # normalizes the root to a canonical Notes spelling, a bare root + flat-tension
-    # can canonicalize ambiguously -- e.g. `B#b9` -> repr `Cb9`, which re-parses as
-    # Cb(+9) -> `B9`. That `repr(_chord_attrs)` ambiguity is a PRE-EXISTING DSL
-    # issue, independent of chord_in_key (which only ever emits flat/natural roots
-    # from TWELVE_TONES, so it can never hit this path). A non-canonical root is not
-    # a canonical round-trip input, so it's out of this test's scope -- same intent
-    # as the bare #-tension guard above.
-    if chord.root.value != root:
-        return
     canonical = repr(chord._chord_attrs)
     assert repr(Chord(canonical)._chord_attrs) == canonical
+
+
+def test_altered_tension_without_seventh_on_natural_root_is_rejected():
+    # `B#b9` normalizes its root to C, but a bare-triad b9 with no 7th has no
+    # spellable canonical form: repr would emit `Cb9`, which re-parses as Cb+9 -> B
+    # add9. Reject it as invalid rather than emit a non-round-tripping repr.
+    for bad in ("B#b9", "E#b13", "B#b5"):
+        with pytest.raises(InvalidChordStringException):
+            Chord(bad)
+
+
+def test_altered_tension_with_seventh_round_trips():
+    # A real altered dominant (7th present) is well-formed and a parse fixed point.
+    for good in ("C7b9", "G7#9", "F7b13", "Db7b9"):
+        chord = Chord(good)
+        canonical = repr(chord._chord_attrs)
+        assert repr(Chord(canonical)._chord_attrs) == canonical
+
+
+def test_non_major_triad_with_flat_tension_round_trips():
+    # A quality token ("-"/"o") separates the root from the tension, so there is no
+    # root-binding ambiguity even without a 7th -- these stay valid + round-trip.
+    for good in ("C-b9", "Cob9"):
+        chord = Chord(good)
+        canonical = repr(chord._chord_attrs)
+        assert repr(Chord(canonical)._chord_attrs) == canonical
 
 
 @given(
