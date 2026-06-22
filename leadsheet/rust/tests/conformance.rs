@@ -4,7 +4,7 @@
 //!   - `findings`— the SET of `(code, severity, line)` tuples (messages are non-normative).
 //!
 //! There is NO `url` assertion here — the iReal URL is the codec crate's concern. The cases tree
-//! is read via a path relative to `CARGO_MANIFEST_DIR` (`rust/` -> `../conformance/dsl-core/cases`).
+//! is read via a path relative to `CARGO_MANIFEST_DIR` (`leadsheet/rust/` -> `../../conformance/dsl-core/cases`).
 
 use tonalis::ast::{ast_from_json, ast_to_json, LeadSheet};
 use tonalis::{lint, parse_dsl, serialize_text};
@@ -27,9 +27,10 @@ fn norm(mut chart: LeadSheet) -> LeadSheet {
 }
 
 fn cases_dir() -> PathBuf {
-    // standalone layout: `rust/` and `conformance/` are siblings (one `..`); in the monorepo it
-    // was `dsl-core/rust/` -> `../../conformance`.
+    // after leadsheet/ restructure: `leadsheet/rust/` -> two `..` -> repo root -> `conformance/`.
+    // Before: `rust/` and `conformance/` were siblings (one `..`).
     Path::new(env!("CARGO_MANIFEST_DIR"))
+        .join("..")
         .join("..")
         .join("conformance")
         .join("dsl-core")
