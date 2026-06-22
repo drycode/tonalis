@@ -20,3 +20,7 @@ target/
 # OS / editor
 .DS_Store
 *.swp
+
+# SDD execution scratch
+.superpowers/
+.venv/
