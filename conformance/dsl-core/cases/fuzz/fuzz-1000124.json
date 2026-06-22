@@ -1,0 +1,129 @@
+{
+  "name": "fuzz-1000124",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "beats",
+    "alt",
+    "nav-coda",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Train\ncomposer: Trad\nstyle: Ballad\nkey: Db\ntime: 6/8\n[A]\n| E#13#11:3 A4:1 C#7b13:2 | C-6:1 Esus:5 (G#sus A7sus) |\n@coda\n| D#11 | Ab^7 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train",
+        "composer": "Trad",
+        "style": "Ballad",
+        "key": "Db",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#13#11",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "A4",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C#7b13",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-6",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Esus",
+                  "beats": 5,
+                  "alt": "(G#sus A7sus)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train\ncomposer: Trad\nstyle: Ballad\nkey: Db\ntime: 6/8\n\n[A]\n| E#13#11:3 A4:1 C#7b13:2 | C-6:1 Esus:5 (G#sus A7sus) |\n@coda\n| D#11 | Ab^7 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (3, 1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

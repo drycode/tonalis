@@ -1,0 +1,230 @@
+{
+  "name": "fuzz-1000156",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-text",
+    "nav-tocoda",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Spring Take\nkey: D-\ntime: 9/8\n[A1]\n| B-:8 B-11:1 | B7#9 Eb^7#11 (A^9) D13#11 (Csus/G) |\n<Vamp>\n| E^9 | Bb^9 (Eh7 C11) A^7#11 (B^9) C^9 | F6 |\n@tocoda\n[C3]\n{ | n | Bb2 Eh7 A#7b5 |1. B^9/A } |2. F7#5#9 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spring Take",
+        "key": "D-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A1",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B-",
+                  "beats": 8,
+                  "alt": null
+                },
+                {
+                  "chord": "B-11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb^7#11",
+                  "beats": null,
+                  "alt": "(A^9)"
+                },
+                {
+                  "chord": "D13#11",
+                  "beats": null,
+                  "alt": "(Csus/G)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Vamp>"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb^9",
+                  "beats": null,
+                  "alt": "(Eh7 C11)"
+                },
+                {
+                  "chord": "A^7#11",
+                  "beats": null,
+                  "alt": "(B^9)"
+                },
+                {
+                  "chord": "C^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "C3",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb2",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eh7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B^9/A",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spring Take\nkey: D-\ntime: 9/8\n\n[A1]\n| B-:8 B-11:1 | B7#9 Eb^7#11(A^9) D13#11(Csus/G) |\n<Vamp>\n| E^9 | Bb^9 (Eh7 C11) A^7#11(B^9) C^9 | F6 |\n@tocoda\n\n[C3]\n{ n | Bb2 Eh7 A#7b5 | 1. B^9/A } 2. F7#5#9 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (8, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

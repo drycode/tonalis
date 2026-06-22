@@ -1,0 +1,205 @@
+{
+  "name": "fuzz-1000009",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "beats",
+    "alt",
+    "nav-tocoda",
+    "break",
+    "break-lossy",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Naima Train 91\nkey: F#\ntime: 6/4\n[i]\n| D^9:4 A69:2 |\n@break\n| D#2:3 n:3 | Eb7#5 |\n@tocoda\n| E-6 A-6 (Bb*7+*) | A+ |\n| D2 (G#o) A#add13/A Gbadd13 |\n[v3]\n| Gb7b9 | G4 Z\n@tocoda\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Train 91",
+        "key": "F#",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D^9",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "A69",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#2",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E-6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A-6",
+                  "beats": null,
+                  "alt": "(Bb*7+*)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D2",
+                  "beats": null,
+                  "alt": "(G#o)"
+                },
+                {
+                  "chord": "A#add13/A",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gbadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "v3",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gb7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Train 91\nkey: F#\ntime: 6/4\n\n[i]\n| D^9:4 A69:2 |\n@break\n| D#2:3 n:3 | Eb7#5 |\n@tocoda\n| E-6 A-6(Bb*7+*) | A+ | D2(G#o) A#add13/A Gbadd13 |\n\n[v3]\n| Gb7b9 | G4 ||\n@tocoda\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (4, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

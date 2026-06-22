@@ -1,0 +1,180 @@
+{
+  "name": "fuzz-1000135",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Donna Joy\ncomposer:\nkey: Gb\ntime: 3/4\n[i1]\n{ | Fb2:1 Dbadd11:1 C#9:1 (C4) | E69 | Bb*7+*:1 F7#9:1 F7alt:1 | E- } |\n[Intro]\n{ | Db-(n) |1. Fb-:2 F7b9#11:1 } |2. Ab7#9 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna Joy",
+        "composer": "",
+        "key": "Gb",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i1",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fb2",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Dbadd11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C#9",
+                  "beats": 1,
+                  "alt": "(C4)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F7#9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F7alt",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Db-",
+                  "beats": null,
+                  "alt": "(n)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb-",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "F7b9#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna Joy\ncomposer: \nkey: Gb\ntime: 3/4\n\n[i1]\n{ Fb2:1 Dbadd11:1 C#9:1(C4) | E69 | Bb*7+*:1 F7#9:1 F7alt:1 | E- }\n\n[Intro]\n{ Db-(n) | 1. Fb-:2 F7b9#11:1 } 2. Ab7#9 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

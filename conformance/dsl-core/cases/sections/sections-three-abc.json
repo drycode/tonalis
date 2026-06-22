@@ -1,0 +1,86 @@
+{
+  "name": "sections-three-abc",
+  "tags": [
+    "sections"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C6 |\n[B]\n| A-7 |\n[C]\n| D7 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "T",
+        "key": "C",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: T\nkey: C\ntime: 4/4\n\n[A]\n| C6 |\n\n[B]\n| A-7 |\n\n[C]\n| D7 |\n"
+  }
+}

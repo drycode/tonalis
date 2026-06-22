@@ -1,0 +1,118 @@
+{
+  "name": "fuzz-1000019",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "repeats"
+  ],
+  "dsl": "title: Donna Body\ncomposer:\nkey: D-\ntime: 6/4\n[C]\n{ | Gb13#11 Esus4 Gbsus4 | E7#9 E13#11/Fb Gb13 } |\n[D]\n| G7sus | C-/C ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna Body",
+        "composer": "",
+        "key": "D-",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gb13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Esus4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gbsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E13#11/Fb",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna Body\ncomposer: \nkey: D-\ntime: 6/4\n\n[C]\n{ Gb13#11 Esus4 Gbsus4 | E7#9 E13#11/Fb Gb13 }\n\n[D]\n| G7sus | C-/C ||\n"
+  }
+}

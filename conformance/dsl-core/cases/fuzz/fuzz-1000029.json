@@ -1,0 +1,308 @@
+{
+  "name": "fuzz-1000029",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-segno",
+    "nav-time",
+    "nav-tocoda",
+    "time-change",
+    "warn-beat-unsupported",
+    "warn-redundant-time"
+  ],
+  "dsl": "title: Dolphin\nkey: \ntime: 7/4\n[v]\n{ | Ah7 | D#-6:5 Badd11:2 | B#-6 | A7#9 } |\n[D]\n| B7b9(Eadd13) | C#7b9:4 G:1 Cadd11:2 (A11 G7#9) |\n@tocoda\n[Intro2]\n| B^7/Db |\n@segno\n| B^9 |\n| A+:3 G#7b9:4 | Do (E7#5/A) |\n[time: 7/4]\n| Dbadd9 | Bb-9:5 Cadd13:2 |\n@tocoda\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dolphin",
+        "key": "",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ah7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#-6",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "Badd11",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7b9",
+                  "beats": null,
+                  "alt": "(Eadd13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#7b9",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "G",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd11",
+                  "beats": 2,
+                  "alt": "(A11 G7#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Intro2",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B^7/Db",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "segno"
+                ]
+              ],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A+",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "G#7b9",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Do",
+                  "beats": null,
+                  "alt": "(E7#5/A)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dbadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    7,
+                    4
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb-9",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd13",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dolphin\nkey: \ntime: 7/4\n\n[v]\n{ Ah7 | D#-6:5 Badd11:2 | B#-6 | A7#9 }\n\n[D]\n| B7b9(Eadd13) | C#7b9:4 G:1 Cadd11:2 (A11 G7#9) |\n@tocoda\n\n[Intro2]\n| B^7/Db |\n@segno\n| B^9 | A+:3 G#7b9:4 | Do(E7#5/A) |\n[time: 7/4]\n| Dbadd9 | Bb-9:5 Cadd13:2 |\n@tocoda\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (5, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (4, 1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 13,
+        "message": "uneven beat layout (3, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 15,
+        "message": "uneven beat layout (5, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "redundant-time",
+        "severity": "warning",
+        "line": 14,
+        "message": "[time: 7/4] repeats the current meter"
+      }
+    ]
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "name": "fuzz-1000117",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-duplicate-header",
+    "warn-tocoda-without-measure"
+  ],
+  "dsl": "title: Dolphin Joy\nstyle: Latin\nkey: F#\ntime: 2/2\ntitle: Dolphin Joy\n[C]\n{ | n:1 E7#5:1 (E7#5#9 A) | Db-11:1 Cb-11:1 | (Aadd9) E7b9 G#7b5 | Db9 } |\n[i]\n@tocoda\n| A#7#5/G#:1 (F11 E-6) Db-9:1 | Fh7 | Gb7alt |\n[B]\n| Ao7 | G^7#11 | Eb7sus |\n| D-7b5 C#^7#11 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dolphin Joy",
+        "style": "Latin",
+        "key": "F#",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E7#5",
+                  "beats": 1,
+                  "alt": "(E7#5#9 A)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db-11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb-11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A#7#5/G#",
+                  "beats": 1,
+                  "alt": "(F11 E-6)"
+                },
+                {
+                  "chord": "Db-9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7alt",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ao7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7b5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C#^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dolphin Joy\nstyle: Latin\nkey: F#\ntime: 2/2\n\n[C]\n{ n:1 E7#5:1 (E7#5#9 A) | Db-11:1 Cb-11:1 | E7b9 G#7b5 | Db9 }\n\n[i]\n| A#7#5/G#:1 (F11 E-6) Db-9:1 | Fh7 | Gb7alt |\n\n[B]\n| Ao7 | G^7#11 | Eb7sus | D-7b5 C#^7#11 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 7,
+        "message": "alt group (Aadd9) has no preceding chord"
+      },
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      },
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 9,
+        "message": "@tocoda has no preceding measure"
+      }
+    ]
+  }
+}

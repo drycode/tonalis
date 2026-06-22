@@ -1,0 +1,70 @@
+{
+  "name": "chords-inline-alt",
+  "tags": [
+    "chords",
+    "alt"
+  ],
+  "dsl": "title: T\nkey: F\ntime: 4/4\n[A]\n| D-7 G7(Db7) | C-7 F7 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "T",
+        "key": "F",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": "(Db7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: T\nkey: F\ntime: 4/4\n\n[A]\n| D-7 G7(Db7) | C-7 F7 |\n"
+  }
+}

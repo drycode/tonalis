@@ -1,0 +1,115 @@
+{
+  "name": "fuzz-1000010",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Donna Dolphin\ncomposer: Ellington\nkey: Ab-\ntime: 5/4\n[D3]\n{ | G^9:1 (D#+ F-7) B7alt:1 A#h7:3 (B7#5#9/G F^7) | E9 } |\n[Verse]\n| G9:1 D7alt:4 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna Dolphin",
+        "composer": "Ellington",
+        "key": "Ab-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D3",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G^9",
+                  "beats": 1,
+                  "alt": "(D#+ F-7)"
+                },
+                {
+                  "chord": "B7alt",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A#h7",
+                  "beats": 3,
+                  "alt": "(B7#5#9/G F^7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D7alt",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna Dolphin\ncomposer: Ellington\nkey: Ab-\ntime: 5/4\n\n[D3]\n{ G^9:1 (D#+ F-7) B7alt:1 A#h7:3 (B7#5#9/G F^7) | E9 }\n\n[Verse]\n| G9:1 D7alt:4 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 1, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 4) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

@@ -1,0 +1,340 @@
+{
+  "name": "fuzz-1000105",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "beats",
+    "nav-coda",
+    "nav-tocoda",
+    "break",
+    "break-lossy",
+    "warn-beat-unsupported",
+    "warn-duplicate-header",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Moon Autumn\nkey: Bb-\ntime: 7/4\ntitle: Moon Autumn\n[Verse]\n@intro\n| B11 | D-7b5:4 D#add13:3 | B#7#9 | C#-11 |\n@coda\n| C-9 | B#^9/D |\n[v]\n@break\n| D-7b5 | G#-6:1 C-11:4 F#7alt:2 | B#7b9 |\n| A13 |\n@tocoda\n[B]\n| Ab7alt:1 E#-11/G:2 B#9:4 | D#-7 | A#13 |\n@break\n| F7#11:1 F#o/C:6 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Moon Autumn",
+        "key": "Bb-",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7b5",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "D#add13",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#^9/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#-6",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C-11",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "F#7alt",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ab7alt",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E#-11/G",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "B#9",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F#o/C",
+                  "beats": 6,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 18
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Moon Autumn\nkey: Bb-\ntime: 7/4\n\n[Verse]\n| B11 | D-7b5:4 D#add13:3 | B#7#9 | C#-11 |\n@coda\n| C-9 | B#^9/D |\n\n[v]\n@break\n| D-7b5 | G#-6:1 C-11:4 F#7alt:2 | B#7b9 | A13 |\n@tocoda\n\n[B]\n| Ab7alt:1 E#-11/G:2 B#9:4 | D#-7 | A#13 |\n@break\n| F7#11:1 F#o/C:6 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (4, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 12,
+        "message": "uneven beat layout (1, 4, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 16,
+        "message": "uneven beat layout (1, 2, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 18,
+        "message": "uneven beat layout (1, 6) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 4,
+        "message": "duplicate header 'title'"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 6,
+        "message": "unknown @directive: @intro"
+      }
+    ]
+  }
+}

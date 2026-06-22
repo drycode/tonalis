@@ -1,0 +1,81 @@
+{
+  "name": "fuzz-1000074",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "nav-text"
+  ],
+  "dsl": "title: Blue Five Joy\nkey: Db-\ntime: 4/4\n[D3]\n<Rubato>\n| B13#11 |\n| E9 | F2 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Blue Five Joy",
+        "key": "Db-",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D3",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Rubato>"
+                ]
+              ],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Blue Five Joy\nkey: Db-\ntime: 4/4\n\n[D3]\n<Rubato>\n| B13#11 | E9 | F2 ||\n"
+  }
+}

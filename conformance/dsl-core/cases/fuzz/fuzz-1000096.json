@@ -1,0 +1,186 @@
+{
+  "name": "fuzz-1000096",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Giant Body\ncomposer: Evans\nkey: E\ntime: 6/4\n[Verse]\n{ | Fadd9 | C-9 | F# Ab7b9#11 n } |\n[Intro]\n{ | Co7:4 (Cb2 Dh7) F#add13:2 | A7#5#9 |1. Eadd11 } |2. E^:1 Bbsus4:4 Bbo:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Giant Body",
+        "composer": "Evans",
+        "key": "E",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Co7",
+                  "beats": 4,
+                  "alt": "(Cb2 Dh7)"
+                },
+                {
+                  "chord": "F#add13",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eadd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E^",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bbsus4",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Bbo",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Giant Body\ncomposer: Evans\nkey: E\ntime: 6/4\n\n[Verse]\n{ Fadd9 | C-9 | F# Ab7b9#11 n }\n\n[Intro]\n{ Co7:4 (Cb2 Dh7) F#add13:2 | A7#5#9 | 1. Eadd11 } 2. E^:1 Bbsus4:4 Bbo:1 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (4, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 4, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

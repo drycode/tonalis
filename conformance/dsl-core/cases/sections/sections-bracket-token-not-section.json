@@ -1,0 +1,19 @@
+{
+  "name": "sections-bracket-token-not-section",
+  "tags": [
+    "sections",
+    "chords",
+    "regression"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C7 | F7 | C7 | C7 [B] Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "bad-chord",
+        "severity": "error",
+        "line": 5,
+        "message": "invalid chord token: '[B]'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "name": "chords-quality-as-extension",
+  "tags": [
+    "chords"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| Co7 | Ch7 | C7+ | Co^7 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "T",
+        "key": "C",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Co7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ch7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Co^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: T\nkey: C\ntime: 4/4\n\n[A]\n| Co7 | Ch7 | C7+ | Co^7 ||\n"
+  }
+}

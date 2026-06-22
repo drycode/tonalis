@@ -1,0 +1,82 @@
+{
+  "name": "fuzz-1000107",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "repeats",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Waltz Soul Spain\nstyle: Up Tempo Swing\nkey: \ntime: 7/4\n[Intro]\n{ | C7#5 | E#11:1 Bbadd11:2 C6:4 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Waltz Soul Spain",
+        "style": "Up Tempo Swing",
+        "key": "",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bbadd11",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "C6",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Waltz Soul Spain\nstyle: Up Tempo Swing\nkey: \ntime: 7/4\n\n[Intro]\n{ C7#5 | E#11:1 Bbadd11:2 C6:4 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 2, 4) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

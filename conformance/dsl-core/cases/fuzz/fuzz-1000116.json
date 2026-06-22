@@ -1,0 +1,295 @@
+{
+  "name": "fuzz-1000116",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "beats",
+    "nav-coda",
+    "nav-tocoda"
+  ],
+  "dsl": "title: Train Autumn\ncomposer: Davis\nkey: Db\ntime: 2/2\n[v]\n{ | C^ G#^9 | C7#5:1 G7#5:1 | A#7b9#11:1 G^9:1 } |\n[A2]\n| F9 Ab+ | Dbh:1 E2:1 |\n@tocoda\n| C^7#11 Dbo/F# | F69 Cb^7#11 |\n[i]\n@coda\n| Ab+ | Cb+ |\n| F#-7 | B7#5 |\n| A7 Eadd13 |\n| Eb^9:1 C#13/Cb:1 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Autumn",
+        "composer": "Davis",
+        "key": "Db",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C^",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7#5",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G7#5",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#7b9#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G^9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "A2",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dbh",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E2",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C^7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Dbo/F#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F69",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ab+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb^9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C#13/Cb",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Autumn\ncomposer: Davis\nkey: Db\ntime: 2/2\n\n[v]\n{ C^ G#^9 | C7#5:1 G7#5:1 | A#7b9#11:1 G^9:1 }\n\n[A2]\n| F9 Ab+ | Dbh:1 E2:1 |\n@tocoda\n| C^7#11 Dbo/F# | F69 Cb^7#11 |\n\n[i]\n@coda\n| Ab+ | Cb+ | F#-7 | B7#5 | A7 Eadd13 | Eb^9:1 C#13/Cb:1 ||\n"
+  }
+}

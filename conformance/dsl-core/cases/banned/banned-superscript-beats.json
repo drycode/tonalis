@@ -1,0 +1,19 @@
+{
+  "name": "banned-superscript-beats",
+  "tags": [
+    "banned",
+    "beats",
+    "ascii-digits"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C:² Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "bad-beats",
+        "severity": "error",
+        "line": 5,
+        "message": "bad beat count in 'C:²' (expected :<digits>)"
+      }
+    ]
+  }
+}

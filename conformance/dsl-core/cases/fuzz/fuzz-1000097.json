@@ -1,0 +1,92 @@
+{
+  "name": "fuzz-1000097",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "endings",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Train Night\nkey: F#\ntime: 5/4\n[C]\n{ | F7#9 |1. Ah } |2. Ebh7:2 Bb*7+*:3 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Night",
+        "key": "F#",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ah",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ebh7",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Night\nkey: F#\ntime: 5/4\n\n[C]\n{ F7#9 | 1. Ah } 2. Ebh7:2 Bb*7+*:3 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (2, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

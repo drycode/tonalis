@@ -1,0 +1,18 @@
+{
+  "name": "banned-bad-beats",
+  "tags": [
+    "banned",
+    "beats"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C:x G7 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "bad-beats",
+        "severity": "error",
+        "line": 5,
+        "message": "bad beat count in 'C:x' (expected :<digits>)"
+      }
+    ]
+  }
+}

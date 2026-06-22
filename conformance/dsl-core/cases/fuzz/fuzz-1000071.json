@@ -1,0 +1,257 @@
+{
+  "name": "fuzz-1000071",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "beats",
+    "alt",
+    "nav-fine",
+    "nav-tocoda",
+    "warn-mid-final-bar",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Naima Spain Stella\nstyle:\nkey: Bb-\ntime: 2/2\n[Verse1]\n| F+:1 Z\n[Verse]\n| D7b5:1 A7#11:1 | Bb*7+*:1 E-11:1 |\n@fine\n| Co7 Gh7 (E7b9#11) | Ab13:1 E#o7:1 (D7b5/Bb Eb-11) |\n[Verse]\n@dc\n| D2 | Aadd11 D#sus4 |\n| Fbh |\n@tocoda\n[Verse]\n| G13#11:1 B#o:1 | C6 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Spain Stella",
+        "style": "",
+        "key": "Bb-",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse1",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F+",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D7b5",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E-11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Co7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gh7",
+                  "beats": null,
+                  "alt": "(E7b9#11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E#o7",
+                  "beats": 1,
+                  "alt": "(D7b5/Bb Eb-11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Aadd11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#sus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fbh",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G13#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B#o",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Spain Stella\nstyle: \nkey: Bb-\ntime: 2/2\n\n[Verse1]\n| F+:1 ||\n\n[Verse]\n| D7b5:1 A7#11:1 | Bb*7+*:1 E-11:1 |\n@fine\n| Co7 Gh7(E7b9#11) | Ab13:1 E#o7:1 (D7b5/Bb Eb-11) |\n\n[Verse]\n| D2 | Aadd11 D#sus4 | Fbh |\n@tocoda\n\n[Verse]\n| G13#11:1 B#o:1 | C6 ||\n",
+    "findings": [
+      {
+        "code": "mid-final-bar",
+        "severity": "warning",
+        "line": 6,
+        "message": "final barline (Z/||) is not on the last measure"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 12,
+        "message": "unknown @directive: @dc"
+      }
+    ]
+  }
+}

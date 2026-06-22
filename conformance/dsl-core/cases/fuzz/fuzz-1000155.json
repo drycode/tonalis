@@ -1,0 +1,178 @@
+{
+  "name": "fuzz-1000155",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "beats",
+    "nav-time",
+    "break",
+    "break-lossy",
+    "time-change",
+    "warn-beat-unsupported",
+    "warn-tocoda-without-measure"
+  ],
+  "dsl": "title: Blue Spain\nkey: A\ntime: 6/8\n[A]\n@break\n| G^:1 A#o/D:5 |\n| N.C. A#13 C^ | F#^7#11 |\n[Intro]\n| Abadd9 | Fb+ |\n[v]\n@tocoda\n[time: 6/4]\n| B^ |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Blue Spain",
+        "key": "A",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G^",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A#o/D",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Abadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    6,
+                    4
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Blue Spain\nkey: A\ntime: 6/8\n\n[A]\n@break\n| G^:1 A#o/D:5 | N.C. A#13 C^ | F#^7#11 |\n\n[Intro]\n| Abadd9 | Fb+ |\n\n[v]\n[time: 6/4]\n| B^ |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 11,
+        "message": "@tocoda has no preceding measure"
+      }
+    ]
+  }
+}

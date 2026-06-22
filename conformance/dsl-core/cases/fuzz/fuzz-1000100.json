@@ -1,0 +1,112 @@
+{
+  "name": "fuzz-1000100",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Lee\nkey: F#-\ntime: 9/8\n[A2]\n{ | G^7/Db:3 B^7#11:6 | G#7b9#11 Bbadd9 Db-7 (D#4/C# C7sus/A#) | D7#5/C# Db4/D# Gh } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Lee",
+        "key": "F#-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A2",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G^7/Db",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "B^7#11",
+                  "beats": 6,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bbadd9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db-7",
+                  "beats": null,
+                  "alt": "(D#4/C# C7sus/A#)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7#5/C#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db4/D#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gh",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Lee\nkey: F#-\ntime: 9/8\n\n[A2]\n{ G^7/Db:3 B^7#11:6 | G#7b9#11 Bbadd9 Db-7 (D#4/C# C7sus/A#) | D7#5/C# Db4/D# Gh }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (3, 6) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

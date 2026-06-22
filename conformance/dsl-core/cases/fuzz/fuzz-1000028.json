@@ -1,0 +1,257 @@
+{
+  "name": "fuzz-1000028",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-time",
+    "time-change",
+    "warn-beat-unsupported",
+    "warn-redundant-time"
+  ],
+  "dsl": "title: Body Moon\nstyle: Medium Swing\nkey: Gb\ntime: 4/4\n[Intro]\n| Gb^7 | C-9 G-7 G7#5 Esus/C (Fh7) |\n| F |\n[time: 4/4]\n| Ebo7 |\n| E#-9:2 E7b9#11:1 C+:1 | G-11 F#13#11 Ab7b9 Ab11 |\n[D]\n{ | A#o7:1 F^:2(Ch7) D7b5:1 |1. A9 (A^7#11) } |2. D-11:3 D#^7/B:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Body Moon",
+        "style": "Medium Swing",
+        "key": "Gb",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gb^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7#5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Esus/C",
+                  "beats": null,
+                  "alt": "(Fh7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ebo7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    4,
+                    4
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#-9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "E7b9#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C+",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G-11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F#13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A#o7",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F^",
+                  "beats": 2,
+                  "alt": "(Ch7)"
+                },
+                {
+                  "chord": "D7b5",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A9",
+                  "beats": null,
+                  "alt": "(A^7#11)"
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-11",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "D#^7/B",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Body Moon\nstyle: Medium Swing\nkey: Gb\ntime: 4/4\n\n[Intro]\n| Gb^7 | C-9 G-7 G7#5 Esus/C(Fh7) | F |\n[time: 4/4]\n| Ebo7 | E#-9:2 E7b9#11:1 C+:1 | G-11 F#13#11 Ab7b9 Ab11 |\n\n[D]\n{ A#o7:1 F^:2(Ch7) D7b5:1 | 1. A9(A^7#11) } 2. D-11:3 D#^7/B:1 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 12,
+        "message": "uneven beat layout (1, 2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "redundant-time",
+        "severity": "warning",
+        "line": 8,
+        "message": "[time: 4/4] repeats the current meter"
+      }
+    ]
+  }
+}

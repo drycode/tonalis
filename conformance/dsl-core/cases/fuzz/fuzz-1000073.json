@@ -1,0 +1,291 @@
+{
+  "name": "fuzz-1000073",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-segno",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Maiden Steps 7\nstyle:\nkey: E-\ntime: 3/4\n[v]\n{ | F7 B9 B-11 | A7b9:1 B7#9:2 | A-11 | C#7b13(B^7#11/E) N.C. C13#11/Fb } |\n[B3]\n| Ch |\n| A-11:1 D#^9:1 A7#9:1 | Gb7b9/C:2 (Bh7 B13) E7#5#9/G:1 |\n@segno\n| G#7b9#11 |\n[i]\n{ | B7sus | E7b9#11 Eb-6 Gb-9 | A7 Cadd11 C7b9 (Fb13) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Maiden Steps 7",
+        "style": "",
+        "key": "E-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7b9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B7#9",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#7b13",
+                  "beats": null,
+                  "alt": "(B^7#11/E)"
+                },
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C13#11/Fb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "B3",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ch",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#^9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7b9/C",
+                  "beats": 2,
+                  "alt": "(Bh7 B13)"
+                },
+                {
+                  "chord": "E7#5#9/G",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "segno"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb-6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C7b9",
+                  "beats": null,
+                  "alt": "(Fb13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Maiden Steps 7\nstyle: \nkey: E-\ntime: 3/4\n\n[v]\n{ F7 B9 B-11 | A7b9:1 B7#9:2 | A-11 | C#7b13(B^7#11/E) N.C. C13#11/Fb }\n\n[B3]\n| Ch | A-11:1 D#^9:1 A7#9:1 | Gb7b9/C:2 (Bh7 B13) E7#5#9/G:1 |\n@segno\n| G#7b9#11 |\n\n[i]\n{ B7sus | E7b9#11 Eb-6 Gb-9 | A7 Cadd11 C7b9(Fb13) }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

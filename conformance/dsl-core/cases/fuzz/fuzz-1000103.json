@@ -1,0 +1,100 @@
+{
+  "name": "fuzz-1000103",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Misty\nkey: A-\ntime: 12/8\ntitle: Misty\n[Intro]\n{ | C#4 E- Db7#9 | D#-11 | C^7#11 A7b9 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Misty",
+        "key": "A-",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C#4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E-",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C^7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Misty\nkey: A-\ntime: 12/8\n\n[Intro]\n{ C#4 E- Db7#9 | D#-11 | C^7#11 A7b9 }\n",
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 4,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

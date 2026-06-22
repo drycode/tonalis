@@ -1,0 +1,226 @@
+{
+  "name": "fuzz-1000042",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-tocoda",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Footprints Autumn\ncomposer: Davis\nkey: F#-\ntime: 3/4\n[v]\n{ | Bbo7/C E2 Ab- | C#7/G | A-7b5 } |\n[Intro]\n| Eb7b13 D7b9 G7sus(F13#11) | Db13 |\n| Eadd9 B#-6/B# Co (Gb7#9) | (Gbh) D D7b13 G4 |\n| Fb7sus:1 F^7#11:2 (Cb^9) |\n@tocoda\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Footprints Autumn",
+        "composer": "Davis",
+        "key": "F#-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bbo7/C",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E2",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#7/G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eb7b13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7sus",
+                  "beats": null,
+                  "alt": "(F13#11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eadd9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B#-6/B#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Co",
+                  "beats": null,
+                  "alt": "(Gb7#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D7b13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb7sus",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F^7#11",
+                  "beats": 2,
+                  "alt": "(Cb^9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Footprints Autumn\ncomposer: Davis\nkey: F#-\ntime: 3/4\n\n[v]\n{ Bbo7/C E2 Ab- | C#7/G | A-7b5 }\n\n[Intro]\n| Eb7b13 D7b9 G7sus(F13#11) | Db13 | Eadd9 B#-6/B# Co(Gb7#9) | D D7b13 G4 | Fb7sus:1 F^7#11:2(Cb^9) |\n@tocoda\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 9,
+        "message": "alt group (Gbh) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (1, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "name": "fuzz-1000065",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt"
+  ],
+  "dsl": "title: Spain 69\ncomposer:\nstyle: Up Tempo Swing\nkey: C\ntime: 4/4\n[Verse]\n{ | A13#11 | A#^7#11:1 B#13#11:3 |1. B#^:2 B7b9:1 (A#o7) A7#5:1 } |2. D13 D#7b5/F# |\n[v3]\n{ | Fbo7 Bsus F#add13 G7 (Gsus) | Fsus4:3 B7b13:1 | A7#5 | F7#9 D-/G# } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spain 69",
+        "composer": "",
+        "style": "Up Tempo Swing",
+        "key": "C",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#^7#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B#13#11",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#^",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "B7b9",
+                  "beats": 1,
+                  "alt": "(A#o7)"
+                },
+                {
+                  "chord": "A7#5",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#7b5/F#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "v3",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fbo7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bsus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F#add13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": "(Gsus)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fsus4",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "B7b13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D-/G#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spain 69\ncomposer: \nstyle: Up Tempo Swing\nkey: C\ntime: 4/4\n\n[Verse]\n{ A13#11 | A#^7#11:1 B#13#11:3 | 1. B#^:2 B7b9:1(A#o7) A7#5:1 } 2. D13 D#7b5/F# |\n\n[v3]\n{ Fbo7 Bsus F#add13 G7(Gsus) | Fsus4:3 B7b13:1 | A7#5 | F7#9 D-/G# }\n"
+  }
+}

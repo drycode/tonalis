@@ -1,0 +1,134 @@
+{
+  "name": "fuzz-1000153",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "repeats",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Maiden\ncomposer: Trad\nstyle: Medium Swing\nkey: Gb-\ntime: 7/4\n[Verse]\n{ | C#- | Eb7sus } |\n[A]\n{ | G#h:1 Eb9:1 B/F#:5 | F+ | Bb*7+* } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Maiden",
+        "composer": "Trad",
+        "style": "Medium Swing",
+        "key": "Gb-",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C#-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#h",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B/F#",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Maiden\ncomposer: Trad\nstyle: Medium Swing\nkey: Gb-\ntime: 7/4\n\n[Verse]\n{ C#- | Eb7sus }\n\n[A]\n{ G#h:1 Eb9:1 B/F#:5 | F+ | Bb*7+* }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (1, 1, 5) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

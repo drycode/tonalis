@@ -1,0 +1,301 @@
+{
+  "name": "fuzz-1000044",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-tocoda",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Dance Maiden\ncomposer: Evans\nkey: A\ntime: 4/4\n[i]\n{ | Eb^7#11 | Fb7#11:1 Cb^7:1 Ebadd13:2(B2) } |\n[Verse]\n| B-(C7#5#9) |\n@outro\n| F13#11 Eb13#11 E^ Bb^ (E7#9) |\n@tocoda\n[v]\n{ | E-7b5(B7sus) | E#7#9 } |\n[i]\n| B7b9 |\n| G7/D F E-7b5 F-7b5 | E#^9/Eb:2 D:2 |\n| Gbadd9 |\n| Cb-:2 G9:1 B6:1 |\n| D#7alt/A |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance Maiden",
+        "composer": "Evans",
+        "key": "A",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eb^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb7#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb^7",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ebadd13",
+                  "beats": 2,
+                  "alt": "(B2)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B-",
+                  "beats": null,
+                  "alt": "(C7#5#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E^",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb^",
+                  "beats": null,
+                  "alt": "(E7#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E-7b5",
+                  "beats": null,
+                  "alt": "(B7sus)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7/D",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E-7b5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#^9/Eb",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gbadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb-",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "G9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B6",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 18
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#7alt/A",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 19
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance Maiden\ncomposer: Evans\nkey: A\ntime: 4/4\n\n[i]\n{ Eb^7#11 | Fb7#11:1 Cb^7:1 Ebadd13:2(B2) }\n\n[Verse]\n| B-(C7#5#9) | F13#11 Eb13#11 E^ Bb^(E7#9) |\n@tocoda\n\n[v]\n{ E-7b5(B7sus) | E#7#9 }\n\n[i]\n| B7b9 | G7/D F E-7b5 F-7b5 | E#^9/Eb:2 D:2 | Gbadd9 | Cb-:2 G9:1 B6:1 | D#7alt/A |\n",
+    "findings": [
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 9,
+        "message": "unknown @directive: @outro"
+      }
+    ]
+  }
+}

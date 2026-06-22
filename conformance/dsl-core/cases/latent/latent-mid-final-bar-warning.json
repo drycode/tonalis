@@ -1,0 +1,18 @@
+{
+  "name": "latent-mid-final-bar-warning",
+  "tags": [
+    "latent",
+    "warning"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C6 Z\n| A-7 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "mid-final-bar",
+        "severity": "warning",
+        "line": 5,
+        "message": "final barline (Z/||) is not on the last measure"
+      }
+    ]
+  }
+}

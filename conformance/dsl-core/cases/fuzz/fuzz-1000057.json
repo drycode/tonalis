@@ -1,0 +1,80 @@
+{
+  "name": "fuzz-1000057",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Take\nkey: Ab-\ntime: 9/8\ntitle: Take\n[B3]\n{ | E#-/F A-7 Db7b9 | Fb7#5 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Take",
+        "key": "Ab-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "B3",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#-/F",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Take\nkey: Ab-\ntime: 9/8\n\n[B3]\n{ E#-/F A-7 Db7b9 | Fb7#5 }\n",
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 4,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,413 @@
+{
+  "name": "golden-a_train",
+  "tags": [
+    "golden"
+  ],
+  "dsl": "title: Take the A Train\ncomposer: Strayhorn Billy\nstyle: Medium Swing\nkey: C\ntime: 4/4\n\n[A]\n| C6 | C6 | D7 | D7 |\n| D-7 G7 | C6 | C6 | C6 |\n[B]\n| F6 | F6 | F6 | F6 |\n| D7 | D7 | G7 | G7 |\n[A2]\n| C6 | C6 | D7 | D7 |\n| D-7 G7 | C6 | C6 | C6 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Take the A Train",
+        "composer": "Strayhorn Billy",
+        "style": "Medium Swing",
+        "key": "C",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "A2",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Take the A Train\ncomposer: Strayhorn Billy\nstyle: Medium Swing\nkey: C\ntime: 4/4\n\n[A]\n| C6 | C6 | D7 | D7 | D-7 G7 | C6 | C6 | C6 |\n\n[B]\n| F6 | F6 | F6 | F6 | D7 | D7 | G7 | G7 |\n\n[A2]\n| C6 | C6 | D7 | D7 | D-7 G7 | C6 | C6 | C6 ||\n"
+  }
+}

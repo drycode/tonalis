@@ -1,0 +1,110 @@
+{
+  "name": "fuzz-1000046",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "endings",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Voyage Spring\ncomposer: Shorter\nstyle: Ballad\nkey: Db\ntime: 12/8\n[Intro]\n{ | A^9:2 A6:2 F#6:8 |1. E+/Fb } |2. D7b9:4 B-7:8 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Voyage Spring",
+        "composer": "Shorter",
+        "style": "Ballad",
+        "key": "Db",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A^9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "A6",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "F#6",
+                  "beats": 8,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E+/Fb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7b9",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "B-7",
+                  "beats": 8,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Voyage Spring\ncomposer: Shorter\nstyle: Ballad\nkey: Db\ntime: 12/8\n\n[Intro]\n{ A^9:2 A6:2 F#6:8 | 1. E+/Fb } 2. D7b9:4 B-7:8 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (2, 2, 8) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (4, 8) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

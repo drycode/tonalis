@@ -1,0 +1,124 @@
+{
+  "name": "fuzz-1000151",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "alt"
+  ],
+  "dsl": "title: Round Steps Solar 60\ncomposer:\nkey: Db\ntime: 2/2\n[v]\n{ | Bb^ B-11 | F+/Fb | D#13#11 | Dbadd11 } |\n[A3]\n| Esus (Aadd11/C B#-7) F-9 (Gbo Fsus4) Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Round Steps Solar 60",
+        "composer": "",
+        "key": "Db",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb^",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F+/Fb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dbadd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "A3",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Esus",
+                  "beats": null,
+                  "alt": "(Aadd11/C B#-7)"
+                },
+                {
+                  "chord": "F-9",
+                  "beats": null,
+                  "alt": "(Gbo Fsus4)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Round Steps Solar 60\ncomposer: \nkey: Db\ntime: 2/2\n\n[v]\n{ Bb^ B-11 | F+/Fb | D#13#11 | Dbadd11 }\n\n[A3]\n| Esus (Aadd11/C B#-7) F-9 (Gbo Fsus4) ||\n"
+  }
+}

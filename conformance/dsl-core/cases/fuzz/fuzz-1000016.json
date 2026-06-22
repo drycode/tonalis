@@ -1,0 +1,333 @@
+{
+  "name": "fuzz-1000016",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-segno",
+    "nav-tocoda",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Solar Moon\ncomposer: Ellington\nstyle:\nkey: B-\ntime: 6/8\n[D]\n{ | (F^9) Eb7b5 |1. B-7b5/F:1 Ab6:3 E7#5:2 } |2. D7#5#9 |\n[B]\n| D^7 |\n| G7#5#9/B#:1 Gb^7:5 (F^) |\n@segno\n| D#7#9 Gadd11 D-9 |\n[Verse2]\n{ | E-7:5 Ch7:1 | B#h7 | C7#5#9:5 E7#11:1 | F13 } |\n[A]\n| Esus Eb+ | Bb*7+* | Cb-6 (D9/Db G) |\n@tocoda\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Solar Moon",
+        "composer": "Ellington",
+        "style": "",
+        "key": "B-",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eb7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B-7b5/F",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab6",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "E7#5",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7#5#9/B#",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb^7",
+                  "beats": 5,
+                  "alt": "(F^)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gadd11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "segno"
+                ]
+              ],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "Verse2",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E-7",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "Ch7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#h7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7#5#9",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "E7#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Esus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb-6",
+                  "beats": null,
+                  "alt": "(D9/Db G)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 16
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Solar Moon\ncomposer: Ellington\nstyle: \nkey: B-\ntime: 6/8\n\n[D]\n{ Eb7b5 | 1. B-7b5/F:1 Ab6:3 E7#5:2 } 2. D7#5#9 |\n\n[B]\n| D^7 | G7#5#9/B#:1 Gb^7:5(F^) |\n@segno\n| D#7#9 Gadd11 D-9 |\n\n[Verse2]\n{ E-7:5 Ch7:1 | B#h7 | C7#5#9:5 E7#11:1 | F13 }\n\n[A]\n| Esus Eb+ | Bb*7+* | Cb-6 (D9/Db G) |\n@tocoda\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 7,
+        "message": "alt group (F^9) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 3, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

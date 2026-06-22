@@ -1,0 +1,528 @@
+{
+  "name": "fuzz-1000013",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "beats",
+    "alt",
+    "nav-fine",
+    "nav-tocoda",
+    "break",
+    "break-lossy",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Dance Giant\nstyle: Up Tempo Swing\nkey: B-\ntime: 6/8\n[C1]\n| G+ E-7 Eb7sus (Cb7b5) | B#-9:2 F:2 G7#5/Ab:2 (Gh) | Fo7 G^7/F (Dadd9 E7b9) B^7#11 | B#9:2 (Gb-11/E#) n:2 A13:2 |\n| Bb11:1 Aadd13:5 | E9 Ao Cbsus |\n[D]\n| Bb*7+* | B11:3 G-7b5:3 |\n[B]\n@tag\n| (Ebh7) F D13#11 D#7#9 (G7 A#^7) |\n@break\n| Eb13#11/A Dadd13 |\n@fine\n| E69/Fb G#add11/G# Badd9 | Fbadd11 |\n@break\n| Bb*7+*:5 G#-/D:1 | B-7b5 (B7#5 D13) |\n@tocoda\n[C]\n| Bsus/Bb:4 (Do C-7b5) A^:2(A#69/Bb) | (D-7b5) Gb7#5 |\n| Eb-7b5 |\n| E7#5/F | G^:2 Fb^9:4 |\n@tocoda\n| Bbadd13 B- G Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance Giant",
+        "style": "Up Tempo Swing",
+        "key": "B-",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C1",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G+",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb7sus",
+                  "beats": null,
+                  "alt": "(Cb7b5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#-9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "F",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "G7#5/Ab",
+                  "beats": 2,
+                  "alt": "(Gh)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fo7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G^7/F",
+                  "beats": null,
+                  "alt": "(Dadd9 E7b9)"
+                },
+                {
+                  "chord": "B^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#9",
+                  "beats": 2,
+                  "alt": "(Gb-11/E#)"
+                },
+                {
+                  "chord": "n",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "A13",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Aadd13",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ao",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cbsus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B11",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "G-7b5",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#7#9",
+                  "beats": null,
+                  "alt": "(G7 A#^7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb13#11/A",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Dadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E69/Fb",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#add11/G#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Badd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fbadd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "G#-/D",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 18
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B-7b5",
+                  "beats": null,
+                  "alt": "(B7#5 D13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 18
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bsus/Bb",
+                  "beats": 4,
+                  "alt": "(Do C-7b5)"
+                },
+                {
+                  "chord": "A^",
+                  "beats": 2,
+                  "alt": "(A#69/Bb)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 21
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 21
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 22
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#5/F",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 23
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G^",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb^9",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 23
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbadd13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 25
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance Giant\nstyle: Up Tempo Swing\nkey: B-\ntime: 6/8\n\n[C1]\n| G+ E-7 Eb7sus(Cb7b5) | B#-9:2 F:2 G7#5/Ab:2(Gh) | Fo7 G^7/F (Dadd9 E7b9) B^7#11 | B#9:2(Gb-11/E#) n:2 A13:2 | Bb11:1 Aadd13:5 | E9 Ao Cbsus |\n\n[D]\n| Bb*7+* | B11:3 G-7b5:3 |\n\n[B]\n| F D13#11 D#7#9 (G7 A#^7) |\n@break\n| Eb13#11/A Dadd13 |\n@fine\n| E69/Fb G#add11/G# Badd9 | Fbadd11 |\n@break\n| Bb*7+*:5 G#-/D:1 | B-7b5 (B7#5 D13) |\n@tocoda\n\n[C]\n| Bsus/Bb:4 (Do C-7b5) A^:2(A#69/Bb) | Gb7#5 | Eb-7b5 | E7#5/F | G^:2 Fb^9:4 |\n@tocoda\n| Bbadd13 B- G ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 12,
+        "message": "alt group (Ebh7) has no preceding chord"
+      },
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 21,
+        "message": "alt group (D-7b5) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 18,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 21,
+        "message": "uneven beat layout (4, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 23,
+        "message": "uneven beat layout (2, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 11,
+        "message": "unknown @directive: @tag"
+      }
+    ]
+  }
+}

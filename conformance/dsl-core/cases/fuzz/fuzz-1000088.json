@@ -1,0 +1,110 @@
+{
+  "name": "fuzz-1000088",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "endings",
+    "beats",
+    "alt"
+  ],
+  "dsl": "title: Voyage\ncomposer: Davis\nkey: A-\ntime: 2/2\n[Verse1]\n{ | D-6:1 Gadd9/A:1 | B69:1 Bb-9:1(Gsus4) |1. D11(F7b9) } |2. G Gsus |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Voyage",
+        "composer": "Davis",
+        "key": "A-",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse1",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D-6",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Gadd9/A",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B69",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb-9",
+                  "beats": 1,
+                  "alt": "(Gsus4)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D11",
+                  "beats": null,
+                  "alt": "(F7b9)"
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gsus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Voyage\ncomposer: Davis\nkey: A-\ntime: 2/2\n\n[Verse1]\n{ D-6:1 Gadd9/A:1 | B69:1 Bb-9:1(Gsus4) | 1. D11(F7b9) } 2. G Gsus |\n"
+  }
+}

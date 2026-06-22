@@ -1,0 +1,72 @@
+{
+  "name": "fuzz-1000064",
+  "tags": [
+    "fuzz",
+    "meter-9-8"
+  ],
+  "dsl": "title: Lee Donna\ncomposer: Shorter\nstyle: Latin\nkey: Db-\ntime: 9/8\n[D3]\n| B#-11 G-11 Bb7b9#11 | F7b9#11 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Lee Donna",
+        "composer": "Shorter",
+        "style": "Latin",
+        "key": "Db-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D3",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#-11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Lee Donna\ncomposer: Shorter\nstyle: Latin\nkey: Db-\ntime: 9/8\n\n[D3]\n| B#-11 G-11 Bb7b9#11 | F7b9#11 ||\n"
+  }
+}

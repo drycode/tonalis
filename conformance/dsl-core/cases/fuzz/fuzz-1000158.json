@@ -1,0 +1,176 @@
+{
+  "name": "fuzz-1000158",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Lee Round\ncomposer: Monk\nstyle: Even 8ths\nkey: Db-\ntime: 3/4\n[Intro]\n{ | Abadd11/D |1. Bbadd9:1 B69:1 D#7#5#9:1 } |2. F11 Bb-/E Bb7#11/F |\n[D]\n{ | Aadd11:1 C13:1 Bb*7+*:1 (A-7) | A#7#9 | E4:1 Bb7b9/E:2 (Bb*7+*) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Lee Round",
+        "composer": "Monk",
+        "style": "Even 8ths",
+        "key": "Db-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Abadd11/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbadd9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B69",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#7#5#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb-/E",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb7#11/F",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Aadd11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": "(A-7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E4",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb7b9/E",
+                  "beats": 2,
+                  "alt": "(Bb*7+*)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Lee Round\ncomposer: Monk\nstyle: Even 8ths\nkey: Db-\ntime: 3/4\n\n[Intro]\n{ Abadd11/D | 1. Bbadd9:1 B69:1 D#7#5#9:1 } 2. F11 Bb-/E Bb7#11/F |\n\n[D]\n{ Aadd11:1 C13:1 Bb*7+*:1(A-7) | A#7#9 | E4:1 Bb7b9/E:2(Bb*7+*) }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (1, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

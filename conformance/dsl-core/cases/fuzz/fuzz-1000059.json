@@ -1,0 +1,121 @@
+{
+  "name": "fuzz-1000059",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Solar\ncomposer: Ellington\nkey: A-\ntime: 2/2\ntitle: Solar\n[A]\n{ | C-6/F | (A7) F-7b5 } |\n[D]\n{ | E#69/A#(A7b5) | F+:1 C+:1 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Solar",
+        "composer": "Ellington",
+        "key": "A-",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C-6/F",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#69/A#",
+                  "beats": null,
+                  "alt": "(A7b5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F+",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C+",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Solar\ncomposer: Ellington\nkey: A-\ntime: 2/2\n\n[A]\n{ C-6/F | F-7b5 }\n\n[D]\n{ E#69/A#(A7b5) | F+:1 C+:1 }\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 7,
+        "message": "alt group (A7) has no preceding chord"
+      },
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "name": "fuzz-1000050",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "beats",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Naima Joy Maiden\ncomposer: Shorter\nkey: G-\ntime: 5/4\n[Verse2]\n| C#6:2 Fb7#5:1 E-9/G:2 | D#9 | D-11 | Eb-7b5/E |\n| (F7b13/C#) C#-11 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Joy Maiden",
+        "composer": "Shorter",
+        "key": "G-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse2",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C#6",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb7#5",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E-9/G",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb-7b5/E",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Joy Maiden\ncomposer: Shorter\nkey: G-\ntime: 5/4\n\n[Verse2]\n| C#6:2 Fb7#5:1 E-9/G:2 | D#9 | D-11 | Eb-7b5/E | C#-11 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 7,
+        "message": "alt group (F7b13/C#) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (2, 1, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

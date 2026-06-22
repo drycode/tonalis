@@ -1,0 +1,165 @@
+{
+  "name": "fuzz-1000000",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Dance\ncomposer: Trad\nstyle: Ballad\nkey: Gb-\ntime: 3/4\n[Intro]\n| E#7#9:1 A-11:2 | Ab7alt | A7b13/E C7b9 N.C. | Cb7#5:2 n:1 |\n[Verse]\n| D^7#11 | Bb*7+*(C#add11) Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance",
+        "composer": "Trad",
+        "style": "Ballad",
+        "key": "Gb-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#7#9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A-11",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab7alt",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7b13/E",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb7#5",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": "(C#add11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance\ncomposer: Trad\nstyle: Ballad\nkey: Gb-\ntime: 3/4\n\n[Intro]\n| E#7#9:1 A-11:2 | Ab7alt | A7b13/E C7b9 N.C. | Cb7#5:2 n:1 |\n\n[Verse]\n| D^7#11 | Bb*7+*(C#add11) ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

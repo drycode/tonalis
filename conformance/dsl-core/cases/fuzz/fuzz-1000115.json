@@ -1,0 +1,340 @@
+{
+  "name": "fuzz-1000115",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-time",
+    "time-change",
+    "warn-beat-unsupported",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Soul Autumn 68\nkey: \ntime: 7/4\n[i]\n| Ch7:1 |\n[time: 9/8]\n| F7b9#11 | Cb13 |\n@vamp\n| A#-11:8 A#h:1 |\n| D7sus |\n| D7#5#9:4 Fb-/Fb:1 C-11:4 |\n[v]\n| F#-6 |\n[v]\n{ | Abadd11 | C^9 E-7 D4/B (Db^7#11 C#-7) |1. E13:2 B^:6 A^9:1 (G-) } |2. E13 Fo D7sus |\n[D]\n{ | Gadd9 | N.C. Eadd9 Gb13#11 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Soul Autumn 68",
+        "key": "",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ch7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    9,
+                    8
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#-11",
+                  "beats": 8,
+                  "alt": null
+                },
+                {
+                  "chord": "A#h",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7#5#9",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb-/Fb",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C-11",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Abadd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C^9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D4/B",
+                  "beats": null,
+                  "alt": "(Db^7#11 C#-7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E13",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "B^",
+                  "beats": 6,
+                  "alt": null
+                },
+                {
+                  "chord": "A^9",
+                  "beats": 1,
+                  "alt": "(G-)"
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Fo",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eadd9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Soul Autumn 68\nkey: \ntime: 7/4\n\n[i]\n| Ch7:1 |\n[time: 9/8]\n| F7b9#11 | Cb13 | A#-11:8 A#h:1 | D7sus | D7#5#9:4 Fb-/Fb:1 C-11:4 |\n\n[v]\n| F#-6 |\n\n[v]\n{ Abadd11 | C^9 E-7 D4/B (Db^7#11 C#-7) | 1. E13:2 B^:6 A^9:1(G-) } 2. E13 Fo D7sus |\n\n[D]\n{ Gadd9 | N.C. Eadd9 Gb13#11 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (8, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 11,
+        "message": "uneven beat layout (4, 1, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 15,
+        "message": "uneven beat layout (2, 6, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 8,
+        "message": "unknown @directive: @vamp"
+      }
+    ]
+  }
+}

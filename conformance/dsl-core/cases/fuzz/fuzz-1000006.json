@@ -1,0 +1,96 @@
+{
+  "name": "fuzz-1000006",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "beats",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Naima Giant\ncomposer: Evans\nkey: Bb\ntime: 6/4\n[i]\n| Fb^7 |\n@vamp\n| D^9 G-11 |\n| D#7#9:3 D9:3 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Giant",
+        "composer": "Evans",
+        "key": "Bb",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fb^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D^9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#7#9",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "D9",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Giant\ncomposer: Evans\nkey: Bb\ntime: 6/4\n\n[i]\n| Fb^7 | D^9 G-11 | D#7#9:3 D9:3 |\n",
+    "findings": [
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 7,
+        "message": "unknown @directive: @vamp"
+      }
+    ]
+  }
+}

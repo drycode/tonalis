@@ -1,0 +1,128 @@
+{
+  "name": "fuzz-1000068",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Spain Giant\ncomposer: Shorter\nkey: E-\ntime: 12/8\n[Intro]\n{ | F#9 | D-6 B-6 (Ao7/F) Bb*7+* (G2 Ab-11) E6 | Fb7b9:1 E^9:11 | B7sus Gb^7#11 (Cb-) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spain Giant",
+        "composer": "Shorter",
+        "key": "E-",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-6",
+                  "beats": null,
+                  "alt": "(Ao7/F)"
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": "(G2 Ab-11)"
+                },
+                {
+                  "chord": "E6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb7b9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E^9",
+                  "beats": 11,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb^7#11",
+                  "beats": null,
+                  "alt": "(Cb-)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spain Giant\ncomposer: Shorter\nkey: E-\ntime: 12/8\n\n[Intro]\n{ F#9 | D-6 B-6(Ao7/F) Bb*7+* (G2 Ab-11) E6 | Fb7b9:1 E^9:11 | B7sus Gb^7#11(Cb-) }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 11) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

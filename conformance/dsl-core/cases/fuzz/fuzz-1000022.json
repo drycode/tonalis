@@ -1,0 +1,304 @@
+{
+  "name": "fuzz-1000022",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "beats",
+    "nav-coda",
+    "break",
+    "break-lossy",
+    "warn-beat-unsupported",
+    "warn-coda-needs-segno"
+  ],
+  "dsl": "title: Maiden Footprints Voyage\nkey: C#\ntime: 6/4\n[i]\n| C7b9 |\n@coda\n| E9 A2 Fb-7b5 | F#7#9/D#:4 G#^/G:2 | A- B-7 F7b9 |\n@coda\n| A9 |\n[A]\n@break\n| D#7b13 Dadd9 F+ | Eb6 |\n| Ab7/B | Db7#5:1 Db:5 |\n| Fsus4:3 E13:1 D#add11:2 | D2:4 Badd9:2 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Maiden Footprints Voyage",
+        "key": "C#",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A2",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#7#9/D#",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "G#^/G",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#7b13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Dadd9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab7/B",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db7#5",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Db",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fsus4",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "E13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#add11",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D2",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Badd9",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Maiden Footprints Voyage\nkey: C#\ntime: 6/4\n\n[i]\n| C7b9 |\n@coda\n| E9 A2 Fb-7b5 | F#7#9/D#:4 G#^/G:2 | A- B-7 F7b9 |\n@coda\n| A9 |\n\n[A]\n@break\n| D#7b13 Dadd9 F+ | Eb6 | Ab7/B | Db7#5:1 Db:5 | Fsus4:3 E13:1 D#add11:2 | D2:4 Badd9:2 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (4, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 13,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (3, 1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (4, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "coda-needs-segno",
+        "severity": "warning",
+        "line": 0,
+        "message": "2-coda jump without @segno (will play D.C., not D.S.)"
+      }
+    ]
+  }
+}

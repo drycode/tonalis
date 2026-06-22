@@ -1,0 +1,118 @@
+{
+  "name": "fuzz-1000091",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "alt",
+    "nav-segno",
+    "nav-tocoda"
+  ],
+  "dsl": "title: Misty Solar\ncomposer: Ellington\nstyle: Medium Swing\nkey: E-\ntime: 4/4\n[Verse]\n| Eadd11 (Ao Db-) | B#13#11 Csus4 E#6 A4 | Eb+ (Dbo) |\n@tocoda\n@segno\n| A#-7/E# Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Misty Solar",
+        "composer": "Ellington",
+        "style": "Medium Swing",
+        "key": "E-",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eadd11",
+                  "beats": null,
+                  "alt": "(Ao Db-)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Csus4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E#6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb+",
+                  "beats": null,
+                  "alt": "(Dbo)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#-7/E#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [
+                [
+                  "segno"
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Misty Solar\ncomposer: Ellington\nstyle: Medium Swing\nkey: E-\ntime: 4/4\n\n[Verse]\n| Eadd11 (Ao Db-) | B#13#11 Csus4 E#6 A4 | Eb+(Dbo) |\n@tocoda\n@segno\n| A#-7/E# ||\n"
+  }
+}

@@ -1,0 +1,125 @@
+{
+  "name": "fuzz-1000024",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "beats",
+    "nav-segno",
+    "warn-beat-unsupported",
+    "warn-tocoda-without-measure"
+  ],
+  "dsl": "title: Steps Soul\ncomposer: Trad\nstyle: Medium Swing\nkey: G-\ntime: 3/4\n[v]\n@tocoda\n| C^7 Fadd11 G13#11 | Eb13#11:2 B#-6:1 |\n@segno\n| Bb*7+*:1 Fb7alt:2 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Steps Soul",
+        "composer": "Trad",
+        "style": "Medium Swing",
+        "key": "G-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C^7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Fadd11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb13#11",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "B#-6",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb7alt",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [
+                [
+                  "segno"
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Steps Soul\ncomposer: Trad\nstyle: Medium Swing\nkey: G-\ntime: 3/4\n\n[v]\n| C^7 Fadd11 G13#11 | Eb13#11:2 B#-6:1 |\n@segno\n| Bb*7+*:1 Fb7alt:2 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 7,
+        "message": "@tocoda has no preceding measure"
+      }
+    ]
+  }
+}

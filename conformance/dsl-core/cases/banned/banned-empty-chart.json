@@ -1,0 +1,17 @@
+{
+  "name": "banned-empty-chart",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "empty-chart",
+        "severity": "error",
+        "line": 0,
+        "message": "no sections or measures"
+      }
+    ]
+  }
+}

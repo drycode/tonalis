@@ -1,0 +1,19 @@
+{
+  "name": "banned-alt-too-long",
+  "tags": [
+    "banned",
+    "alt",
+    "cap"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C7 (Db7 Eb7 F7 G7 A7 B7 C7 D7 E7) Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "alt-too-long",
+        "severity": "error",
+        "line": 5,
+        "message": "alt chord has too many tokens"
+      }
+    ]
+  }
+}

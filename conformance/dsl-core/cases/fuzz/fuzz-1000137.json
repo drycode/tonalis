@@ -1,0 +1,87 @@
+{
+  "name": "fuzz-1000137",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "beats",
+    "warn-empty-section"
+  ],
+  "dsl": "title: Train Spring\ncomposer:\nkey: Db-\ntime: 2/2\n[C]\n[D]\n{ | A13#11:1 B^7:1 | Bbh7 C13#11/G } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Spring",
+        "composer": "",
+        "key": "Db-",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": []
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A13#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B^7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbh7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C13#11/G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Spring\ncomposer: \nkey: Db-\ntime: 2/2\n\n[C]\n\n[D]\n{ A13#11:1 B^7:1 | Bbh7 C13#11/G }\n",
+    "findings": [
+      {
+        "code": "empty-section",
+        "severity": "warning",
+        "line": 0,
+        "message": "section [C] has no measures (dropped)"
+      }
+    ]
+  }
+}

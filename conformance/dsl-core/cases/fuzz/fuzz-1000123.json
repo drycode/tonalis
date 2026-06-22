@@ -1,0 +1,189 @@
+{
+  "name": "fuzz-1000123",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Autumn Voyage\nkey: F#\ntime: 12/8\n[C]\n{ | F^/E Ebadd11 (D#2 E#7#11) Gb- | A13#11/Db | G+ | Gb+ } |\n[C]\n{ | C-11 | Bb7#5#9/D A#^7 |1. F7b13:5 (G7b9#11 G7) C-9:7 } |2. E^9/Bb |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Autumn Voyage",
+        "key": "F#",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F^/E",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ebadd11",
+                  "beats": null,
+                  "alt": "(D#2 E#7#11)"
+                },
+                {
+                  "chord": "Gb-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A13#11/Db",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb7#5#9/D",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7b13",
+                  "beats": 5,
+                  "alt": "(G7b9#11 G7)"
+                },
+                {
+                  "chord": "C-9",
+                  "beats": 7,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E^9/Bb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Autumn Voyage\nkey: F#\ntime: 12/8\n\n[C]\n{ F^/E Ebadd11 (D#2 E#7#11) Gb- | A13#11/Db | G+ | Gb+ }\n\n[C]\n{ C-11 | Bb7#5#9/D A#^7 | 1. F7b13:5 (G7b9#11 G7) C-9:7 } 2. E^9/Bb |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (5, 7) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

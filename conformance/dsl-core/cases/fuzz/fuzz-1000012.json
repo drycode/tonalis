@@ -1,0 +1,124 @@
+{
+  "name": "fuzz-1000012",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Blue Stella Steps\ncomposer: Monk\nkey: C\ntime: 3/4\ntitle: Blue Stella Steps\n[Intro]\n{ | Eb7b9#11 | Cb^9 |1. A9/E G69 Dsus } |2. D^7#11:1 (C-7 G13#11) A^7:1(D7b9#11) D13#11/D:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Blue Stella Steps",
+        "composer": "Monk",
+        "key": "C",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eb7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A9/E",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G69",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Dsus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D^7#11",
+                  "beats": 1,
+                  "alt": "(C-7 G13#11)"
+                },
+                {
+                  "chord": "A^7",
+                  "beats": 1,
+                  "alt": "(D7b9#11)"
+                },
+                {
+                  "chord": "D13#11/D",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Blue Stella Steps\ncomposer: Monk\nkey: C\ntime: 3/4\n\n[Intro]\n{ Eb7b9#11 | Cb^9 | 1. A9/E G69 Dsus } 2. D^7#11:1 (C-7 G13#11) A^7:1(D7b9#11) D13#11/D:1 |\n",
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

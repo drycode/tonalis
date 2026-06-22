@@ -1,0 +1,182 @@
+{
+  "name": "fuzz-1000092",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Night\ncomposer: Evans\nstyle: Up Tempo Swing\nkey: \ntime: 6/4\n[i]\n| D#h |\n| Aadd11:3 D2:3 |\n[B]\n{ | A#add9/Eb B7alt (G#4) D#7#5#9/D# | E#9:1 A2:5 | A4:2 D^7#11/F:4 | Abo7/Ab:1 A7sus:5 (G#7b9) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Night",
+        "composer": "Evans",
+        "style": "Up Tempo Swing",
+        "key": "",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#h",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Aadd11",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "D2",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A#add9/Eb",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B7alt",
+                  "beats": null,
+                  "alt": "(G#4)"
+                },
+                {
+                  "chord": "D#7#5#9/D#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A2",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A4",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D^7#11/F",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Abo7/Ab",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7sus",
+                  "beats": 5,
+                  "alt": "(G#7b9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Night\ncomposer: Evans\nstyle: Up Tempo Swing\nkey: \ntime: 6/4\n\n[i]\n| D#h | Aadd11:3 D2:3 |\n\n[B]\n{ A#add9/Eb B7alt(G#4) D#7#5#9/D# | E#9:1 A2:5 | A4:2 D^7#11/F:4 | Abo7/Ab:1 A7sus:5(G#7b9) }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (2, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

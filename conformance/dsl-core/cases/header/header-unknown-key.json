@@ -1,0 +1,18 @@
+{
+  "name": "header-unknown-key",
+  "tags": [
+    "header",
+    "warning"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\ntempo: 120\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 4,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

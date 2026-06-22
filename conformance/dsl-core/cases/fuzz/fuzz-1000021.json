@@ -1,0 +1,213 @@
+{
+  "name": "fuzz-1000021",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "alt",
+    "nav-tocoda",
+    "break",
+    "break-lossy"
+  ],
+  "dsl": "title: Take Misty\ncomposer: Trad\nstyle: Medium Swing\nkey: F#-\ntime: 6/4\n[Intro]\n| A69/D | B7#11(n) |\n| Bbadd11 G#4 G- |\n[v1]\n| A7alt/E# | F#sus4/A |\n| F7#9 B7#5 G7b9#11 |\n@break\n| D#7 |\n@tocoda\n| Gb13 | C7alt G7b13 C7#5 (A#h) Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Take Misty",
+        "composer": "Trad",
+        "style": "Medium Swing",
+        "key": "F#-",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A69/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7#11",
+                  "beats": null,
+                  "alt": "(n)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbadd11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "v1",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A7alt/E#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#sus4/A",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B7#5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [
+                "break"
+              ],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7alt",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7b13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C7#5",
+                  "beats": null,
+                  "alt": "(A#h)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Take Misty\ncomposer: Trad\nstyle: Medium Swing\nkey: F#-\ntime: 6/4\n\n[Intro]\n| A69/D | B7#11(n) | Bbadd11 G#4 G- |\n\n[v1]\n| A7alt/E# | F#sus4/A | F7#9 B7#5 G7b9#11 |\n@break\n| D#7 |\n@tocoda\n| Gb13 | C7alt G7b13 C7#5(A#h) ||\n"
+  }
+}

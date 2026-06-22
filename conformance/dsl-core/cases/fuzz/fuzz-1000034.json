@@ -1,0 +1,107 @@
+{
+  "name": "fuzz-1000034",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Stella Giant\ncomposer: Trad\nkey: C\ntime: 5/4\n[C3]\n{ | B#-11/A:2 n:3 | Eo7 | G#-6 | Eb-6 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Stella Giant",
+        "composer": "Trad",
+        "key": "C",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "C3",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#-11/A",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eo7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Stella Giant\ncomposer: Trad\nkey: C\ntime: 5/4\n\n[C3]\n{ B#-11/A:2 n:3 | Eo7 | G#-6 | Eb-6 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (2, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

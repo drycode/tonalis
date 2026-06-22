@@ -1,0 +1,87 @@
+{
+  "name": "fuzz-1000110",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "alt",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Body Round Joy\ncomposer: Ellington\nstyle: Ballad\nkey: E\ntime: 5/4\ntitle: Body Round Joy\n[C]\n| G^9 | C6 (F7#5 A13#11) |\n| Dh7 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Body Round Joy",
+        "composer": "Ellington",
+        "style": "Ballad",
+        "key": "E",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": "(F7#5 A13#11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Body Round Joy\ncomposer: Ellington\nstyle: Ballad\nkey: E\ntime: 5/4\n\n[C]\n| G^9 | C6 (F7#5 A13#11) | Dh7 |\n",
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 6,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

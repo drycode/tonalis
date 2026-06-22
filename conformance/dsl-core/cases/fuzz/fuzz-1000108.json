@@ -1,0 +1,161 @@
+{
+  "name": "fuzz-1000108",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-alt-without-chord"
+  ],
+  "dsl": "title: Joy Moon Footprints\ncomposer:\nkey: B-\ntime: 2/4\n[v2]\n{ | D-7b5 | G#13/A B#^9 | F9 Fbadd11 (Bo) } |\n[A]\n{ | (Fb7/A) Gb7#11 |1. (A#7b9#11) Bb*7+*(Gb7b5) } |2. B-:1 F^7#11:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Joy Moon Footprints",
+        "composer": "",
+        "key": "B-",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v2",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#13/A",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B#^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Fbadd11",
+                  "beats": null,
+                  "alt": "(Bo)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gb7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": "(Gb7b5)"
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B-",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F^7#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Joy Moon Footprints\ncomposer: \nkey: B-\ntime: 2/4\n\n[v2]\n{ D-7b5 | G#13/A B#^9 | F9 Fbadd11(Bo) }\n\n[A]\n{ Gb7#11 | 1. Bb*7+*(Gb7b5) } 2. B-:1 F^7#11:1 |\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 8,
+        "message": "alt group (Fb7/A) has no preceding chord"
+      },
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 8,
+        "message": "alt group (A#7b9#11) has no preceding chord"
+      }
+    ]
+  }
+}

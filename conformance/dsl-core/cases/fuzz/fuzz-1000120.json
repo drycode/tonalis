@@ -1,0 +1,200 @@
+{
+  "name": "fuzz-1000120",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-tocoda",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Misty\ncomposer: Davis\nstyle:\nkey: B-\ntime: 2/4\ntempo: 120\n[A2]\n| B^7#11:1 E/E:1 | G2:1 D#7:1 |\n| D+:1 Bo7:1(B4) | N.C. Bb7#11 |\n@tocoda\n[Intro2]\n{ | Eb^7 B-11 | Badd11 (F#- D#^9) | C | Db11(Ao/E) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Misty",
+        "composer": "Davis",
+        "style": "",
+        "key": "B-",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A2",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B^7#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E/E",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G2",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D+",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bo7",
+                  "beats": 1,
+                  "alt": "(B4)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "Intro2",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eb^7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Badd11",
+                  "beats": null,
+                  "alt": "(F#- D#^9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db11",
+                  "beats": null,
+                  "alt": "(Ao/E)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Misty\ncomposer: Davis\nstyle: \nkey: B-\ntime: 2/4\n\n[A2]\n| B^7#11:1 E/E:1 | G2:1 D#7:1 | D+:1 Bo7:1(B4) | N.C. Bb7#11 |\n@tocoda\n\n[Intro2]\n{ Eb^7 B-11 | Badd11 (F#- D#^9) | C | Db11(Ao/E) }\n",
+    "findings": [
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 6,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

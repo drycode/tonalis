@@ -1,0 +1,18 @@
+{
+  "name": "measures-empty-measure-warning",
+  "tags": [
+    "measures",
+    "warning"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n{ C6 |\n1. | 2. D7 Z }\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "empty-measure",
+        "severity": "warning",
+        "line": 6,
+        "message": "measure has no chords (emitted as N.C.)"
+      }
+    ]
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "name": "fuzz-1000143",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "alt",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Misty Dolphin Soul\ncomposer: Davis\nkey: C#-\ntime: 9/8\n[A]\n| G+ |\n@tag\n| Bb7#5#9(G7#5#9) Bsus4(F#h) C- |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Misty Dolphin Soul",
+        "composer": "Davis",
+        "key": "C#-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb7#5#9",
+                  "beats": null,
+                  "alt": "(G7#5#9)"
+                },
+                {
+                  "chord": "Bsus4",
+                  "beats": null,
+                  "alt": "(F#h)"
+                },
+                {
+                  "chord": "C-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Misty Dolphin Soul\ncomposer: Davis\nkey: C#-\ntime: 9/8\n\n[A]\n| G+ | Bb7#5#9(G7#5#9) Bsus4(F#h) C- |\n",
+    "findings": [
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 7,
+        "message": "unknown @directive: @tag"
+      }
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "name": "fuzz-1000122",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "beats",
+    "alt",
+    "nav-fine",
+    "warn-beat-unsupported",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Naima Body Moon\ncomposer: Coltrane\nstyle: Even 8ths\nkey: E-\ntime: 6/8\ntitle: Naima Body Moon\n[C]\n@fine\n| F9 |\n| F#7b9#11 | C-11:1 (E6 A11) E7#11:1 Eo7:4 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Body Moon",
+        "composer": "Coltrane",
+        "style": "Even 8ths",
+        "key": "E-",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-11",
+                  "beats": 1,
+                  "alt": "(E6 A11)"
+                },
+                {
+                  "chord": "E7#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Eo7",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Body Moon\ncomposer: Coltrane\nstyle: Even 8ths\nkey: E-\ntime: 6/8\n\n[C]\n@fine\n| F9 | F#7b9#11 | C-11:1 (E6 A11) E7#11:1 Eo7:4 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (1, 1, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 6,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

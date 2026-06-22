@@ -1,0 +1,160 @@
+{
+  "name": "fuzz-1000080",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Spain Autumn Blue\ncomposer:\nkey: Db-\ntime: 5/4\n[B1]\n| F-9 |\n[B2]\n{ | Esus/C | D13#11/A | Do7:1 C4:4 } |\n[Intro]\n| G7b9#11:4 Gadd9:1 | B9 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spain Autumn Blue",
+        "composer": "",
+        "key": "Db-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B1",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "B2",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Esus/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D13#11/A",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Do7",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C4",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G7b9#11",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Gadd9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spain Autumn Blue\ncomposer: \nkey: Db-\ntime: 5/4\n\n[B1]\n| F-9 |\n\n[B2]\n{ Esus/C | D13#11/A | Do7:1 C4:4 }\n\n[Intro]\n| G7b9#11:4 Gadd9:1 | B9 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (4, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

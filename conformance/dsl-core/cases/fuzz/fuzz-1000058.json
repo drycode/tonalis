@@ -1,0 +1,191 @@
+{
+  "name": "fuzz-1000058",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-tocoda-without-measure"
+  ],
+  "dsl": "title: Dance Spring 94\nstyle: Medium Swing\nkey: Eb-\ntime: 3/4\n[B]\n@tocoda\n| D#7 Fbadd11 (Db^7#11) G7b9#11 | B#+ G7b13 F7b9 |\n[Verse1]\n| B6(E4) |\n[Verse]\n{ | Ab^7#11/E# | C11 |1. Cb7b9 } |2. Ebo7:1 Eadd11:1 E#-:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance Spring 94",
+        "style": "Medium Swing",
+        "key": "Eb-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Fbadd11",
+                  "beats": null,
+                  "alt": "(Db^7#11)"
+                },
+                {
+                  "chord": "G7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#+",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7b13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Verse1",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B6",
+                  "beats": null,
+                  "alt": "(E4)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ab^7#11/E#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ebo7",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Eadd11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E#-",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance Spring 94\nstyle: Medium Swing\nkey: Eb-\ntime: 3/4\n\n[B]\n| D#7 Fbadd11(Db^7#11) G7b9#11 | B#+ G7b13 F7b9 |\n\n[Verse1]\n| B6(E4) |\n\n[Verse]\n{ Ab^7#11/E# | C11 | 1. Cb7b9 } 2. Ebo7:1 Eadd11:1 E#-:1 |\n",
+    "findings": [
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 6,
+        "message": "@tocoda has no preceding measure"
+      }
+    ]
+  }
+}

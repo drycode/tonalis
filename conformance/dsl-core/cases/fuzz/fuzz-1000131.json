@@ -1,0 +1,139 @@
+{
+  "name": "fuzz-1000131",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "alt"
+  ],
+  "dsl": "title: Stella Joy Giant\ncomposer: Ellington\nkey: Bb-\ntime: 2/2\n[Verse]\n{ | G#9 C11 | F+ } |\n[B]\n{ | Fb | Bb4 (A2 B7#5#9) | F69/D | C#2 C-7b5 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Stella Joy Giant",
+        "composer": "Ellington",
+        "key": "Bb-",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb4",
+                  "beats": null,
+                  "alt": "(A2 B7#5#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F69/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#2",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Stella Joy Giant\ncomposer: Ellington\nkey: Bb-\ntime: 2/2\n\n[Verse]\n{ G#9 C11 | F+ }\n\n[B]\n{ Fb | Bb4 (A2 B7#5#9) | F69/D | C#2 C-7b5 }\n"
+  }
+}

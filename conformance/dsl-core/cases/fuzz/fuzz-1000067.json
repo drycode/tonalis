@@ -1,0 +1,294 @@
+{
+  "name": "fuzz-1000067",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported",
+    "warn-mid-final-bar",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Donna\ncomposer: Trad\nstyle: Medium Swing\nkey: F\ntime: 6/4\ntempo: 140\n[B]\n| B7b9/A | Fadd13:4 Gadd13:2 || Ebo7 | Fsus:2 G7:2 C^7:2 |\n[B]\n| C6 A-11 |\n| Bb7alt:3 D^7:2 E#o:1 |\n| Ao B69 Db7sus |\n[C]\n{ | B#h:5 C#-11:1 |1. Ab13 } |2. B7b13:3 C7:1 (A- D#^9) D-9:2 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna",
+        "composer": "Trad",
+        "style": "Medium Swing",
+        "key": "F",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7b9/A",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fadd13",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Gadd13",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ebo7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fsus",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "C^7",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb7alt",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "D^7",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "E#o",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ao",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B69",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#h",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "C#-11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7b13",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "C7",
+                  "beats": 1,
+                  "alt": "(A- D#^9)"
+                },
+                {
+                  "chord": "D-9",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna\ncomposer: Trad\nstyle: Medium Swing\nkey: F\ntime: 6/4\n\n[B]\n| B7b9/A | Fadd13:4 Gadd13:2 || Ebo7 | Fsus:2 G7:2 C^7:2 |\n\n[B]\n| C6 A-11 | Bb7alt:3 D^7:2 E#o:1 | Ao B69 Db7sus |\n\n[C]\n{ B#h:5 C#-11:1 | 1. Ab13 } 2. B7b13:3 C7:1 (A- D#^9) D-9:2 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (4, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 11,
+        "message": "uneven beat layout (3, 2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (3, 1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "mid-final-bar",
+        "severity": "warning",
+        "line": 8,
+        "message": "final barline (Z/||) is not on the last measure"
+      },
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 6,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

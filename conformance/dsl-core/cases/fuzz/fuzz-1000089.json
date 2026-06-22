@@ -1,0 +1,145 @@
+{
+  "name": "fuzz-1000089",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Steps Train\ncomposer: Trad\nkey: Eb-\ntime: 7/4\n[Intro]\n{ | Bb-7:2 E-9:4 (Bb*7+* Ch) Do7:1 | G#-7b5:1 Aadd13/Cb:2(Cbsus4) E7b9#11:4 | C#sus4:1 F7sus:4 G9:2(G#add13/Fb) | B7 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Steps Train",
+        "composer": "Trad",
+        "key": "Eb-",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb-7",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "E-9",
+                  "beats": 4,
+                  "alt": "(Bb*7+* Ch)"
+                },
+                {
+                  "chord": "Do7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#-7b5",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Aadd13/Cb",
+                  "beats": 2,
+                  "alt": "(Cbsus4)"
+                },
+                {
+                  "chord": "E7b9#11",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#sus4",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F7sus",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "G9",
+                  "beats": 2,
+                  "alt": "(G#add13/Fb)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Steps Train\ncomposer: Trad\nkey: Eb-\ntime: 7/4\n\n[Intro]\n{ Bb-7:2 E-9:4 (Bb*7+* Ch) Do7:1 | G#-7b5:1 Aadd13/Cb:2(Cbsus4) E7b9#11:4 | C#sus4:1 F7sus:4 G9:2(G#add13/Fb) | B7 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (2, 4, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 2, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 4, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

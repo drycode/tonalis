@@ -1,0 +1,358 @@
+{
+  "name": "fuzz-1000101",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-coda",
+    "nav-text",
+    "nav-tocoda",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Dance Steps Autumn\ncomposer:\nstyle: Even 8ths\nkey: D\ntime: 12/8\n[B]\n{ | F#-7 | Bbh A#sus G7#5#9 | G-11 (F-) | G13 } |\n[v]\n| Eadd9:4 F:3 (D7#11) Gadd11:5 |\n[B]\n<Solos>\n| Fbo(A7b5) Bb*7+* n Fb7alt |\n| G69 |\n@coda\n| A69 |\n@tocoda\n| (Cb-9) E#7b13 | D-9 |\n@dc\n| G7sus:1 E7b9:1 B+/G:10 |\n[D]\n{ | A#-7/B#:2 F^7:10 | A7#9 n A69 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance Steps Autumn",
+        "composer": "",
+        "style": "Even 8ths",
+        "key": "D",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbh",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G-11",
+                  "beats": null,
+                  "alt": "(F-)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eadd9",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "F",
+                  "beats": 3,
+                  "alt": "(D7#11)"
+                },
+                {
+                  "chord": "Gadd11",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fbo",
+                  "beats": null,
+                  "alt": "(A7b5)"
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb7alt",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Solos>"
+                ]
+              ],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ],
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7sus",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E7b9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B+/G",
+                  "beats": 10,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 19
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A#-7/B#",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "F^7",
+                  "beats": 10,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 21
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 21
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance Steps Autumn\ncomposer: \nstyle: Even 8ths\nkey: D\ntime: 12/8\n\n[B]\n{ F#-7 | Bbh A#sus G7#5#9 | G-11(F-) | G13 }\n\n[v]\n| Eadd9:4 F:3(D7#11) Gadd11:5 |\n\n[B]\n<Solos>\n| Fbo(A7b5) Bb*7+* n Fb7alt | G69 |\n@coda\n| A69 |\n@tocoda\n| E#7b13 | D-9 | G7sus:1 E7b9:1 B+/G:10 |\n\n[D]\n{ A#-7/B#:2 F^7:10 | A7#9 n A69 }\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 17,
+        "message": "alt group (Cb-9) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (4, 3, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 19,
+        "message": "uneven beat layout (1, 1, 10) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 21,
+        "message": "uneven beat layout (2, 10) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 18,
+        "message": "unknown @directive: @dc"
+      }
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "name": "fuzz-1000109",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "break",
+    "break-lossy"
+  ],
+  "dsl": "title: Autumn Donna\nkey: E-\ntime: 7/4\n[B]\n@break\n| Fh | D#add9 | B#-7 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Autumn Donna",
+        "key": "E-",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fh",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#add9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Autumn Donna\nkey: E-\ntime: 7/4\n\n[B]\n@break\n| Fh | D#add9 | B#-7 ||\n"
+  }
+}

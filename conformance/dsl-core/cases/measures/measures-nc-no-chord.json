@@ -1,0 +1,60 @@
+{
+  "name": "measures-nc-no-chord",
+  "tags": [
+    "measures",
+    "nc"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| N.C. | C6 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "T",
+        "key": "C",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: T\nkey: C\ntime: 4/4\n\n[A]\n| N.C. | C6 |\n"
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "name": "fuzz-1000063",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "warn-alt-without-chord",
+    "warn-tocoda-without-measure"
+  ],
+  "dsl": "title: Train Solar\nkey: Bb\ntime: 3/4\n[v]\n@tocoda\n| G7b5 |\n[A]\n| Ebsus | C# |\n| (B7) Cadd11 | Badd11 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Solar",
+        "key": "Bb",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ebsus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cadd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Badd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Solar\nkey: Bb\ntime: 3/4\n\n[v]\n| G7b5 |\n\n[A]\n| Ebsus | C# | Cadd11 | Badd11 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 9,
+        "message": "alt group (B7) has no preceding chord"
+      },
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 5,
+        "message": "@tocoda has no preceding measure"
+      }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "name": "fuzz-1000025",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "alt",
+    "nav-tocoda"
+  ],
+  "dsl": "title: Train Donna\nstyle: Ballad\nkey: F-\ntime: 5/4\n[v3]\n| G-7b5 |\n| Eb7#5/Gb | N.C. |\n@tocoda\n| B7sus |\n[C3]\n| G#^ |\n[A]\n| Cb7b9/Eb (Fsus) | Badd9 |\n@tocoda\n[Intro]\n{ | F7b9#11 | D7#9 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Donna",
+        "style": "Ballad",
+        "key": "F-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v3",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7#5/Gb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "C3",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb7b9/Eb",
+                  "beats": null,
+                  "alt": "(Fsus)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Badd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Donna\nstyle: Ballad\nkey: F-\ntime: 5/4\n\n[v3]\n| G-7b5 | Eb7#5/Gb | N.C. |\n@tocoda\n| B7sus |\n\n[C3]\n| G#^ |\n\n[A]\n| Cb7b9/Eb(Fsus) | Badd9 |\n@tocoda\n\n[Intro]\n{ F7b9#11 | D7#9 }\n"
+  }
+}

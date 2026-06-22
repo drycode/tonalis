@@ -1,0 +1,51 @@
+{
+  "name": "fuzz-1000075",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "alt"
+  ],
+  "dsl": "title: Solar Joy\nkey: Eb-\ntime: 6/8\n[D]\n| Bsus4 Gbsus (A-7b5) |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Solar Joy",
+        "key": "Eb-",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bsus4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gbsus",
+                  "beats": null,
+                  "alt": "(A-7b5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Solar Joy\nkey: Eb-\ntime: 6/8\n\n[D]\n| Bsus4 Gbsus(A-7b5) |\n"
+  }
+}

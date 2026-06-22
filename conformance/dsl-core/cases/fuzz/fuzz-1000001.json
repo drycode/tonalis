@@ -1,0 +1,202 @@
+{
+  "name": "fuzz-1000001",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Lee Naima 83\ncomposer: Monk\nkey: C#-\ntime: 4/4\ntitle: Lee Naima 83\n[A]\n| F7alt/G | (C#69) Gb7sus | (Bb-9) B | G-9 Abadd13(Gadd13) |\n| B4:1 F7b9#11:1 C7b9#11:2 | Cb+ |\n[D]\n{ | B7#5:1 Ch:3 | C#^9 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Lee Naima 83",
+        "composer": "Monk",
+        "key": "C#-",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F7alt/G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G-9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Abadd13",
+                  "beats": null,
+                  "alt": "(Gadd13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B4",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F7b9#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C7b9#11",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7#5",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ch",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Lee Naima 83\ncomposer: Monk\nkey: C#-\ntime: 4/4\n\n[A]\n| F7alt/G | Gb7sus | B | G-9 Abadd13(Gadd13) | B4:1 F7b9#11:1 C7b9#11:2 | Cb+ |\n\n[D]\n{ B7#5:1 Ch:3 | C#^9 }\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 7,
+        "message": "alt group (C#69) has no preceding chord"
+      },
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 7,
+        "message": "alt group (Bb-9) has no preceding chord"
+      },
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

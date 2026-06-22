@@ -1,0 +1,61 @@
+{
+  "name": "fuzz-1000030",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Dance Stella 82\nkey: G-\ntime: 9/8\n[Intro]\n| Bh7:5 Gb-:4 (D13#11 F#-9) Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance Stella 82",
+        "key": "G-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bh7",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb-",
+                  "beats": 4,
+                  "alt": "(D13#11 F#-9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance Stella 82\nkey: G-\ntime: 9/8\n\n[Intro]\n| Bh7:5 Gb-:4 (D13#11 F#-9) ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (5, 4) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

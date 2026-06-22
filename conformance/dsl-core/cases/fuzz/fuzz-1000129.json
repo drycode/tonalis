@@ -1,0 +1,140 @@
+{
+  "name": "fuzz-1000129",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "beats",
+    "alt",
+    "nav-text"
+  ],
+  "dsl": "title: Autumn Dolphin Misty\ncomposer: Monk\nkey: \ntime: 2/2\n[D]\n| Cbo7 C6 | G7#11 (C#9) Bb*7+* |\n| F+/C |\n[D]\n<Solos>\n| E7b9 B-7 | E#add13:1 D#7#5:1 (G7#9) ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Autumn Dolphin Misty",
+        "composer": "Monk",
+        "key": "",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cbo7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7#11",
+                  "beats": null,
+                  "alt": "(C#9)"
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F+/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Solos>"
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#add13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#7#5",
+                  "beats": 1,
+                  "alt": "(G7#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Autumn Dolphin Misty\ncomposer: Monk\nkey: \ntime: 2/2\n\n[D]\n| Cbo7 C6 | G7#11(C#9) Bb*7+* | F+/C |\n\n[D]\n<Solos>\n| E7b9 B-7 | E#add13:1 D#7#5:1(G7#9) ||\n"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "name": "fuzz-1000069",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "endings",
+    "alt"
+  ],
+  "dsl": "title: Giant Spring\nkey: \ntime: 12/8\n[C]\n{ | Cb- (G13#11/Gb E7b9#11) Aadd9 | C7#5(E#-7b5) |1. F^9 } |2. Ao |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Giant Spring",
+        "key": "",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb-",
+                  "beats": null,
+                  "alt": "(G13#11/Gb E7b9#11)"
+                },
+                {
+                  "chord": "Aadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7#5",
+                  "beats": null,
+                  "alt": "(E#-7b5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ao",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Giant Spring\nkey: \ntime: 12/8\n\n[C]\n{ Cb- (G13#11/Gb E7b9#11) Aadd9 | C7#5(E#-7b5) | 1. F^9 } 2. Ao |\n"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://tonalis/conformance/dsl-core/case.schema.json",
+  "title": "dsl-core conformance case",
+  "description": "A single language-agnostic conformance case for the pure lead-sheet language. The runner parses+lints `dsl` and asserts `ast`/`findings`. iReal-agnostic: there is NO `url`. See conformance/dsl-core/SPEC.md for the assertion hierarchy.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "tags", "dsl", "expect"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique, human-readable case id."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Category + grammar-production + feature tags (e.g. ['chords','add'])."
+    },
+    "dsl": {
+      "type": "string",
+      "description": "The DSL source text fed verbatim to parse_dsl(text)."
+    },
+    "expect": {
+      "type": "object",
+      "additionalProperties": false,
+      "anyOf": [
+        { "required": ["ast"] },
+        { "required": ["findings"] }
+      ],
+      "description": "At least one of ast/findings MUST be present (the dsl-core conformance bar). There is NO `url` here.",
+      "properties": {
+        "ast": {
+          "type": ["object", "null"],
+          "description": "Optional canonical DslChart JSON (serialize.ast_to_json). Deep-equal when present.",
+          "properties": {
+            "meta": { "type": "object" },
+            "sections": {
+              "type": "array",
+              "items": { "$ref": "#/definitions/section" }
+            }
+          },
+          "required": ["meta", "sections"]
+        },
+        "findings": {
+          "type": "array",
+          "description": "Findings compared on (code, severity, line) only; message text non-normative.",
+          "items": { "$ref": "#/definitions/finding" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "finding": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["code", "severity", "line"],
+      "properties": {
+        "code": { "type": "string" },
+        "severity": { "type": "string", "enum": ["error", "warning"] },
+        "line": { "type": "integer", "minimum": 0 },
+        "message": {
+          "type": "string",
+          "description": "Non-normative; informational only. Not compared."
+        }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "marker", "measures"],
+      "properties": {
+        "label": { "type": "string" },
+        "marker": { "type": "string" },
+        "measures": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/measure" }
+        }
+      }
+    },
+    "measure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cells", "ending", "bar_open", "bar_close", "nav", "line"],
+      "properties": {
+        "cells": { "type": "array", "items": { "$ref": "#/definitions/cell" } },
+        "ending": { "type": ["integer", "null"] },
+        "bar_open": { "type": "boolean" },
+        "bar_close": { "type": "string", "enum": ["|", "}", "Z"] },
+        "nav": {
+          "type": "array",
+          "items": { "type": "array" }
+        },
+        "line": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "cell": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chord", "beats", "alt"],
+      "properties": {
+        "chord": { "type": "string" },
+        "beats": { "type": ["integer", "null"] },
+        "alt": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

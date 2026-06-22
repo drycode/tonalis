@@ -1,0 +1,17 @@
+{
+  "name": "banned-missing-header-title-empty",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title:\nkey: C\ntime: 4/4\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "missing-header",
+        "severity": "error",
+        "line": 0,
+        "message": "title must be non-empty"
+      }
+    ]
+  }
+}

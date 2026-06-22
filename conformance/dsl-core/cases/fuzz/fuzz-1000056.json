@@ -1,0 +1,77 @@
+{
+  "name": "fuzz-1000056",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "alt"
+  ],
+  "dsl": "title: Dance\nkey: F#\ntime: 12/8\n[i]\n{ | A9 | G13#11(C69) | Ab69 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance",
+        "key": "F#",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G13#11",
+                  "beats": null,
+                  "alt": "(C69)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance\nkey: F#\ntime: 12/8\n\n[i]\n{ A9 | G13#11(C69) | Ab69 }\n"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "banned-bad-time",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4-4\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "bad-time",
+        "severity": "error",
+        "line": 3,
+        "message": "bad time signature: '4-4'"
+      },
+      {
+        "code": "missing-header",
+        "severity": "error",
+        "line": 0,
+        "message": "missing required header: time"
+      }
+    ]
+  }
+}

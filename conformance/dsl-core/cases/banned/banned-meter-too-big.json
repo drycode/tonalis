@@ -1,0 +1,25 @@
+{
+  "name": "banned-meter-too-big",
+  "tags": [
+    "banned",
+    "time",
+    "cap"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 1000/4\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "bad-time",
+        "severity": "error",
+        "line": 3,
+        "message": "bad time signature: '1000/4'"
+      },
+      {
+        "code": "missing-header",
+        "severity": "error",
+        "line": 0,
+        "message": "missing required header: time"
+      }
+    ]
+  }
+}

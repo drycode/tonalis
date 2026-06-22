@@ -1,0 +1,181 @@
+{
+  "name": "fuzz-1000015",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Stella Bird\ncomposer: Shorter\nkey: G-\ntime: 6/4\n[A]\n| (Bbh7) n | B7b13 (D#-11) | D-7b5/G:3 Esus/F#:1 E9:2 |\n| Abadd9:3 Bb7#5:3 | N.C. |\n[D]\n| (G6) n | E2 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Stella Bird",
+        "composer": "Shorter",
+        "key": "G-",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7b13",
+                  "beats": null,
+                  "alt": "(D#-11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7b5/G",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "Esus/F#",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E9",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Abadd9",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb7#5",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Stella Bird\ncomposer: Shorter\nkey: G-\ntime: 6/4\n\n[A]\n| n | B7b13(D#-11) | D-7b5/G:3 Esus/F#:1 E9:2 | Abadd9:3 Bb7#5:3 | N.C. |\n\n[D]\n| n | E2 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 6,
+        "message": "alt group (Bbh7) has no preceding chord"
+      },
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 9,
+        "message": "alt group (G6) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (3, 1, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

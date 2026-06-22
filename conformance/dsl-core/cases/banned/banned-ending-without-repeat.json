@@ -1,0 +1,18 @@
+{
+  "name": "banned-ending-without-repeat",
+  "tags": [
+    "banned",
+    "endings"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n|1. C6 | A-7 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "ending-without-repeat",
+        "severity": "error",
+        "line": 5,
+        "message": "nth ending outside a repeat block"
+      }
+    ]
+  }
+}

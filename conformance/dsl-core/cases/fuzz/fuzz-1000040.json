@@ -1,0 +1,279 @@
+{
+  "name": "fuzz-1000040",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "beats",
+    "alt",
+    "nav-fine",
+    "nav-tocoda"
+  ],
+  "dsl": "title: Spring\nkey: B\ntime: 2/2\n[B]\n| B-7b5 |\n| D+ |\n@tocoda\n| C-11 B9(G#-7b5) |\n[Intro]\n@fine\n| C+/D |\n| Bb*7+*:1 Asus:1 | Eb-7b5 |\n| A4 |\n| Cadd13:1 A7#11:1 |\n[B2]\n| Fadd13 (N.C.) B-6 | A#9/C | Fo:1 Fb^7:1 | G7 (B-9 D4) |\n| Eadd13:1 A13:1 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spring",
+        "key": "B",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B9",
+                  "beats": null,
+                  "alt": "(G#-7b5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C+/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Asus",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cadd13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        },
+        {
+          "label": "B2",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fadd13",
+                  "beats": null,
+                  "alt": "(N.C.)"
+                },
+                {
+                  "chord": "B-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#9/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fo",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb^7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": "(B-9 D4)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eadd13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spring\nkey: B\ntime: 2/2\n\n[B]\n| B-7b5 | D+ |\n@tocoda\n| C-11 B9(G#-7b5) |\n\n[Intro]\n@fine\n| C+/D | Bb*7+*:1 Asus:1 | Eb-7b5 | A4 | Cadd13:1 A7#11:1 |\n\n[B2]\n| Fadd13(N.C.) B-6 | A#9/C | Fo:1 Fb^7:1 | G7 (B-9 D4) | Eadd13:1 A13:1 ||\n"
+  }
+}

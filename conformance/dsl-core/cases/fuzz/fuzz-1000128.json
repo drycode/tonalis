@@ -1,0 +1,104 @@
+{
+  "name": "fuzz-1000128",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "repeats",
+    "endings"
+  ],
+  "dsl": "title: Five Bird Autumn\ncomposer:\nstyle: Latin\nkey: C#\ntime: 6/8\n[Verse]\n{ | Bb*7+* | F^7#11 |1. A#7#5 B7#5#9/G# Ab-7b5 } |2. Fb |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Five Bird Autumn",
+        "composer": "",
+        "style": "Latin",
+        "key": "C#",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#7#5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B7#5#9/G#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Five Bird Autumn\ncomposer: \nstyle: Latin\nkey: C#\ntime: 6/8\n\n[Verse]\n{ Bb*7+* | F^7#11 | 1. A#7#5 B7#5#9/G# Ab-7b5 } 2. Fb |\n"
+  }
+}

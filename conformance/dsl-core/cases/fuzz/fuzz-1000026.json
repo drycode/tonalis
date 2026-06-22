@@ -1,0 +1,277 @@
+{
+  "name": "fuzz-1000026",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-tocoda",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported",
+    "warn-unknown-key",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Take Bird 13\ncomposer: Monk\nkey: F#\ntime: 3/4\ntempo: 140\n[A1]\n| B#+ | G-:1 (Ebadd9/G#) Fbsus4:1 A-7/Ab:1 |\n@tocoda\n| A7#11 | C4 |\n| (A6) G9 | C7sus/B:1(E13#11/B) D9:1 A#7sus:1 |\n[Verse]\n@vamp\n| Ab7b13:1 A7b9:1 G6:1 |\n[i]\n{ | C^7#11 |1. D#^9:2 Ab7b9#11:1 } |2. A13#11:1 C#2:1 Eadd13:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Take Bird 13",
+        "composer": "Monk",
+        "key": "F#",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A1",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G-",
+                  "beats": 1,
+                  "alt": "(Ebadd9/G#)"
+                },
+                {
+                  "chord": "Fbsus4",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A-7/Ab",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7sus/B",
+                  "beats": 1,
+                  "alt": "(E13#11/B)"
+                },
+                {
+                  "chord": "D9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A#7sus",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ab7b13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7b9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G6",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#^9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab7b9#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A13#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C#2",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Eadd13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Take Bird 13\ncomposer: Monk\nkey: F#\ntime: 3/4\n\n[A1]\n| B#+ | G-:1(Ebadd9/G#) Fbsus4:1 A-7/Ab:1 |\n@tocoda\n| A7#11 | C4 | G9 | C7sus/B:1(E13#11/B) D9:1 A#7sus:1 |\n\n[Verse]\n| Ab7b13:1 A7b9:1 G6:1 |\n\n[i]\n{ C^7#11 | 1. D#^9:2 Ab7b9#11:1 } 2. A13#11:1 C#2:1 Eadd13:1 |\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 10,
+        "message": "alt group (A6) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 15,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 5,
+        "message": "unknown header key: tempo"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 12,
+        "message": "unknown @directive: @vamp"
+      }
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "name": "fuzz-1000134",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "alt"
+  ],
+  "dsl": "title: Train Take\ncomposer: Monk\nstyle: Bossa Nova\nkey: Gb\ntime: 2/4\n[Intro]\n| Bbo Bb*7+* | E7b13 | G6(A7alt) G7b9 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Take",
+        "composer": "Monk",
+        "style": "Bossa Nova",
+        "key": "Gb",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bbo",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G6",
+                  "beats": null,
+                  "alt": "(A7alt)"
+                },
+                {
+                  "chord": "G7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Take\ncomposer: Monk\nstyle: Bossa Nova\nkey: Gb\ntime: 2/4\n\n[Intro]\n| Bbo Bb*7+* | E7b13 | G6(A7alt) G7b9 ||\n"
+  }
+}

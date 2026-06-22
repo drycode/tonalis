@@ -1,0 +1,162 @@
+{
+  "name": "fuzz-1000119",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Misty Five Moon\ncomposer: Monk\nkey: A-\ntime: 6/4\n[A]\n| E13:5 Bb*7+*:1 | A7#9 G7b9 | Bbh7 G-11 | B7b9:3 B-9:2 Ab-7:1 |\n| D7b9#11/C | Dadd13 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Misty Five Moon",
+        "composer": "Monk",
+        "key": "A-",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E13",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbh7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7b9",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "B-9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab-7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7b9#11/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Misty Five Moon\ncomposer: Monk\nkey: A-\ntime: 6/4\n\n[A]\n| E13:5 Bb*7+*:1 | A7#9 G7b9 | Bbh7 G-11 | B7b9:3 B-9:2 Ab-7:1 | D7b9#11/C | Dadd13 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (3, 2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

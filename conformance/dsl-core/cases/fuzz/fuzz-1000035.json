@@ -1,0 +1,280 @@
+{
+  "name": "fuzz-1000035",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "beats",
+    "alt",
+    "nav-text",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Spain Take Naima\ncomposer: Shorter\nkey: D-\ntime: 3/4\n[B]\n| C- Ah/G (E+) G9 |\n<D.C.>\n| C7b9#11:1 F#9:1 A7b9/E:1 |\n| C/D:2 (F-7) n:1 | Cb6:1 (Bb7b9#11) E69:1 (Db-7b5 Gb-7) G-7:1 | C#-7b5 D- Db7 |\n[v]\n| Fb7#5 |\n| C-11 | Gb | B- Cb7sus Ab7alt/E (G13/B D^7) | A#7alt |\n[B2]\n| E# |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spain Take Naima",
+        "composer": "Shorter",
+        "key": "D-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C-",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ah/G",
+                  "beats": null,
+                  "alt": "(E+)"
+                },
+                {
+                  "chord": "G9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7b9#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F#9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7b9/E",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<D.C.>"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C/D",
+                  "beats": 2,
+                  "alt": "(F-7)"
+                },
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb6",
+                  "beats": 1,
+                  "alt": "(Bb7b9#11)"
+                },
+                {
+                  "chord": "E69",
+                  "beats": 1,
+                  "alt": "(Db-7b5 Gb-7)"
+                },
+                {
+                  "chord": "G-7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#-7b5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D-",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fb7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B-",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb7sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab7alt/E",
+                  "beats": null,
+                  "alt": "(G13/B D^7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#7alt",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "B2",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spain Take Naima\ncomposer: Shorter\nkey: D-\ntime: 3/4\n\n[B]\n| C- Ah/G(E+) G9 |\n<D.C.>\n| C7b9#11:1 F#9:1 A7b9/E:1 | C/D:2(F-7) n:1 | Cb6:1(Bb7b9#11) E69:1 (Db-7b5 Gb-7) G-7:1 | C#-7b5 D- Db7 |\n\n[v]\n| Fb7#5 | C-11 | Gb | B- Cb7sus Ab7alt/E (G13/B D^7) | A#7alt |\n\n[B2]\n| E# |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "name": "fuzz-1000045",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "beats",
+    "nav-coda",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Body Take Stella\ncomposer: Davis\nkey: E-\ntime: 9/8\n[v]\n| F^9 |\n@coda\n| E7#5#9/F#:1 A#7:8 |\n| E#7 | E-11 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Body Take Stella",
+        "composer": "Davis",
+        "key": "E-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#5#9/F#",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A#7",
+                  "beats": 8,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Body Take Stella\ncomposer: Davis\nkey: E-\ntime: 9/8\n\n[v]\n| F^9 |\n@coda\n| E7#5#9/F#:1 A#7:8 | E#7 | E-11 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 8) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

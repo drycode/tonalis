@@ -1,0 +1,165 @@
+{
+  "name": "fuzz-1000076",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt"
+  ],
+  "dsl": "title: Stella Donna Five 60\nkey: F#-\ntime: 4/4\n[Verse]\n{ | D#7b9#11 C#-9 G#7#9 Cb-7b5 | E+ | A#11:2 n:1 Cadd13:1 } |\n[A]\n{ | C^ |1. A69:2 A#13:1(G#-7) G7#9:1 } |2. A7b9 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Stella Donna Five 60",
+        "key": "F#-",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C#-9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#11",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A69",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "A#13",
+                  "beats": 1,
+                  "alt": "(G#-7)"
+                },
+                {
+                  "chord": "G7#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Stella Donna Five 60\nkey: F#-\ntime: 4/4\n\n[Verse]\n{ D#7b9#11 C#-9 G#7#9 Cb-7b5 | E+ | A#11:2 n:1 Cadd13:1 }\n\n[A]\n{ C^ | 1. A69:2 A#13:1(G#-7) G7#9:1 } 2. A7b9 |\n"
+  }
+}

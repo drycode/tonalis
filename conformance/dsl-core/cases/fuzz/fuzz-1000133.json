@@ -1,0 +1,151 @@
+{
+  "name": "fuzz-1000133",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "beats",
+    "alt",
+    "nav-coda",
+    "nav-fine",
+    "break",
+    "break-lossy",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Donna\ncomposer: Parker\nkey: \ntime: 7/4\n[D]\n@break\n| G6 |\n@coda\n| Dh7 | B4 | Eh7 | Bb*7+* |\n@fine\n| F7alt/Eb:4 B#13:3(D11) ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna",
+        "composer": "Parker",
+        "key": "",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7alt/Eb",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "B#13",
+                  "beats": 3,
+                  "alt": "(D11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna\ncomposer: Parker\nkey: \ntime: 7/4\n\n[D]\n@break\n| G6 |\n@coda\n| Dh7 | B4 | Eh7 | Bb*7+* |\n@fine\n| F7alt/Eb:4 B#13:3(D11) ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 11,
+        "message": "uneven beat layout (4, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

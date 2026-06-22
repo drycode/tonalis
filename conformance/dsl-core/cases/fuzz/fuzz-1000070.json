@@ -1,0 +1,232 @@
+{
+  "name": "fuzz-1000070",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-text",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Naima\nkey: F\ntime: 9/8\n[Intro]\n{ | G13#11:6 Bo7:3 | Ah |1. D7b9 } |2. F#add11(B2) |\n[B]\n<Out>\n| A#7b5 |\n[B]\n{ | G#7b5 F D7b5 |1. Do7 } |2. E#h |\n[i]\n| D#7b5 | G+ Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima",
+        "key": "F",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G13#11",
+                  "beats": 6,
+                  "alt": null
+                },
+                {
+                  "chord": "Bo7",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ah",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#add11",
+                  "beats": null,
+                  "alt": "(B2)"
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A#7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Out>"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#7b5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Do7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#h",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima\nkey: F\ntime: 9/8\n\n[Intro]\n{ G13#11:6 Bo7:3 | Ah | 1. D7b9 } 2. F#add11(B2) |\n\n[B]\n<Out>\n| A#7b5 |\n\n[B]\n{ G#7b5 F D7b5 | 1. Do7 } 2. E#h |\n\n[i]\n| D#7b5 | G+ ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (6, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

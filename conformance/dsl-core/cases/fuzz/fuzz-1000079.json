@@ -1,0 +1,77 @@
+{
+  "name": "fuzz-1000079",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats"
+  ],
+  "dsl": "title: Footprints Five Stella\ncomposer: Ellington\nkey: C\ntime: 3/4\n[Intro]\n{ | Ab-11 | D^9 | Eb-11/D } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Footprints Five Stella",
+        "composer": "Ellington",
+        "key": "C",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ab-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb-11/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Footprints Five Stella\ncomposer: Ellington\nkey: C\ntime: 3/4\n\n[Intro]\n{ Ab-11 | D^9 | Eb-11/D }\n"
+  }
+}

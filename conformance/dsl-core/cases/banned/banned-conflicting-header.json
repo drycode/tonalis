@@ -1,0 +1,17 @@
+{
+  "name": "banned-conflicting-header",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title: A\ntitle: B\nkey: C\ntime: 4/4\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "conflicting-header",
+        "severity": "error",
+        "line": 2,
+        "message": "conflicting header 'title': 'A' vs 'B'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "name": "fuzz-1000099",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-coda",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Blue\nkey: G\ntime: 6/8\n[C]\n{ | Eb-7b5 | E9 } |\n[D]\n@coda\n| C^9 | Eadd9:1 Bo:1 Cb7b5/G:4(Db7sus) Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Blue",
+        "key": "G",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eb-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eadd9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bo",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb7b5/G",
+                  "beats": 4,
+                  "alt": "(Db7sus)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Blue\nkey: G\ntime: 6/8\n\n[C]\n{ Eb-7b5 | E9 }\n\n[D]\n@coda\n| C^9 | Eadd9:1 Bo:1 Cb7b5/G:4(Db7sus) ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 1, 4) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

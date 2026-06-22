@@ -1,0 +1,102 @@
+{
+  "name": "fuzz-1000032",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "endings"
+  ],
+  "dsl": "title: Spring Blue Waltz\nkey: C#\ntime: 12/8\n[i2]\n{ | A-6 | D7alt B#^9 F-7b5 |1. F#13 } |2. Fsus |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spring Blue Waltz",
+        "key": "C#",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "i2",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7alt",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B#^9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fsus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spring Blue Waltz\nkey: C#\ntime: 12/8\n\n[i2]\n{ A-6 | D7alt B#^9 F-7b5 | 1. F#13 } 2. Fsus |\n"
+  }
+}

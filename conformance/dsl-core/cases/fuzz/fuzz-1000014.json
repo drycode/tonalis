@@ -1,0 +1,110 @@
+{
+  "name": "fuzz-1000014",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "beats",
+    "alt"
+  ],
+  "dsl": "title: Autumn Dance Footprints\nstyle:\nkey: E\ntime: 4/4\n[A3]\n| G11:2 (E#7b13 G6) Go7:2 |\n[C]\n{ | C#11:3 F#sus4/E#:1 | F13 B4 D-6 E7#11 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Autumn Dance Footprints",
+        "style": "",
+        "key": "E",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A3",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G11",
+                  "beats": 2,
+                  "alt": "(E#7b13 G6)"
+                },
+                {
+                  "chord": "Go7",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C#11",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "F#sus4/E#",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D-6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Autumn Dance Footprints\nstyle: \nkey: E\ntime: 4/4\n\n[A3]\n| G11:2 (E#7b13 G6) Go7:2 |\n\n[C]\n{ C#11:3 F#sus4/E#:1 | F13 B4 D-6 E7#11 }\n"
+  }
+}

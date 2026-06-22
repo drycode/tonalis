@@ -1,0 +1,55 @@
+{
+  "name": "beats-explicit-2-1-1-allowed",
+  "tags": [
+    "beats",
+    "colon-n"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C:2 D-7:1 G7:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "T",
+        "key": "C",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D-7",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: T\nkey: C\ntime: 4/4\n\n[A]\n| C:2 D-7:1 G7:1 |\n"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "name": "banned-coda-count",
+  "tags": [
+    "banned",
+    "nav"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n@coda\n| C6 |\n@coda\n| A-7 |\n@coda\n| D7 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "coda-count",
+        "severity": "error",
+        "line": 0,
+        "message": "3 coda points (max 2 — the encoder cannot flatten more)"
+      }
+    ]
+  }
+}

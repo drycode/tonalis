@@ -1,0 +1,206 @@
+{
+  "name": "golden-rhythm_changes",
+  "tags": [
+    "golden"
+  ],
+  "dsl": "title: Rhythm Changes\ncomposer: Trad\nstyle: Up Tempo Swing\nkey: Bb\ntime: 4/4\n\n[A]\n{ | Bb6 G-7 | C-7 F7 | D-7 G7 | C-7 F7 |\n| F-7 Bb7 | Eb6 Eb-6 | D-7 G7 |1. C-7 F7 } |2. Bb6 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Rhythm Changes",
+        "composer": "Trad",
+        "style": "Up Tempo Swing",
+        "key": "Bb",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Rhythm Changes\ncomposer: Trad\nstyle: Up Tempo Swing\nkey: Bb\ntime: 4/4\n\n[A]\n{ Bb6 G-7 | C-7 F7 | D-7 G7 | C-7 F7 | F-7 Bb7 | Eb6 Eb-6 | D-7 G7 | 1. C-7 F7 } 2. Bb6 ||\n"
+  }
+}

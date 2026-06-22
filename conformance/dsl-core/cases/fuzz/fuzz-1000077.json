@@ -1,0 +1,305 @@
+{
+  "name": "fuzz-1000077",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "beats",
+    "alt",
+    "nav-fine",
+    "nav-text",
+    "nav-tocoda"
+  ],
+  "dsl": "title: Naima Joy\ncomposer: Shorter\nkey: B-\ntime: 2/4\n[i]\n| Bbsus4:1 | F#-6 | A7 |\n@fine\n| F#-9 | E#11:1 B#sus4:1 |\n@tocoda\n| Bb7#11 |\n[A]\n<Solos>\n| D#7b9#11:1 Gbadd9:1 |\n| C-9:1 E#o:1 |\n[A2]\n| G7#11/G# |\n| D7b9#11 G/G (Ah/D Ab^7#11) | Abadd13 |\n| Eb7#9/Bb D2/B# |\n@tocoda\n| F7:1 (Ebadd13) G7b13:1 |\n| C#^7 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Joy",
+        "composer": "Shorter",
+        "key": "B-",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bbsus4",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B#sus4",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#7b9#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Gbadd9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Solos>"
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E#o",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        },
+        {
+          "label": "A2",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G7#11/G#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G/G",
+                  "beats": null,
+                  "alt": "(Ah/D Ab^7#11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Abadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7#9/Bb",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D2/B#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 18
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7",
+                  "beats": 1,
+                  "alt": "(Ebadd13)"
+                },
+                {
+                  "chord": "G7b13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 20
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 21
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Joy\ncomposer: Shorter\nkey: B-\ntime: 2/4\n\n[i]\n| Bbsus4:1 | F#-6 | A7 |\n@fine\n| F#-9 | E#11:1 B#sus4:1 |\n@tocoda\n| Bb7#11 |\n\n[A]\n<Solos>\n| D#7b9#11:1 Gbadd9:1 | C-9:1 E#o:1 |\n\n[A2]\n| G7#11/G# | D7b9#11 G/G (Ah/D Ab^7#11) | Abadd13 | Eb7#9/Bb D2/B# |\n@tocoda\n| F7:1(Ebadd13) G7b13:1 | C#^7 ||\n"
+  }
+}

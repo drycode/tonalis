@@ -1,0 +1,293 @@
+{
+  "name": "fuzz-1000087",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Footprints Moon Naima\nkey: Eb\ntime: 7/4\n[D]\n| B7 |\n| E-7b5:5 F^9:1 (Gb11 D7b9#11) E7b13:1 |\n| N.C. | C7sus (G#add9) |\n[Verse]\n{ | C7#5 | Bb6 (Co) | D9 | D2:4 B4:3 (A#^7 A#add11) } |\n[i]\n| (G7#9) Csus:3 F#add9:1 E2:3 |\n| C7sus | Gsus4 | D9 | G^7 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Footprints Moon Naima",
+        "key": "Eb",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E-7b5",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "F^9",
+                  "beats": 1,
+                  "alt": "(Gb11 D7b9#11)"
+                },
+                {
+                  "chord": "E7b13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7sus",
+                  "beats": null,
+                  "alt": "(G#add9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb6",
+                  "beats": null,
+                  "alt": "(Co)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D2",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "B4",
+                  "beats": 3,
+                  "alt": "(A#^7 A#add11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Csus",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "F#add9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E2",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Footprints Moon Naima\nkey: Eb\ntime: 7/4\n\n[D]\n| B7 | E-7b5:5 F^9:1 (Gb11 D7b9#11) E7b13:1 | N.C. | C7sus(G#add9) |\n\n[Verse]\n{ C7#5 | Bb6(Co) | D9 | D2:4 B4:3 (A#^7 A#add11) }\n\n[i]\n| Csus:3 F#add9:1 E2:3 | C7sus | Gsus4 | D9 | G^7 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 11,
+        "message": "alt group (G7#9) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (5, 1, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (4, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 11,
+        "message": "uneven beat layout (3, 1, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

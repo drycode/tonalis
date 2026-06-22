@@ -1,0 +1,151 @@
+{
+  "name": "fuzz-1000112",
+  "tags": [
+    "fuzz",
+    "meter-7-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Solar Waltz\ncomposer: Parker\nstyle: Even 8ths\nkey: Gb-\ntime: 7/4\n[Intro1]\n{ | A#2 |1. D7#5#9 } |2. N.C.:1 B9:1 E13:5(E#4) |\n[A]\n{ | Cb13#11 | A-7b5 | D7#5 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Solar Waltz",
+        "composer": "Parker",
+        "style": "Even 8ths",
+        "key": "Gb-",
+        "time": [
+          7,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro1",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A#2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E13",
+                  "beats": 5,
+                  "alt": "(E#4)"
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Solar Waltz\ncomposer: Parker\nstyle: Even 8ths\nkey: Gb-\ntime: 7/4\n\n[Intro1]\n{ A#2 | 1. D7#5#9 } 2. N.C.:1 B9:1 E13:5(E#4) |\n\n[A]\n{ Cb13#11 | A-7b5 | D7#5 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 1, 5) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

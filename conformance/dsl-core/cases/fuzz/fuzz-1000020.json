@@ -1,0 +1,269 @@
+{
+  "name": "fuzz-1000020",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-fine",
+    "warn-beat-unsupported",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Donna Spring Bird\ncomposer:\nstyle:\nkey: D\ntime: 3/4\ntempo: 140\n[Verse]\n| F:1 (Bb7b5/Db) D-6:1 C#add9/D:1 | E69 |\n| D-7 | B#9 F7#5#9 A#add13 | Eb11:2 Gb6:1 (Eadd13) |\n@fine\n| F69:1 G#o:1 G7sus:1 |\n[C]\n{ | G+:2(E-6) Cb^7#11:1 | Ab-:1 E#h7:1 (Db) A^9/Eb:1 (A^ E#7b9) |1. F#-9 (D7#5 G69) } |2. C-11/B |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna Spring Bird",
+        "composer": "",
+        "style": "",
+        "key": "D",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F",
+                  "beats": 1,
+                  "alt": "(Bb7b5/Db)"
+                },
+                {
+                  "chord": "D-6",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C#add9/D",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7#5#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#add13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb11",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb6",
+                  "beats": 1,
+                  "alt": "(Eadd13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F69",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G#o",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G7sus",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G+",
+                  "beats": 2,
+                  "alt": "(E-6)"
+                },
+                {
+                  "chord": "Cb^7#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab-",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E#h7",
+                  "beats": 1,
+                  "alt": "(Db)"
+                },
+                {
+                  "chord": "A^9/Eb",
+                  "beats": 1,
+                  "alt": "(A^ E#7b9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#-9",
+                  "beats": null,
+                  "alt": "(D7#5 G69)"
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-11/B",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna Spring Bird\ncomposer: \nstyle: \nkey: D\ntime: 3/4\n\n[Verse]\n| F:1(Bb7b5/Db) D-6:1 C#add9/D:1 | E69 | D-7 | B#9 F7#5#9 A#add13 | Eb11:2 Gb6:1(Eadd13) |\n@fine\n| F69:1 G#o:1 G7sus:1 |\n\n[C]\n{ G+:2(E-6) Cb^7#11:1 | Ab-:1 E#h7:1(Db) A^9/Eb:1 (A^ E#7b9) | 1. F#-9 (D7#5 G69) } 2. C-11/B |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 13,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 6,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

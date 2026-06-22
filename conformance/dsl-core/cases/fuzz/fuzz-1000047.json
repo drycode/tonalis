@@ -1,0 +1,224 @@
+{
+  "name": "fuzz-1000047",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-fine",
+    "nav-text",
+    "nav-tocoda",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Train Night Lee\nstyle:\nkey: C\ntime: 2/2\ntitle: Train Night Lee\n[A]\n@fine\n| A13#11:1 Ab-6:1 | E# |\n| B+ |\n| Fsus4 A7sus | E6:1 B#-6:1 |\n<Rubato>\n| Gadd11 (F4 C7b13) D7b9 |\n@tocoda\n[D]\n{ | D7b5/E# | G7sus:1 n:1 | n } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Night Lee",
+        "style": "",
+        "key": "C",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A13#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab-6",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fsus4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E6",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B#-6",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gadd11",
+                  "beats": null,
+                  "alt": "(F4 C7b13)"
+                },
+                {
+                  "chord": "D7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Rubato>"
+                ],
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D7b5/E#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7sus",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Night Lee\nstyle: \nkey: C\ntime: 2/2\n\n[A]\n@fine\n| A13#11:1 Ab-6:1 | E# | B+ | Fsus4 A7sus | E6:1 B#-6:1 |\n<Rubato>\n| Gadd11 (F4 C7b13) D7b9 |\n@tocoda\n\n[D]\n{ D7b5/E# | G7sus:1 n:1 | n }\n",
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

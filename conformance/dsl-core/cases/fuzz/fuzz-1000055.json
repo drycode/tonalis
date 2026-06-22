@@ -1,0 +1,91 @@
+{
+  "name": "fuzz-1000055",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt"
+  ],
+  "dsl": "title: Lee Bird\ncomposer:\nstyle: Up Tempo Swing\nkey: Bb\ntime: 3/4\n[Verse1]\n{ | A13 (A#7#11) |1. D^7 } |2. Bb*7+*:1 C11:1(A#h) Aadd11:1(E7#5#9) |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Lee Bird",
+        "composer": "",
+        "style": "Up Tempo Swing",
+        "key": "Bb",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse1",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A13",
+                  "beats": null,
+                  "alt": "(A#7#11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C11",
+                  "beats": 1,
+                  "alt": "(A#h)"
+                },
+                {
+                  "chord": "Aadd11",
+                  "beats": 1,
+                  "alt": "(E7#5#9)"
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Lee Bird\ncomposer: \nstyle: Up Tempo Swing\nkey: Bb\ntime: 3/4\n\n[Verse1]\n{ A13(A#7#11) | 1. D^7 } 2. Bb*7+*:1 C11:1(A#h) Aadd11:1(E7#5#9) |\n"
+  }
+}

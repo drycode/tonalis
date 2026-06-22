@@ -1,0 +1,112 @@
+{
+  "name": "fuzz-1000149",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Misty Donna\ncomposer: Evans\nkey: \ntime: 5/4\n[A]\n| F7#5#9 | E+:1 Gb7#9/E:1 G11/Db:3 | B7#11/G | Cbsus4 (D#7sus) |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Misty Donna",
+        "composer": "Evans",
+        "key": "",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E+",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb7#9/E",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G11/Db",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7#11/G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cbsus4",
+                  "beats": null,
+                  "alt": "(D#7sus)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Misty Donna\ncomposer: Evans\nkey: \ntime: 5/4\n\n[A]\n| F7#5#9 | E+:1 Gb7#9/E:1 G11/Db:3 | B7#11/G | Cbsus4(D#7sus) |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 1, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

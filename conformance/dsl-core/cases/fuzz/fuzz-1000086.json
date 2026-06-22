@@ -1,0 +1,151 @@
+{
+  "name": "fuzz-1000086",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "beats",
+    "alt",
+    "nav-coda",
+    "warn-coda-needs-segno"
+  ],
+  "dsl": "title: Dolphin Naima\ncomposer: Coltrane\nkey: F#\ntime: 2/4\n[D]\n| Ch:1 D7:1 | Ch7 |\n| Gb7#5 (B11 G#^7) |\n@coda\n| Bo (G7b9#11 Eadd11) |\n@coda\n| D7b9#11:1 E7#9:1 |\n| Gb7#5#9/D Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dolphin Naima",
+        "composer": "Coltrane",
+        "key": "F#",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ch",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ch7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7#5",
+                  "beats": null,
+                  "alt": "(B11 G#^7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bo",
+                  "beats": null,
+                  "alt": "(G7b9#11 Eadd11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7b9#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E7#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7#5#9/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dolphin Naima\ncomposer: Coltrane\nkey: F#\ntime: 2/4\n\n[D]\n| Ch:1 D7:1 | Ch7 | Gb7#5 (B11 G#^7) |\n@coda\n| Bo (G7b9#11 Eadd11) |\n@coda\n| D7b9#11:1 E7#9:1 | Gb7#5#9/D ||\n",
+    "findings": [
+      {
+        "code": "coda-needs-segno",
+        "severity": "warning",
+        "line": 0,
+        "message": "2-coda jump without @segno (will play D.C., not D.S.)"
+      }
+    ]
+  }
+}

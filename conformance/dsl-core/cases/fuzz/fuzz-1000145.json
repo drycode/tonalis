@@ -1,0 +1,191 @@
+{
+  "name": "fuzz-1000145",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt"
+  ],
+  "dsl": "title: Take Footprints\nkey: B\ntime: 2/4\n[v]\n{ | F+:1 G#o7:1 |1. Bsus4 } |2. E#2:1 A#^7/Gb:1 |\n[C]\n{ | Cb-9 |1. Aadd11:1 Do7:1 } |2. B6 (C#13#11) B^7 |\n[Verse2]\n| C2 | G13#11:1(Gsus4) B-7b5:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Take Footprints",
+        "key": "B",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F+",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G#o7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#2",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A#^7/Gb",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Aadd11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Do7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B6",
+                  "beats": null,
+                  "alt": "(C#13#11)"
+                },
+                {
+                  "chord": "B^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Verse2",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G13#11",
+                  "beats": 1,
+                  "alt": "(Gsus4)"
+                },
+                {
+                  "chord": "B-7b5",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Take Footprints\nkey: B\ntime: 2/4\n\n[v]\n{ F+:1 G#o7:1 | 1. Bsus4 } 2. E#2:1 A#^7/Gb:1 |\n\n[C]\n{ Cb-9 | 1. Aadd11:1 Do7:1 } 2. B6(C#13#11) B^7 |\n\n[Verse2]\n| C2 | G13#11:1(Gsus4) B-7b5:1 |\n"
+  }
+}

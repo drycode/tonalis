@@ -1,0 +1,359 @@
+{
+  "name": "fuzz-1000003",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Five Round\nkey: E\ntime: 4/4\n[v1]\n| B#7#9 |\n| (E-) Co B-9/C | Fb11 | F#2:3 G7#11:1 |\n[v]\n{ | E#7sus:1 (D9) Dsus4:2 Dbadd11:1 | Esus(B69) |1. F13#11 E11 A^ Cbsus4 } |2. E#^9:2 Aadd13:2 |\n[D]\n{ | (F#7b5) E7sus E#7b9#11 Gb4 G13#11 | E#^7:1 A4/C:3 } |\n[B]\n{ | C#7b13 | G69 C#13 Aadd13(Fb2/A#) Csus |1. F-7 (F7sus A#-11) } |2. Ao7 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Five Round",
+        "key": "E",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v1",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Co",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-9/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fb11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#2",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "G7#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#7sus",
+                  "beats": 1,
+                  "alt": "(D9)"
+                },
+                {
+                  "chord": "Dsus4",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Dbadd11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Esus",
+                  "beats": null,
+                  "alt": "(B69)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A^",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cbsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#^9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Aadd13",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E7sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E#7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#^7",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A4/C",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C#7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G69",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C#13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Aadd13",
+                  "beats": null,
+                  "alt": "(Fb2/A#)"
+                },
+                {
+                  "chord": "Csus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F-7",
+                  "beats": null,
+                  "alt": "(F7sus A#-11)"
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ao7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Five Round\nkey: E\ntime: 4/4\n\n[v1]\n| B#7#9 | Co B-9/C | Fb11 | F#2:3 G7#11:1 |\n\n[v]\n{ E#7sus:1(D9) Dsus4:2 Dbadd11:1 | Esus(B69) | 1. F13#11 E11 A^ Cbsus4 } 2. E#^9:2 Aadd13:2 |\n\n[D]\n{ E7sus E#7b9#11 Gb4 G13#11 | E#^7:1 A4/C:3 }\n\n[B]\n{ C#7b13 | G69 C#13 Aadd13(Fb2/A#) Csus | 1. F-7 (F7sus A#-11) } 2. Ao7 |\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 6,
+        "message": "alt group (E-) has no preceding chord"
+      },
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 10,
+        "message": "alt group (F#7b5) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

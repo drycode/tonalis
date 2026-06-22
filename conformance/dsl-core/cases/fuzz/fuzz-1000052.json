@@ -1,0 +1,115 @@
+{
+  "name": "fuzz-1000052",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Maiden Donna\nkey: A\ntime: 9/8\ntitle: Maiden Donna\n[C3]\n{ | Bb7#5#9 |1. F#13 E2 B#^ (Go/G) } |2. Ab9:2 A-:3 Db-11:4 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Maiden Donna",
+        "key": "A",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C3",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E2",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B#^",
+                  "beats": null,
+                  "alt": "(Go/G)"
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "A-",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "Db-11",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Maiden Donna\nkey: A\ntime: 9/8\n\n[C3]\n{ Bb7#5#9 | 1. F#13 E2 B#^(Go/G) } 2. Ab9:2 A-:3 Db-11:4 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (2, 3, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 4,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

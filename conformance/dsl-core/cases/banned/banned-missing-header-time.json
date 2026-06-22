@@ -1,0 +1,17 @@
+{
+  "name": "banned-missing-header-time",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title: T\nkey: C\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "missing-header",
+        "severity": "error",
+        "line": 0,
+        "message": "missing required header: time"
+      }
+    ]
+  }
+}

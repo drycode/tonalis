@@ -1,0 +1,17 @@
+{
+  "name": "banned-unknown-section",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[Z]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "unknown-section",
+        "severity": "error",
+        "line": 4,
+        "message": "unknown section 'Z'; allowed: A-D, Intro, Verse"
+      }
+    ]
+  }
+}

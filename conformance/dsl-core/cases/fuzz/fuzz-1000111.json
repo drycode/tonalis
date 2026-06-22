@@ -1,0 +1,143 @@
+{
+  "name": "fuzz-1000111",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "beats",
+    "alt",
+    "nav-fine",
+    "warn-alt-without-chord"
+  ],
+  "dsl": "title: Voyage Moon\ncomposer: Shorter\nstyle:\nkey: C\ntime: 6/8\n[Verse]\n| Bbo | E#7b13 |\n@fine\n| (Asus/B) Fbh |\n| Bh7:3 Aadd9:3 | C11 |\n| Gadd9 (D-6 B7#5#9) ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Voyage Moon",
+        "composer": "Shorter",
+        "style": "",
+        "key": "C",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bbo",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fbh",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bh7",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "Aadd9",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gadd9",
+                  "beats": null,
+                  "alt": "(D-6 B7#5#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Voyage Moon\ncomposer: Shorter\nstyle: \nkey: C\ntime: 6/8\n\n[Verse]\n| Bbo | E#7b13 |\n@fine\n| Fbh | Bh7:3 Aadd9:3 | C11 | Gadd9 (D-6 B7#5#9) ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 9,
+        "message": "alt group (Asus/B) has no preceding chord"
+      }
+    ]
+  }
+}

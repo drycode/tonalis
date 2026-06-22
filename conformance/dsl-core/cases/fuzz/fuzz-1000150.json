@@ -1,0 +1,115 @@
+{
+  "name": "fuzz-1000150",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "beats",
+    "nav-tocoda",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Steps Donna 17\nkey: F\ntime: 6/8\n[Verse]\n| A-9 | C-7:5 E#h7:1 |\n@tocoda\n| F^ A6 | C-11 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Steps Donna 17",
+        "key": "F",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-7",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "E#h7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F^",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Steps Donna 17\nkey: F\ntime: 6/8\n\n[Verse]\n| A-9 | C-7:5 E#h7:1 |\n@tocoda\n| F^ A6 | C-11 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

@@ -1,0 +1,322 @@
+{
+  "name": "fuzz-1000049",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-coda",
+    "nav-tocoda",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Body Steps Voyage\nkey: C\ntime: 5/4\n[i]\n| D#add11:1 C-11:1 G#^9/E:3 |\n@coda\n| Bbh |\n| A7b9 | Bb+ | n |\n@tocoda\n| E7#5 (B7#11) |\n[A]\n| Bb*7+*:1 G+/B:1 (D^7#11 F^7#11) F^:3 |\n[Intro3]\n{ | A^7 |1. Gb } |2. F7#5 (C/A) |\n[D1]\n| B6 |\n| Ebadd11 | n | Eb7 | A#sus ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Body Steps Voyage",
+        "key": "C",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#add11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "C-11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G#^9/E",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbh",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#5",
+                  "beats": null,
+                  "alt": "(B7#11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G+/B",
+                  "beats": 1,
+                  "alt": "(D^7#11 F^7#11)"
+                },
+                {
+                  "chord": "F^",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "Intro3",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7#5",
+                  "beats": null,
+                  "alt": "(C/A)"
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        },
+        {
+          "label": "D1",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ebadd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Body Steps Voyage\nkey: C\ntime: 5/4\n\n[i]\n| D#add11:1 C-11:1 G#^9/E:3 |\n@coda\n| Bbh | A7b9 | Bb+ | n |\n@tocoda\n| E7#5(B7#11) |\n\n[A]\n| Bb*7+*:1 G+/B:1 (D^7#11 F^7#11) F^:3 |\n\n[Intro3]\n{ A^7 | 1. Gb } 2. F7#5(C/A) |\n\n[D1]\n| B6 | Ebadd11 | n | Eb7 | A#sus ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (1, 1, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 12,
+        "message": "uneven beat layout (1, 1, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

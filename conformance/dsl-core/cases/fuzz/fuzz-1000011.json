@@ -1,0 +1,179 @@
+{
+  "name": "fuzz-1000011",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Naima Stella 81\ncomposer: Evans\nkey: B\ntime: 6/8\n[C1]\n{ | A13#11 | C#9 (D^7/C) n n | D#-9 } |\n[D]\n{ | E#7b13:5 G7#5#9/Ab:1 | Fadd13 F#sus C-9 | Bb- | G+(C^7) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Stella 81",
+        "composer": "Evans",
+        "key": "B",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C1",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#9",
+                  "beats": null,
+                  "alt": "(D^7/C)"
+                },
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#7b13",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "G7#5#9/Ab",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fadd13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F#sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G+",
+                  "beats": null,
+                  "alt": "(C^7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Stella 81\ncomposer: Evans\nkey: B\ntime: 6/8\n\n[C1]\n{ A13#11 | C#9(D^7/C) n n | D#-9 }\n\n[D]\n{ E#7b13:5 G7#5#9/Ab:1 | Fadd13 F#sus C-9 | Bb- | G+(C^7) }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

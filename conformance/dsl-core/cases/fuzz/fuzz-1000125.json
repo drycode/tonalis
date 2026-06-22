@@ -1,0 +1,81 @@
+{
+  "name": "fuzz-1000125",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "nav-coda",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Night Blue 43\nstyle: Bossa Nova\nkey: Ab\ntime: 4/4\ntitle: Night Blue 43\n[v]\n@coda\n| Dadd9 |\n[v]\n| G#-7b5 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Night Blue 43",
+        "style": "Bossa Nova",
+        "key": "Ab",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Dadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Night Blue 43\nstyle: Bossa Nova\nkey: Ab\ntime: 4/4\n\n[v]\n@coda\n| Dadd9 |\n\n[v]\n| G#-7b5 |\n",
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

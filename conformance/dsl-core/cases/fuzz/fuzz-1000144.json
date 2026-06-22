@@ -1,0 +1,102 @@
+{
+  "name": "fuzz-1000144",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-beat-unsupported",
+    "warn-empty-section",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Take\ncomposer: Ellington\nkey: D-\ntime: 6/8\ntempo: 200\n[A]\n[A]\n{ | C69 | D7alt:1 B#7#11:2 (C7b5 F7b13) E69:3 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Take",
+        "composer": "Ellington",
+        "key": "D-",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": []
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7alt",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B#7#11",
+                  "beats": 2,
+                  "alt": "(C7b5 F7b13)"
+                },
+                {
+                  "chord": "E69",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Take\ncomposer: Ellington\nkey: D-\ntime: 6/8\n\n[A]\n\n[A]\n{ C69 | D7alt:1 B#7#11:2 (C7b5 F7b13) E69:3 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 2, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "empty-section",
+        "severity": "warning",
+        "line": 0,
+        "message": "section [A] has no measures (dropped)"
+      },
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 5,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

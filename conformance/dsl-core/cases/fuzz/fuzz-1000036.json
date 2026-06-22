@@ -1,0 +1,117 @@
+{
+  "name": "fuzz-1000036",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "alt",
+    "nav-text",
+    "nav-tocoda"
+  ],
+  "dsl": "title: Footprints Night\ncomposer:\nkey: Gb\ntime: 6/8\n[C]\n| F#-9 | D7b5 | F-6 |\n| E^7#11 |\n<Vamp>\n| E#13(Ch7) ||\n@tocoda\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Footprints Night",
+        "composer": "",
+        "key": "Gb",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#13",
+                  "beats": null,
+                  "alt": "(Ch7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [
+                [
+                  "text",
+                  "<Vamp>"
+                ],
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Footprints Night\ncomposer: \nkey: Gb\ntime: 6/8\n\n[C]\n| F#-9 | D7b5 | F-6 | E^7#11 |\n<Vamp>\n| E#13(Ch7) ||\n@tocoda\n"
+  }
+}

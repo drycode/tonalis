@@ -1,0 +1,78 @@
+{
+  "name": "fuzz-1000062",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "beats"
+  ],
+  "dsl": "title: Night Donna Train\ncomposer: Ellington\nstyle: Bossa Nova\nkey: Eb\ntime: 5/4\n[Intro]\n| F#add13:3 | Csus4/E | Db^7 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Night Donna Train",
+        "composer": "Ellington",
+        "style": "Bossa Nova",
+        "key": "Eb",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#add13",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Csus4/E",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Night Donna Train\ncomposer: Ellington\nstyle: Bossa Nova\nkey: Eb\ntime: 5/4\n\n[Intro]\n| F#add13:3 | Csus4/E | Db^7 ||\n"
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "name": "fuzz-1000141",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-text"
+  ],
+  "dsl": "title: Donna Spring\ncomposer: Evans\nkey: B\ntime: 4/4\n[B3]\n{ | G-9 | Bb*7+*:2 Fb7sus:1 n:1 | n } |\n[Verse2]\n{ | G#13 | E7#5#9/Gb (Cadd13 A#7b5) Ch7 | B#7#5 | A#4:3 D^7:1 } |\n[Verse]\n<Head>\n| n | E#4 Ab7sus A2 A#13#11 | D#7b9#11 B#7b9#11 |\n| N.C.:1 E69:1 D-:2 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna Spring",
+        "composer": "Evans",
+        "key": "B",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B3",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb7sus",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "Verse2",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#5#9/Gb",
+                  "beats": null,
+                  "alt": "(Cadd13 A#7b5)"
+                },
+                {
+                  "chord": "Ch7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#4",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "D^7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Head>"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab7sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A2",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B#7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E69",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D-",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna Spring\ncomposer: Evans\nkey: B\ntime: 4/4\n\n[B3]\n{ G-9 | Bb*7+*:2 Fb7sus:1 n:1 | n }\n\n[Verse2]\n{ G#13 | E7#5#9/Gb (Cadd13 A#7b5) Ch7 | B#7#5 | A#4:3 D^7:1 }\n\n[Verse]\n<Head>\n| n | E#4 Ab7sus A2 A#13#11 | D#7b9#11 B#7b9#11 | N.C.:1 E69:1 D-:2 ||\n"
+  }
+}

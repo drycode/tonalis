@@ -1,0 +1,18 @@
+{
+  "name": "latent-empty-section-warning",
+  "tags": [
+    "latent",
+    "warning"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C6 |\n[B]\n[A]\n| A-7 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "empty-section",
+        "severity": "warning",
+        "line": 0,
+        "message": "section [B] has no measures (dropped)"
+      }
+    ]
+  }
+}

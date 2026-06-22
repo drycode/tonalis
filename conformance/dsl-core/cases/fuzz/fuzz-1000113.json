@@ -1,0 +1,99 @@
+{
+  "name": "fuzz-1000113",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "repeats"
+  ],
+  "dsl": "title: Naima Footprints\ncomposer: Parker\nstyle:\nkey: Eb-\ntime: 2/4\n[D1]\n{ | E^7 | B#7#5 } |\n[B]\n{ | F7#11 | E7#5#9 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Footprints",
+        "composer": "Parker",
+        "style": "",
+        "key": "Eb-",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D1",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Footprints\ncomposer: Parker\nstyle: \nkey: Eb-\ntime: 2/4\n\n[D1]\n{ E^7 | B#7#5 }\n\n[B]\n{ F7#11 | E7#5#9 }\n"
+  }
+}

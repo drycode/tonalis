@@ -1,0 +1,310 @@
+{
+  "name": "fuzz-1000008",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-fine",
+    "warn-alt-without-chord"
+  ],
+  "dsl": "title: Take Stella\nkey: C#-\ntime: 2/2\n[Intro1]\n| E7#9/Cb | E7#9 (E13#11/G Bb-7) |\n| G13#11:1 E#11:1 | Bb7sus |\n[C3]\n@fine\n| Fb D#7b13 | B#o:1 D#sus4:1 |\n| (Ab-11) F-7 |\n[i]\n{ | C#7sus:1 G^9:1 (D7#5) | E7#5#9/A (Ab7#11 G#9) | B9/D | A7b13 } |\n[D]\n{ | D#13#11:1 D13:1 | Fbadd11/Fb:1 Ao7:1 | E-7b5/Gb (Gh7) E7b13 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Take Stella",
+        "key": "C#-",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro1",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E7#9/Cb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#9",
+                  "beats": null,
+                  "alt": "(E13#11/G Bb-7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G13#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E#11",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "C3",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Fb",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#o",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#sus4",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C#7sus",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G^9",
+                  "beats": 1,
+                  "alt": "(D7#5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#5#9/A",
+                  "beats": null,
+                  "alt": "(Ab7#11 G#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B9/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D#13#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fbadd11/Fb",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ao7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E-7b5/Gb",
+                  "beats": null,
+                  "alt": "(Gh7)"
+                },
+                {
+                  "chord": "E7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Take Stella\nkey: C#-\ntime: 2/2\n\n[Intro1]\n| E7#9/Cb | E7#9 (E13#11/G Bb-7) | G13#11:1 E#11:1 | Bb7sus |\n\n[C3]\n@fine\n| Fb D#7b13 | B#o:1 D#sus4:1 | F-7 |\n\n[i]\n{ C#7sus:1 G^9:1(D7#5) | E7#5#9/A (Ab7#11 G#9) | B9/D | A7b13 }\n\n[D]\n{ D#13#11:1 D13:1 | Fbadd11/Fb:1 Ao7:1 | E-7b5/Gb(Gh7) E7b13 }\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 10,
+        "message": "alt group (Ab-11) has no preceding chord"
+      }
+    ]
+  }
+}

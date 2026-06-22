@@ -1,0 +1,299 @@
+{
+  "name": "fuzz-1000061",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-coda",
+    "warn-beat-unsupported",
+    "warn-empty-section"
+  ],
+  "dsl": "title: Train Voyage\nkey: Ab-\ntime: 12/8\n[C]\n{ | F#7:8 (D6 Fb7#5#9) Bbadd13/B:2 Db:2 | F13#11 Fsus Db7b13 Bb*7+* } |\n[v]\n| Gadd11:4 Gb7:4 Eb7b13:4 |\n[Intro]\n[A]\n| B69/D B7#5#9 |\n| D#7b13:4 Gh7:2 A7b9#11:6 |\n@coda\n| A-7b5 (Dbh7 E7sus) G7 Db-11(Bbadd9) | D#add13 (N.C. E7b5) Gb13#11 |\n| A#^:2 D2:10 (C7#11 F2) | B#^9:9 G-7b5:3 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train Voyage",
+        "key": "Ab-",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#7",
+                  "beats": 8,
+                  "alt": "(D6 Fb7#5#9)"
+                },
+                {
+                  "chord": "Bbadd13/B",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Db",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Fsus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7b13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gadd11",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Gb7",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb7b13",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": []
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B69/D",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#7b13",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "Gh7",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "A7b9#11",
+                  "beats": 6,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-7b5",
+                  "beats": null,
+                  "alt": "(Dbh7 E7sus)"
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db-11",
+                  "beats": null,
+                  "alt": "(Bbadd9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#add13",
+                  "beats": null,
+                  "alt": "(N.C. E7b5)"
+                },
+                {
+                  "chord": "Gb13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#^",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D2",
+                  "beats": 10,
+                  "alt": "(C7#11 F2)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#^9",
+                  "beats": 9,
+                  "alt": null
+                },
+                {
+                  "chord": "G-7b5",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train Voyage\nkey: Ab-\ntime: 12/8\n\n[C]\n{ F#7:8 (D6 Fb7#5#9) Bbadd13/B:2 Db:2 | F13#11 Fsus Db7b13 Bb*7+* }\n\n[v]\n| Gadd11:4 Gb7:4 Eb7b13:4 |\n\n[Intro]\n\n[A]\n| B69/D B7#5#9 | D#7b13:4 Gh7:2 A7b9#11:6 |\n@coda\n| A-7b5 (Dbh7 E7sus) G7 Db-11(Bbadd9) | D#add13 (N.C. E7b5) Gb13#11 | A#^:2 D2:10 (C7#11 F2) | B#^9:9 G-7b5:3 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (8, 2, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 11,
+        "message": "uneven beat layout (4, 2, 6) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (2, 10) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (9, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "empty-section",
+        "severity": "warning",
+        "line": 0,
+        "message": "section [Intro] has no measures (dropped)"
+      }
+    ]
+  }
+}

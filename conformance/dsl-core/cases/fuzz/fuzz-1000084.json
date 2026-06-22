@@ -1,0 +1,158 @@
+{
+  "name": "fuzz-1000084",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "alt",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Five Joy\nstyle: Even 8ths\nkey: D\ntime: 5/4\ntempo: 140\n[A]\n| B7b9 | Abh7 |\n| Eb69 | n |\n[i1]\n| Bsus4 | A#7b9 (C13#11 Eb13#11) |\n[D2]\n| F7b9#11 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Five Joy",
+        "style": "Even 8ths",
+        "key": "D",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Abh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "i1",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#7b9",
+                  "beats": null,
+                  "alt": "(C13#11 Eb13#11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "D2",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Five Joy\nstyle: Even 8ths\nkey: D\ntime: 5/4\n\n[A]\n| B7b9 | Abh7 | Eb69 | n |\n\n[i1]\n| Bsus4 | A#7b9 (C13#11 Eb13#11) |\n\n[D2]\n| F7b9#11 ||\n",
+    "findings": [
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 5,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

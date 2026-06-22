@@ -1,0 +1,106 @@
+{
+  "name": "fuzz-1000130",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-duplicate-header",
+    "warn-empty-section"
+  ],
+  "dsl": "title: Steps Solar\ncomposer: Davis\nkey: Bb-\ntime: 2/2\ntitle: Steps Solar\n[A]\n{ | Badd9 (Db^9 F#6) |1. Eb7alt:1 (N.C.) B7b13/D:1 } |2. Fo7 |\n[Verse1]\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Steps Solar",
+        "composer": "Davis",
+        "key": "Bb-",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Badd9",
+                  "beats": null,
+                  "alt": "(Db^9 F#6)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7alt",
+                  "beats": 1,
+                  "alt": "(N.C.)"
+                },
+                {
+                  "chord": "B7b13/D",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fo7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "Verse1",
+          "kind": "verse",
+          "measures": []
+        }
+      ]
+    },
+    "text": "title: Steps Solar\ncomposer: Davis\nkey: Bb-\ntime: 2/2\n\n[A]\n{ Badd9 (Db^9 F#6) | 1. Eb7alt:1(N.C.) B7b13/D:1 } 2. Fo7 |\n\n[Verse1]\n",
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      },
+      {
+        "code": "empty-section",
+        "severity": "warning",
+        "line": 0,
+        "message": "section [Verse1] has no measures (dropped)"
+      }
+    ]
+  }
+}

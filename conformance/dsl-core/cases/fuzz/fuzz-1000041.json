@@ -1,0 +1,259 @@
+{
+  "name": "fuzz-1000041",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Giant\ncomposer: Davis\nkey: F-\ntime: 9/8\n[D]\n| Gbadd9:4 (F Fo7/C) C13:5 | A# C#7sus (Fb7#5#9 Gb7#11) Fb-7b5 (Eb7b9 D#4) |\n| A#11 | Bb11 (Bbh) |\n[i]\n{ | G#h E^7#11 F7b13(B69) | Eb7b9#11:4 F7b5:5 |1. D#^7 } |2. E7 Ah Eb-7 |\n[A]\n| Cb2 |\n| (B-7b5) Ebsus4 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Giant",
+        "composer": "Davis",
+        "key": "F-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gbadd9",
+                  "beats": 4,
+                  "alt": "(F Fo7/C)"
+                },
+                {
+                  "chord": "C13",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C#7sus",
+                  "beats": null,
+                  "alt": "(Fb7#5#9 Gb7#11)"
+                },
+                {
+                  "chord": "Fb-7b5",
+                  "beats": null,
+                  "alt": "(Eb7b9 D#4)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb11",
+                  "beats": null,
+                  "alt": "(Bbh)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#h",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E^7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7b13",
+                  "beats": null,
+                  "alt": "(B69)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eb7b9#11",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "F7b5",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ah",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ebsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Giant\ncomposer: Davis\nkey: F-\ntime: 9/8\n\n[D]\n| Gbadd9:4 (F Fo7/C) C13:5 | A# C#7sus (Fb7#5#9 Gb7#11) Fb-7b5 (Eb7b9 D#4) | A#11 | Bb11(Bbh) |\n\n[i]\n{ G#h E^7#11 F7b13(B69) | Eb7b9#11:4 F7b5:5 | 1. D#^7 } 2. E7 Ah Eb-7 |\n\n[A]\n| Cb2 | Ebsus4 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 12,
+        "message": "alt group (B-7b5) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (4, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (4, 5) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

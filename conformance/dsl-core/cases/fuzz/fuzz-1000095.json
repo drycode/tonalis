@@ -1,0 +1,172 @@
+{
+  "name": "fuzz-1000095",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "alt",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Solar Round Night\ncomposer: Parker\nstyle:\nkey: C\ntime: 12/8\ntempo: 120\n[v1]\n| A7b9#11/A G7 | C- A4/C A#/F# | Ab-9 | Bb^7#11 C#-11 G-6 |\n| E7#9 Db7#5#9 | F6 (C#^7#11 N.C.) Fb Cadd9 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Solar Round Night",
+        "composer": "Parker",
+        "style": "",
+        "key": "C",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "v1",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A7b9#11/A",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A4/C",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#/F#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb^7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C#-11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F6",
+                  "beats": null,
+                  "alt": "(C#^7#11 N.C.)"
+                },
+                {
+                  "chord": "Fb",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Solar Round Night\ncomposer: Parker\nstyle: \nkey: C\ntime: 12/8\n\n[v1]\n| A7b9#11/A G7 | C- A4/C A#/F# | Ab-9 | Bb^7#11 C#-11 G-6 | E7#9 Db7#5#9 | F6 (C#^7#11 N.C.) Fb Cadd9 |\n",
+    "findings": [
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 6,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

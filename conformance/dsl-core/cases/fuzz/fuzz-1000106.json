@@ -1,0 +1,232 @@
+{
+  "name": "fuzz-1000106",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "beats",
+    "alt",
+    "warn-beat-unsupported",
+    "warn-mid-final-bar"
+  ],
+  "dsl": "title: Dolphin\nkey: Db-\ntime: 5/4\n[A]\n| F#o:3 | A13#11 |\n[i]\n| Esus4:2(C7#5#9) F#add11:1 E7:2 | F^ | G#sus4:3 Cb7#11/B:1 B7#5#9:1 | E:2 F#^7#11:3 |\n| C13/G || A-9 |\n[Verse]\n| F#-9/F Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dolphin",
+        "key": "Db-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#o",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A13#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Esus4",
+                  "beats": 2,
+                  "alt": "(C7#5#9)"
+                },
+                {
+                  "chord": "F#add11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E7",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#sus4",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb7#11/B",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B7#5#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "F#^7#11",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C13/G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F#-9/F",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dolphin\nkey: Db-\ntime: 5/4\n\n[A]\n| F#o:3 | A13#11 |\n\n[i]\n| Esus4:2(C7#5#9) F#add11:1 E7:2 | F^ | G#sus4:3 Cb7#11/B:1 B7#5#9:1 | E:2 F#^7#11:3 | C13/G || A-9 |\n\n[Verse]\n| F#-9/F ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (2, 1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (3, 1, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (2, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "mid-final-bar",
+        "severity": "warning",
+        "line": 8,
+        "message": "final barline (Z/||) is not on the last measure"
+      }
+    ]
+  }
+}

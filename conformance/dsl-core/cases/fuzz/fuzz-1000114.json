@@ -1,0 +1,186 @@
+{
+  "name": "fuzz-1000114",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "beats",
+    "nav-text",
+    "break",
+    "break-lossy",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Steps\nkey: A\ntime: 6/4\n[D3]\n@intro\n| n:1 Bb7alt:3 F#+:2 |\n@break\n| (E#13) F#-:2 A-7:3 Fb^9:1 |\n| G9:2 D7b13:2 Aadd13:2 |\n<Vamp>\n| N.C. Cadd9 |\n@outro\n| Bb^ Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Steps",
+        "key": "A",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D3",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb7alt",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "F#+",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#-",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "A-7",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb^9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D7b13",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Aadd13",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Vamp>"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Steps\nkey: A\ntime: 6/4\n\n[D3]\n| n:1 Bb7alt:3 F#+:2 |\n@break\n| F#-:2 A-7:3 Fb^9:1 | G9:2 D7b13:2 Aadd13:2 |\n<Vamp>\n| N.C. Cadd9 | Bb^ ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 8,
+        "message": "alt group (E#13) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (1, 3, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (2, 3, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 5,
+        "message": "unknown @directive: @intro"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 12,
+        "message": "unknown @directive: @outro"
+      }
+    ]
+  }
+}

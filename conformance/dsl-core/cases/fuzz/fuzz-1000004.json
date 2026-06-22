@@ -1,0 +1,83 @@
+{
+  "name": "fuzz-1000004",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "repeats",
+    "alt"
+  ],
+  "dsl": "title: Round Train Lee\ncomposer: Parker\nkey: G\ntime: 2/4\n[C]\n{ | Gadd13 (Bb*7+*) Bb | Ebadd13 | G69 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Round Train Lee",
+        "composer": "Parker",
+        "key": "G",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gadd13",
+                  "beats": null,
+                  "alt": "(Bb*7+*)"
+                },
+                {
+                  "chord": "Bb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ebadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Round Train Lee\ncomposer: Parker\nkey: G\ntime: 2/4\n\n[C]\n{ Gadd13(Bb*7+*) Bb | Ebadd13 | G69 }\n"
+  }
+}

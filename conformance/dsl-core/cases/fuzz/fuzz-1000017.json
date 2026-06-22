@@ -1,0 +1,150 @@
+{
+  "name": "fuzz-1000017",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "beats",
+    "alt",
+    "warn-beat-unsupported",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Naima Body\ncomposer: Evans\nstyle: Even 8ths\nkey: Ab-\ntime: 3/4\ntempo: 200\n[D]\n| A7alt D7alt (D#-6 B#7#9) D#69 |\n| F13 (G7#9) | C#6 F7sus C7 |\n| E-9:2 E^:1 |\n| C-7b5 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Naima Body",
+        "composer": "Evans",
+        "style": "Even 8ths",
+        "key": "Ab-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A7alt",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D7alt",
+                  "beats": null,
+                  "alt": "(D#-6 B#7#9)"
+                },
+                {
+                  "chord": "D#69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F13",
+                  "beats": null,
+                  "alt": "(G7#9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E-9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "E^",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Naima Body\ncomposer: Evans\nstyle: Even 8ths\nkey: Ab-\ntime: 3/4\n\n[D]\n| A7alt D7alt (D#-6 B#7#9) D#69 | F13(G7#9) | C#6 F7sus C7 | E-9:2 E^:1 | C-7b5 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 6,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

@@ -1,0 +1,373 @@
+{
+  "name": "fuzz-1000140",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-coda",
+    "nav-time",
+    "nav-tocoda",
+    "time-change",
+    "warn-beat-unsupported",
+    "warn-tocoda-without-measure"
+  ],
+  "dsl": "title: Soul Spain\ncomposer: Coltrane\nstyle: Ballad\nkey: G\ntime: 5/4\n[A]\n{ | G |1. B+ } |2. B#2:1 Aadd13:4 (Ab7#5#9) |\n[D]\n@tocoda\n@coda\n| Asus4:1 E-:1 B7#5#9/Fb:3 |\n| F#9 | C#69:2 D4:3 | D-9 |\n[time: 12/8]\n| G69 |\n[A]\n{ | D-11 | B4 | n G#add11 D#-6 E7 } |\n[Intro]\n| Aadd11 | D6:7 B-:5 |\n@tocoda\n| C-11 |\n| D#69 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Soul Spain",
+        "composer": "Coltrane",
+        "style": "Ballad",
+        "key": "G",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#2",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Aadd13",
+                  "beats": 4,
+                  "alt": "(Ab7#5#9)"
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Asus4",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E-",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B7#5#9/Fb",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "coda"
+                ]
+              ],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#69",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D4",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    12,
+                    8
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "n",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#add11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#-6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            }
+          ]
+        },
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Aadd11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 18
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D6",
+                  "beats": 7,
+                  "alt": null
+                },
+                {
+                  "chord": "B-",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 18
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 20
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 21
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Soul Spain\ncomposer: Coltrane\nstyle: Ballad\nkey: G\ntime: 5/4\n\n[A]\n{ G | 1. B+ } 2. B#2:1 Aadd13:4(Ab7#5#9) |\n\n[D]\n@coda\n| Asus4:1 E-:1 B7#5#9/Fb:3 | F#9 | C#69:2 D4:3 | D-9 |\n[time: 12/8]\n| G69 |\n\n[A]\n{ D-11 | B4 | n G#add11 D#-6 E7 }\n\n[Intro]\n| Aadd11 | D6:7 B-:5 |\n@tocoda\n| C-11 | D#69 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 11,
+        "message": "uneven beat layout (1, 1, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 12,
+        "message": "uneven beat layout (2, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 18,
+        "message": "uneven beat layout (7, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 9,
+        "message": "@tocoda has no preceding measure"
+      }
+    ]
+  }
+}

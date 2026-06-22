@@ -1,0 +1,181 @@
+{
+  "name": "fuzz-1000081",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "beats",
+    "nav-time",
+    "time-change",
+    "warn-beat-unsupported",
+    "warn-redundant-time"
+  ],
+  "dsl": "title: Bird Moon Body\nkey: F#\ntime: 12/8\n[D3]\n[time: 12/8]\n| E-6:11 n:1 | Aadd11:10 Fh7:2 | C13:9 Eadd11:3 |\n| B7#11:5 F^7:7 | Cb:7 Abadd11:5 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Bird Moon Body",
+        "key": "F#",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D3",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E-6",
+                  "beats": 11,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    12,
+                    8
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Aadd11",
+                  "beats": 10,
+                  "alt": null
+                },
+                {
+                  "chord": "Fh7",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C13",
+                  "beats": 9,
+                  "alt": null
+                },
+                {
+                  "chord": "Eadd11",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7#11",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "F^7",
+                  "beats": 7,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cb",
+                  "beats": 7,
+                  "alt": null
+                },
+                {
+                  "chord": "Abadd11",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Bird Moon Body\nkey: F#\ntime: 12/8\n\n[D3]\n[time: 12/8]\n| E-6:11 n:1 | Aadd11:10 Fh7:2 | C13:9 Eadd11:3 | B7#11:5 F^7:7 | Cb:7 Abadd11:5 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (11, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (10, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (9, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (5, 7) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (7, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "redundant-time",
+        "severity": "warning",
+        "line": 5,
+        "message": "[time: 12/8] repeats the current meter"
+      }
+    ]
+  }
+}

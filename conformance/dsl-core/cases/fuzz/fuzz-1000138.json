@@ -1,0 +1,177 @@
+{
+  "name": "fuzz-1000138",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "beats",
+    "alt",
+    "nav-time",
+    "nav-tocoda",
+    "time-change"
+  ],
+  "dsl": "title: Solar\nstyle:\nkey: Db\ntime: 3/4\n[B]\n| F11/A:1 | Bbsus4 N.C. Bh7 | F7#9 |\n[time: 9/8]\n| D-9 Bb+ Eb^7#11 |\n@tocoda\n| Dadd13 C69 Eh7 |\n| Ab7#5#9 (D^9 F11/A) C+ Ab6(Gb11) |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Solar",
+        "style": "",
+        "key": "Db",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "F11/A",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbsus4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bb+",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    9,
+                    8
+                  ]
+                ],
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dadd13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C69",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Eh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab7#5#9",
+                  "beats": null,
+                  "alt": "(D^9 F11/A)"
+                },
+                {
+                  "chord": "C+",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab6",
+                  "beats": null,
+                  "alt": "(Gb11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Solar\nstyle: \nkey: Db\ntime: 3/4\n\n[B]\n| F11/A:1 | Bbsus4 N.C. Bh7 | F7#9 |\n[time: 9/8]\n| D-9 Bb+ Eb^7#11 |\n@tocoda\n| Dadd13 C69 Eh7 | Ab7#5#9 (D^9 F11/A) C+ Ab6(Gb11) |\n"
+  }
+}

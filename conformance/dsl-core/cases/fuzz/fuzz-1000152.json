@@ -1,0 +1,162 @@
+{
+  "name": "fuzz-1000152",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "alt",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Body Solar Steps\ncomposer: Trad\nkey: Bb-\ntime: 6/8\ntempo: 120\n[D]\n| G#11/B | G-9 |\n[A]\n| B#7#11 C#-11 |\n| B#^7 | N.C. |\n| C7alt (C#7 Gb13) Db7#5 | E69/G(F-7b5) Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Body Solar Steps",
+        "composer": "Trad",
+        "key": "Bb-",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#11/B",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C#-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7alt",
+                  "beats": null,
+                  "alt": "(C#7 Gb13)"
+                },
+                {
+                  "chord": "Db7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E69/G",
+                  "beats": null,
+                  "alt": "(F-7b5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Body Solar Steps\ncomposer: Trad\nkey: Bb-\ntime: 6/8\n\n[D]\n| G#11/B | G-9 |\n\n[A]\n| B#7#11 C#-11 | B#^7 | N.C. | C7alt (C#7 Gb13) Db7#5 | E69/G(F-7b5) ||\n",
+    "findings": [
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 5,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

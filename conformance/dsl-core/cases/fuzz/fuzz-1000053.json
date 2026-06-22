@@ -1,0 +1,151 @@
+{
+  "name": "fuzz-1000053",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "endings",
+    "beats",
+    "warn-beat-unsupported",
+    "warn-duplicate-header"
+  ],
+  "dsl": "title: Train\nstyle: Even 8ths\nkey: Eb\ntime: 5/4\ntitle: Train\n[B]\n| Gsus |\n| G#-6/F | G# |\n[C]\n{ | Dh:2 Fo:3 |1. G#7b13 } |2. C7alt |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Train",
+        "style": "Even 8ths",
+        "key": "Eb",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gsus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#-6/F",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Dh",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Fo",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#7b13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7alt",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Train\nstyle: Even 8ths\nkey: Eb\ntime: 5/4\n\n[B]\n| Gsus | G#-6/F | G# |\n\n[C]\n{ Dh:2 Fo:3 | 1. G#7b13 } 2. C7alt |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (2, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 5,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

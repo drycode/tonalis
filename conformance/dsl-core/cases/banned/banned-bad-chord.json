@@ -1,0 +1,17 @@
+{
+  "name": "banned-bad-chord",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| Cgarbage | A-7 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "bad-chord",
+        "severity": "error",
+        "line": 5,
+        "message": "invalid chord token: 'Cgarbage'"
+      }
+    ]
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "name": "fuzz-1000121",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "endings",
+    "beats",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Giant Take\nkey: Db\ntime: 4/4\n[Intro]\n{ | (G13) Db7b9#11 |1. B#^7 } |2. G#13:1 n:3 |\n[A]\n{ | B#9 | Bo:1 F7b9#11:2 Dbsus:1 } |\n[D]\n| C+ | G6 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Giant Take",
+        "key": "Db",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Db7b9#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "n",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bo",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F7b9#11",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Dbsus",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Giant Take\nkey: Db\ntime: 4/4\n\n[Intro]\n{ Db7b9#11 | 1. B#^7 } 2. G#13:1 n:3 |\n\n[A]\n{ B#9 | Bo:1 F7b9#11:2 Dbsus:1 }\n\n[D]\n| C+ | G6 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 5,
+        "message": "alt group (G13) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

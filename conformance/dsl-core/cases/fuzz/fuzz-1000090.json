@@ -1,0 +1,103 @@
+{
+  "name": "fuzz-1000090",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "alt"
+  ],
+  "dsl": "title: Donna Giant\ncomposer: Shorter\nstyle: Medium Swing\nkey: F#-\ntime: 9/8\n[C]\n| G13 | C7#5 | Gb2 |\n| C#(D-11) F#7b9 D6 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Donna Giant",
+        "composer": "Shorter",
+        "style": "Medium Swing",
+        "key": "F#-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#",
+                  "beats": null,
+                  "alt": "(D-11)"
+                },
+                {
+                  "chord": "F#7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Donna Giant\ncomposer: Shorter\nstyle: Medium Swing\nkey: F#-\ntime: 9/8\n\n[C]\n| G13 | C7#5 | Gb2 | C#(D-11) F#7b9 D6 ||\n"
+  }
+}

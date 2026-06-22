@@ -1,0 +1,370 @@
+{
+  "name": "fuzz-1000102",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-fine",
+    "nav-tocoda",
+    "warn-beat-unsupported",
+    "warn-tocoda-without-measure",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Spring Misty 76\ncomposer: Parker\nstyle: Medium Swing\nkey: \ntime: 12/8\n[Intro]\n| B#h7(Bb7) A7#5#9 | C^9/B | Bb11:11 Badd13/G:1 |\n| Co |\n@tocoda\n[v]\n@tocoda\n@fine\n| Bb*7+*:3 B13#11:5 C-:4 |\n[B]\n{ | Ab-6 |1. Fbh } |2. Ab+ |\n[v]\n@tocoda\n| E#9:9 D-9/C:3 |\n| Gb- | G11 A#69 G7 G^ | B7sus:6 Asus:6 |\n@tag\n| E69:6 Bo7/Gb:6 |\n| Ab E7#9 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spring Misty 76",
+        "composer": "Parker",
+        "style": "Medium Swing",
+        "key": "",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#h7",
+                  "beats": null,
+                  "alt": "(Bb7)"
+                },
+                {
+                  "chord": "A7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C^9/B",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb11",
+                  "beats": 11,
+                  "alt": null
+                },
+                {
+                  "chord": "Badd13/G",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Co",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "B13#11",
+                  "beats": 5,
+                  "alt": null
+                },
+                {
+                  "chord": "C-",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Ab-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fbh",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#9",
+                  "beats": 9,
+                  "alt": null
+                },
+                {
+                  "chord": "D-9/C",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 18
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb-",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 19
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A#69",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 19
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7sus",
+                  "beats": 6,
+                  "alt": null
+                },
+                {
+                  "chord": "Asus",
+                  "beats": 6,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 19
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E69",
+                  "beats": 6,
+                  "alt": null
+                },
+                {
+                  "chord": "Bo7/Gb",
+                  "beats": 6,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 21
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 22
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spring Misty 76\ncomposer: Parker\nstyle: Medium Swing\nkey: \ntime: 12/8\n\n[Intro]\n| B#h7(Bb7) A7#5#9 | C^9/B | Bb11:11 Badd13/G:1 | Co |\n@tocoda\n\n[v]\n@fine\n| Bb*7+*:3 B13#11:5 C-:4 |\n\n[B]\n{ Ab-6 | 1. Fbh } 2. Ab+ |\n\n[v]\n| E#9:9 D-9/C:3 | Gb- | G11 A#69 G7 G^ | B7sus:6 Asus:6 | E69:6 Bo7/Gb:6 | Ab E7#9 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (11, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 13,
+        "message": "uneven beat layout (3, 5, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 18,
+        "message": "uneven beat layout (9, 3) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 11,
+        "message": "@tocoda has no preceding measure"
+      },
+      {
+        "code": "tocoda-without-measure",
+        "severity": "warning",
+        "line": 17,
+        "message": "@tocoda has no preceding measure"
+      },
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 20,
+        "message": "unknown @directive: @tag"
+      }
+    ]
+  }
+}

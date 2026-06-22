@@ -1,0 +1,176 @@
+{
+  "name": "fuzz-1000154",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "beats",
+    "alt",
+    "nav-tocoda",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Misty 23\ncomposer: Parker\nstyle: Medium Swing\nkey: F#-\ntime: 12/8\n[D]\n| C7b5:9 Asus4:3 (C-7 Bo) | F+ |\n@tocoda\n[D]\n| E11(F#11) E13 E#^ G4 |\n[i]\n| B (A#7b5) |\n[A]\n| Cb7sus E2/C C^7#11 Cadd9 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Misty 23",
+        "composer": "Parker",
+        "style": "Medium Swing",
+        "key": "F#-",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C7b5",
+                  "beats": 9,
+                  "alt": null
+                },
+                {
+                  "chord": "Asus4",
+                  "beats": 3,
+                  "alt": "(C-7 Bo)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E11",
+                  "beats": null,
+                  "alt": "(F#11)"
+                },
+                {
+                  "chord": "E13",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E#^",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B",
+                  "beats": null,
+                  "alt": "(A#7b5)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb7sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E2/C",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C^7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Misty 23\ncomposer: Parker\nstyle: Medium Swing\nkey: F#-\ntime: 12/8\n\n[D]\n| C7b5:9 Asus4:3 (C-7 Bo) | F+ |\n@tocoda\n\n[D]\n| E11(F#11) E13 E#^ G4 |\n\n[i]\n| B(A#7b5) |\n\n[A]\n| Cb7sus E2/C C^7#11 Cadd9 ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (9, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

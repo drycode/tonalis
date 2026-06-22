@@ -1,0 +1,115 @@
+{
+  "name": "fuzz-1000126",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "alt",
+    "nav-tocoda",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Bird Maiden Giant 33\nkey: Eb-\ntime: 2/4\ntempo: 200\n[v2]\n| Dh Cb7#11 | Gb7b9#11 D#^9 |\n| E#o(D7b9) |\n| Ch/D Z\n@tocoda\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Bird Maiden Giant 33",
+        "key": "Eb-",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v2",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Dh",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7b9#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#^9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#o",
+                  "beats": null,
+                  "alt": "(D7b9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ch/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Bird Maiden Giant 33\nkey: Eb-\ntime: 2/4\n\n[v2]\n| Dh Cb7#11 | Gb7b9#11 D#^9 | E#o(D7b9) | Ch/D ||\n@tocoda\n",
+    "findings": [
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 4,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

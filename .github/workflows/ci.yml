@@ -1,0 +1,60 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # Python port: the pure language core + its in-package tests + the dsl-core conformance runner.
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install (editable)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ./python pytest
+
+      - name: Unit tests + import-boundary guard
+        run: pytest python/tests -q
+
+      - name: dsl-core conformance (Python reference)
+        run: pytest conformance/dsl-core/runners/python -q
+
+  # TypeScript port: units + import-boundary guard + the dsl-core conformance runner.
+  node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install + test
+        working-directory: ts
+        run: |
+          npm ci
+          npm test
+
+  # Rust port: units + import-boundary guard + the dsl-core conformance gate. The crate is rlib-only
+  # (no cdylib / wasm-bindgen target), so there is no wasm32 build step.
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: cargo test
+        working-directory: rust
+        run: cargo test

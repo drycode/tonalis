@@ -1,0 +1,170 @@
+{
+  "name": "fuzz-1000051",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-fine"
+  ],
+  "dsl": "title: Waltz Spain\ncomposer: Coltrane\nkey: \ntime: 2/4\n[Intro2]\n{ | Eh7:1 (Bb*7+*) Ab-7b5:1 | Bb*7+*:1 B#7sus:1 } |\n[v3]\n| Cadd9 C#7b9#11(N.C.) |\n| Ch/G:1 (Csus E13#11) Cb+:1 | Ab+ |\n| B69 |\n@fine\n| E9 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Waltz Spain",
+        "composer": "Coltrane",
+        "key": "",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Intro2",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Eh7",
+                  "beats": 1,
+                  "alt": "(Bb*7+*)"
+                },
+                {
+                  "chord": "Ab-7b5",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B#7sus",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "v3",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cadd9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C#7b9#11",
+                  "beats": null,
+                  "alt": "(N.C.)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ch/G",
+                  "beats": 1,
+                  "alt": "(Csus E13#11)"
+                },
+                {
+                  "chord": "Cb+",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Waltz Spain\ncomposer: Coltrane\nkey: \ntime: 2/4\n\n[Intro2]\n{ Eh7:1(Bb*7+*) Ab-7b5:1 | Bb*7+*:1 B#7sus:1 }\n\n[v3]\n| Cadd9 C#7b9#11(N.C.) | Ch/G:1 (Csus E13#11) Cb+:1 | Ab+ | B69 |\n@fine\n| E9 ||\n"
+  }
+}

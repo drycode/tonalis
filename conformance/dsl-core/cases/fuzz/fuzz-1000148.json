@@ -1,0 +1,152 @@
+{
+  "name": "fuzz-1000148",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "beats",
+    "alt",
+    "nav-time",
+    "nav-tocoda",
+    "time-change",
+    "warn-beat-unsupported",
+    "warn-empty-section",
+    "warn-redundant-time",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Autumn\nkey: Db-\ntime: 4/4\ntempo: 200\n[v2]\n[time: 4/4]\n| C#7:1 A7b9#11:2 A7#9:1 | G# |\n@tocoda\n| Bh | Ab^ (B2 A2) |\n[A]\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Autumn",
+        "key": "Db-",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v2",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C#7",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7b9#11",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "A7#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    4,
+                    4
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bh",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab^",
+                  "beats": null,
+                  "alt": "(B2 A2)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": []
+        }
+      ]
+    },
+    "text": "title: Autumn\nkey: Db-\ntime: 4/4\n\n[v2]\n[time: 4/4]\n| C#7:1 A7b9#11:2 A7#9:1 | G# |\n@tocoda\n| Bh | Ab^ (B2 A2) |\n\n[A]\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 2, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "empty-section",
+        "severity": "warning",
+        "line": 0,
+        "message": "section [A] has no measures (dropped)"
+      },
+      {
+        "code": "redundant-time",
+        "severity": "warning",
+        "line": 6,
+        "message": "[time: 4/4] repeats the current meter"
+      },
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 4,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

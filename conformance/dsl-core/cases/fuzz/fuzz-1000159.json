@@ -1,0 +1,123 @@
+{
+  "name": "fuzz-1000159",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Spain\ncomposer: Coltrane\nkey: G-\ntime: 6/4\n[v]\n| D6 | Bbh7 D#h7 B#-9 |\n[A]\n| Cb11/D:5 (Dadd9 Absus) G9:1 |\n| C13/E Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spain",
+        "composer": "Coltrane",
+        "key": "G-",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbh7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#h7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B#-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb11/D",
+                  "beats": 5,
+                  "alt": "(Dadd9 Absus)"
+                },
+                {
+                  "chord": "G9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C13/E",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spain\ncomposer: Coltrane\nkey: G-\ntime: 6/4\n\n[v]\n| D6 | Bbh7 D#h7 B#-9 |\n\n[A]\n| Cb11/D:5 (Dadd9 Absus) G9:1 | C13/E ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (5, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

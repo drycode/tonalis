@@ -1,0 +1,17 @@
+{
+  "name": "banned-token-too-long",
+  "tags": [
+    "banned"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C7777777777777777777777777777777777777777777777777777 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "token-too-long",
+        "severity": "error",
+        "line": 5,
+        "message": "chord token too long: C7777777777777777777…"
+      }
+    ]
+  }
+}

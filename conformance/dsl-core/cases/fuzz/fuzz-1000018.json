@@ -1,0 +1,99 @@
+{
+  "name": "fuzz-1000018",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Steps Soul\ncomposer: Parker\nkey: Ab-\ntime: 5/4\n[B]\n{ | Bh (G13) |1. B7#9 } |2. D#9:2 Ab7#11:1 E#^9:2 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Steps Soul",
+        "composer": "Parker",
+        "key": "Ab-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bh",
+                  "beats": null,
+                  "alt": "(G13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab7#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E#^9",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Steps Soul\ncomposer: Parker\nkey: Ab-\ntime: 5/4\n\n[B]\n{ Bh(G13) | 1. B7#9 } 2. D#9:2 Ab7#11:1 E#^9:2 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (2, 1, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

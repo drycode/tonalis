@@ -1,0 +1,58 @@
+{
+  "name": "beats-three-four-meter-explicit",
+  "tags": [
+    "beats",
+    "time"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 3/4\n[A]\n| C:2 G7:1 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "T",
+        "key": "C",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: T\nkey: C\ntime: 3/4\n\n[A]\n| C:2 G7:1 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

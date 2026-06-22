@@ -1,0 +1,292 @@
+{
+  "name": "fuzz-1000072",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-fine",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Bird Take 84\ncomposer: Coltrane\nstyle: Up Tempo Swing\nkey: F-\ntime: 6/8\n[D]\n| B#sus4:3 G#7alt:3 | A#^7#11 |\n| C7#11 Ab^7#11 D#7/C |\n| D13:2 (C#13/G) F#7b9:3 B+:1 | C-/A |\n[Verse]\n| Bb*7+* (Cb13) | Fh D-7b5 |\n@fine\n| C#-11 (C#o7/G) Bb*7+* B-/E | A-9:2 D7b5:4 |\n| A#-9 |\n[D]\n{ | E7 | D7#5#9/F# } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Bird Take 84",
+        "composer": "Coltrane",
+        "style": "Up Tempo Swing",
+        "key": "F-",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#sus4",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "G#7alt",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab^7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D#7/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D13",
+                  "beats": 2,
+                  "alt": "(C#13/G)"
+                },
+                {
+                  "chord": "F#7b9",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "B+",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-/A",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": "(Cb13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Fh",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D-7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#-11",
+                  "beats": null,
+                  "alt": "(C#o7/G)"
+                },
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B-/E",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A-9",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D7b5",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7#5#9/F#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 16
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Bird Take 84\ncomposer: Coltrane\nstyle: Up Tempo Swing\nkey: F-\ntime: 6/8\n\n[D]\n| B#sus4:3 G#7alt:3 | A#^7#11 | C7#11 Ab^7#11 D#7/C | D13:2(C#13/G) F#7b9:3 B+:1 | C-/A |\n\n[Verse]\n| Bb*7+*(Cb13) | Fh D-7b5 |\n@fine\n| C#-11(C#o7/G) Bb*7+* B-/E | A-9:2 D7b5:4 | A#-9 |\n\n[D]\n{ E7 | D7#5#9/F# }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 9,
+        "message": "uneven beat layout (2, 3, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 13,
+        "message": "uneven beat layout (2, 4) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

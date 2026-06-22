@@ -1,0 +1,385 @@
+{
+  "name": "fuzz-1000007",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-time",
+    "time-change",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Stella Donna\ncomposer: Ellington\nstyle: Up Tempo Swing\nkey: F\ntime: 6/8\n[A]\n| Dbo7:3(A#sus) C+/E#:1 Eb7#5#9:2 | A#7sus:1 Fbh/B:1 D#sus4:4 |\n| C^7#11:1 A#+:4 D7alt/Bb:1 | (D^9/Fb) Ao/G#:2 E#-6/C:2 C11:2(A#h7) |\n[time: 6/4]\n| B-:2 G-7b5/Bb:4 |\n[D]\n{ | C7b9 Cadd11 Badd13 |1. C#^9 D-/Bb } |2. Do7 E^7#11 |\n[A]\n{ | B69:1 Fb-:4 B9:1 | B-9:1 A7b5:5 | B11 (n) G#h/A# G^/D | Do:2 D-7:4 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Stella Donna",
+        "composer": "Ellington",
+        "style": "Up Tempo Swing",
+        "key": "F",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Dbo7",
+                  "beats": 3,
+                  "alt": "(A#sus)"
+                },
+                {
+                  "chord": "C+/E#",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb7#5#9",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A#7sus",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Fbh/B",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#sus4",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C^7#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A#+",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "D7alt/Bb",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ao/G#",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "E#-6/C",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "C11",
+                  "beats": 2,
+                  "alt": "(A#h7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B-",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "G-7b5/Bb",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    6,
+                    4
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cadd11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Badd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#^9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D-/Bb",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Do7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        },
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B69",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Fb-",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "B9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B-9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "A7b5",
+                  "beats": 5,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B11",
+                  "beats": null,
+                  "alt": "(n)"
+                },
+                {
+                  "chord": "G#h/A#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G^/D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Do",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "D-7",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 14
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Stella Donna\ncomposer: Ellington\nstyle: Up Tempo Swing\nkey: F\ntime: 6/8\n\n[A]\n| Dbo7:3(A#sus) C+/E#:1 Eb7#5#9:2 | A#7sus:1 Fbh/B:1 D#sus4:4 | C^7#11:1 A#+:4 D7alt/Bb:1 | Ao/G#:2 E#-6/C:2 C11:2(A#h7) |\n[time: 6/4]\n| B-:2 G-7b5/Bb:4 |\n\n[D]\n{ C7b9 Cadd11 Badd13 | 1. C#^9 D-/Bb } 2. Do7 E^7#11 |\n\n[A]\n{ B69:1 Fb-:4 B9:1 | B-9:1 A7b5:5 | B11(n) G#h/A# G^/D | Do:2 D-7:4 }\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 8,
+        "message": "alt group (D^9/Fb) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (3, 1, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 7,
+        "message": "uneven beat layout (1, 1, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (1, 4, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (2, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (1, 4, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (1, 5) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 14,
+        "message": "uneven beat layout (2, 4) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

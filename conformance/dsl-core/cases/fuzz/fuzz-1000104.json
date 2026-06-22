@@ -1,0 +1,320 @@
+{
+  "name": "fuzz-1000104",
+  "tags": [
+    "fuzz",
+    "meter-2-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-tocoda",
+    "break",
+    "break-lossy",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Night Autumn\ncomposer:\nkey: Db\ntime: 2/4\n[Verse3]\n@break\n| E#^9:1 B#7b9:1 |\n| F11 | B-9:1 Absus:1 |\n@tocoda\n| Gsus4 |\n| G4 (F2/F Fb+) |\n[Verse3]\n{ | A^7#11 | A13:1 Ebadd13:1 | Ab7b9 D7b9 } |\n[i]\n| Cb7b5 D13#11 (G#^9) |\n[v]\n| A7#5#9 Bbadd13 | D7b9 A7#9 | B#add11 C-6 |\n@intro\n| Gb7/A# | Eadd13 (D-7b5 B#13) ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Night Autumn",
+        "composer": "",
+        "key": "Db",
+        "time": [
+          2,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse3",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#^9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "B#7b9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [
+                "break"
+              ],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B-9",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Absus",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "tocoda"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G4",
+                  "beats": null,
+                  "alt": "(F2/F Fb+)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        },
+        {
+          "label": "Verse3",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ebadd13",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        },
+        {
+          "label": "i",
+          "kind": "intro",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Cb7b5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D13#11",
+                  "beats": null,
+                  "alt": "(G#^9)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 15
+            }
+          ]
+        },
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A7#5#9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bbadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7b9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#add11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 17
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb7/A#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 19
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eadd13",
+                  "beats": null,
+                  "alt": "(D-7b5 B#13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 19
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Night Autumn\ncomposer: \nkey: Db\ntime: 2/4\n\n[Verse3]\n@break\n| E#^9:1 B#7b9:1 | F11 | B-9:1 Absus:1 |\n@tocoda\n| Gsus4 | G4 (F2/F Fb+) |\n\n[Verse3]\n{ A^7#11 | A13:1 Ebadd13:1 | Ab7b9 D7b9 }\n\n[i]\n| Cb7b5 D13#11(G#^9) |\n\n[v]\n| A7#5#9 Bbadd13 | D7b9 A7#9 | B#add11 C-6 | Gb7/A# | Eadd13 (D-7b5 B#13) ||\n",
+    "findings": [
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 18,
+        "message": "unknown @directive: @intro"
+      }
+    ]
+  }
+}

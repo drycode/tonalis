@@ -1,0 +1,103 @@
+{
+  "name": "fuzz-1000033",
+  "tags": [
+    "fuzz",
+    "meter-6-4",
+    "repeats",
+    "endings"
+  ],
+  "dsl": "title: Blue Donna Naima\nstyle: Bossa Nova\nkey: C\ntime: 6/4\n[B1]\n{ | Gb-11 | F2 G-7 Bsus4 |1. A4 } |2. D7 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Blue Donna Naima",
+        "style": "Bossa Nova",
+        "key": "C",
+        "time": [
+          6,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B1",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gb-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F2",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "A4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Blue Donna Naima\nstyle: Bossa Nova\nkey: C\ntime: 6/4\n\n[B1]\n{ Gb-11 | F2 G-7 Bsus4 | 1. A4 } 2. D7 |\n"
+  }
+}

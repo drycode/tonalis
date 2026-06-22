@@ -1,0 +1,292 @@
+{
+  "name": "fuzz-1000142",
+  "tags": [
+    "fuzz",
+    "meter-2-2",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "nav-segno",
+    "warn-alt-without-chord"
+  ],
+  "dsl": "title: Waltz Solar 59\ncomposer: Trad\nstyle: Up Tempo Swing\nkey: Bb\ntime: 2/2\n[Verse]\n{ | C-:1 Ab7sus:1 | Bb*7+*:1 D#6:1 |1. G#^7 F-6 } |2. Gb^ |\n[C]\n{ | (Eb7#5) Db7#5 | G-7 | Bo7 | C7sus N.C. } |\n[Verse]\n@segno\n| A7b9:1(Dsus4) C6:1 | F7#5 Gsus4 | D#69 |\n| Ab7#9 | B7alt/Ab E^7 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Waltz Solar 59",
+        "composer": "Trad",
+        "style": "Up Tempo Swing",
+        "key": "Bb",
+        "time": [
+          2,
+          2
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "C-",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab7sus",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "D#6",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G#^7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F-6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb^",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Db7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bo7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7sus",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        },
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A7b9",
+                  "beats": 1,
+                  "alt": "(Dsus4)"
+                },
+                {
+                  "chord": "C6",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "segno"
+                ]
+              ],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7#5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gsus4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab7#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7alt/Ab",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 13
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Waltz Solar 59\ncomposer: Trad\nstyle: Up Tempo Swing\nkey: Bb\ntime: 2/2\n\n[Verse]\n{ C-:1 Ab7sus:1 | Bb*7+*:1 D#6:1 | 1. G#^7 F-6 } 2. Gb^ |\n\n[C]\n{ Db7#5 | G-7 | Bo7 | C7sus N.C. }\n\n[Verse]\n@segno\n| A7b9:1(Dsus4) C6:1 | F7#5 Gsus4 | D#69 | Ab7#9 | B7alt/Ab E^7 |\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 9,
+        "message": "alt group (Eb7#5) has no preceding chord"
+      }
+    ]
+  }
+}

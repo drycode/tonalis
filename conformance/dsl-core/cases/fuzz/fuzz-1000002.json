@@ -1,0 +1,177 @@
+{
+  "name": "fuzz-1000002",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Solar\nkey: E-\ntime: 9/8\n[Verse]\n| Bb^9:1 | G^7#11 |\n| Ab-7:7 Eb7#5#9:2 |\n[B]\n{ | Esus | E7#11 F7#11/Eb A11 | D#sus | E#7#11 B#^7 D } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Solar",
+        "key": "E-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "Verse",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb^9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab-7",
+                  "beats": 7,
+                  "alt": null
+                },
+                {
+                  "chord": "Eb7#5#9",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Esus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7#11/Eb",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "A11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D#sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#7#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B#^7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Solar\nkey: E-\ntime: 9/8\n\n[Verse]\n| Bb^9:1 | G^7#11 | Ab-7:7 Eb7#5#9:2 |\n\n[B]\n{ Esus | E7#11 F7#11/Eb A11 | D#sus | E#7#11 B#^7 D }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (7, 2) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

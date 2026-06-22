@@ -1,0 +1,87 @@
+{
+  "name": "fuzz-1000146",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "alt",
+    "warn-unknown-key"
+  ],
+  "dsl": "title: Soul Five\nstyle: Up Tempo Swing\nkey: G-\ntime: 5/4\ntempo: 140\n[A]\n{ | B7sus | Eo (Fh) | C#7alt(B#) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Soul Five",
+        "style": "Up Tempo Swing",
+        "key": "G-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eo",
+                  "beats": null,
+                  "alt": "(Fh)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#7alt",
+                  "beats": null,
+                  "alt": "(B#)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Soul Five\nstyle: Up Tempo Swing\nkey: G-\ntime: 5/4\n\n[A]\n{ B7sus | Eo(Fh) | C#7alt(B#) }\n",
+    "findings": [
+      {
+        "code": "unknown-key",
+        "severity": "warning",
+        "line": 5,
+        "message": "unknown header key: tempo"
+      }
+    ]
+  }
+}

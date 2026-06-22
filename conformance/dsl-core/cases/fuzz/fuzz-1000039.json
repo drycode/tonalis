@@ -1,0 +1,85 @@
+{
+  "name": "fuzz-1000039",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "beats",
+    "alt"
+  ],
+  "dsl": "title: Voyage Dance Train\ncomposer:\nstyle: Bossa Nova\nkey: F#-\ntime: 4/4\n[C]\n{ | Gadd9/B | G7#5#9 | F9:3 G:1(Aadd11) } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Voyage Dance Train",
+        "composer": "",
+        "style": "Bossa Nova",
+        "key": "F#-",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gadd9/B",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F9",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "G",
+                  "beats": 1,
+                  "alt": "(Aadd11)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Voyage Dance Train\ncomposer: \nstyle: Bossa Nova\nkey: F#-\ntime: 4/4\n\n[C]\n{ Gadd9/B | G7#5#9 | F9:3 G:1(Aadd11) }\n"
+  }
+}

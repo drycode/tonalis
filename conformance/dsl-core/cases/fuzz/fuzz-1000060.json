@@ -1,0 +1,145 @@
+{
+  "name": "fuzz-1000060",
+  "tags": [
+    "fuzz",
+    "meter-6-8",
+    "beats",
+    "nav-segno",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Spring\nkey: Ab\ntime: 6/8\n[C]\n@segno\n| E-7b5 G#2 | Dh:2 Dbo/Gb:1 Db7#11:3 | Bb*7+* |\n| Cadd9 Bh7/F N.C. | B7b5 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Spring",
+        "key": "Ab",
+        "time": [
+          6,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E-7b5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#2",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "segno"
+                ]
+              ],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Dh",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Dbo/Gb",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7#11",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb*7+*",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cadd9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Bh7/F",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "N.C.",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B7b5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Spring\nkey: Ab\ntime: 6/8\n\n[C]\n@segno\n| E-7b5 G#2 | Dh:2 Dbo/Gb:1 Db7#11:3 | Bb*7+* | Cadd9 Bh7/F N.C. | B7b5 |\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (2, 1, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

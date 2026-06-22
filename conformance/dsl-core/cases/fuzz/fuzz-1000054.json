@@ -1,0 +1,211 @@
+{
+  "name": "fuzz-1000054",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "beats",
+    "alt",
+    "nav-time",
+    "time-change",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Autumn Moon Lee\ncomposer:\nstyle: Up Tempo Swing\nkey: Ab-\ntime: 3/4\n[B]\n| Esus (Bh7 F13#11) F#sus4 Gh7 | D2 (Db13) |\n| F#-6/A Ab6 G#4 |\n[time: 6/4]\n| G-7b5/G#:1 Ab^9:3 G6:2 | Co |\n[D1]\n{ | D-9 | C^9:4 F#7b5:1 F7#9:1 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Autumn Moon Lee",
+        "composer": "",
+        "style": "Up Tempo Swing",
+        "key": "Ab-",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Esus",
+                  "beats": null,
+                  "alt": "(Bh7 F13#11)"
+                },
+                {
+                  "chord": "F#sus4",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Gh7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D2",
+                  "beats": null,
+                  "alt": "(Db13)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F#-6/A",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G#4",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "G-7b5/G#",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Ab^9",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "G6",
+                  "beats": 2,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "time",
+                  [
+                    6,
+                    4
+                  ]
+                ]
+              ],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Co",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        },
+        {
+          "label": "D1",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C^9",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "F#7b5",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "F7#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 12
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Autumn Moon Lee\ncomposer: \nstyle: Up Tempo Swing\nkey: Ab-\ntime: 3/4\n\n[B]\n| Esus (Bh7 F13#11) F#sus4 Gh7 | D2(Db13) | F#-6/A Ab6 G#4 |\n[time: 6/4]\n| G-7b5/G#:1 Ab^9:3 G6:2 | Co |\n\n[D1]\n{ D-9 | C^9:4 F#7b5:1 F7#9:1 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (1, 3, 2) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 12,
+        "message": "uneven beat layout (4, 1, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

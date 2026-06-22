@@ -1,0 +1,112 @@
+{
+  "name": "fuzz-1000027",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "beats",
+    "alt",
+    "nav-fine",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Five Autumn\nstyle: Bossa Nova\nkey: A-\ntime: 5/4\n[v]\n| B#-9 |\n@fine\n| Db7#5 | C#2:4 F#add9:1(D7) | Bbo ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Five Autumn",
+        "style": "Bossa Nova",
+        "key": "A-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "v",
+          "kind": "verse",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "B#-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db7#5",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "fine"
+                ]
+              ],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C#2",
+                  "beats": 4,
+                  "alt": null
+                },
+                {
+                  "chord": "F#add9",
+                  "beats": 1,
+                  "alt": "(D7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bbo",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Five Autumn\nstyle: Bossa Nova\nkey: A-\ntime: 5/4\n\n[v]\n| B#-9 |\n@fine\n| Db7#5 | C#2:4 F#add9:1(D7) | Bbo ||\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (4, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

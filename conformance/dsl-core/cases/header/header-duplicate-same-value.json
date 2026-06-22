@@ -1,0 +1,18 @@
+{
+  "name": "header-duplicate-same-value",
+  "tags": [
+    "header",
+    "warning"
+  ],
+  "dsl": "title: T\ntitle: T\nkey: C\ntime: 4/4\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "duplicate-header",
+        "severity": "warning",
+        "line": 2,
+        "message": "duplicate header 'title'"
+      }
+    ]
+  }
+}

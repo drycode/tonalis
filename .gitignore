@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+
+# Node / TypeScript
+node_modules/
+*.tsbuildinfo
+
+# Rust
+/rust/target/
+target/
+
+# OS / editor
+.DS_Store
+*.swp

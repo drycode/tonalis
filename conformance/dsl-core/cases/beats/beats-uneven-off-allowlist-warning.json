@@ -1,0 +1,18 @@
+{
+  "name": "beats-uneven-off-allowlist-warning",
+  "tags": [
+    "beats",
+    "warning"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C:1 D-7:2 E:1 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 5,
+        "message": "uneven beat layout (1, 2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

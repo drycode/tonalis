@@ -1,0 +1,188 @@
+{
+  "name": "fuzz-1000031",
+  "tags": [
+    "fuzz",
+    "meter-5-4",
+    "repeats",
+    "beats",
+    "alt",
+    "warn-alt-without-chord",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Steps\nstyle: Even 8ths\nkey: Ab-\ntime: 5/4\n[B]\n{ | E#7b9 | E#^7 } |\n[D]\n| (Gbh7) G#2/E(Ch7) | Aadd9/C | Ab6 |\n[B]\n| A-6/D:3 A#add13:1 E7alt:1 | Eo7:2 N.C.:3 ||\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Steps",
+        "style": "Even 8ths",
+        "key": "Ab-",
+        "time": [
+          5,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E#7b9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E#^7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "G#2/E",
+                  "beats": null,
+                  "alt": "(Ch7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Aadd9/C",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Ab6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A-6/D",
+                  "beats": 3,
+                  "alt": null
+                },
+                {
+                  "chord": "A#add13",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "E7alt",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Eo7",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "N.C.",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 10
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Steps\nstyle: Even 8ths\nkey: Ab-\ntime: 5/4\n\n[B]\n{ E#7b9 | E#^7 }\n\n[D]\n| G#2/E(Ch7) | Aadd9/C | Ab6 |\n\n[B]\n| A-6/D:3 A#add13:1 E7alt:1 | Eo7:2 N.C.:3 ||\n",
+    "findings": [
+      {
+        "code": "alt-without-chord",
+        "severity": "warning",
+        "line": 8,
+        "message": "alt group (Gbh7) has no preceding chord"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (3, 1, 1) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 10,
+        "message": "uneven beat layout (2, 3) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

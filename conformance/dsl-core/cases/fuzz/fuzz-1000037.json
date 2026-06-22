@@ -1,0 +1,77 @@
+{
+  "name": "fuzz-1000037",
+  "tags": [
+    "fuzz",
+    "meter-3-4",
+    "repeats",
+    "beats",
+    "warn-beat-unsupported"
+  ],
+  "dsl": "title: Giant Misty\nstyle: Even 8ths\nkey: \ntime: 3/4\n[D]\n{ | E^7:2 Fadd9:1 | C7#5#9 } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Giant Misty",
+        "style": "Even 8ths",
+        "key": "",
+        "time": [
+          3,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "E^7",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "Fadd9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C7#5#9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 6
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Giant Misty\nstyle: Even 8ths\nkey: \ntime: 3/4\n\n[D]\n{ E^7:2 Fadd9:1 | C7#5#9 }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 6,
+        "message": "uneven beat layout (2, 1) not in the allowlist; even-split fallback"
+      }
+    ]
+  }
+}

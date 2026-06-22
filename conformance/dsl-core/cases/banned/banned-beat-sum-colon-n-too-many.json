@@ -1,0 +1,19 @@
+{
+  "name": "banned-beat-sum-colon-n-too-many",
+  "tags": [
+    "banned",
+    "beats",
+    "colon-n"
+  ],
+  "dsl": "title: T\nkey: C\ntime: 4/4\n[A]\n| C:1 D:1 E:1 F:1 G:1 |\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "beat-sum",
+        "severity": "error",
+        "line": 5,
+        "message": "beats (1, 1, 1, 1, 1) overflow a 4-beat bar"
+      }
+    ]
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "name": "fuzz-1000118",
+  "tags": [
+    "fuzz",
+    "meter-12-8",
+    "repeats",
+    "beats",
+    "warn-beat-unsupported",
+    "warn-empty-section"
+  ],
+  "dsl": "title: Night\ncomposer: Ellington\nstyle: Up Tempo Swing\nkey: C#-\ntime: 12/8\n[A]\n[D2]\n{ | D69:7 Db7sus:1 Db^7#11:4 | Gb+ B+ Db69 | C9 D+/C# G2/G | Db13#11 C7sus/A F9/G# } |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Night",
+        "composer": "Ellington",
+        "style": "Up Tempo Swing",
+        "key": "C#-",
+        "time": [
+          12,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": []
+        },
+        {
+          "label": "D2",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "D69",
+                  "beats": 7,
+                  "alt": null
+                },
+                {
+                  "chord": "Db7sus",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "Db^7#11",
+                  "beats": 4,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb+",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "B+",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Db69",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C9",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D+/C#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G2/G",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Db13#11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "C7sus/A",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F9/G#",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 8
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Night\ncomposer: Ellington\nstyle: Up Tempo Swing\nkey: C#-\ntime: 12/8\n\n[A]\n\n[D2]\n{ D69:7 Db7sus:1 Db^7#11:4 | Gb+ B+ Db69 | C9 D+/C# G2/G | Db13#11 C7sus/A F9/G# }\n",
+    "findings": [
+      {
+        "code": "beat-unsupported",
+        "severity": "warning",
+        "line": 8,
+        "message": "uneven beat layout (7, 1, 4) not in the allowlist; even-split fallback"
+      },
+      {
+        "code": "empty-section",
+        "severity": "warning",
+        "line": 0,
+        "message": "section [A] has no measures (dropped)"
+      }
+    ]
+  }
+}

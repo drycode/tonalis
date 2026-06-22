@@ -1,0 +1,17 @@
+[package]
+name = "tonalis"
+version = "0.1.0"
+edition = "2021"
+description = "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text)."
+license = "MIT"
+
+# rlib only: the pure language core never builds a cdylib / wasm binding. No wasm-bindgen here.
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+# preserve_order keeps serialized AST object keys in insertion order (matching the Python/TS
+# ports' fixed key order, SPEC.md §2.1) instead of serde_json's default BTreeMap sort.
+serde_json = { version = "1", features = ["preserve_order"] }

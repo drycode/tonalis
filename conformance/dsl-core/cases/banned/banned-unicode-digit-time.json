@@ -1,0 +1,25 @@
+{
+  "name": "banned-unicode-digit-time",
+  "tags": [
+    "banned",
+    "time",
+    "ascii-digits"
+  ],
+  "dsl": "title: T\nkey: C\ntime: ٣/٤\n[A]\n| C6 Z\n",
+  "expect": {
+    "findings": [
+      {
+        "code": "bad-time",
+        "severity": "error",
+        "line": 3,
+        "message": "bad time signature: '٣/٤'"
+      },
+      {
+        "code": "missing-header",
+        "severity": "error",
+        "line": 0,
+        "message": "missing required header: time"
+      }
+    ]
+  }
+}

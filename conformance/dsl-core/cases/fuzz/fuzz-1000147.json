@@ -1,0 +1,126 @@
+{
+  "name": "fuzz-1000147",
+  "tags": [
+    "fuzz",
+    "meter-9-8",
+    "repeats",
+    "endings",
+    "alt",
+    "nav-text"
+  ],
+  "dsl": "title: Dance Five\ncomposer:\nkey: Eb-\ntime: 9/8\n[A2]\n<Solos>\n| Abo7 (E7b9#11 Absus) |\n[B1]\n{ | Bb+ |1. F7b5 D^ Ah } |2. E+(F13) E-11 E^7#11 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Dance Five",
+        "composer": "",
+        "key": "Eb-",
+        "time": [
+          9,
+          8
+        ]
+      },
+      "sections": [
+        {
+          "label": "A2",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Abo7",
+                  "beats": null,
+                  "alt": "(E7b9#11 Absus)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [
+                [
+                  "text",
+                  "<Solos>"
+                ]
+              ],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "B1",
+          "kind": "b",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb+",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "F7b5",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "D^",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Ah",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "E+",
+                  "beats": null,
+                  "alt": "(F13)"
+                },
+                {
+                  "chord": "E-11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "E^7#11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Dance Five\ncomposer: \nkey: Eb-\ntime: 9/8\n\n[A2]\n<Solos>\n| Abo7 (E7b9#11 Absus) |\n\n[B1]\n{ Bb+ | 1. F7b5 D^ Ah } 2. E+(F13) E-11 E^7#11 |\n"
+  }
+}

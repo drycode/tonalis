@@ -1,0 +1,105 @@
+{
+  "name": "endings-rhythm-changes-tail",
+  "tags": [
+    "endings",
+    "repeats"
+  ],
+  "dsl": "title: T\nkey: Bb\ntime: 4/4\n[A]\n{ | Bb6 G-7 | C-7 F7 |1. D-7 G7 } |2. Bb6 Z\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "T",
+        "key": "Bb",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "A",
+          "kind": "a",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Bb6",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G-7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "C-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "F7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-7",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "G7",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Bb6",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "final",
+              "nav": [],
+              "hints": [],
+              "line": 5
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: T\nkey: Bb\ntime: 4/4\n\n[A]\n{ Bb6 G-7 | C-7 F7 | 1. D-7 G7 } 2. Bb6 ||\n"
+  }
+}

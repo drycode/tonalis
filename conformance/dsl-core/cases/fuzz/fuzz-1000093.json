@@ -1,0 +1,201 @@
+{
+  "name": "fuzz-1000093",
+  "tags": [
+    "fuzz",
+    "meter-4-4",
+    "repeats",
+    "endings",
+    "beats",
+    "alt",
+    "warn-unknown-nav"
+  ],
+  "dsl": "title: Autumn Dolphin Spring\ncomposer: Evans\nstyle: Up Tempo Swing\nkey: Db\ntime: 4/4\n[C]\n{ | A^7#11/B# Cb7#11 (D#7#11 G6) Bbadd11 Co | D-6/D#:1 (Fb^7) D7alt:3 |1. Cadd13 } |2. D7sus |\n[D]\n| Gb7sus (F#-7) | Badd13:2 B7b9#11:1 G7#5#9:1 |\n@intro\n| B#-11 | Gb-9 |\n",
+  "expect": {
+    "ast": {
+      "schema_version": 1,
+      "meta": {
+        "title": "Autumn Dolphin Spring",
+        "composer": "Evans",
+        "style": "Up Tempo Swing",
+        "key": "Db",
+        "time": [
+          4,
+          4
+        ]
+      },
+      "sections": [
+        {
+          "label": "C",
+          "kind": "c",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "A^7#11/B#",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Cb7#11",
+                  "beats": null,
+                  "alt": "(D#7#11 G6)"
+                },
+                {
+                  "chord": "Bbadd11",
+                  "beats": null,
+                  "alt": null
+                },
+                {
+                  "chord": "Co",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": true,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D-6/D#",
+                  "beats": 1,
+                  "alt": "(Fb^7)"
+                },
+                {
+                  "chord": "D7alt",
+                  "beats": 3,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Cadd13",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 1,
+              "bar_open": false,
+              "barline": "repeat_end",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            },
+            {
+              "cells": [
+                {
+                  "chord": "D7sus",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": 2,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 7
+            }
+          ]
+        },
+        {
+          "label": "D",
+          "kind": "d",
+          "measures": [
+            {
+              "cells": [
+                {
+                  "chord": "Gb7sus",
+                  "beats": null,
+                  "alt": "(F#-7)"
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Badd13",
+                  "beats": 2,
+                  "alt": null
+                },
+                {
+                  "chord": "B7b9#11",
+                  "beats": 1,
+                  "alt": null
+                },
+                {
+                  "chord": "G7#5#9",
+                  "beats": 1,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 9
+            },
+            {
+              "cells": [
+                {
+                  "chord": "B#-11",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            },
+            {
+              "cells": [
+                {
+                  "chord": "Gb-9",
+                  "beats": null,
+                  "alt": null
+                }
+              ],
+              "ending": null,
+              "bar_open": false,
+              "barline": "normal",
+              "nav": [],
+              "hints": [],
+              "line": 11
+            }
+          ]
+        }
+      ]
+    },
+    "text": "title: Autumn Dolphin Spring\ncomposer: Evans\nstyle: Up Tempo Swing\nkey: Db\ntime: 4/4\n\n[C]\n{ A^7#11/B# Cb7#11 (D#7#11 G6) Bbadd11 Co | D-6/D#:1(Fb^7) D7alt:3 | 1. Cadd13 } 2. D7sus |\n\n[D]\n| Gb7sus(F#-7) | Badd13:2 B7b9#11:1 G7#5#9:1 | B#-11 | Gb-9 |\n",
+    "findings": [
+      {
+        "code": "unknown-nav",
+        "severity": "warning",
+        "line": 10,
+        "message": "unknown @directive: @intro"
+      }
+    ]
+  }
+}
