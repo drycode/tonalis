@@ -10,7 +10,7 @@ from tonalis.ast import (
     Section,
     SectionKind,
 )
-from tonalis.chord_grammar import is_valid_chord
+from tonalis.chords import is_valid_chord
 from tonalis.lint import lint
 from tonalis.parser import parse_dsl
 from tonalis.serialize import ast_from_json, ast_to_json, from_json, to_json

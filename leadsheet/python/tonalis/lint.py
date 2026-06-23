@@ -5,7 +5,8 @@ bad-chord, not the permissive CST scanner.
 """
 
 from tonalis.ast import Barline, LintFinding
-from tonalis.chord_grammar import is_valid_chord
+from tonalis.chords import is_valid_chord
+from tonalis.parser import MAX_CHORD_TOKEN_LEN
 
 # corpus-derived known-good uneven :N layouts (4/4); all-equal splits are always fine.
 _ALLOWED_UNEVEN = {(2, 1, 1), (1, 1, 1, 1), (1, 1, 2), (3, 1), (1, 3), (2, 2)}
@@ -72,7 +73,10 @@ def lint(chart):
 
         # chords
         for c in m.cells:
-            if c.chord and not is_valid_chord(c.chord):
+            # skip is_valid_chord for tokens that already triggered token-too-long (parser
+            # error already emitted; MusicDSL would reject them as bad-chord too but the
+            # conformance spec treats over-length tokens as a single token-too-long error)
+            if c.chord and len(c.chord) <= MAX_CHORD_TOKEN_LEN and not is_valid_chord(c.chord):
                 err(m.line, "bad-chord", f"invalid chord token: {c.chord!r}")
             if c.alt:
                 for tok in c.alt.strip("()").split():
