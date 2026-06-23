@@ -1,0 +1,295 @@
+[
+  {
+    "name": "time/timesig/4-4-single-chord",
+    "op": "parse_measure",
+    "args": {
+      "m_number": 1,
+      "numerator": 4,
+      "denominator": 4,
+      "raw_measure": "C^7"
+    },
+    "expect": {
+      "model": {
+        "measure": {
+          "m_number": 1,
+          "time_signature": {
+            "numerator": 4,
+            "denominator": 4
+          },
+          "beat_containers": [
+            {
+              "beat_location": {
+                "measure_number": 1,
+                "beat_number": 0
+              },
+              "chord": {
+                "root": "C",
+                "triad": "",
+                "seventh": "^7",
+                "extensions": [],
+                "harmonic_function": "Tonic",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 1,
+                "beat_number": 1
+              },
+              "chord": {
+                "root": "C",
+                "triad": "",
+                "seventh": "^7",
+                "extensions": [],
+                "harmonic_function": "Tonic",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 1,
+                "beat_number": 2
+              },
+              "chord": {
+                "root": "C",
+                "triad": "",
+                "seventh": "^7",
+                "extensions": [],
+                "harmonic_function": "Tonic",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 1,
+                "beat_number": 3
+              },
+              "chord": {
+                "root": "C",
+                "triad": "",
+                "seventh": "^7",
+                "extensions": [],
+                "harmonic_function": "Tonic",
+                "substitution": false
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "time/timesig/3-4-single-chord",
+    "op": "parse_measure",
+    "args": {
+      "m_number": 8,
+      "numerator": 3,
+      "denominator": 4,
+      "raw_measure": "G7"
+    },
+    "expect": {
+      "model": {
+        "measure": {
+          "m_number": 8,
+          "time_signature": {
+            "numerator": 3,
+            "denominator": 4
+          },
+          "beat_containers": [
+            {
+              "beat_location": {
+                "measure_number": 8,
+                "beat_number": 0
+              },
+              "chord": {
+                "root": "G",
+                "triad": "",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Dominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 8,
+                "beat_number": 1
+              },
+              "chord": {
+                "root": "G",
+                "triad": "",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Dominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 8,
+                "beat_number": 2
+              },
+              "chord": {
+                "root": "G",
+                "triad": "",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Dominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 8,
+                "beat_number": 3
+              },
+              "chord": {
+                "root": "G",
+                "triad": "",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Dominant",
+                "substitution": false
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "name": "time/timesig/6-8-two-chords",
+    "op": "parse_measure",
+    "args": {
+      "m_number": 6,
+      "numerator": 6,
+      "denominator": 8,
+      "raw_measure": "C^7 D-7"
+    },
+    "expect": {
+      "model": {
+        "measure": {
+          "m_number": 6,
+          "time_signature": {
+            "numerator": 6,
+            "denominator": 8
+          },
+          "beat_containers": [
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 0
+              },
+              "chord": {
+                "root": "C",
+                "triad": "",
+                "seventh": "^7",
+                "extensions": [],
+                "harmonic_function": "Tonic",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 1
+              },
+              "chord": {
+                "root": "C",
+                "triad": "",
+                "seventh": "^7",
+                "extensions": [],
+                "harmonic_function": "Tonic",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 2
+              },
+              "chord": {
+                "root": "D",
+                "triad": "-",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Subdominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 3
+              },
+              "chord": {
+                "root": "D",
+                "triad": "-",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Subdominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 4
+              },
+              "chord": {
+                "root": "D",
+                "triad": "-",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Subdominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 5
+              },
+              "chord": {
+                "root": "D",
+                "triad": "-",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Subdominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 6
+              },
+              "chord": {
+                "root": "D",
+                "triad": "-",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Subdominant",
+                "substitution": false
+              }
+            },
+            {
+              "beat_location": {
+                "measure_number": 6,
+                "beat_number": 7
+              },
+              "chord": {
+                "root": "D",
+                "triad": "-",
+                "seventh": "7",
+                "extensions": [],
+                "harmonic_function": "Subdominant",
+                "substitution": false
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+]

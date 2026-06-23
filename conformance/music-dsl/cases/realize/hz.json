@@ -1,0 +1,52 @@
+[
+  {
+    "name": "realize/hz/A440-midi69",
+    "op": "midi_to_hz",
+    "args": {
+      "midi": 69
+    },
+    "expect": {
+      "value": 440.0
+    }
+  },
+  {
+    "name": "realize/hz/middle-C-midi60",
+    "op": "midi_to_hz",
+    "args": {
+      "midi": 60
+    },
+    "expect": {
+      "value": 261.6256
+    }
+  },
+  {
+    "name": "realize/hz/C5-midi72",
+    "op": "midi_to_hz",
+    "args": {
+      "midi": 72
+    },
+    "expect": {
+      "value": 523.2511
+    }
+  },
+  {
+    "name": "realize/hz/A5-midi81",
+    "op": "midi_to_hz",
+    "args": {
+      "midi": 81
+    },
+    "expect": {
+      "value": 880.0
+    }
+  },
+  {
+    "name": "realize/hz/A3-midi57",
+    "op": "midi_to_hz",
+    "args": {
+      "midi": 57
+    },
+    "expect": {
+      "value": 220.0
+    }
+  }
+]

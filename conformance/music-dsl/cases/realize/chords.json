@@ -1,0 +1,210 @@
+[
+  {
+    "name": "realize/chords/C-maj7",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "C^7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        64,
+        67,
+        71
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C-min7",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "C-7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        63,
+        67,
+        70
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C-dom7",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "C7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        64,
+        67,
+        70
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C-dim7",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "Co7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        63,
+        66,
+        69
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C-half-dim",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "Ch7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        63,
+        66,
+        70
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C7b9-extension",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "C7b9",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        64,
+        67,
+        70,
+        72
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C13-no-b7",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "C13",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        64,
+        67,
+        78
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/G7-dominant",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "G7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        67,
+        71,
+        74,
+        77
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/F-maj7",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "F^7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        65,
+        69,
+        72,
+        76
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/Co7add9",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "Co7add9",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        63,
+        66,
+        69,
+        73
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C-aug",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "C+",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        64,
+        68
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C-sus4",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "Csus4",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        65,
+        67
+      ]
+    }
+  },
+  {
+    "name": "realize/chords/C5-octave-override",
+    "op": "chord_pitches",
+    "args": {
+      "chord": "C^7",
+      "octave": 5
+    },
+    "expect": {
+      "value": [
+        72,
+        76,
+        79,
+        83
+      ]
+    }
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "name": "realize/midi/middle-C",
+    "op": "note_to_midi",
+    "args": {
+      "note": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 60
+    }
+  },
+  {
+    "name": "realize/midi/A440",
+    "op": "note_to_midi",
+    "args": {
+      "note": "A",
+      "octave": 4
+    },
+    "expect": {
+      "value": 69
+    }
+  },
+  {
+    "name": "realize/midi/C5",
+    "op": "note_to_midi",
+    "args": {
+      "note": "C",
+      "octave": 5
+    },
+    "expect": {
+      "value": 72
+    }
+  },
+  {
+    "name": "realize/midi/C3",
+    "op": "note_to_midi",
+    "args": {
+      "note": "C",
+      "octave": 3
+    },
+    "expect": {
+      "value": 48
+    }
+  },
+  {
+    "name": "realize/midi/G4",
+    "op": "note_to_midi",
+    "args": {
+      "note": "G",
+      "octave": 4
+    },
+    "expect": {
+      "value": 67
+    }
+  },
+  {
+    "name": "realize/midi/Db4-flat-normalised",
+    "op": "note_to_midi",
+    "args": {
+      "note": "Db",
+      "octave": 4
+    },
+    "expect": {
+      "value": 61
+    }
+  },
+  {
+    "name": "realize/midi/B4",
+    "op": "note_to_midi",
+    "args": {
+      "note": "B",
+      "octave": 4
+    },
+    "expect": {
+      "value": 71
+    }
+  },
+  {
+    "name": "realize/midi/Bb4",
+    "op": "note_to_midi",
+    "args": {
+      "note": "Bb",
+      "octave": 4
+    },
+    "expect": {
+      "value": 70
+    }
+  },
+  {
+    "name": "realize/midi/C-octave-1",
+    "op": "note_to_midi",
+    "args": {
+      "note": "C",
+      "octave": 1
+    },
+    "expect": {
+      "value": 24
+    }
+  }
+]

@@ -11,7 +11,12 @@ from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
 from music_dsl.domain.chords.numeric_chord import NumericChord, IncorrectHarmonicFunctionException
 from music_dsl.transactions import modulate, is_diatonic, harmonic_function_in_key, chord_in_key
-from music_dsl.serialize import serialize_chord, serialize_numeric_chord
+from music_dsl.serialize import serialize_chord, serialize_numeric_chord, serialize_measure
+from music_dsl.realize import (
+    note_to_midi, midi_to_hz, interval_pitches, chord_pitches, scale_pitches, scale_degree_pitch,
+)
+from music_dsl.domain.time import TimeSignature
+from music_dsl.domain.time.measure import Measure, BeatType
 
 CASES = Path(__file__).resolve().parents[2] / "cases"
 
@@ -85,6 +90,48 @@ def _chord_in_key(numeric, key_root):
     return {"chord": serialize_chord(realized)}
 
 
+# Build 5: realize + time ops
+
+def _note_to_midi(note, octave=4):
+    """note_to_midi op: MIDI number for note at octave."""
+    return note_to_midi(Notes(note), octave)
+
+
+def _midi_to_hz(midi):
+    """midi_to_hz op: equal-tempered frequency, rounded to 4 decimal places."""
+    return round(midi_to_hz(midi), 4)
+
+
+def _interval_pitches(root, interval, octave=4):
+    """interval_pitches op: [root_midi, upper_midi] for the interval above root."""
+    return interval_pitches(Notes(root), Intervals[interval], octave)
+
+
+def _chord_pitches(chord, octave=4):
+    """chord_pitches op: list of MIDI notes for chord in root position."""
+    return chord_pitches(Chord(chord), octave)
+
+
+def _scale_pitches(key_root, scale, octave=4):
+    """scale_pitches op: ascending MIDI notes tonic-to-tonic for the named scale."""
+    return scale_pitches(Notes(key_root), Scales[scale], octave)
+
+
+def _scale_degree_pitch(degree, key_root, octave=4):
+    """scale_degree_pitch op: MIDI pitch for a ScaleDegree in the given key."""
+    return scale_degree_pitch(ScaleDegree(degree), Notes(key_root), octave)
+
+
+def _parse_measure(m_number, numerator, denominator, raw_measure):
+    """parse_measure op: build Measure and serialize to {"measure": <model>}.
+
+    Propagates InvalidChordStringException (or any exception from Chord construction)
+    so that conformance error cases can use expect.error.
+    """
+    m = Measure(m_number, TimeSignature(numerator, denominator), raw_measure, BeatType, Chord)
+    return {"measure": serialize_measure(m)}
+
+
 OPS = {
     "intervals_equal":   lambda a, b: Intervals[a] == Intervals[b],
     "interval_semitones": lambda x: int(Intervals[x]),
@@ -105,6 +152,14 @@ OPS = {
     "is_diatonic":               lambda root, scale, chord: _is_diatonic(root, scale, chord),
     "harmonic_function_in_key":  lambda key_root, key_is_minor, chord: _harmonic_function_in_key(key_root, key_is_minor, chord),
     "chord_in_key":              lambda numeric, key_root: _chord_in_key(numeric, key_root),
+    # Build 5: realize + time ops
+    "note_to_midi":              lambda note, octave=4: _note_to_midi(note, octave),
+    "midi_to_hz":                lambda midi: _midi_to_hz(midi),
+    "interval_pitches":          lambda root, interval, octave=4: _interval_pitches(root, interval, octave),
+    "chord_pitches":             lambda chord, octave=4: _chord_pitches(chord, octave),
+    "scale_pitches":             lambda key_root, scale, octave=4: _scale_pitches(key_root, scale, octave),
+    "scale_degree_pitch":        lambda degree, key_root, octave=4: _scale_degree_pitch(degree, key_root, octave),
+    "parse_measure":             lambda m_number, numerator, denominator, raw_measure: _parse_measure(m_number, numerator, denominator, raw_measure),
 }
 
 

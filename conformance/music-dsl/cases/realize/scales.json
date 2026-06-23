@@ -1,0 +1,128 @@
+[
+  {
+    "name": "realize/scales/C-major",
+    "op": "scale_pitches",
+    "args": {
+      "key_root": "C",
+      "scale": "Major",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        62,
+        64,
+        65,
+        67,
+        69,
+        71,
+        72
+      ]
+    }
+  },
+  {
+    "name": "realize/scales/C-minor",
+    "op": "scale_pitches",
+    "args": {
+      "key_root": "C",
+      "scale": "Minor",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        62,
+        63,
+        65,
+        67,
+        68,
+        70,
+        72
+      ]
+    }
+  },
+  {
+    "name": "realize/scales/C-harmonic-minor",
+    "op": "scale_pitches",
+    "args": {
+      "key_root": "C",
+      "scale": "HarmonicMinor",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        62,
+        63,
+        65,
+        67,
+        68,
+        71,
+        72
+      ]
+    }
+  },
+  {
+    "name": "realize/scales/G-major",
+    "op": "scale_pitches",
+    "args": {
+      "key_root": "G",
+      "scale": "Major",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        67,
+        69,
+        71,
+        72,
+        74,
+        76,
+        78,
+        79
+      ]
+    }
+  },
+  {
+    "name": "realize/scales/F-major",
+    "op": "scale_pitches",
+    "args": {
+      "key_root": "F",
+      "scale": "Major",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        65,
+        67,
+        69,
+        70,
+        72,
+        74,
+        76,
+        77
+      ]
+    }
+  },
+  {
+    "name": "realize/scales/Bb-major",
+    "op": "scale_pitches",
+    "args": {
+      "key_root": "Bb",
+      "scale": "Major",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        70,
+        72,
+        74,
+        75,
+        77,
+        79,
+        81,
+        82
+      ]
+    }
+  }
+]

@@ -41,11 +41,11 @@
       ],
       "description": "Exactly one of value (function ops), model (model ops), or error (failure sentinel).",
       "properties": {
-        "value": { "type": ["boolean", "integer", "string", "array"], "items": { "type": "integer" } },
+        "value": { "type": ["boolean", "integer", "number", "string", "array"], "items": { "type": "integer" } },
         "model": {
           "type": "object",
           "additionalProperties": false,
-          "description": "Model op result. For parse_chord: { chord: <ChordModel> }. For parse_numeric/numeric_from_chord: { numeric: <NumericModel> }. For chord_in_key: { chord: <ChordModel> }.",
+          "description": "Model op result. For parse_chord: { chord: <ChordModel> }. For parse_numeric/numeric_from_chord: { numeric: <NumericModel> }. For chord_in_key: { chord: <ChordModel> }. For parse_measure: { measure: <MeasureModel> }.",
           "properties": {
             "chord": {
               "type": "object",
@@ -103,6 +103,10 @@
                 },
                 { "$ref": "#/definitions/numericChordModel" }
               ]
+            },
+            "measure": {
+              "$ref": "#/definitions/measureModel",
+              "description": "parse_measure result: the full serialized Measure."
             }
           }
         },
@@ -144,6 +148,64 @@
         "substitution": {
           "type": "boolean",
           "description": "Whether this chord is a tritone substitution."
+        }
+      }
+    },
+    "beatContainerModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["beat_location", "chord"],
+      "description": "A single beat slot in a Measure — non-null.",
+      "properties": {
+        "beat_location": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["measure_number", "beat_number"],
+          "properties": {
+            "measure_number": { "type": "integer" },
+            "beat_number": { "type": "integer" }
+          }
+        },
+        "chord": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["root", "triad", "seventh", "extensions", "harmonic_function", "substitution"],
+          "properties": {
+            "root": { "type": "string" },
+            "triad": { "type": "string", "enum": ["", "-", "h", "o", "+", "sus", "sus2", "sus4"] },
+            "seventh": { "type": "string", "enum": ["^7", "7", ""] },
+            "extensions": { "type": "array", "items": { "type": "string" } },
+            "harmonic_function": { "type": "string", "enum": ["Tonic", "Dominant", "Subdominant"] },
+            "substitution": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "measureModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["m_number", "time_signature", "beat_containers"],
+      "description": "Serialized Measure from serialize_measure.",
+      "properties": {
+        "m_number": { "type": "integer", "description": "Measure number (0-based or 1-based, caller decides)." },
+        "time_signature": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["numerator", "denominator"],
+          "properties": {
+            "numerator": { "type": "integer" },
+            "denominator": { "type": "integer" }
+          }
+        },
+        "beat_containers": {
+          "type": "array",
+          "description": "One slot per beat. null = empty beat; object = BeatType with beat_location + chord.",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/definitions/beatContainerModel" },
+              { "type": "null" }
+            ]
+          }
         }
       }
     }

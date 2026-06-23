@@ -1,0 +1,137 @@
+[
+  {
+    "name": "realize/intervals/C4-P5",
+    "op": "interval_pitches",
+    "args": {
+      "root": "C",
+      "interval": "P5",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        67
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/C4-M3",
+    "op": "interval_pitches",
+    "args": {
+      "root": "C",
+      "interval": "M3",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        64
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/C4-m3",
+    "op": "interval_pitches",
+    "args": {
+      "root": "C",
+      "interval": "m3",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        63
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/C4-Tritone",
+    "op": "interval_pitches",
+    "args": {
+      "root": "C",
+      "interval": "Tritone",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        66
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/C4-Octave",
+    "op": "interval_pitches",
+    "args": {
+      "root": "C",
+      "interval": "Octave",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        72
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/G4-P5",
+    "op": "interval_pitches",
+    "args": {
+      "root": "G",
+      "interval": "P5",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        67,
+        74
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/A4-M3",
+    "op": "interval_pitches",
+    "args": {
+      "root": "A",
+      "interval": "M3",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        69,
+        73
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/C4-m7",
+    "op": "interval_pitches",
+    "args": {
+      "root": "C",
+      "interval": "m7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        70
+      ]
+    }
+  },
+  {
+    "name": "realize/intervals/C4-M7",
+    "op": "interval_pitches",
+    "args": {
+      "root": "C",
+      "interval": "M7",
+      "octave": 4
+    },
+    "expect": {
+      "value": [
+        60,
+        71
+      ]
+    }
+  }
+]

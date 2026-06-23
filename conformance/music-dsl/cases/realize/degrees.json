@@ -1,0 +1,122 @@
+[
+  {
+    "name": "realize/degrees/I-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "I",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 60
+    }
+  },
+  {
+    "name": "realize/degrees/ii-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "ii",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 62
+    }
+  },
+  {
+    "name": "realize/degrees/iii-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "iii",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 64
+    }
+  },
+  {
+    "name": "realize/degrees/IV-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "IV",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 65
+    }
+  },
+  {
+    "name": "realize/degrees/V-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "V",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 67
+    }
+  },
+  {
+    "name": "realize/degrees/vi-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "vi",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 69
+    }
+  },
+  {
+    "name": "realize/degrees/VII-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "VII",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 71
+    }
+  },
+  {
+    "name": "realize/degrees/I-in-G",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "I",
+      "key_root": "G",
+      "octave": 4
+    },
+    "expect": {
+      "value": 67
+    }
+  },
+  {
+    "name": "realize/degrees/bII-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "bII",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 61
+    }
+  },
+  {
+    "name": "realize/degrees/bVI-in-C",
+    "op": "scale_degree_pitch",
+    "args": {
+      "degree": "bVI",
+      "key_root": "C",
+      "octave": 4
+    },
+    "expect": {
+      "value": 68
+    }
+  }
+]

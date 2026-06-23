@@ -120,3 +120,50 @@ def serialize_numeric_chord(numeric: "NumericChord") -> dict:
         "numerator": numerator_model,
         "denominator": denominator_model,
     }
+
+
+def serialize_measure(measure) -> dict:
+    """Return the canonical dict representation of a Measure.
+
+    Shape::
+
+        {
+          "m_number": <int>,
+          "time_signature": {"numerator": <int>, "denominator": <int>},
+          "beat_containers": [
+            {"beat_location": {"measure_number": <int>, "beat_number": <int>},
+             "chord": <chord-model>} | null,
+            ...
+          ]
+        }
+
+    Each slot in ``beat_containers`` is either null (empty beat / no chord) or a
+    dict with ``beat_location`` and ``chord``.  The chord sub-dict is the same
+    canonical shape as ``serialize_chord``.
+
+    Args:
+        measure: A ``music_dsl.domain.time.measure.Measure`` instance.
+
+    Returns:
+        dict — fully JSON-serialisable.
+    """
+    beat_containers = []
+    for bc in measure.beat_containers:
+        if bc is None:
+            beat_containers.append(None)
+        else:
+            beat_containers.append({
+                "beat_location": {
+                    "measure_number": bc.beat_location.measure_number,
+                    "beat_number": bc.beat_location.beat_number,
+                },
+                "chord": serialize_chord(bc.chord),
+            })
+    return {
+        "m_number": measure.m_number,
+        "time_signature": {
+            "numerator": measure.time_signature.numerator,
+            "denominator": measure.time_signature.denominator,
+        },
+        "beat_containers": beat_containers,
+    }
