@@ -185,6 +185,52 @@ impl ScaleDegree {
         self.to_major().to_flat()
     }
 
+    /// True if this degree's value string starts with `'b'` (flat prefix).
+    pub fn is_flat(self) -> bool {
+        self.value().starts_with('b')
+    }
+
+    /// True if this degree uses lowercase Roman numerals (minor quality).
+    pub fn is_minor(self) -> bool {
+        let v = self.value();
+        let alpha = v.trim_start_matches(['b', '#']);
+        alpha.chars().next().map(|c| c.is_lowercase()).unwrap_or(false)
+    }
+
+    /// Apply accidental and case to this degree (which should be in flat-major form from SCALE_DEGREES).
+    ///
+    /// Mirrors Python `ScaleDegree.normalize(is_flat, is_minor)`:
+    /// - if `is_flat`: keep flat (or convert sharp→flat); else convert flat→sharp
+    /// - if `is_minor`: convert to minor case; else keep major
+    pub fn normalize(self, is_flat: bool, is_minor: bool) -> Self {
+        let accidental = if is_flat { self.to_flat() } else { self.to_sharp() };
+        if is_minor { accidental.to_minor() } else { accidental }
+    }
+
+    /// Convert major degree to its minor (lowercase) equivalent; minor → self.
+    pub fn to_minor(self) -> Self {
+        match self {
+            ScaleDegree::I     => ScaleDegree::Ii,
+            ScaleDegree::SI    => ScaleDegree::Si,
+            ScaleDegree::BII   => ScaleDegree::Bii,
+            ScaleDegree::II    => ScaleDegree::Iimin,
+            ScaleDegree::SII   => ScaleDegree::Sii,
+            ScaleDegree::BIII  => ScaleDegree::Biii,
+            ScaleDegree::III   => ScaleDegree::Iiimin,
+            ScaleDegree::IV    => ScaleDegree::Ivmin,
+            ScaleDegree::SIV   => ScaleDegree::Siv,
+            ScaleDegree::BV    => ScaleDegree::Bv,
+            ScaleDegree::V     => ScaleDegree::Vmin,
+            ScaleDegree::SV    => ScaleDegree::Sv,
+            ScaleDegree::BVI   => ScaleDegree::Bvi,
+            ScaleDegree::VI    => ScaleDegree::Vimin,
+            ScaleDegree::SVII  => ScaleDegree::Svii,
+            ScaleDegree::BVII  => ScaleDegree::Bvii,
+            ScaleDegree::VII   => ScaleDegree::Viimin,
+            other              => other, // already minor
+        }
+    }
+
     /// Chromatic index 0–11 in the SCALE_DEGREES flat-major ordering.
     /// Works by normalizing to major-flat and doing a positional lookup.
     pub fn scale_degree_index(self) -> i64 {

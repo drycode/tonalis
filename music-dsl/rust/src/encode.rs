@@ -197,5 +197,26 @@ pub fn encoding_value(triad: &str, seventh: &str, extensions: &[&str]) -> u64 {
     core | exts
 }
 
+/// Compute `Encoding.value` directly from enum types (avoids value→name round-trip).
+///
+/// Same logic as `encoding_value` but takes enum variants directly so callers
+/// that already hold parsed enums don't need to convert back to name strings.
+pub fn encoding_value_from_enums(triad: Triad, seventh: Seventh, extensions: &[Extensions]) -> u64 {
+    let core = if triad == Triad::Diminished {
+        DIMINISHED_ENCODING
+    } else {
+        let mut positions: Vec<u32> = Vec::new();
+        positions.extend_from_slice(triad_bits(triad));
+        positions.extend_from_slice(seventh_bits(seventh));
+        encode(&positions)
+    };
+    let mut ext_positions: Vec<u32> = Vec::new();
+    for &ext in extensions {
+        ext_positions.extend_from_slice(extension_bits(ext));
+    }
+    let exts = encode(&ext_positions);
+    core | exts
+}
+
 // strip_left / strip_right / semitones_apart_ascending live in helpers.rs and are
 // re-exported at crate level via `pub use helpers::*` in lib.rs.

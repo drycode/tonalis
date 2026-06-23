@@ -3,15 +3,16 @@
 //! frozen case count.
 //! Cases tree is read relative to CARGO_MANIFEST_DIR (music-dsl/rust/ -> ../../conformance/music-dsl/cases).
 use music_dsl::{
-    chord_encoding, encoding_value, interval_semitones, intervals_equal, note_index,
-    notes_equal, parse_chord, scale_degrees_equal, scale_value, semitones_apart_ascending,
+    chord_encoding, chord_in_key, encoding_value, harmonic_function_in_key, interval_semitones,
+    intervals_equal, is_diatonic, modulate, note_index, notes_equal, numeric_from_chord,
+    parse_chord, parse_numeric, scale_degrees_equal, scale_value, semitones_apart_ascending,
     strip_left, strip_right,
 };
 use serde_json::Value;
 use std::fs;
 use std::path::{Path, PathBuf};
 
-const EXPECTED_CASE_COUNT: usize = 216; // keep in sync with Python/TS runners
+const EXPECTED_CASE_COUNT: usize = 264; // keep in sync with Python/TS runners
 
 fn cases_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -108,6 +109,70 @@ fn dispatch(op: &str, args: &Value) -> Value {
             let input = s("input");
             match chord_encoding(input) {
                 Ok(v) => Value::from(v),
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
+            }
+        }
+
+        // Build 4 ops
+        "parse_numeric" => {
+            let input = s("input");
+            match parse_numeric(input) {
+                Ok(model) => {
+                    let numeric_val = serde_json::to_value(&model).unwrap();
+                    let mut map = serde_json::Map::new();
+                    map.insert("numeric".to_string(), numeric_val);
+                    Value::Object(map)
+                }
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
+            }
+        }
+
+        "numeric_from_chord" => {
+            let key_root = s("key_root");
+            let chord = s("chord");
+            let sub = args.get("substitution").and_then(|v| v.as_bool()).unwrap_or(false);
+            match numeric_from_chord(key_root, chord, sub) {
+                Ok(attrs) => {
+                    let numeric_val = serde_json::to_value(&attrs).unwrap();
+                    let mut map = serde_json::Map::new();
+                    map.insert("numeric".to_string(), numeric_val);
+                    Value::Object(map)
+                }
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
+            }
+        }
+
+        "modulate" => {
+            let semitones = args.get("semitones").and_then(|v| v.as_i64()).unwrap();
+            let note = s("note");
+            Value::String(modulate(semitones, note))
+        }
+
+        "is_diatonic" => {
+            let root = s("root");
+            let scale_name = s("scale");
+            let chord = s("chord");
+            let scale = scale_value(scale_name);
+            Value::Bool(is_diatonic(root, scale, chord))
+        }
+
+        "harmonic_function_in_key" => {
+            let key_root = s("key_root");
+            let key_is_minor = args.get("key_is_minor").and_then(|v| v.as_bool()).unwrap_or(false);
+            let chord = s("chord");
+            Value::String(harmonic_function_in_key(key_root, key_is_minor, chord))
+        }
+
+        "chord_in_key" => {
+            let numeric = s("numeric");
+            let key_root = s("key_root");
+            match chord_in_key(numeric, key_root) {
+                Ok(model) => {
+                    let chord_val = serde_json::to_value(&model).unwrap();
+                    let mut map = serde_json::Map::new();
+                    map.insert("chord".to_string(), chord_val);
+                    Value::Object(map)
+                }
                 Err(_) => Value::String(ERROR_SENTINEL.to_string()),
             }
         }

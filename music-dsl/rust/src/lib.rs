@@ -15,17 +15,21 @@ pub mod encode;
 pub mod get_index;
 pub mod helpers;
 pub mod notes;
+pub mod numeric_chord;
 pub mod scale_degree;
+pub mod transactions;
 
 pub use chord::{chord_encoding, parse_chord, ChordModel, ChordModelWrapper, ChordParseError};
 pub use chord_quality::{Extensions, HarmonicFunction, Seventh, Triad};
 pub use encode::{
-    encoding_value, scale_value,
+    encoding_value, encoding_value_from_enums, scale_value,
     CHORD_ENCODING_BIT_LENGTH, DIMINISHED_ENCODING, EMPTY_CHORD_ENCODING,
 };
 pub use helpers::{semitones_apart_ascending, strip_left, strip_right};
 pub use notes::Note;
+pub use numeric_chord::{numeric_from_chord, parse_numeric, NumericChordAttrs, NumericChordModel, NumericParseError};
 pub use scale_degree::ScaleDegree;
+pub use transactions::{chord_in_key, harmonic_function_in_key, is_diatonic, modulate, TWELVE_TONES};
 
 // ---------------------------------------------------------------------------
 // Intervals (13-member int enum, structural ==)
@@ -33,22 +37,22 @@ pub use scale_degree::ScaleDegree;
 
 /// Interval — semitone distance, 0 (Unison) through 12 (Octave).
 /// Looked up by **member name** (`"m6"`, `"Octave"`, …), not by value.
-/// `==` is structural (derived): `m6 != M3`.
+/// `==` is structural (derived): `Min6 != Maj3`.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Interval {
-    Unison   = 0,
-    M2nd     = 1,  // m2
-    MajSecond = 2, // M2
-    M3rd     = 3,  // m3
-    Maj3rd   = 4,  // M3
-    P4th     = 5,  // P4
-    Tritone  = 6,
-    P5th     = 7,  // P5
-    M6th     = 8,  // m6
-    Maj6th   = 9,  // M6
-    M7th     = 10, // m7
-    Maj7th   = 11, // M7
-    Octave   = 12,
+    Unison  = 0,
+    Min2    = 1,
+    Maj2    = 2,
+    Min3    = 3,
+    Maj3    = 4,
+    P4      = 5,
+    Tritone = 6,
+    P5      = 7,
+    Min6    = 8,
+    Maj6    = 9,
+    Min7    = 10,
+    Maj7    = 11,
+    Octave  = 12,
 }
 
 impl Interval {
@@ -56,17 +60,17 @@ impl Interval {
     pub fn from_name(name: &str) -> Option<Self> {
         match name {
             "Unison"  => Some(Interval::Unison),
-            "m2"      => Some(Interval::M2nd),
-            "M2"      => Some(Interval::MajSecond),
-            "m3"      => Some(Interval::M3rd),
-            "M3"      => Some(Interval::Maj3rd),
-            "P4"      => Some(Interval::P4th),
+            "m2"      => Some(Interval::Min2),
+            "M2"      => Some(Interval::Maj2),
+            "m3"      => Some(Interval::Min3),
+            "M3"      => Some(Interval::Maj3),
+            "P4"      => Some(Interval::P4),
             "Tritone" => Some(Interval::Tritone),
-            "P5"      => Some(Interval::P5th),
-            "m6"      => Some(Interval::M6th),
-            "M6"      => Some(Interval::Maj6th),
-            "m7"      => Some(Interval::M7th),
-            "M7"      => Some(Interval::Maj7th),
+            "P5"      => Some(Interval::P5),
+            "m6"      => Some(Interval::Min6),
+            "M6"      => Some(Interval::Maj6),
+            "m7"      => Some(Interval::Min7),
+            "M7"      => Some(Interval::Maj7),
             "Octave"  => Some(Interval::Octave),
             _         => None,
         }

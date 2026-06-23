@@ -4,7 +4,7 @@
 //! using the same regex + dispatch logic as the Python reference.
 
 use crate::chord_quality::{Extensions, HarmonicFunction, Seventh, Triad};
-use crate::encode::encoding_value;
+use crate::encode::encoding_value_from_enums;
 use crate::notes::Note;
 use regex::Regex;
 use serde::Serialize;
@@ -77,7 +77,7 @@ fn chord_regex() -> &'static Regex {
 // Triad / Seventh / Extensions — from_value helpers
 // ---------------------------------------------------------------------------
 
-fn triad_from_value(s: &str) -> Result<Triad, ChordParseError> {
+pub(crate) fn triad_from_value(s: &str) -> Result<Triad, ChordParseError> {
     match s {
         ""     => Ok(Triad::Major),
         "-"    => Ok(Triad::Minor),
@@ -91,7 +91,7 @@ fn triad_from_value(s: &str) -> Result<Triad, ChordParseError> {
     }
 }
 
-fn seventh_from_value(s: &str) -> Result<Seventh, ChordParseError> {
+pub(crate) fn seventh_from_value(s: &str) -> Result<Seventh, ChordParseError> {
     match s {
         "^7" => Ok(Seventh::Major),
         "7"  => Ok(Seventh::Minor),
@@ -100,7 +100,7 @@ fn seventh_from_value(s: &str) -> Result<Seventh, ChordParseError> {
     }
 }
 
-fn extension_from_value(s: &str) -> Option<Extensions> {
+pub(crate) fn extension_from_value(s: &str) -> Option<Extensions> {
     match s {
         "2"   => Some(Extensions::Add2),
         "3"   => Some(Extensions::Add3),
@@ -184,7 +184,7 @@ fn parse_root(s: &str) -> Result<Note, ChordParseError> {
 // Harmonic-function table (mirrors Python `AbstractChord._get_harmonic_function`)
 // ---------------------------------------------------------------------------
 
-fn get_harmonic_function(triad: Triad, seventh: Seventh) -> HarmonicFunction {
+pub(crate) fn get_harmonic_function(triad: Triad, seventh: Seventh) -> HarmonicFunction {
     match (triad, seventh) {
         (Triad::Minor, Seventh::Minor)         => HarmonicFunction::Subdominant,
         (Triad::HalfDiminished, Seventh::Minor) => HarmonicFunction::Subdominant,
@@ -333,61 +333,17 @@ pub fn parse_chord(input: &str) -> Result<ChordModel, ChordParseError> {
 // ---------------------------------------------------------------------------
 
 /// Compute the 19-bit chord encoding for a chord string.
+///
+/// Parses the chord, re-derives the enum values (triad, seventh, extensions),
+/// then calls `encoding_value_from_enums` directly — no value→name round-trip.
 pub fn chord_encoding(input: &str) -> Result<u64, ChordParseError> {
     let model = parse_chord(input)?;
-
-    // Map value strings back to the `encoding_value` name strings.
-    let triad_name = triad_value_to_name(&model.triad);
-    let seventh_name = seventh_value_to_name(&model.seventh);
-    let ext_names: Vec<&str> = model
+    let triad = triad_from_value(&model.triad)?;
+    let seventh = seventh_from_value(&model.seventh)?;
+    let exts: Vec<Extensions> = model
         .extensions
         .iter()
-        .map(|v| extension_value_to_name(v))
+        .filter_map(|v| extension_from_value(v))
         .collect();
-
-    Ok(encoding_value(triad_name, seventh_name, &ext_names))
-}
-
-fn triad_value_to_name(v: &str) -> &'static str {
-    match v {
-        ""     => "Major",
-        "-"    => "Minor",
-        "h"    => "HalfDiminished",
-        "o"    => "Diminished",
-        "+"    => "Augmented",
-        "sus"  => "Sus",
-        "sus2" => "Sus2",
-        "sus4" => "Sus4",
-        other  => panic!("unknown triad value: {:?}", other),
-    }
-}
-
-fn seventh_value_to_name(v: &str) -> &'static str {
-    match v {
-        "^7" => "Major",
-        "7"  => "Minor",
-        ""   => "_None",
-        other => panic!("unknown seventh value: {:?}", other),
-    }
-}
-
-fn extension_value_to_name(v: &str) -> &'static str {
-    match v {
-        "2"   => "add2",
-        "3"   => "add3",
-        "b5"  => "b5",
-        "5"   => "add5",
-        "#5"  => "s5",
-        "b6"  => "b6",
-        "6"   => "add6",
-        "b9"  => "b9",
-        "9"   => "add9",
-        "#9"  => "s9",
-        "11"  => "add11",
-        "#11" => "s11",
-        "b13" => "b13",
-        "13"  => "add13",
-        "alt" => "alt",
-        other => panic!("unknown extension value: {:?}", other),
-    }
+    Ok(encoding_value_from_enums(triad, seventh, &exts))
 }
