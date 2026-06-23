@@ -7,6 +7,9 @@ from pathlib import Path
 from music_dsl.domain.static import Intervals, Notes, ScaleDegree, Triad, Seventh, Extensions
 from music_dsl.encode import Encoding, Scales
 from music_dsl.helpers import get_index, strip_left, strip_right, semitones_apart_ascending
+from music_dsl.domain.chords.chord import Chord
+from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
+from music_dsl.serialize import serialize_chord
 
 CASES = Path(__file__).resolve().parents[2] / "cases"
 
@@ -21,6 +24,16 @@ def _encoding_value(triad, seventh, extensions):
     return enc.value
 
 
+def _parse_chord(input):
+    """parse_chord op: returns {"chord": <model>} or raises InvalidChordStringException."""
+    return {"chord": serialize_chord(Chord(input))}
+
+
+def _encode_chord(input):
+    """encode_chord op: returns the integer encoding value for the given chord string."""
+    return Chord(input).encoding
+
+
 OPS = {
     "intervals_equal":   lambda a, b: Intervals[a] == Intervals[b],
     "interval_semitones": lambda x: int(Intervals[x]),
@@ -32,6 +45,8 @@ OPS = {
     "strip_left":                lambda bits, x: strip_left(bits, x),
     "strip_right":               lambda bits, x: strip_right(bits, x),
     "semitones_apart_ascending": lambda root, note: semitones_apart_ascending(Notes(root), Notes(note)),
+    "parse_chord":               lambda input: _parse_chord(input),
+    "encode_chord":              lambda input: _encode_chord(input),
 }
 
 
@@ -43,16 +58,29 @@ def run():
             total += 1
             expect = case["expect"]
             if "error" in expect:
+                # Error cases: the op must raise; any exception counts as passing.
                 try:
                     OPS[case["op"]](**case["args"])
                     failures.append(f"{case['name']}: op={case['op']} args={case['args']} expected error but got a value")
                 except Exception:
                     pass  # error expected and raised — pass
                 continue
-            got = OPS[case["op"]](**case["args"])
-            want = expect["value"]
-            if got != want:
-                failures.append(f"{case['name']}: op={case['op']} args={case['args']} got={got} want={want}")
+            # Execute the op; map any exception to a failure (non-error cases must not raise).
+            try:
+                got = OPS[case["op"]](**case["args"])
+            except Exception as exc:
+                failures.append(f"{case['name']}: op={case['op']} args={case['args']} raised unexpectedly: {exc}")
+                continue
+            if "model" in expect:
+                # Model ops (parse_chord etc.): compare the whole dict.
+                want = expect["model"]
+                if got != want:
+                    failures.append(f"{case['name']}: op={case['op']} args={case['args']} got={got} want={want}")
+            else:
+                # Function/scalar ops: compare the scalar value.
+                want = expect["value"]
+                if got != want:
+                    failures.append(f"{case['name']}: op={case['op']} args={case['args']} got={got} want={want}")
     if failures:
         print(f"{len(failures)}/{total} FAILED:")
         print("\n".join("  " + f for f in failures))

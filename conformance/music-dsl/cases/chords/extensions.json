@@ -1,0 +1,375 @@
+[
+  {
+    "name": "ext/C-major7-sharp11/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C^7#11"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "^7",
+          "extensions": [
+            "#11"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-major7-sharp11/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C^7#11"
+    },
+    "expect": {
+      "value": 280708
+    }
+  },
+  {
+    "name": "ext/C-dominant13/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C13"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "",
+          "extensions": [
+            "13"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-dominant13/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C13"
+    },
+    "expect": {
+      "value": 280577
+    }
+  },
+  {
+    "name": "ext/C-dominant7-b9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7b9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "b9"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-dominant7-b9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7b9"
+    },
+    "expect": {
+      "value": 280896
+    }
+  },
+  {
+    "name": "ext/C-dominant7-alt/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7alt"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "alt"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-dominant7-alt/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7alt"
+    },
+    "expect": {
+      "value": 280918
+    }
+  },
+  {
+    "name": "ext/C-add9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "Cadd9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "",
+          "extensions": [
+            "9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-add9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "Cadd9"
+    },
+    "expect": {
+      "value": 280608
+    }
+  },
+  {
+    "name": "ext/C-69/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C69"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "",
+          "extensions": [
+            "6",
+            "9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-69/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C69"
+    },
+    "expect": {
+      "value": 281120
+    }
+  },
+  {
+    "name": "ext/C-diminished7-add9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "Co7add9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "o",
+          "seventh": "7",
+          "extensions": [
+            "9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-diminished7-add9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "Co7add9"
+    },
+    "expect": {
+      "value": 299552
+    }
+  },
+  {
+    "name": "ext/C-dominant7-b9-sharp11/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7b9#11"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "b9",
+            "#11"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-dominant7-b9-sharp11/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7b9#11"
+    },
+    "expect": {
+      "value": 280900
+    }
+  },
+  {
+    "name": "ext/C-minor7-b9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C-7b9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "-",
+          "seventh": "7",
+          "extensions": [
+            "b9"
+          ],
+          "harmonic_function": "Subdominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-minor7-b9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C-7b9"
+    },
+    "expect": {
+      "value": 297280
+    }
+  },
+  {
+    "name": "ext/C-dominant7-sharp9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7#9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "#9"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-dominant7-sharp9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7#9"
+    },
+    "expect": {
+      "value": 280848
+    }
+  },
+  {
+    "name": "ext/C-dominant7-b9-sharp9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7b9#9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "b9",
+            "#9"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-dominant7-b9-sharp9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7b9#9"
+    },
+    "expect": {
+      "value": 280912
+    }
+  },
+  {
+    "name": "ext/C-minor-major7/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C-^7"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "-",
+          "seventh": "^7",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-minor-major7/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C-^7"
+    },
+    "expect": {
+      "value": 297088
+    }
+  }
+]

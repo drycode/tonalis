@@ -1,0 +1,364 @@
+[
+  {
+    "name": "sus/Csus/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "Csus"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus",
+          "seventh": "",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/Csus/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "Csus"
+    },
+    "expect": {
+      "value": 272384
+    }
+  },
+  {
+    "name": "sus/Csus4/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "Csus4"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus4",
+          "seventh": "",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/Csus4/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "Csus4"
+    },
+    "expect": {
+      "value": 272384
+    }
+  },
+  {
+    "name": "sus/Csus2/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "Csus2"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus2",
+          "seventh": "",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/Csus2/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "Csus2"
+    },
+    "expect": {
+      "value": 329728
+    }
+  },
+  {
+    "name": "sus/C4-shorthand/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C4"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus4",
+          "seventh": "",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/C4-shorthand/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C4"
+    },
+    "expect": {
+      "value": 272384
+    }
+  },
+  {
+    "name": "sus/C9sus/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C9sus"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus",
+          "seventh": "",
+          "extensions": [
+            "9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/C9sus/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C9sus"
+    },
+    "expect": {
+      "value": 272416
+    }
+  },
+  {
+    "name": "sus/C9sus4/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C9sus4"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus4",
+          "seventh": "",
+          "extensions": [
+            "9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/C9sus4/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C9sus4"
+    },
+    "expect": {
+      "value": 272416
+    }
+  },
+  {
+    "name": "sus/C7susb9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7susb9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus",
+          "seventh": "7",
+          "extensions": [
+            "b9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/C7susb9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7susb9"
+    },
+    "expect": {
+      "value": 272704
+    }
+  },
+  {
+    "name": "sus/C7b9sus/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7b9sus"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus",
+          "seventh": "7",
+          "extensions": [
+            "b9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/C7b9sus/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7b9sus"
+    },
+    "expect": {
+      "value": 272704
+    }
+  },
+  {
+    "name": "sus/Csus7b9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "Csus7b9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus",
+          "seventh": "7",
+          "extensions": [
+            "b9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/Csus7b9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "Csus7b9"
+    },
+    "expect": {
+      "value": 272704
+    }
+  },
+  {
+    "name": "sus/Csus9/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "Csus9"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "sus",
+          "seventh": "",
+          "extensions": [
+            "9"
+          ],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/Csus9/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "Csus9"
+    },
+    "expect": {
+      "value": 272416
+    }
+  },
+  {
+    "name": "sus/C-caret-shorthand/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C^"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "^7",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/C-caret-shorthand/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C^"
+    },
+    "expect": {
+      "value": 280704
+    }
+  },
+  {
+    "name": "sus/C7plus-aug5/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7+"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "#5"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "sus/C7plus-aug5/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7+"
+    },
+    "expect": {
+      "value": 281856
+    }
+  }
+]

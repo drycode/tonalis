@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://tonalis/conformance/music-dsl/case.schema.json",
   "title": "music-dsl conformance case",
-  "description": "A single language-agnostic conformance case for the music_dsl theory library. Op-dispatched: the runner calls OPS[op](**args) and asserts `expect`. Mirrors conformance/dsl-core/schema. Function ops assert expect.value; model ops (added in later builds) assert expect.model or expect.error.",
+  "description": "A single language-agnostic conformance case for the music_dsl theory library. Op-dispatched: the runner calls OPS[op](**args) and asserts `expect`. Mirrors conformance/dsl-core/schema. Function ops assert expect.value; model ops assert expect.model; error ops assert expect.error.",
   "type": "object",
   "additionalProperties": false,
   "required": ["name", "op", "args", "expect"],
@@ -13,15 +13,76 @@
     "expect": {
       "type": "object",
       "additionalProperties": false,
-      "anyOf": [
-        { "required": ["value"] },
-        { "required": ["model"] },
-        { "required": ["error"] }
+      "oneOf": [
+        {
+          "required": ["value"],
+          "properties": {
+            "value": {},
+            "model": false,
+            "error": false
+          }
+        },
+        {
+          "required": ["model"],
+          "properties": {
+            "value": false,
+            "model": {},
+            "error": false
+          }
+        },
+        {
+          "required": ["error"],
+          "properties": {
+            "value": false,
+            "model": false,
+            "error": {}
+          }
+        }
       ],
-      "description": "Exactly one of value (function ops), model (model ops, later builds), or error (failure sentinel).",
+      "description": "Exactly one of value (function ops), model (model ops), or error (failure sentinel).",
       "properties": {
         "value": { "type": ["boolean", "integer", "string", "array"], "items": { "type": "integer" } },
-        "model": { "type": "object" },
+        "model": {
+          "type": "object",
+          "description": "Model op result. For parse_chord: { chord: <ChordModel> }.",
+          "properties": {
+            "chord": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["root", "triad", "seventh", "extensions", "harmonic_function", "substitution"],
+              "properties": {
+                "root": {
+                  "type": "string",
+                  "description": "Flat-normalised note name: C, Db, D, Eb, E, F, Gb, G, Ab, A, Bb, B."
+                },
+                "triad": {
+                  "type": "string",
+                  "enum": ["", "-", "h", "o", "+", "sus", "sus2", "sus4"],
+                  "description": "Triad quality value: empty string = major."
+                },
+                "seventh": {
+                  "type": "string",
+                  "enum": ["^7", "7", ""],
+                  "description": "Seventh value: ^7 = major, 7 = minor, empty = none."
+                },
+                "extensions": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Extension values in parse order."
+                },
+                "harmonic_function": {
+                  "type": "string",
+                  "enum": ["Tonic", "Dominant", "Subdominant"],
+                  "description": "HarmonicFunctions enum NAME."
+                },
+                "substitution": {
+                  "type": "boolean",
+                  "description": "Whether this chord is a substitution. Always false for absolute Chord instances."
+                }
+              }
+            }
+          }
+        },
         "error": { "const": true }
       }
     }

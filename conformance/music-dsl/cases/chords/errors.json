@@ -1,0 +1,52 @@
+[
+  {
+    "name": "err/xyzzy-no-root",
+    "op": "parse_chord",
+    "args": {
+      "input": "xyzzy"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "err/VIII-numeral",
+    "op": "parse_chord",
+    "args": {
+      "input": "VIII"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "err/pipe-two-chords",
+    "op": "parse_chord",
+    "args": {
+      "input": "C|D"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "err/B#b9-make_chord_attrs-rejection",
+    "op": "parse_chord",
+    "args": {
+      "input": "B#b9"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "err/Cadd-superscript2-non-ascii",
+    "op": "parse_chord",
+    "args": {
+      "input": "Cadd\u00b2"
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]
