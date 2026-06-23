@@ -20,6 +20,7 @@ dev = [
   "hypothesis",
   # attrs: test_static.py uses `from attr import s` for hypothesis strategies
   "attrs",
+  "jsonschema",
 ]
 # viz extra is intentionally omitted: no runtime module in music_dsl imports
 # matplotlib, networkx, Pillow, or numpy. Those were transitive/dev-tool noise

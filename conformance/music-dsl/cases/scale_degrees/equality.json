@@ -1,4 +1,9 @@
 [
-  {"name": "sharp4-eq-flat5", "op": "scale_degrees_equal", "args": {"a": "#iv", "b": "bv"}, "expect": {"value": true}},
-  {"name": "ii-neq-iii",      "op": "scale_degrees_equal", "args": {"a": "ii", "b": "iii"}, "expect": {"value": false}}
+  {"name": "sharp4-eq-flat5",   "op": "scale_degrees_equal", "args": {"a": "#iv", "b": "bv"}, "expect": {"value": true}},
+  {"name": "sharp1-eq-flat2",   "op": "scale_degrees_equal", "args": {"a": "#I", "b": "bII"}, "expect": {"value": true}},
+  {"name": "sharp5-eq-flat6",   "op": "scale_degrees_equal", "args": {"a": "#V", "b": "bVI"}, "expect": {"value": true}},
+  {"name": "sharp6m-eq-flat7m", "op": "scale_degrees_equal", "args": {"a": "#vi", "b": "bvii"}, "expect": {"value": true}},
+  {"name": "ii-neq-iii",        "op": "scale_degrees_equal", "args": {"a": "ii", "b": "iii"}, "expect": {"value": false}},
+  {"name": "II-neq-ii",         "op": "scale_degrees_equal", "args": {"a": "II", "b": "ii"}, "expect": {"value": false}},
+  {"name": "V-neq-IV",          "op": "scale_degrees_equal", "args": {"a": "V", "b": "IV"}, "expect": {"value": false}}
 ]

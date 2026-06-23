@@ -5,7 +5,7 @@ from pathlib import Path
 
 RUN_PY = Path(__file__).resolve().parent / "run.py"
 CASES = Path(__file__).resolve().parents[2] / "cases"
-EXPECTED_CASE_COUNT = 14  # 7 intervals + 5 notes + 2 scale_degrees
+EXPECTED_CASE_COUNT = 51  # 19 intervals + 25 notes + 7 scale_degrees
 
 
 def test_musicdsl_conformance_passes():
