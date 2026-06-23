@@ -1,0 +1,32 @@
+[
+  {
+    "name": "scale-Major",
+    "op": "scale_value",
+    "args": {
+      "name": "Major"
+    },
+    "expect": {
+      "value": 46534580949
+    }
+  },
+  {
+    "name": "scale-Minor",
+    "op": "scale_value",
+    "args": {
+      "name": "Minor"
+    },
+    "expect": {
+      "value": 48766495578
+    }
+  },
+  {
+    "name": "scale-HarmonicMinor",
+    "op": "scale_value",
+    "args": {
+      "name": "HarmonicMinor"
+    },
+    "expect": {
+      "value": 48749714265
+    }
+  }
+]

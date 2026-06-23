@@ -1,0 +1,134 @@
+[
+  {
+    "name": "scan-Major-MajorMajor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 46534580949,
+      "chord": 280704
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-Minor-MajorMajor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48766495578,
+      "chord": 280704
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-HarmonicMinor-MajorMajor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48749714265,
+      "chord": 280704
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-Major-MinorMinor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 46534580949,
+      "chord": 297216
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-Minor-MinorMinor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48766495578,
+      "chord": 297216
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-HarmonicMinor-MinorMinor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48749714265,
+      "chord": 297216
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-Major-MajorMinor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 46534580949,
+      "chord": 280832
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-Minor-MajorMinor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48766495578,
+      "chord": 280832
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-HarmonicMinor-MajorMinor-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48749714265,
+      "chord": 280832
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-Major-Diminished_None-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 46534580949,
+      "chord": 299520
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-Minor-Diminished_None-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48766495578,
+      "chord": 299520
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "scan-HarmonicMinor-Diminished_None-err",
+    "op": "scan_scale",
+    "args": {
+      "scale": 48749714265,
+      "chord": 299520
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]

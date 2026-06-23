@@ -1,0 +1,90 @@
+[
+  {
+    "name": "sl-46534580949-0",
+    "op": "strip_left",
+    "args": {
+      "bits": 46534580949,
+      "x": 0
+    },
+    "expect": {
+      "value": 46534580949
+    }
+  },
+  {
+    "name": "sl-46534580949-5",
+    "op": "strip_left",
+    "args": {
+      "bits": 46534580949,
+      "x": 5
+    },
+    "expect": {
+      "value": 1437424341
+    }
+  },
+  {
+    "name": "sl-46534580949-12",
+    "op": "strip_left",
+    "args": {
+      "bits": 46534580949,
+      "x": 12
+    },
+    "expect": {
+      "value": 11360981
+    }
+  },
+  {
+    "name": "sl-262144-7-err",
+    "op": "strip_left",
+    "args": {
+      "bits": 262144,
+      "x": 7
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "sl-299520-7-err",
+    "op": "strip_left",
+    "args": {
+      "bits": 299520,
+      "x": 7
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "sr-280832-7",
+    "op": "strip_right",
+    "args": {
+      "bits": 280832,
+      "x": 7
+    },
+    "expect": {
+      "value": 2194
+    }
+  },
+  {
+    "name": "sr-299520-7",
+    "op": "strip_right",
+    "args": {
+      "bits": 299520,
+      "x": 7
+    },
+    "expect": {
+      "value": 2340
+    }
+  },
+  {
+    "name": "sr-262144-0",
+    "op": "strip_right",
+    "args": {
+      "bits": 262144,
+      "x": 0
+    },
+    "expect": {
+      "value": 262144
+    }
+  }
+]

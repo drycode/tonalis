@@ -1,0 +1,68 @@
+[
+  {
+    "name": "sa-C-G",
+    "op": "semitones_apart_ascending",
+    "args": {
+      "root": "C",
+      "note": "G"
+    },
+    "expect": {
+      "value": 7
+    }
+  },
+  {
+    "name": "sa-C-F",
+    "op": "semitones_apart_ascending",
+    "args": {
+      "root": "C",
+      "note": "F"
+    },
+    "expect": {
+      "value": 5
+    }
+  },
+  {
+    "name": "sa-G-C",
+    "op": "semitones_apart_ascending",
+    "args": {
+      "root": "G",
+      "note": "C"
+    },
+    "expect": {
+      "value": 5
+    }
+  },
+  {
+    "name": "sa-E-C",
+    "op": "semitones_apart_ascending",
+    "args": {
+      "root": "E",
+      "note": "C"
+    },
+    "expect": {
+      "value": 8
+    }
+  },
+  {
+    "name": "sa-C-C",
+    "op": "semitones_apart_ascending",
+    "args": {
+      "root": "C",
+      "note": "C"
+    },
+    "expect": {
+      "value": 0
+    }
+  },
+  {
+    "name": "sa-Bb-D",
+    "op": "semitones_apart_ascending",
+    "args": {
+      "root": "Bb",
+      "note": "D"
+    },
+    "expect": {
+      "value": 4
+    }
+  }
+]

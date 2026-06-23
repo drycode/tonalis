@@ -20,7 +20,7 @@
       ],
       "description": "Exactly one of value (function ops), model (model ops, later builds), or error (failure sentinel).",
       "properties": {
-        "value": { "type": ["boolean", "integer", "string"] },
+        "value": { "type": ["boolean", "integer", "string", "array"], "items": { "type": "integer" } },
         "model": { "type": "object" },
         "error": { "const": true }
       }

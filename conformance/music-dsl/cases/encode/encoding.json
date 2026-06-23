@@ -1,0 +1,444 @@
+[
+  {
+    "name": "enc-Major-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 280576
+    }
+  },
+  {
+    "name": "enc-Major-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 280832
+    }
+  },
+  {
+    "name": "enc-Major-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 280704
+    }
+  },
+  {
+    "name": "enc-Minor-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Minor",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 296960
+    }
+  },
+  {
+    "name": "enc-Minor-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Minor",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 297216
+    }
+  },
+  {
+    "name": "enc-Minor-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Minor",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 297088
+    }
+  },
+  {
+    "name": "enc-Diminished-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Diminished",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 299520
+    }
+  },
+  {
+    "name": "enc-Diminished-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Diminished",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 299520
+    }
+  },
+  {
+    "name": "enc-Diminished-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Diminished",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 299520
+    }
+  },
+  {
+    "name": "enc-HalfDiminished-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "HalfDiminished",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 299008
+    }
+  },
+  {
+    "name": "enc-HalfDiminished-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "HalfDiminished",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 299264
+    }
+  },
+  {
+    "name": "enc-HalfDiminished-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "HalfDiminished",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 299136
+    }
+  },
+  {
+    "name": "enc-Augmented-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Augmented",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 279552
+    }
+  },
+  {
+    "name": "enc-Augmented-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Augmented",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 279808
+    }
+  },
+  {
+    "name": "enc-Augmented-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Augmented",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 279680
+    }
+  },
+  {
+    "name": "enc-Sus2-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus2",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 329728
+    }
+  },
+  {
+    "name": "enc-Sus2-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus2",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 329984
+    }
+  },
+  {
+    "name": "enc-Sus2-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus2",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 329856
+    }
+  },
+  {
+    "name": "enc-Sus-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 272384
+    }
+  },
+  {
+    "name": "enc-Sus-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 272640
+    }
+  },
+  {
+    "name": "enc-Sus-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 272512
+    }
+  },
+  {
+    "name": "enc-Sus4-_None",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus4",
+      "seventh": "_None",
+      "extensions": []
+    },
+    "expect": {
+      "value": 272384
+    }
+  },
+  {
+    "name": "enc-Sus4-Minor",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus4",
+      "seventh": "Minor",
+      "extensions": []
+    },
+    "expect": {
+      "value": 272640
+    }
+  },
+  {
+    "name": "enc-Sus4-Major",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Sus4",
+      "seventh": "Major",
+      "extensions": []
+    },
+    "expect": {
+      "value": 272512
+    }
+  },
+  {
+    "name": "enc-Major-Minor-b9",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "b9"
+      ]
+    },
+    "expect": {
+      "value": 280896
+    }
+  },
+  {
+    "name": "enc-Major-Minor-add9",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "add9"
+      ]
+    },
+    "expect": {
+      "value": 280864
+    }
+  },
+  {
+    "name": "enc-Major-Minor-s9",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "s9"
+      ]
+    },
+    "expect": {
+      "value": 280848
+    }
+  },
+  {
+    "name": "enc-Major-Minor-add11",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "add11"
+      ]
+    },
+    "expect": {
+      "value": 280840
+    }
+  },
+  {
+    "name": "enc-Major-Minor-s11",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "s11"
+      ]
+    },
+    "expect": {
+      "value": 280836
+    }
+  },
+  {
+    "name": "enc-Major-Minor-b13",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "b13"
+      ]
+    },
+    "expect": {
+      "value": 280834
+    }
+  },
+  {
+    "name": "enc-Major-Minor-add13",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "add13"
+      ]
+    },
+    "expect": {
+      "value": 280833
+    }
+  },
+  {
+    "name": "enc-Major-Minor-add6",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "add6"
+      ]
+    },
+    "expect": {
+      "value": 281344
+    }
+  },
+  {
+    "name": "enc-Major-Minor-b5",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "b5"
+      ]
+    },
+    "expect": {
+      "value": 284928
+    }
+  },
+  {
+    "name": "enc-Major-Minor-s5",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "s5"
+      ]
+    },
+    "expect": {
+      "value": 281856
+    }
+  },
+  {
+    "name": "enc-Major-Minor-alt",
+    "op": "encoding_value",
+    "args": {
+      "triad": "Major",
+      "seventh": "Minor",
+      "extensions": [
+        "alt"
+      ]
+    },
+    "expect": {
+      "value": 280918
+    }
+  }
+]
