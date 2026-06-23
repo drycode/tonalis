@@ -10,6 +10,13 @@ import sys
 from pathlib import Path
 
 RUN_PY = Path(__file__).resolve().parent / "run.py"
+# runner: <repo>/conformance/dsl-core/runners/python/run.py  ->  cases at parents[2]/cases
+_CASES_DIR = Path(__file__).resolve().parents[2] / "cases"
+
+# Ledger M2/M3: the dsl-core conformance corpus is frozen at this many cases. A silently-dropped
+# (or accidentally-duplicated) case must fail loudly here rather than quietly shrinking coverage
+# across the three ports. Bump this number deliberately when cases are added.
+EXPECTED_CASE_COUNT = 255
 
 
 def test_tonalis_conformance():
@@ -19,3 +26,12 @@ def test_tonalis_conformance():
         text=True,
     )
     assert r.returncode == 0, r.stdout + r.stderr
+
+
+def test_conformance_case_count_is_frozen():
+    """A dropped/duplicated conformance case must fail loudly (ledger M2/M3)."""
+    actual = sum(1 for _ in _CASES_DIR.rglob("*.json"))
+    assert actual == EXPECTED_CASE_COUNT, (
+        f"dsl-core conformance case count drifted: expected {EXPECTED_CASE_COUNT}, "
+        f"found {actual} under {_CASES_DIR}"
+    )

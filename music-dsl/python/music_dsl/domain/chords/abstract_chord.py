@@ -111,7 +111,18 @@ class AbstractChord:
     #   * after the 7th, canonical    (Bb7sus#9)
     #   * after the extensions        (F9sus, G7b9sus)
     # Each is captured separately and consolidated in _parse_chord_string.
+    #
+    # ``sus_short`` captures iReal's bare-``4`` sus shorthand: ``C4`` == ``Csus4`` (in
+    # iReal a bare ``sus`` defaults to sus4). It sits in the triad/quality position,
+    # right after the root and BEFORE the ``triad`` alternation, so a lone ``4``
+    # immediately after the root is read as a suspended fourth rather than falling
+    # through to the extension tokenizer (where ``Extensions("4")`` does not exist and
+    # would raise). It only matches a single literal ``4``, so real extension degrees
+    # (``11``/``13``), the ``sus4`` literal, ``C7``, ``C6``, etc. are untouched. The
+    # companion bare ``2`` is deliberately NOT remapped: ``C2`` already parses as an
+    # added-2nd (``Extensions.add2``), a long-standing, separately-tested semantic.
     __regex_suffix__ = (
+        r"(?P<sus_short>4)?"
         r"(?P<triad>sus4|sus2|sus|[ho+\-])?"
         r"(?P<seventh>\^7|\^|7)?"
         r"(?P<alt>alt)?"
@@ -208,8 +219,11 @@ class AbstractChord:
         AbstractChord._verify_chord_string(raw_chord, match_groups)
         _root = cls._parse_root(match_groups["root"])
         _triad_token = match_groups["triad"]
-        # A sus token may surface from any of the three positions; collect it.
+        # A sus token may surface from any of the three positions; collect it. The
+        # bare-``4`` shorthand (``C4`` == ``Csus4``) is normalised to ``sus4`` here.
         _sus = match_groups["sus1"] or match_groups["sus2"]
+        if match_groups["sus_short"]:
+            _sus = _sus or "sus4"
         _triad_is_sus = _triad_token in ("sus", "sus4", "sus2")
         if _sus and _triad_token and not _triad_is_sus:
             raise InvalidChordStringException(

@@ -4,8 +4,12 @@ Statically proves the one-way dependency invariant by AST-scanning each PACKAGE 
 against an allow-LIST (whitelist, not blacklist — a name-prefix blacklist can be slipped by a
 string-built import like ``import_module("SCRUBBED"+"Parser.cst")``; an allow-list cannot):
 
-  - ``tonalis/**``       may import ONLY stdlib + other ``tonalis`` submodules. It is the PURE
-                         language core and must depend on NOTHING outside itself.
+  - ``tonalis/**``       may import ONLY stdlib + other ``tonalis`` submodules + ``music_dsl``,
+                         the theory library it stands on. The Phase-1 dependency rule is one-way
+                         (leadsheet/tonalis -> music_dsl): tonalis MAY import music_dsl (e.g. the
+                         chord validator delegates to ``music_dsl ... Chord``), but ``music_dsl``
+                         must NEVER import tonalis. Nothing else outside (stdlib + tonalis +
+                         music_dsl) is permitted.
 
 The ``SCRUBBED``/``text_target`` adapter packages live in a separate (private) repository and are
 not part of this standalone library; their boundary tests below ``pytest.skip`` here. The negative
@@ -32,7 +36,7 @@ _STDLIB = set(sys.stdlib_module_names)
 
 # Per-package allow-lists of TOP-LEVEL import names beyond stdlib. Submodule-prefix entries (with a
 # trailing-dot meaning) are handled by `_top_name`/`_extra_allowed` below.
-_DSL_CORE_EXTRA = {"tonalis"}
+_DSL_CORE_EXTRA = {"tonalis", "music_dsl"}
 _SCRUBBED = {"tonalis", "SCRUBBED", "SCRUBBED"}
 _TEXT_TARGET_EXTRA = {"tonalis", "text_target"}
 
@@ -241,10 +245,14 @@ def _check_package(pkg_dir: Path, *, extra_allowed: set, codec_SCRUBBED: bool = 
 # ---------------------------------------------------------------------------------------------------
 
 def test_tonalis_imports_only_stdlib_and_self():
-    """The PURE language runtime imports nothing outside itself + stdlib.
+    """The language runtime imports nothing outside stdlib + itself + ``music_dsl``.
 
-    The offline ``tools/`` developer subpackage (the conformance bless tool, which imports the iReal
-    codec) is NOT shipped in this standalone library, so there is nothing to exclude here.
+    Phase 1 folded the MusicDSL theory lib in as a one-way dependency (tonalis -> music_dsl):
+    tonalis MAY lean on it (the chord validator delegates to ``music_dsl ... Chord``), so
+    ``music_dsl`` is in the allow-list; ``music_dsl`` must never reach back into tonalis.
+
+    The offline ``tools/`` developer subpackage (the chord-oracle builder) is excluded here and
+    checked separately by ``test_tonalis_tools_imports_only_dslcore_codec_and_stdlib``.
     """
     pkg = _PYTHON_ROOT / "tonalis"
     assert pkg.is_dir(), pkg
@@ -253,8 +261,11 @@ def test_tonalis_imports_only_stdlib_and_self():
 
 
 def test_tonalis_tools_imports_only_dslcore_codec_and_stdlib():
-    """The bless tool is the codec-direction consumer of both packages. It is intentionally NOT
-    shipped in the standalone library (it imports the private iReal codec), so this skips."""
+    """The offline ``tonalis.tools`` developer subpackage. The chord-oracle builder imports only
+    stdlib + ``tonalis`` (chord_grammar + the chords wrapper), so the existing allow-list
+    (``tonalis`` + the codec-direction ``SCRUBBED``) covers it. The boundary scan is per-module
+    and DIRECT-import only, so the wrapper's transitive ``music_dsl`` use is checked at its own
+    module by the test above, not here."""
     tools = _PYTHON_ROOT / "tonalis" / "tools"
     if not tools.is_dir():
         pytest.skip(f"tonalis.tools not present at {tools} (offline tool dropped from the OSS lib)")
