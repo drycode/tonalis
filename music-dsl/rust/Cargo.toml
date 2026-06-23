@@ -1,0 +1,14 @@
+[package]
+name = "music_dsl"
+version = "0.1.0"
+edition = "2021"
+description = "MusicDSL — music-theory domain (notes, intervals, scale-degrees, chords, encoding). Port of the Python music_dsl reference."
+license = "MIT"
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+regex = "1"
