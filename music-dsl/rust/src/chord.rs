@@ -125,9 +125,9 @@ pub(crate) fn extension_from_value(s: &str) -> Option<Extensions> {
 // Extension token extraction (mirrors Python `_get_extensions`)
 // ---------------------------------------------------------------------------
 
-fn get_extensions(s: &str) -> Vec<Extensions> {
+fn get_extensions(s: &str) -> Result<Vec<Extensions>, ChordParseError> {
     if s.is_empty() {
-        return Vec::new();
+        return Ok(Vec::new());
     }
     // Normalise "add" prefix and "69" compound token — matches Python exactly.
     let s = s.replace("add", "").replace("69", "6,9");
@@ -142,24 +142,31 @@ fn get_extensions(s: &str) -> Vec<Extensions> {
             pos += 1;
         }
         let digit_start = pos;
-        while pos < bytes.len() && bytes[pos].is_ascii_digit() {
+        // Python regex uses [0-9]{1,2} — match at most 2 digits.
+        let digit_limit = (digit_start + 2).min(bytes.len());
+        while pos < digit_limit && bytes[pos].is_ascii_digit() {
             pos += 1;
         }
         let digit_end = pos;
         if digit_end > digit_start {
-            // We have a valid token — look up the extension.
+            // We have a candidate token — look up the extension.
             let token = &s[start..digit_end];
-            if let Some(ext) = extension_from_value(token) {
-                exts.push(ext);
+            match extension_from_value(token) {
+                Some(ext) => exts.push(ext),
+                None => {
+                    // Mirror Python: ValueError on unknown extension → InvalidChordStringException.
+                    return Err(ChordParseError(format!(
+                        "Unknown extension token: {}",
+                        token
+                    )));
+                }
             }
-            // If the token doesn't map (e.g. bare "4" from ext, not sus_short),
-            // we silently skip — consistent with Python skip-on-None.
         } else {
             // No digit matched — skip this character (separator, comma, etc.).
             pos = if pos == start { start + 1 } else { pos };
         }
     }
-    exts
+    Ok(exts)
 }
 
 // ---------------------------------------------------------------------------
@@ -276,10 +283,10 @@ pub fn parse_chord(input: &str) -> Result<ChordModel, ChordParseError> {
         }
         // Alt forces minor seventh; prepends Extensions::Alt.
         let mut exts = vec![Extensions::Alt];
-        exts.extend(get_extensions(ext_str));
+        exts.extend(get_extensions(ext_str)?);
         exts
     } else {
-        get_extensions(ext_str)
+        get_extensions(ext_str)?
     };
     // aug5 (+): append S5 if not already present.
     // Runs for BOTH the alt and non-alt paths (mirrors Python reference behaviour).

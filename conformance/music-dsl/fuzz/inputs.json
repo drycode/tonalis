@@ -1,0 +1,2340 @@
+[
+  {
+    "kind": "chord",
+    "input": "C7+"
+  },
+  {
+    "kind": "chord",
+    "input": "G7+"
+  },
+  {
+    "kind": "chord",
+    "input": "Ab7+"
+  },
+  {
+    "kind": "chord",
+    "input": "F7+"
+  },
+  {
+    "kind": "chord",
+    "input": "C7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "G7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "Bb7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "C7+alt"
+  },
+  {
+    "kind": "chord",
+    "input": "Csus"
+  },
+  {
+    "kind": "chord",
+    "input": "Csus4"
+  },
+  {
+    "kind": "chord",
+    "input": "Csus2"
+  },
+  {
+    "kind": "chord",
+    "input": "C4"
+  },
+  {
+    "kind": "chord",
+    "input": "C9sus"
+  },
+  {
+    "kind": "chord",
+    "input": "C9sus4"
+  },
+  {
+    "kind": "chord",
+    "input": "C7susb9"
+  },
+  {
+    "kind": "chord",
+    "input": "C7b9sus"
+  },
+  {
+    "kind": "chord",
+    "input": "Csus7b9"
+  },
+  {
+    "kind": "chord",
+    "input": "Csus9"
+  },
+  {
+    "kind": "chord",
+    "input": "D9sus"
+  },
+  {
+    "kind": "chord",
+    "input": "G9sus"
+  },
+  {
+    "kind": "chord",
+    "input": "Fsus"
+  },
+  {
+    "kind": "chord",
+    "input": "Bbsus"
+  },
+  {
+    "kind": "chord",
+    "input": "C#-7"
+  },
+  {
+    "kind": "chord",
+    "input": "Db^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Cb"
+  },
+  {
+    "kind": "chord",
+    "input": "B#"
+  },
+  {
+    "kind": "chord",
+    "input": "Fb"
+  },
+  {
+    "kind": "chord",
+    "input": "E#"
+  },
+  {
+    "kind": "chord",
+    "input": "F#7"
+  },
+  {
+    "kind": "chord",
+    "input": "G#-7"
+  },
+  {
+    "kind": "chord",
+    "input": "C^7#11"
+  },
+  {
+    "kind": "chord",
+    "input": "C13"
+  },
+  {
+    "kind": "chord",
+    "input": "C7b9"
+  },
+  {
+    "kind": "chord",
+    "input": "Cadd9"
+  },
+  {
+    "kind": "chord",
+    "input": "C69"
+  },
+  {
+    "kind": "chord",
+    "input": "C7b9#11"
+  },
+  {
+    "kind": "chord",
+    "input": "C-7b9"
+  },
+  {
+    "kind": "chord",
+    "input": "C7#9"
+  },
+  {
+    "kind": "chord",
+    "input": "C7b9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "C-^7"
+  },
+  {
+    "kind": "chord",
+    "input": "xyzzy"
+  },
+  {
+    "kind": "chord",
+    "input": "VIII"
+  },
+  {
+    "kind": "chord",
+    "input": "C|D"
+  },
+  {
+    "kind": "chord",
+    "input": "B#b9"
+  },
+  {
+    "kind": "chord",
+    "input": "Cadd\u00b2"
+  },
+  {
+    "kind": "numeric",
+    "input": "ii-7"
+  },
+  {
+    "kind": "numeric",
+    "input": "V7"
+  },
+  {
+    "kind": "numeric",
+    "input": "I^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "bVI^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "#ivo7"
+  },
+  {
+    "kind": "numeric",
+    "input": "sV7"
+  },
+  {
+    "kind": "numeric",
+    "input": "V7/V"
+  },
+  {
+    "kind": "numeric",
+    "input": "ii-7/IV"
+  },
+  {
+    "kind": "numeric",
+    "input": "bVII7"
+  },
+  {
+    "kind": "numeric",
+    "input": "bII7"
+  },
+  {
+    "kind": "numeric",
+    "input": "IV^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "ii-^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "sI7"
+  },
+  {
+    "kind": "numeric",
+    "input": "sbII7"
+  },
+  {
+    "kind": "numeric",
+    "input": "#IV7"
+  },
+  {
+    "kind": "numeric",
+    "input": "bVI-7"
+  },
+  {
+    "kind": "numeric",
+    "input": "V7/ii"
+  },
+  {
+    "kind": "numeric",
+    "input": "V7/IV"
+  },
+  {
+    "kind": "numeric",
+    "input": "V7/bVI"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "E-7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "E-7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Ab-7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Ab-7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Db7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F#",
+    "chord": "C7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "G7+",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "G7+",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "C7alt",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "C7alt",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "Db7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Bb7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Db+"
+  },
+  {
+    "kind": "numeric",
+    "input": "biisus4"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "A#+^7b9",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Abh^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Fsus^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "A",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Go^769add9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Ab-",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "bVIIsus"
+  },
+  {
+    "kind": "numeric",
+    "input": "bv^7+"
+  },
+  {
+    "kind": "chord",
+    "input": "Bo"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Ab7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "#Isus2^7"
+  },
+  {
+    "kind": "chord",
+    "input": "G#-^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "vsus^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "sbII+/I-7"
+  },
+  {
+    "kind": "chord",
+    "input": "Ebsus7#11"
+  },
+  {
+    "kind": "numeric",
+    "input": "III+^713b13"
+  },
+  {
+    "kind": "chord",
+    "input": "Bo7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "D#^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "Bsus4^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "#V7#9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "F#h",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "A#h69"
+  },
+  {
+    "kind": "numeric",
+    "input": "bIIIsus4"
+  },
+  {
+    "kind": "chord",
+    "input": "Ab+"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "D#sus^713",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Bb7+alt"
+  },
+  {
+    "kind": "chord",
+    "input": "Eb^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Gsusb9#96"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "C#sus2",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "D#sus"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "Db-^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "III-#9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "F-^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "Ab7b13",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Gbo769add9"
+  },
+  {
+    "kind": "chord",
+    "input": "E-^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Fsus"
+  },
+  {
+    "kind": "chord",
+    "input": "A#-7b9#9b13"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "Gbo7+",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Fsus2#9"
+  },
+  {
+    "kind": "chord",
+    "input": "C+7#96"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Ebh^7b9#911",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "G-^7#11",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "#iv+^7"
+  },
+  {
+    "kind": "chord",
+    "input": "A-7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "D#-^7b9#9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "Ch7"
+  },
+  {
+    "kind": "numeric",
+    "input": "biiisus^7"
+  },
+  {
+    "kind": "chord",
+    "input": "F#h7+alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "#IIo7"
+  },
+  {
+    "kind": "numeric",
+    "input": "biisus2^711b9"
+  },
+  {
+    "kind": "numeric",
+    "input": "ii"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Dbsus4^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "Abh7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "bii+76/VI7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Eb+^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "viih7"
+  },
+  {
+    "kind": "chord",
+    "input": "Db9#9#9"
+  },
+  {
+    "kind": "numeric",
+    "input": "iiisus27/bVII-^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Absus^71311"
+  },
+  {
+    "kind": "numeric",
+    "input": "#vio^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Bo7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Dbsus4^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "#ivh^7"
+  },
+  {
+    "kind": "chord",
+    "input": "F#o^7add9b9#9"
+  },
+  {
+    "kind": "numeric",
+    "input": "V-7+alt"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Dbsus27",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "G+7alt"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "G#sus4b1311",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Bb+7"
+  },
+  {
+    "kind": "chord",
+    "input": "C-^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Dbh^7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "F#sus4^7add9"
+  },
+  {
+    "kind": "chord",
+    "input": "Abo"
+  },
+  {
+    "kind": "chord",
+    "input": "Do^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Co"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "A#sus7#9",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "A#sus2^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Gbsus4^7b13add9"
+  },
+  {
+    "kind": "numeric",
+    "input": "#i"
+  },
+  {
+    "kind": "numeric",
+    "input": "#Vh7alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "IIIh/i7"
+  },
+  {
+    "kind": "chord",
+    "input": "F#-7+alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "vio^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Ebsus^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "isus^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "F#o",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "C#",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "G^7add9b9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Db+7+alt",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "D#+^7116",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "G^7669"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "B",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "G#sus27b9#9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "Gsus27b136"
+  },
+  {
+    "kind": "numeric",
+    "input": "IIsus7"
+  },
+  {
+    "kind": "chord",
+    "input": "A#sus^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "C#h",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "Gsus7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Bh",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Ao",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "F#-",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "A7",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Bbo^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Bbo"
+  },
+  {
+    "kind": "chord",
+    "input": "E^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "A7b96",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "G7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "Gbsus4769b9#9",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "F#h",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Ab+"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "F#sus47",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Gsus2^7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "D#^713#11"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Ao7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "#V-/III"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "Abh7alt",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "E^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "vi-7/bIII"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "A#+^7",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Eh7"
+  },
+  {
+    "kind": "chord",
+    "input": "Bbh^7"
+  },
+  {
+    "kind": "chord",
+    "input": "G#o7+11"
+  },
+  {
+    "kind": "numeric",
+    "input": "biiisus2^713"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Bh^711add9",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "bvih7alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "#iisus^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "sVI^713b13/iii7"
+  },
+  {
+    "kind": "chord",
+    "input": "F+7"
+  },
+  {
+    "kind": "chord",
+    "input": "G#h"
+  },
+  {
+    "kind": "numeric",
+    "input": "sbII-b13/#IV-7"
+  },
+  {
+    "kind": "chord",
+    "input": "G+b13"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "D#-7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "#IV+^7b9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "C+7b13"
+  },
+  {
+    "kind": "chord",
+    "input": "G#"
+  },
+  {
+    "kind": "chord",
+    "input": "Db-^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "G#+^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "F#+13",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "A#^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "bv"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "F#-7#9",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Eb-#11b9"
+  },
+  {
+    "kind": "numeric",
+    "input": "iv+7/vi7"
+  },
+  {
+    "kind": "numeric",
+    "input": "IV-13/IV-7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Bbsus^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "A#sus2",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Csus2^7#9",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "V+^7b9add9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Ab^7",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Ebh^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Eo",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "sv-^7+"
+  },
+  {
+    "kind": "numeric",
+    "input": "iih7"
+  },
+  {
+    "kind": "numeric",
+    "input": "viio^7b9#9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "F#+7#11"
+  },
+  {
+    "kind": "chord",
+    "input": "Db-^76"
+  },
+  {
+    "kind": "numeric",
+    "input": "bII-7alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "II-^7b13b9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "Gb-769"
+  },
+  {
+    "kind": "chord",
+    "input": "A#+7alt"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "D#h",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Bsus2",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Abh^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Abh^76",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Asus27",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Csus4",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "F-add911",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "Vsus2769#9/i7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Bb",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Gbsus27",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Bb^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "#isus^7/bVI"
+  },
+  {
+    "kind": "numeric",
+    "input": "sIVsus7"
+  },
+  {
+    "kind": "chord",
+    "input": "Db^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "G#o^7613",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "G#136",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "Dbo^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "biiio"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Db7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "C#7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "Bsus2^7",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "D#-"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "A#sus7b9",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "F#7alt"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "Bh#1111",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Abh6913"
+  },
+  {
+    "kind": "numeric",
+    "input": "bv"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "Gsus",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "bvisus4^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Ab-7alt",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "G#o^713",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Dsus#11"
+  },
+  {
+    "kind": "chord",
+    "input": "Gsus7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Eo",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Gbsus276"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "G#+7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Ao",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "E-^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Gbsus4^7b9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "G^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "I+69"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Asus^7b9#9",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Dbo"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Db7alt",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "C^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Esus2b9b13",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Eb#11"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "C#sus^7b9#911",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "G#"
+  },
+  {
+    "kind": "numeric",
+    "input": "bIII"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Ao",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Abh^7+"
+  },
+  {
+    "kind": "numeric",
+    "input": "ii-^7+"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "Asus47",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "II+^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "ii-7#11#9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "D#h7+",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "G#o7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "IV-7alt"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "C#o7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "Cob9#969",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "B^7"
+  },
+  {
+    "kind": "chord",
+    "input": "G#o^7b9#9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Ebsus47#911",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "A#h^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Esus^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "G#h^7+",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "G-",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "G^7#11add9"
+  },
+  {
+    "kind": "numeric",
+    "input": "ii+"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "Bb-7#913",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "Esus2^711b9",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Db^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "Bbsus2",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Eb-7+",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "iii-^7b9b13"
+  },
+  {
+    "kind": "chord",
+    "input": "Bbsus4"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "C#sus4^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "G+^7116",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "iiih7b9"
+  },
+  {
+    "kind": "numeric",
+    "input": "Vh^7/bii"
+  },
+  {
+    "kind": "chord",
+    "input": "Abh^769"
+  },
+  {
+    "kind": "numeric",
+    "input": "ivh7/v"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Go",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "biih^7"
+  },
+  {
+    "kind": "chord",
+    "input": "D#sus^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Esus4^713"
+  },
+  {
+    "kind": "chord",
+    "input": "D#sus7"
+  },
+  {
+    "kind": "chord",
+    "input": "Absus4^76913"
+  },
+  {
+    "kind": "chord",
+    "input": "Gbh"
+  },
+  {
+    "kind": "numeric",
+    "input": "vsus7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "G^7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "E-^7+"
+  },
+  {
+    "kind": "chord",
+    "input": "A7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Gbo7",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "G#-^7#11"
+  },
+  {
+    "kind": "chord",
+    "input": "Csus"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "Ebsus^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "B+^7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "A#-^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "G-^7+69add9",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "bvh^7/bv"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "Fo611",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Dsus27#11b9#9"
+  },
+  {
+    "kind": "numeric",
+    "input": "VIIsus2^7"
+  },
+  {
+    "kind": "chord",
+    "input": "D#o^7+"
+  },
+  {
+    "kind": "numeric",
+    "input": "ih7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "Fo7"
+  },
+  {
+    "kind": "chord",
+    "input": "A#h7"
+  },
+  {
+    "kind": "chord",
+    "input": "Dsus2^7"
+  },
+  {
+    "kind": "chord",
+    "input": "D#+69"
+  },
+  {
+    "kind": "numeric",
+    "input": "bvi-^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "#VIsus2^7/bIII^7"
+  },
+  {
+    "kind": "chord",
+    "input": "G#-^7+11#9"
+  },
+  {
+    "kind": "chord",
+    "input": "C#-^7#11"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "A#o7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "Vh^7136"
+  },
+  {
+    "kind": "numeric",
+    "input": "bIIh^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Gbhb9add9",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "ivh/bV-"
+  },
+  {
+    "kind": "numeric",
+    "input": "V^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Db-^7",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Db9#9"
+  },
+  {
+    "kind": "numeric",
+    "input": "bIII-7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "F#",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "#ih7alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "#ivsus^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "Dbsus47",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Bsus2"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "Csus4711b9#9",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "C#sus2^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Fsus4"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "E7+",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Asus2^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Abh^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "IIIsus4^7b13"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "C",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Dbsus2^76"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "F11",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "Gb-b9",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Db^7"
+  },
+  {
+    "kind": "chord",
+    "input": "G#^7#11"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Go7b9#9",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "F#sus2^7b13",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "C#sus4^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Gb7alt",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "A#o^7+"
+  },
+  {
+    "kind": "numeric",
+    "input": "biii+^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Ch7+alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "biii-^7+add9/biii-7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "Fh7alt",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "B7alt",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Absus2^7add9"
+  },
+  {
+    "kind": "numeric",
+    "input": "bvio"
+  },
+  {
+    "kind": "chord",
+    "input": "Ao^7b9#9"
+  },
+  {
+    "kind": "numeric",
+    "input": "v+"
+  },
+  {
+    "kind": "numeric",
+    "input": "#IVo^7#11b9/i"
+  },
+  {
+    "kind": "numeric",
+    "input": "bIIIsus4"
+  },
+  {
+    "kind": "chord",
+    "input": "G^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "A#+^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "visusb9add9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "A#sus",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "B-7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "Fsus4^7#9#11",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "Vh^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "Bbh",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "C+69b13"
+  },
+  {
+    "kind": "chord",
+    "input": "Go^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Bo^7b9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "A#^7+"
+  },
+  {
+    "kind": "chord",
+    "input": "Bsus4^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "s#ivsus2^769b9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Ah^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Ab^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "F#",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "F#sus4#911",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Eb-"
+  },
+  {
+    "kind": "numeric",
+    "input": "III^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Abh^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "#Vsus27b13"
+  },
+  {
+    "kind": "chord",
+    "input": "G-^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Esus4^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "iio7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Db7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Gsus47b9#9"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Bbh7alt",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "A#sus27"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "F#^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "Ch^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "A#sus",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "C#-^7#9b9",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Asus^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "E",
+    "chord": "Bo^7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "#IV^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "#VIh"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "Gbh7",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Db",
+    "chord": "A#h^7#9",
+    "substitution": false
+  },
+  {
+    "kind": "numeric",
+    "input": "IIIsus2^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "A",
+    "chord": "Fh^76b9#9",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Bb",
+    "chord": "C#7+alt",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "F#7"
+  },
+  {
+    "kind": "chord",
+    "input": "Ab-^7b13"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Dsus2^7#1111",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "bvi^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "D+",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Eb",
+    "chord": "Fsus27add9",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Bb-7+"
+  },
+  {
+    "kind": "chord",
+    "input": "A#^7"
+  },
+  {
+    "kind": "chord",
+    "input": "F#-^7+"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Csus",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "E+^7+"
+  },
+  {
+    "kind": "chord",
+    "input": "E-13b13"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "F#sus27",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Gb",
+    "chord": "F-^7",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "sbvio^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "#vsus2^7add9"
+  },
+  {
+    "kind": "numeric",
+    "input": "iii+^7"
+  },
+  {
+    "kind": "chord",
+    "input": "F#7#11b9#9"
+  },
+  {
+    "kind": "chord",
+    "input": "Gh7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Ebsus2b13",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "C",
+    "chord": "A-7alt",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "Ao7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "A#^713"
+  },
+  {
+    "kind": "chord",
+    "input": "Eb"
+  },
+  {
+    "kind": "numeric",
+    "input": "#isus27"
+  },
+  {
+    "kind": "chord",
+    "input": "Bb-^7b9#911"
+  },
+  {
+    "kind": "numeric",
+    "input": "#v-^7"
+  },
+  {
+    "kind": "chord",
+    "input": "F#sus4^7b9add9"
+  },
+  {
+    "kind": "chord",
+    "input": "F#^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "bviisus2769/VII"
+  },
+  {
+    "kind": "numeric",
+    "input": "biiisus2"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "D",
+    "chord": "C#o^7669",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "V+^7#11"
+  },
+  {
+    "kind": "numeric",
+    "input": "bIII11b9#9/biii-^7"
+  },
+  {
+    "kind": "chord",
+    "input": "F#sus2"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "B",
+    "chord": "Bbsus27",
+    "substitution": true
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "E+7",
+    "substitution": false
+  },
+  {
+    "kind": "chord",
+    "input": "Ab"
+  },
+  {
+    "kind": "chord",
+    "input": "Gb7alt"
+  },
+  {
+    "kind": "numeric",
+    "input": "viisus2^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "s#ivsus27"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "F",
+    "chord": "Ao^7#9",
+    "substitution": false
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "G",
+    "chord": "Abh7alt",
+    "substitution": true
+  },
+  {
+    "kind": "numeric",
+    "input": "#IIsus2^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "bii+7alt"
+  },
+  {
+    "kind": "chord",
+    "input": "Gbh^7"
+  },
+  {
+    "kind": "chord",
+    "input": "D#-^7"
+  },
+  {
+    "kind": "numeric_from_chord",
+    "key_root": "Ab",
+    "chord": "Bbhb9#9",
+    "substitution": true
+  },
+  {
+    "kind": "chord",
+    "input": "D#7"
+  },
+  {
+    "kind": "numeric",
+    "input": "bIIsus7136"
+  },
+  {
+    "kind": "chord",
+    "input": "D#"
+  },
+  {
+    "kind": "numeric",
+    "input": "visus27/i-"
+  },
+  {
+    "kind": "chord",
+    "input": "A#-7"
+  },
+  {
+    "kind": "numeric",
+    "input": "IIo7"
+  },
+  {
+    "kind": "numeric",
+    "input": "bVII^7"
+  },
+  {
+    "kind": "chord",
+    "input": "A#sus^7b9#9"
+  },
+  {
+    "kind": "numeric",
+    "input": "sii^7"
+  },
+  {
+    "kind": "numeric",
+    "input": "biii"
+  },
+  {
+    "kind": "chord",
+    "input": "D#sus4^7"
+  },
+  {
+    "kind": "chord",
+    "input": "Bsus2"
+  },
+  {
+    "kind": "chord",
+    "input": "Absus4711add9"
+  }
+]

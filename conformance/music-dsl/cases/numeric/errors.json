@@ -20,5 +20,25 @@
     "expect": {
       "error": true
     }
+  },
+  {
+    "name": "numeric/errors/b9add9-merges-to-b99-invalid",
+    "op": "parse_numeric",
+    "args": {
+      "input": "Vsusb9add9"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "numeric/errors/b9add9-lowercase-root-invalid",
+    "op": "parse_numeric",
+    "args": {
+      "input": "visusb9add9"
+    },
+    "expect": {
+      "error": true
+    }
   }
 ]

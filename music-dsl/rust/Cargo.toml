@@ -8,6 +8,10 @@ license = "MIT"
 [lib]
 crate-type = ["rlib"]
 
+[[bin]]
+name = "fuzz_runner"
+path = "src/bin/fuzz_runner.rs"
+
 [dependencies]
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }

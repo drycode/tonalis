@@ -270,6 +270,14 @@ function normalizeSeventh(token: string | undefined): SeventhT {
 // Extension parsing (mirrors AbstractChord._get_extensions)
 // ---------------------------------------------------------------------------
 
+// Known valid extension values (mirrors Python Extensions enum)
+const VALID_EXTENSIONS: ReadonlySet<string> = new Set(Object.values({
+  _None: "",
+  add2: "2", add3: "3", b5: "b5", add5: "5", s5: "#5", b6: "b6",
+  add6: "6", b9: "b9", add9: "9", s9: "#9", add11: "11", s11: "#11",
+  b13: "b13", add13: "13", alt: "alt",
+}).filter(v => v !== ""));
+
 function getExtensions(extToken: string): ExtensionsT[] {
   if (!extToken) return [];
   let s = extToken.replace(/add/g, "");
@@ -285,8 +293,12 @@ function getExtensions(extToken: string): ExtensionsT[] {
       pos += 1;
       continue;
     }
-    results.push(m[0] as ExtensionsT);
-    pos += m[0].length;
+    const token = m[0];
+    if (!VALID_EXTENSIONS.has(token)) {
+      throw new InvalidChordStringError(`Unknown extension token: ${token}`);
+    }
+    results.push(token as ExtensionsT);
+    pos += token.length;
   }
   return results;
 }
@@ -320,7 +332,7 @@ function parseNumericString(s: string, substitution: boolean): NumericChordAttrs
     );
   }
   const g = match.groups;
-  const root = parseNumericRoot(g["root"]);
+  const rawRoot = parseNumericRoot(g["root"]);
 
   // Collect sus
   let _sus: string | undefined = g["sus1"] || g["sus2"] || undefined;
@@ -339,6 +351,9 @@ function parseNumericString(s: string, substitution: boolean): NumericChordAttrs
 
   const triadStr = _sus || triadToken || "";
   const triad = triadStr as TriadT;
+
+  // Mirror Python make_chord_attrs → m_or_M_scaledegree: lower the root case for minor-quality triads.
+  const root = mOrMScaleDegree(rawRoot, triad);
 
   const seventh = normalizeSeventh(g["seventh"]);
   const extToken = g["ext"] || "";

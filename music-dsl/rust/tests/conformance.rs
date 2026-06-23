@@ -12,7 +12,7 @@ use serde_json::Value;
 use std::fs;
 use std::path::{Path, PathBuf};
 
-const EXPECTED_CASE_COUNT: usize = 264; // keep in sync with Python/TS runners
+const EXPECTED_CASE_COUNT: usize = 273; // keep in sync with Python/TS runners
 
 fn cases_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))

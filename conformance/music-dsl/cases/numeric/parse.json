@@ -130,5 +130,159 @@
         }
       }
     }
+  },
+  {
+    "name": "numeric/parse/mOrM-bVI-minor",
+    "op": "parse_numeric",
+    "args": {
+      "input": "bVI-7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "bvi",
+            "triad": "-",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Subdominant",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/mOrM-II-minor",
+    "op": "parse_numeric",
+    "args": {
+      "input": "II-7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "ii",
+            "triad": "-",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Subdominant",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/mOrM-sII-dim",
+    "op": "parse_numeric",
+    "args": {
+      "input": "#IIo7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "#ii",
+            "triad": "o",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/mOrM-V-halfdim",
+    "op": "parse_numeric",
+    "args": {
+      "input": "Vh^7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "v",
+            "triad": "h",
+            "seventh": "^7",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/mOrM-bVII-sus",
+    "op": "parse_numeric",
+    "args": {
+      "input": "bVIIsus"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "bvii",
+            "triad": "sus",
+            "seventh": "",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/mOrM-IV-minor-alt",
+    "op": "parse_numeric",
+    "args": {
+      "input": "IV-7alt"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "iv",
+            "triad": "-",
+            "seventh": "7",
+            "extensions": ["alt"],
+            "harmonic_function": "Subdominant",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/mOrM-III-sus2",
+    "op": "parse_numeric",
+    "args": {
+      "input": "IIIsus2^7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "iii",
+            "triad": "sus2",
+            "seventh": "^7",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
   }
 ]

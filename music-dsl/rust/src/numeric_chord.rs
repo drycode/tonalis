@@ -88,7 +88,7 @@ fn parse_one(segment: &str, substitution: bool) -> Result<NumericChordAttrs, Num
     let sus2_cap   = cap("sus2");
 
     // Verify root is a known ScaleDegree
-    ScaleDegree::from_value(root_str)
+    let root_degree = ScaleDegree::from_value(root_str)
         .ok_or_else(|| NumericParseError::UnknownDegree(root_str.to_string()))?;
 
     // Sus collection (same logic as chord.rs)
@@ -133,10 +133,10 @@ fn parse_one(segment: &str, substitution: bool) -> Result<NumericChordAttrs, Num
 
     let mut ext_vals: Vec<String> = if !alt_cap.is_empty() {
         let mut v = vec!["alt".to_string()];
-        v.extend(get_ext_strings(ext_str));
+        v.extend(get_ext_strings(ext_str)?);
         v
     } else {
-        get_ext_strings(ext_str)
+        get_ext_strings(ext_str)?
     };
     if !aug5.is_empty() && !ext_vals.contains(&"#5".to_string()) {
         ext_vals.push("#5".to_string());
@@ -144,8 +144,15 @@ fn parse_one(segment: &str, substitution: bool) -> Result<NumericChordAttrs, Num
 
     let hf = get_harmonic_function(triad, seventh);
 
+    // m_or_M_scaledegree: mirror Python make_chord_attrs — lower the root case for minor-quality triads.
+    // Major, Augmented, and Sus4 keep the major degree; everything else (Minor, Dim, HalfDim, Sus, Sus2) lowercases.
+    let root_final = match triad {
+        Triad::Major | Triad::Augmented | Triad::Sus4 => root_degree,
+        _ => root_degree.to_minor(),
+    };
+
     Ok(NumericChordAttrs {
-        root: root_str.to_string(),
+        root: root_final.value().to_string(),
         triad: triad_value.to_string(),
         seventh: seventh_norm.to_string(),
         extensions: ext_vals,
@@ -154,10 +161,12 @@ fn parse_one(segment: &str, substitution: bool) -> Result<NumericChordAttrs, Num
     })
 }
 
-/// Extract extension value strings from the raw extension substring (mirrors chord.rs get_extensions).
-fn get_ext_strings(s: &str) -> Vec<String> {
+/// Extract extension value strings from the raw extension substring.
+/// Returns an error if a token is not a known extension value (mirrors Python's
+/// ValueError on invalid enum members — e.g. `b9add9` → `b99` is rejected).
+fn get_ext_strings(s: &str) -> Result<Vec<String>, NumericParseError> {
     if s.is_empty() {
-        return Vec::new();
+        return Ok(Vec::new());
     }
     let s = s.replace("add", "").replace("69", "6,9");
     let mut result = Vec::new();
@@ -169,19 +178,27 @@ fn get_ext_strings(s: &str) -> Vec<String> {
             pos += 1;
         }
         let digit_start = pos;
-        while pos < bytes.len() && bytes[pos].is_ascii_digit() {
+        // Python regex uses [0-9]{1,2} — match at most 2 digits.
+        let digit_limit = (digit_start + 2).min(bytes.len());
+        while pos < digit_limit && bytes[pos].is_ascii_digit() {
             pos += 1;
         }
         if pos > digit_start {
             let token = &s[start..pos];
             if extension_from_value(token).is_some() {
                 result.push(token.to_string());
+            } else {
+                return Err(NumericParseError::RegexNoMatch(format!(
+                    "Unknown extension token: {}",
+                    token
+                )));
             }
         } else {
+            // Skip separator chars (commas etc.)
             pos = if pos == start { start + 1 } else { pos };
         }
     }
-    result
+    Ok(result)
 }
 
 // ---------------------------------------------------------------------------

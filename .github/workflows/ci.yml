@@ -75,3 +75,49 @@ jobs:
       - name: MusicDSL Rust port + conformance
         working-directory: music-dsl/rust
         run: cargo test
+
+  # 3-way Python↔TS↔Rust differential fuzzer: seeded deterministic run (seed=1, N=500).
+  # Catches port divergences that the conformance suite cannot cover because they require
+  # generated inputs spanning the full chord-suffix grammar.
+  fuzz:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e "./music-dsl/python[dev]"
+
+      - name: Install Node dependencies
+        working-directory: music-dsl/ts
+        run: npm ci
+
+      - name: Step 1 — Generate seeded inputs (seed=1, N=500)
+        run: python conformance/music-dsl/fuzz/gen.py 1 500
+
+      - name: Step 2 — Python oracle
+        run: python conformance/music-dsl/fuzz/oracle.py
+
+      - name: Step 3 — Rust fuzz runner
+        working-directory: music-dsl/rust
+        run: CARGO_MANIFEST_DIR=$(pwd) cargo run --bin fuzz_runner --quiet
+
+      - name: Step 4 — 3-way differential (vitest, 0 divergences required)
+        working-directory: music-dsl/ts
+        run: |
+          NODE_PATH=node_modules node node_modules/.bin/vitest run \
+            --config ../../conformance/music-dsl/fuzz/vitest.fuzz.config.ts
