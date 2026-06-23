@@ -51,7 +51,9 @@ class Notes(JsonSerializableEnum):
         return self.value == other.value or self.value == enharmonic
 
     def __hash__(self):
-        return hash(Notes.sharps_to_flats.value.get(self.name) or self.name)
+        # Consistent with the enharmonic __eq__: sharps/flats of the same pitch
+        # (Cs/Db, ...) normalize to one flat spelling, so equal notes hash equal.
+        return hash(self.to_flat().value)
 
     def __dict__(self):
         return {
