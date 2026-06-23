@@ -1,0 +1,7 @@
+[
+  {"name": "cs-eq-db",   "op": "notes_equal", "args": {"a": "C#", "b": "Db"}, "expect": {"value": true}},
+  {"name": "c-neq-d",    "op": "notes_equal", "args": {"a": "C", "b": "D"}, "expect": {"value": false}},
+  {"name": "cs-index",   "op": "note_index", "args": {"n": "C#"}, "expect": {"value": 1}},
+  {"name": "db-index",   "op": "note_index", "args": {"n": "Db"}, "expect": {"value": 1}},
+  {"name": "g-index",    "op": "note_index", "args": {"n": "G"}, "expect": {"value": 7}}
+]

@@ -1,0 +1,9 @@
+[
+  {"name": "m6-eq-itself",      "op": "intervals_equal", "args": {"a": "m6", "b": "m6"}, "expect": {"value": true}},
+  {"name": "m6-neq-M3",         "op": "intervals_equal", "args": {"a": "m6", "b": "M3"}, "expect": {"value": false}},
+  {"name": "m2-neq-M7",         "op": "intervals_equal", "args": {"a": "m2", "b": "M7"}, "expect": {"value": false}},
+  {"name": "P4-neq-P5",         "op": "intervals_equal", "args": {"a": "P4", "b": "P5"}, "expect": {"value": false}},
+  {"name": "unison-neq-octave", "op": "intervals_equal", "args": {"a": "Unison", "b": "Octave"}, "expect": {"value": false}},
+  {"name": "m6-semitones",      "op": "interval_semitones", "args": {"x": "m6"}, "expect": {"value": 8}},
+  {"name": "M3-semitones",      "op": "interval_semitones", "args": {"x": "M3"}, "expect": {"value": 4}}
+]

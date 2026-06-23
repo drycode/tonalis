@@ -1,0 +1,4 @@
+[
+  {"name": "sharp4-eq-flat5", "op": "scale_degrees_equal", "args": {"a": "#iv", "b": "bv"}, "expect": {"value": true}},
+  {"name": "ii-neq-iii",      "op": "scale_degrees_equal", "args": {"a": "ii", "b": "iii"}, "expect": {"value": false}}
+]

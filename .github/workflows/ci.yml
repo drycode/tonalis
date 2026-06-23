@@ -32,6 +32,9 @@ jobs:
       - name: dsl-core conformance (Python reference)
         run: pytest conformance/dsl-core/runners/python -q
 
+      - name: MusicDSL conformance (Python reference)
+        run: pytest conformance/music-dsl/runners/python -q
+
   # TypeScript port: units + import-boundary guard + the dsl-core conformance runner.
   node:
     runs-on: ubuntu-latest
