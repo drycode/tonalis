@@ -150,7 +150,7 @@ function getExtensions(extString: string): ExtensionsT[] {
   if (!extString) return [];
   // Normalize: strip "add" prefixes, expand "69" → "6,9"
   let s = extString.replace(/add/g, "");
-  s = s.replace("69", "6,9");
+  s = s.replace(/69/g, "6,9");
 
   const EXT_TOKEN_RE = /[b#]?[0-9]{1,2}/g;
   const results: ExtensionsT[] = [];

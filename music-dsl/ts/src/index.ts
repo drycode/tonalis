@@ -61,3 +61,24 @@ export {
   serializeChord,
   chordEncoding,
 } from "./chord.js";
+
+export {
+  IncorrectHarmonicFunctionError,
+  type NumericChordAttrs,
+  type NumericChordModel,
+  type NumericChordSerialized,
+  fromChordString,
+  fromChord,
+  serializeNumericChord,
+  SUBSTITUTE_RESOLUTIONS,
+  DOMINANT_RESOLUTIONS,
+  SUBDOMINANT_RESOLUTIONS,
+  MAJOR_HARMONIC_FUNCTIONS,
+} from "./numericChord.js";
+
+export {
+  modulate,
+  isDiatonic,
+  harmonicFunctionInKey,
+  chordInKey,
+} from "./transactions.js";

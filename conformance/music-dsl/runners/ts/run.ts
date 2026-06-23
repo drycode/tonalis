@@ -13,6 +13,9 @@ import {
   intervalsEqual, intervalSemitones, notesEqual, noteIndex, scaleDegreesEqual,
   scaleValue, encodingValue, stripLeft, stripRight, semitonesApartAscending,
   parseChord, serializeChord, chordEncoding,
+  fromChordString, fromChord, serializeNumericChord,
+  modulate, isDiatonic, harmonicFunctionInKey, chordInKey,
+  IncorrectHarmonicFunctionError, InvalidChordStringError,
 } from "music_dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -36,6 +39,17 @@ const OPS: Record<string, (args: any) => unknown> = {
   semitones_apart_ascending: (a) => semitonesApartAscending(a["root"] as string, a["note"] as string),
   parse_chord:               (a) => ({ chord: serializeChord(parseChord(a["input"] as string)) }),
   encode_chord:              (a) => Number(chordEncoding(a["input"] as string)),
+  // Build 4 ops: numeric_chord + transactions
+  parse_numeric:             (a) => ({ numeric: serializeNumericChord(fromChordString(a["input"] as string)) }),
+  numeric_from_chord:        (a) => {
+    const chord = parseChord(a["chord"] as string);
+    const attrs = fromChord(a["key_root"] as string, chord, a["substitution"] as boolean);
+    return { numeric: serializeNumericChord({ numerator: attrs, denominator: null }).numerator };
+  },
+  modulate:                  (a) => modulate(a["semitones"] as number, a["note"] as string),
+  is_diatonic:               (a) => isDiatonic(a["root"] as string, a["scale"] as string, parseChord(a["chord"] as string)),
+  harmonic_function_in_key:  (a) => harmonicFunctionInKey(a["key_root"] as string, a["key_is_minor"] as boolean, parseChord(a["chord"] as string)),
+  chord_in_key:              (a) => ({ chord: chordInKey(a["numeric"] as string, a["key_root"] as string) }),
 };
 
 function discover(dir: string): Array<{ relpath: string; case: Case }> {
@@ -55,7 +69,7 @@ function discover(dir: string): Array<{ relpath: string; case: Case }> {
   return out;
 }
 
-const EXPECTED_CASE_COUNT = 216; // keep in sync with the Python runner's frozen count
+const EXPECTED_CASE_COUNT = 264; // keep in sync with the Python runner's frozen count
 
 const cases = discover(CASES_DIR);
 
