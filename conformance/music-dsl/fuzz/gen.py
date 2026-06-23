@@ -9,16 +9,17 @@ Usage:
 
 Output: conformance/music-dsl/fuzz/inputs.json
 Each record is one of:
-    {"kind": "chord",                "input": "<chord_string>"}
-    {"kind": "numeric",              "input": "<numeric_string>"}
-    {"kind": "numeric_from_chord",   "key_root": "<note>", "chord": "<chord_string>", "substitution": <bool>}
-    {"kind": "chord_pitches",        "chord": "<chord_string>", "octave": 4}
-    {"kind": "scale_pitches",        "root": "<note>", "scale": "<scale_name>", "octave": 4}
-    {"kind": "scale_degree_pitch",   "degree": "<degree_value>", "key_root": "<note>", "octave": 4}
-    {"kind": "note_to_midi",         "note": "<note>", "octave": <int>}
-    {"kind": "modulate",             "semitones": <int>, "note": "<note_or_degree>"}
-    {"kind": "is_diatonic",          "root": "<note>", "scale": "<scale_name>", "chord": "<chord_string>"}
-    {"kind": "chord_in_key",         "numeric": "<numeric_string>", "key_root": "<note>"}
+    {"kind": "chord",                       "input": "<chord_string>"}
+    {"kind": "numeric",                     "input": "<numeric_string>"}
+    {"kind": "numeric_from_chord",          "key_root": "<note>", "chord": "<chord_string>", "substitution": <bool>}
+    {"kind": "chord_pitches",               "chord": "<chord_string>", "octave": 4}
+    {"kind": "scale_pitches",               "root": "<note>", "scale": "<scale_name>", "octave": 4}
+    {"kind": "scale_degree_pitch",          "degree": "<degree_value>", "key_root": "<note>", "octave": 4}
+    {"kind": "note_to_midi",                "note": "<note>", "octave": <int>}
+    {"kind": "modulate",                    "semitones": <int>, "note": "<note_or_degree>"}
+    {"kind": "is_diatonic",                 "root": "<note>", "scale": "<scale_name>", "chord": "<chord_string>"}
+    {"kind": "chord_in_key",                "numeric": "<numeric_string>", "key_root": "<note>"}
+    {"kind": "harmonic_function_in_key",    "key_root": "<note>", "key_is_minor": <bool>, "chord": "<chord_string>"}
 
 Intentional omissions:
     - midi_to_hz: float output — rounding divergence risk across Python/TS/Rust floating-point
@@ -239,6 +240,23 @@ def _build_chord_in_key(rng: random.Random) -> dict:
     return {"kind": "chord_in_key", "numeric": numeric, "key_root": key_root}
 
 
+def _build_harmonic_function_in_key(rng: random.Random) -> dict:
+    """Build one harmonic_function_in_key record.
+
+    Mixes valid chord strings (majority) with deliberately invalid ones so the
+    error contract (all three ports must agree: error on invalid chord) is exercised.
+    """
+    key_root = rng.choice(KEY_ROOTS)
+    key_is_minor = rng.random() < 0.5
+    # 15% invalid chord string to exercise the error contract
+    if rng.random() < 0.15:
+        invalid_chords = ["xyzzy", "VIII", "C|D", "Eb9#9add9", "B#b9", "Cadd²", "C7+alt"]
+        chord = rng.choice(invalid_chords)
+    else:
+        chord = _build_chord_string(rng)
+    return {"kind": "harmonic_function_in_key", "key_root": key_root, "key_is_minor": key_is_minor, "chord": chord}
+
+
 # ---------------------------------------------------------------------------
 # Bias batches — known-tricky inputs always included regardless of sampling
 # ---------------------------------------------------------------------------
@@ -353,6 +371,23 @@ BIAS_CHORD_IN_KEY = [
     {"kind": "chord_in_key", "numeric": "sV7",    "key_root": "C"},
 ]
 
+# harmonic_function_in_key bias: covers all three functions + error contract on invalid chord
+BIAS_HF_IN_KEY = [
+    # Tonic
+    {"kind": "harmonic_function_in_key", "key_root": "C",  "key_is_minor": False, "chord": "C^7"},
+    {"kind": "harmonic_function_in_key", "key_root": "C",  "key_is_minor": True,  "chord": "C-7"},
+    # Dominant
+    {"kind": "harmonic_function_in_key", "key_root": "C",  "key_is_minor": False, "chord": "G7"},
+    {"kind": "harmonic_function_in_key", "key_root": "G",  "key_is_minor": False, "chord": "D7"},
+    # Subdominant
+    {"kind": "harmonic_function_in_key", "key_root": "C",  "key_is_minor": False, "chord": "D-7"},
+    {"kind": "harmonic_function_in_key", "key_root": "Bb", "key_is_minor": False, "chord": "Eb^7"},
+    # Error contract: invalid chord strings must error in all three ports
+    {"kind": "harmonic_function_in_key", "key_root": "C",  "key_is_minor": False, "chord": "Eb9#9add9"},
+    {"kind": "harmonic_function_in_key", "key_root": "C",  "key_is_minor": False, "chord": "xyzzy"},
+    {"kind": "harmonic_function_in_key", "key_root": "C",  "key_is_minor": True,  "chord": "C7+alt"},
+]
+
 
 # ---------------------------------------------------------------------------
 # Main generator
@@ -362,10 +397,10 @@ def generate(seed: int = 1, n: int = 500) -> list[dict]:
     """Generate a deterministic batch of fuzz inputs.
 
     Distribution target (random fill after bias batches):
-      ~15% chord, ~10% numeric, ~10% numeric_from_chord
-      ~15% chord_pitches, ~10% scale_pitches, ~5% scale_degree_pitch, ~5% note_to_midi
-      ~10% modulate, ~10% is_diatonic, ~5% chord_in_key
-      (remaining ~5% chord)
+      ~13% chord, ~8% numeric, ~8% numeric_from_chord
+      ~13% chord_pitches, ~8% scale_pitches, ~5% scale_degree_pitch, ~5% note_to_midi
+      ~8% modulate, ~8% is_diatonic, ~5% chord_in_key, ~5% harmonic_function_in_key
+      (remaining ~14% chord)
     """
     rng = random.Random(seed)
     records: list[dict] = []
@@ -384,45 +419,49 @@ def generate(seed: int = 1, n: int = 500) -> list[dict]:
     records.extend(BIAS_MODULATE)
     records.extend(BIAS_IS_DIATONIC)
     records.extend(BIAS_CHORD_IN_KEY)
+    records.extend(BIAS_HF_IN_KEY)
 
     bias_count = len(records)
     remaining = max(0, n - bias_count)
 
     # Randomly fill the remainder
     # Cumulative thresholds:
-    #   0.00–0.15 chord
-    #   0.15–0.25 numeric
-    #   0.25–0.35 numeric_from_chord
-    #   0.35–0.50 chord_pitches
-    #   0.50–0.60 scale_pitches
-    #   0.60–0.65 scale_degree_pitch
-    #   0.65–0.70 note_to_midi
-    #   0.70–0.80 modulate
-    #   0.80–0.90 is_diatonic
-    #   0.90–0.95 chord_in_key
-    #   0.95–1.00 chord (extra weight)
+    #   0.00–0.13 chord
+    #   0.13–0.21 numeric
+    #   0.21–0.29 numeric_from_chord
+    #   0.29–0.42 chord_pitches
+    #   0.42–0.50 scale_pitches
+    #   0.50–0.55 scale_degree_pitch
+    #   0.55–0.60 note_to_midi
+    #   0.60–0.68 modulate
+    #   0.68–0.76 is_diatonic
+    #   0.76–0.81 chord_in_key
+    #   0.81–0.86 harmonic_function_in_key
+    #   0.86–1.00 chord (extra weight)
     for _ in range(remaining):
         roll = rng.random()
-        if roll < 0.15:
+        if roll < 0.13:
             records.append({"kind": "chord", "input": _build_chord_string(rng)})
-        elif roll < 0.25:
+        elif roll < 0.21:
             records.append({"kind": "numeric", "input": _build_numeric_string(rng)})
-        elif roll < 0.35:
+        elif roll < 0.29:
             records.append(_build_numeric_from_chord(rng))
-        elif roll < 0.50:
+        elif roll < 0.42:
             records.append(_build_chord_pitches(rng))
-        elif roll < 0.60:
+        elif roll < 0.50:
             records.append(_build_scale_pitches(rng))
-        elif roll < 0.65:
+        elif roll < 0.55:
             records.append(_build_scale_degree_pitch(rng))
-        elif roll < 0.70:
+        elif roll < 0.60:
             records.append(_build_note_to_midi(rng))
-        elif roll < 0.80:
+        elif roll < 0.68:
             records.append(_build_modulate(rng))
-        elif roll < 0.90:
+        elif roll < 0.76:
             records.append(_build_is_diatonic(rng))
-        elif roll < 0.95:
+        elif roll < 0.81:
             records.append(_build_chord_in_key(rng))
+        elif roll < 0.86:
+            records.append(_build_harmonic_function_in_key(rng))
         else:
             records.append({"kind": "chord", "input": _build_chord_string(rng)})
 

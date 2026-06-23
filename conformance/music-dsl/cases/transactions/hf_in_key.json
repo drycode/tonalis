@@ -70,5 +70,17 @@
     "expect": {
       "value": "Subdominant"
     }
+  },
+  {
+    "name": "transactions/hf_in_key/invalid-chord-error",
+    "op": "harmonic_function_in_key",
+    "args": {
+      "key_root": "C",
+      "key_is_minor": false,
+      "chord": "Eb9#9add9"
+    },
+    "expect": {
+      "error": true
+    }
   }
 ]

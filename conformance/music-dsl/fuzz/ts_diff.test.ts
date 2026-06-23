@@ -35,6 +35,7 @@ import {
   modulate,
   isDiatonic,
   chordInKey,
+  harmonicFunctionInKey,
 } from "music_dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -49,7 +50,8 @@ type FuzzInput =
   | { kind: "note_to_midi"; note: string; octave: number }
   | { kind: "modulate"; semitones: number; note: string }
   | { kind: "is_diatonic"; root: string; scale: string; chord: string }
-  | { kind: "chord_in_key"; numeric: string; key_root: string };
+  | { kind: "chord_in_key"; numeric: string; key_root: string }
+  | { kind: "harmonic_function_in_key"; key_root: string; key_is_minor: boolean; chord: string };
 
 type FuzzOutput =
   | { name: string; kind: string; error: true }
@@ -194,6 +196,20 @@ function tsRunChordInKey(
   }
 }
 
+function tsRunHarmonicFunctionInKey(
+  keyRoot: string,
+  keyIsMinor: boolean,
+  chordStr: string,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const chord = parseChord(chordStr);
+    const value = harmonicFunctionInKey(keyRoot, keyIsMinor, chord);
+    return { result: { value } };
+  } catch {
+    return { error: true };
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -265,6 +281,8 @@ describe("Python↔TypeScript↔Rust 3-way differential fuzzer (music-dsl)", () 
         tsOut = tsRunIsDiatonic(inp.root, inp.scale, inp.chord);
       } else if (inp.kind === "chord_in_key") {
         tsOut = tsRunChordInKey(inp.numeric, inp.key_root);
+      } else if (inp.kind === "harmonic_function_in_key") {
+        tsOut = tsRunHarmonicFunctionInKey(inp.key_root, inp.key_is_minor, inp.chord);
       } else {
         throw new Error(`Unknown kind in input record ${i}: ${JSON.stringify(inp)}`);
       }

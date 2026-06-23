@@ -27,7 +27,7 @@ from music_dsl.domain.chords.numeric_chord import NumericChord
 from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
 from music_dsl.serialize import serialize_chord, serialize_numeric_chord, _serialize_chord_attrs
 from music_dsl.realize import chord_pitches, scale_pitches, scale_degree_pitch, note_to_midi
-from music_dsl.transactions import modulate, is_diatonic, chord_in_key
+from music_dsl.transactions import modulate, is_diatonic, chord_in_key, harmonic_function_in_key
 from music_dsl.encode import Scales
 
 HERE = Path(__file__).resolve().parent
@@ -132,17 +132,29 @@ def _run_chord_in_key(record: dict) -> dict:
         return {"error": True}
 
 
+def _run_harmonic_function_in_key(record: dict) -> dict:
+    try:
+        key_root = Notes(record["key_root"])
+        key_is_minor = record["key_is_minor"]
+        chord = Chord(record["chord"])
+        result = harmonic_function_in_key(key_root, key_is_minor, chord)
+        return {"result": {"value": result.name}}
+    except Exception:
+        return {"error": True}
+
+
 RUNNERS = {
-    "chord":              _run_chord,
-    "numeric":            _run_numeric,
-    "numeric_from_chord": _run_numeric_from_chord,
-    "chord_pitches":      _run_chord_pitches,
-    "scale_pitches":      _run_scale_pitches,
-    "scale_degree_pitch": _run_scale_degree_pitch,
-    "note_to_midi":       _run_note_to_midi,
-    "modulate":           _run_modulate,
-    "is_diatonic":        _run_is_diatonic,
-    "chord_in_key":       _run_chord_in_key,
+    "chord":                      _run_chord,
+    "numeric":                    _run_numeric,
+    "numeric_from_chord":         _run_numeric_from_chord,
+    "chord_pitches":              _run_chord_pitches,
+    "scale_pitches":              _run_scale_pitches,
+    "scale_degree_pitch":         _run_scale_degree_pitch,
+    "note_to_midi":               _run_note_to_midi,
+    "modulate":                   _run_modulate,
+    "is_diatonic":                _run_is_diatonic,
+    "chord_in_key":               _run_chord_in_key,
+    "harmonic_function_in_key":   _run_harmonic_function_in_key,
 }
 
 
@@ -196,6 +208,10 @@ def run() -> list[dict]:
         elif kind == "chord_in_key":
             entry["numeric"] = record["numeric"]
             entry["key_root"] = record["key_root"]
+        elif kind == "harmonic_function_in_key":
+            entry["key_root"] = record["key_root"]
+            entry["key_is_minor"] = record["key_is_minor"]
+            entry["chord"] = record["chord"]
 
         if "error" in outcome:
             entry["error"] = True

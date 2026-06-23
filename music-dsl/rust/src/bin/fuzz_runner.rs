@@ -14,7 +14,7 @@
 use music_dsl::{
     parse_chord, parse_numeric, numeric_from_chord,
     note_to_midi, chord_pitches, scale_pitches, scale_degree_pitch,
-    modulate, is_diatonic, chord_in_key, scale_value,
+    modulate, is_diatonic, chord_in_key, harmonic_function_in_key, scale_value,
 };
 use serde_json::{json, Value};
 use std::fs;
@@ -101,6 +101,17 @@ fn run_chord_in_key(numeric_str: &str, key_root: &str) -> Value {
     }
 }
 
+fn run_harmonic_function_in_key(key_root: &str, key_is_minor: bool, chord_str: &str) -> Value {
+    // Pre-validate: if chord is invalid, emit error — mirrors Python (raises on Chord(invalid))
+    // and TS (parseChord throws).  The lib function itself returns "Tonic" on Err (intentional
+    // for the analysis engine), but the fuzz runner must match Python's error semantics.
+    if let Err(_) = parse_chord(chord_str) {
+        return json!({"error": true});
+    }
+    let result = harmonic_function_in_key(key_root, key_is_minor, chord_str);
+    json!({"result": {"value": result}})
+}
+
 fn main() {
     // Locate inputs.json relative to CARGO_MANIFEST_DIR (set at compile time).
     // At runtime we use the manifest dir passed via env var, or fall back to cwd-relative path.
@@ -174,6 +185,12 @@ fn main() {
                 let key_root = record["key_root"].as_str().unwrap_or("");
                 run_chord_in_key(numeric, key_root)
             }
+            "harmonic_function_in_key" => {
+                let key_root = record["key_root"].as_str().unwrap_or("");
+                let key_is_minor = record["key_is_minor"].as_bool().unwrap_or(false);
+                let chord = record["chord"].as_str().unwrap_or("");
+                run_harmonic_function_in_key(key_root, key_is_minor, chord)
+            }
             _ => {
                 eprintln!("WARNING: unknown kind {} at index {}", kind, i);
                 continue;
@@ -227,6 +244,11 @@ fn main() {
                 entry["numeric"] = record["numeric"].clone();
                 entry["key_root"] = record["key_root"].clone();
             }
+            "harmonic_function_in_key" => {
+                entry["key_root"] = record["key_root"].clone();
+                entry["key_is_minor"] = record["key_is_minor"].clone();
+                entry["chord"] = record["chord"].clone();
+            }
             _ => {}
         }
         if is_error {
@@ -249,7 +271,7 @@ fn main() {
     for kind in &[
         "chord", "numeric", "numeric_from_chord",
         "chord_pitches", "scale_pitches", "scale_degree_pitch", "note_to_midi",
-        "modulate", "is_diatonic", "chord_in_key",
+        "modulate", "is_diatonic", "chord_in_key", "harmonic_function_in_key",
     ] {
         let ok_k = outputs.iter().filter(|o| o["kind"] == *kind && !o.get("error").and_then(|v| v.as_bool()).unwrap_or(false)).count();
         let err_k = outputs.iter().filter(|o| o["kind"] == *kind && o.get("error").and_then(|v| v.as_bool()).unwrap_or(false)).count();
