@@ -14,7 +14,10 @@ def test_musicdsl_conformance_passes():
 
 
 def test_conformance_case_count_is_frozen():
-    # Mirrors dsl-core's frozen-count guard: a silently dropped/duplicated case
-    # (here or later in the TS/Rust port runners) fails loudly instead of passing.
+    # Frozen-count guard: a silently dropped/duplicated case (here or later in the
+    # TS/Rust port runners) fails loudly instead of passing. NOTE this is STRONGER than
+    # dsl-core's guard, which counts files; this counts individual cases, so a case
+    # dropped from within a file is also caught. Port runners should match this (count
+    # cases, not files).
     actual = sum(len(json.loads(f.read_text())) for f in CASES.rglob("*.json"))
     assert actual == EXPECTED_CASE_COUNT, f"case count drifted: {actual} != {EXPECTED_CASE_COUNT}"
