@@ -52,6 +52,12 @@ jobs:
           npm ci
           npm test
 
+      - name: MusicDSL TS port + conformance
+        working-directory: music-dsl/ts
+        run: |
+          npm ci
+          npm test
+
   # Rust port: units + import-boundary guard + the dsl-core conformance gate. The crate is rlib-only
   # (no cdylib / wasm-bindgen target), so there is no wasm32 build step.
   rust:
@@ -64,4 +70,8 @@ jobs:
 
       - name: cargo test
         working-directory: leadsheet/rust
+        run: cargo test
+
+      - name: MusicDSL Rust port + conformance
+        working-directory: music-dsl/rust
         run: cargo test
