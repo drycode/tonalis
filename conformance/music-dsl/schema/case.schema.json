@@ -44,6 +44,7 @@
         "value": { "type": ["boolean", "integer", "string", "array"], "items": { "type": "integer" } },
         "model": {
           "type": "object",
+          "additionalProperties": false,
           "description": "Model op result. For parse_chord: { chord: <ChordModel> }. For parse_numeric/numeric_from_chord: { numeric: <NumericModel> }. For chord_in_key: { chord: <ChordModel> }.",
           "properties": {
             "chord": {

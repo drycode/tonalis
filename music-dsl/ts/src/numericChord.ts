@@ -482,7 +482,7 @@ export function fromChord(
     }
   }
 
-  const harmFunc = getHarmonicFunction(scaleDegree === undefined ? chord.triad : chord.triad, chord.seventh);
+  const harmFunc = getHarmonicFunction(chord.triad, chord.seventh);
 
   return {
     root: scaleDegree,
