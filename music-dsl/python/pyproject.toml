@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "music_dsl"
+version = "0.1.0"
+description = "Music-theory domain: notes, chords, intervals, scales, harmonic function."
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+classifiers = ["License :: OSI Approved :: MIT License"]
+dependencies = [
+  # typing_extensions: used in chord.py (Self) and numeric_chord.py (Self, TypeAlias)
+  "typing_extensions>=4.10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "hypothesis",
+  # attrs: test_static.py uses `from attr import s` for hypothesis strategies
+  "attrs",
+]
+# viz extra is intentionally omitted: no runtime module in music_dsl imports
+# matplotlib, networkx, Pillow, or numpy. Those were transitive/dev-tool noise
+# in the monorepo setup.py freeze dump.
+
+[tool.setuptools.packages.find]
+include = ["music_dsl*"]

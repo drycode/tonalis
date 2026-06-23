@@ -11,6 +11,7 @@ license = { file = "LICENSE" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
+dependencies = ["music_dsl"]
 
 [tool.setuptools]
 packages = ["tonalis"]
