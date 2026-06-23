@@ -162,7 +162,10 @@ class ScaleDegree(JsonSerializableEnum):
         return self.value == other.value or self.value == enharmonic
 
     def __hash__(self):
-        return hash(ScaleDegree.sharps_to_flats.value.get(self.name) or self.name)
+        # Consistent with the enharmonic __eq__: a sharp degree normalizes to its flat
+        # spelling so enharmonic-equal degrees hash equal. (Major/minor stay distinct,
+        # matching __eq__, which does not equate them.)
+        return hash(ScaleDegree.sharps_to_flats.value.get(self.value, self.value))
 
 
 SCALE_DEGREES = [
