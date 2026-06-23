@@ -293,6 +293,8 @@ def bless_measures():
     add("literal-percent-error-4-4", 5, 4, 4, "F^7 % Eh A7")
     # Over-full measure — 5 beats > 4 denominator; no truncation
     add("overfull-five-beats-4-4", 7, 4, 4, "F^7 Eh A7")
+    # Over-full measure — 5 tokens, 9 slots (trailing token NOT doubled); most extreme %-doubling
+    add("overfull-nine-beats-4-4", 9, 4, 4, "C^7 A-7 D-7 G7 C^7")
     # 6/8 — denominator=8, two chords → total_beats=3, size=max(8,3)=8
     add("two-chords-6-8", 6, 6, 8, "C^7 D-7")
     # 3/4 — denominator=4, single chord, size=max(4,1)=4 beats
