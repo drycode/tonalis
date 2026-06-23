@@ -82,3 +82,21 @@ export {
   harmonicFunctionInKey,
   chordInKey,
 } from "./transactions.js";
+
+export {
+  noteToMidi,
+  midiToHz,
+  intervalPitches,
+  chordPitches,
+  scalePitches,
+  scaleDegreePitch,
+} from "./realize.js";
+
+export {
+  type TimeSignature,
+  type BeatLocation,
+  type BeatContainer,
+  type MeasureModel,
+  parseMeasure,
+  serializeMeasure,
+} from "./measure.js";

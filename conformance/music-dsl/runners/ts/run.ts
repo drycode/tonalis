@@ -16,6 +16,8 @@ import {
   fromChordString, fromChord, serializeNumericChord,
   modulate, isDiatonic, harmonicFunctionInKey, chordInKey,
   IncorrectHarmonicFunctionError, InvalidChordStringError,
+  noteToMidi, midiToHz, intervalPitches, chordPitches, scalePitches, scaleDegreePitch,
+  parseMeasure, serializeMeasure,
 } from "music_dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -50,6 +52,18 @@ const OPS: Record<string, (args: any) => unknown> = {
   is_diatonic:               (a) => isDiatonic(a["root"] as string, a["scale"] as string, parseChord(a["chord"] as string)),
   harmonic_function_in_key:  (a) => harmonicFunctionInKey(a["key_root"] as string, a["key_is_minor"] as boolean, parseChord(a["chord"] as string)),
   chord_in_key:              (a) => ({ chord: chordInKey(a["numeric"] as string, a["key_root"] as string) }),
+  // Build 5 ops: realize + time
+  note_to_midi:        (a) => noteToMidi(a["note"] as string, a["octave"] as number ?? 4),
+  midi_to_hz:          (a) => midiToHz(a["midi"] as number),
+  interval_pitches:    (a) => intervalPitches(a["root"] as string, a["interval"] as string, a["octave"] as number ?? 4),
+  chord_pitches:       (a) => chordPitches(a["chord"] as string, a["octave"] as number ?? 4),
+  scale_pitches:       (a) => scalePitches(a["key_root"] as string, a["scale"] as string, a["octave"] as number ?? 4),
+  scale_degree_pitch:  (a) => scaleDegreePitch(a["degree"] as string, a["key_root"] as string, a["octave"] as number ?? 4),
+  parse_measure:       (a) => {
+    const ts = { numerator: a["numerator"] as number, denominator: a["denominator"] as number };
+    const m = parseMeasure(a["m_number"] as number, ts, a["raw_measure"] as string);
+    return { measure: m };
+  },
 };
 
 function discover(dir: string): Array<{ relpath: string; case: Case }> {
@@ -69,7 +83,7 @@ function discover(dir: string): Array<{ relpath: string; case: Case }> {
   return out;
 }
 
-const EXPECTED_CASE_COUNT = 273; // keep in sync with the Python runner's frozen count
+const EXPECTED_CASE_COUNT = 338; // keep in sync with the Python runner's frozen count
 
 const cases = discover(CASES_DIR);
 
