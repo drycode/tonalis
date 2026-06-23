@@ -1,4 +1,4 @@
-# iReal DSL v1 — Grammar Reference
+# Tonalis DSL v1 — Grammar Reference
 
 Emit a chart in this DSL. Output **only** the DSL, nothing else.
 

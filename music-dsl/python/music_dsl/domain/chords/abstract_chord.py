@@ -118,10 +118,13 @@ class AbstractChord:
     # right after the root and BEFORE the ``triad`` alternation, so a lone ``4``
     # immediately after the root is read as a suspended fourth rather than falling
     # through to the extension tokenizer (where ``Extensions("4")`` does not exist and
-    # would raise). It only matches a single literal ``4``, so real extension degrees
-    # (``11``/``13``), the ``sus4`` literal, ``C7``, ``C6``, etc. are untouched. The
-    # companion bare ``2`` is deliberately NOT remapped: ``C2`` already parses as an
-    # added-2nd (``Extensions.add2``), a long-standing, separately-tested semantic.
+    # would raise). It matches a single literal ``4`` in this triad slot, so the
+    # multi-digit degrees (``11``/``13``), the ``sus4`` literal, ``C7``, ``C6``, etc. are
+    # untouched. It IS positionally greedy, though: a ``4`` right after the root is taken
+    # as sus4 even when more suffix follows, so non-corpus forms like ``C47``/``C411`` now
+    # parse as sus4 + suffix. Harmless — this is validity-only and such tokens don't occur
+    # in real charts. The companion bare ``2`` is deliberately NOT remapped: ``C2`` already
+    # parses as an added-2nd (``Extensions.add2``), a long-standing, separately-tested semantic.
     #
     # ``aug5`` captures a ``+`` appearing AFTER the seventh: iReal writes ``C7+`` for a
     # dominant 7 with a RAISED 5th (== ``C7#5``), distinct from the augmented *triad*
@@ -130,7 +133,8 @@ class AbstractChord:
     # as the augmented triad (``C+``); only a ``+`` left stranded after the seventh reaches
     # ``aug5``, where ``_parse_chord_string`` maps it to ``Extensions.s5``. Without this the
     # post-seventh ``+`` falls through to the extension tokenizer (which has no ``+`` rule)
-    # and the whole suffix fails to match ``$``.
+    # and the whole suffix fails to match ``$``. (``aug5`` folds regardless of the seventh
+    # flavor, so non-corpus forms like ``C^7+``/``Csus7+`` also accept; harmless — validity-only.)
     __regex_suffix__ = (
         r"(?P<sus_short>4)?"
         r"(?P<triad>sus4|sus2|sus|[ho+\-])?"

@@ -26,7 +26,7 @@ def _error_codes(dsl: str) -> set:
 
 def test_grammar_md_is_packaged_and_loadable():
     text = _grammar_text()
-    assert "iReal DSL v1" in text
+    assert "Tonalis DSL v1" in text
 
 
 def test_every_documented_valid_chord_passes_parser():
