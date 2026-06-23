@@ -25,6 +25,7 @@ from music_dsl.domain.static import (
 # Chord suffix is parsed with named groups (see ``__regex_suffix__``):
 #   triad   - triad quality token (-, h, o, +, sus...)
 #   seventh - 7th token (^7, ^, 7)
+#   aug5    - a "+" AFTER the seventh meaning a raised 5th (C7+ == C7#5)
 #   alt     - literal "alt" (altered dominant)
 #   ext     - run of extension tokens (b9, #11, 13, add9, 6, 9 ...)
 #   sus2    - a sus token appearing AFTER the 7th/extensions (e.g. 9sus, 7b9sus)
@@ -121,10 +122,20 @@ class AbstractChord:
     # (``11``/``13``), the ``sus4`` literal, ``C7``, ``C6``, etc. are untouched. The
     # companion bare ``2`` is deliberately NOT remapped: ``C2`` already parses as an
     # added-2nd (``Extensions.add2``), a long-standing, separately-tested semantic.
+    #
+    # ``aug5`` captures a ``+`` appearing AFTER the seventh: iReal writes ``C7+`` for a
+    # dominant 7 with a RAISED 5th (== ``C7#5``), distinct from the augmented *triad*
+    # ``+`` that sits BEFORE the seventh (``C+``, ``C+7``). The ``triad`` alternation is
+    # greedy and comes first, so a ``+`` directly after the root is still consumed there
+    # as the augmented triad (``C+``); only a ``+`` left stranded after the seventh reaches
+    # ``aug5``, where ``_parse_chord_string`` maps it to ``Extensions.s5``. Without this the
+    # post-seventh ``+`` falls through to the extension tokenizer (which has no ``+`` rule)
+    # and the whole suffix fails to match ``$``.
     __regex_suffix__ = (
         r"(?P<sus_short>4)?"
         r"(?P<triad>sus4|sus2|sus|[ho+\-])?"
         r"(?P<seventh>\^7|\^|7)?"
+        r"(?P<aug5>\+)?"
         r"(?P<alt>alt)?"
         r"(?P<sus1>sus4|sus2|sus)?"
         r"(?P<ext>(?:add|[b#]?\d{1,2})*?)"
@@ -247,6 +258,11 @@ class AbstractChord:
             _extensions = (Extensions.alt,) + cls._get_extensions(_ext_token)
         else:
             _extensions = cls._get_extensions(_ext_token)
+
+        # A ``+`` after the seventh (``C7+``) is iReal shorthand for a raised 5th: fold it
+        # into the extensions as ``#5`` so ``C7+`` represents the same chord as ``C7#5``.
+        if match_groups["aug5"] and Extensions.s5 not in _extensions:
+            _extensions = _extensions + (Extensions.s5,)
 
         _harmonic_function = cls._get_harmonic_function(_root, _triad, _7th)
         return make_chord_attrs(

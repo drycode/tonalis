@@ -17,8 +17,15 @@ def test_real_chords_valid():
 
 
 def test_ireal_sus_shorthand_valid():
-    # bare-4 sus shorthand: MusicDSL now constructs these (taught in this task)
+    # bare-4 sus shorthand: MusicDSL now constructs these (taught in Task 3)
     for t in ["C4", "A4", "G4", "A4/C", "D#4", "Gb4", "E4/G"]:
+        assert is_valid_chord(t), t
+
+
+def test_ireal_seven_plus_valid():
+    # X7+ raised-5th form (== X7#5): MusicDSL now constructs these (taught in Task 4).
+    # The layout-star variant Bb*7+* strips to Bb7+ and is likewise valid.
+    for t in ["C7+", "Bb7+", "Eb7+", "Bb7+/F", "Bb*7+*"]:
         assert is_valid_chord(t), t
 
 
@@ -34,7 +41,8 @@ def test_rejects_garbage_and_empty():
 
 
 def test_rejects_malformed_old_grammar_wrongly_accepted():
-    # the genuinely-malformed tokens the OLD regex wrongly accepted; MusicDSL (correctly)
-    # rejects them. These are the blessed divergences in the reconciliation oracle.
-    for t in ["C7+", "C7777", "Bb*7+*"]:
+    # the genuinely-malformed token the OLD regex wrongly accepted; MusicDSL (correctly)
+    # rejects it. This is the sole blessed divergence in the reconciliation oracle.
+    # (C7+ / Bb*7+* were previously here but are real chords MusicDSL was taught in Task 4.)
+    for t in ["C7777"]:
         assert not is_valid_chord(t), t

@@ -8,16 +8,17 @@ the NEW ``tonalis.chords.is_valid_chord`` returns the same verdict for every tok
 swap in Task 4 cannot silently change which tokens the linter accepts.
 
 ``_BLESSED`` is the deliberate-difference set: tokens where the new verdict differs from the
-frozen OLD verdict by an explicit Task-3 decision. All three are tokens the OLD regex WRONGLY
-accepted; MusicDSL (correctly) rejects them, so the new, stricter verdict is the right one —
-the oracle just records the old (wrong) ``true``, hence the bless.
+frozen OLD verdict by an explicit decision. The single blessed token is one the OLD regex
+WRONGLY accepted; MusicDSL (correctly) rejects it, so the new, stricter verdict is the right
+one — the oracle just records the old (wrong) ``true``, hence the bless.
 
-  * ``C7+``     — a bare augmented ``+`` glued after the 7th is not a spellable chord quality.
   * ``C7777``   — a repeated-digit run; not a real extension.
-  * ``Bb*7+*``  — strips (``*``) to ``Bb7+``, the same malformed augmented-after-7 case.
 
-The iReal ``X4`` sus shorthand (``C4``, ``A4/C`` …) is NOT blessed: MusicDSL was taught it in
-this task, so those tokens now validate and agree with the old grammar (true == true).
+The iReal ``X4`` sus shorthand (``C4``, ``A4/C`` …) and the ``X7+`` raised-5th form (``C7+``,
+``Bb*7+*`` -> ``Bb7+`` == ``Bb7#5``) are NOT blessed: MusicDSL was taught both (sus shorthand
+in Task 3, ``7+`` in Task 4), so those tokens now validate and agree with the old grammar
+(true == true). ``C7+`` and ``Bb*7+*`` were previously blessed (when MusicDSL rejected ``7+``);
+teaching ``7+`` retired them from the bless set, leaving only the genuinely-malformed ``C7777``.
 """
 
 import json
@@ -29,8 +30,8 @@ _ORACLE = json.loads(
     (Path(__file__).parent / "fixtures" / "chord_oracle.json").read_text(encoding="utf-8")
 )
 
-# Tokens where new != old by an explicit decision (see this module's docstring + Task 3 Step 6).
-_BLESSED = {"C7+", "C7777", "Bb*7+*"}
+# Tokens where new != old by an explicit decision (see this module's docstring).
+_BLESSED = {"C7777"}
 
 
 def test_new_validator_matches_frozen_oracle():
