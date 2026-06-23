@@ -209,6 +209,8 @@ fn sus_ambiguity_regression() {
         Case { input: "Cadd9",    triad: "",     seventh: "",    exts: vec!["9"] },
         Case { input: "C69",      triad: "",     seventh: "",    exts: vec!["6","9"] },
         Case { input: "C7alt",    triad: "",     seventh: "7",   exts: vec!["alt"] },
+        Case { input: "C7+alt",   triad: "",     seventh: "7",   exts: vec!["alt", "#5"] },
+        Case { input: "C^7+alt",  triad: "",     seventh: "7",   exts: vec!["alt", "#5"] },
     ];
     for c in &cases {
         let m = parse_chord(c.input).unwrap_or_else(|e| panic!("{}: {}", c.input, e));

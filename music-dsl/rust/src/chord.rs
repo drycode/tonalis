@@ -267,7 +267,7 @@ pub fn parse_chord(input: &str) -> Result<ChordModel, ChordParseError> {
     let seventh = seventh_from_value(seventh_norm)?;
 
     // 9. Alt handling + extensions.
-    let extensions: Vec<Extensions> = if !alt_cap.is_empty() {
+    let mut extensions: Vec<Extensions> = if !alt_cap.is_empty() {
         // Alt on sus is rejected.
         if matches!(triad, Triad::Sus | Triad::Sus2 | Triad::Sus4) {
             return Err(ChordParseError(
@@ -279,13 +279,13 @@ pub fn parse_chord(input: &str) -> Result<ChordModel, ChordParseError> {
         exts.extend(get_extensions(ext_str));
         exts
     } else {
-        let mut exts = get_extensions(ext_str);
-        // aug5 (+): append S5 if not already present.
-        if !aug5.is_empty() && !exts.contains(&Extensions::S5) {
-            exts.push(Extensions::S5);
-        }
-        exts
+        get_extensions(ext_str)
     };
+    // aug5 (+): append S5 if not already present.
+    // Runs for BOTH the alt and non-alt paths (mirrors Python reference behaviour).
+    if !aug5.is_empty() && !extensions.contains(&Extensions::S5) {
+        extensions.push(Extensions::S5);
+    }
 
     // Alt forces minor seventh regardless of what the regex captured.
     let seventh = if !alt_cap.is_empty() { Seventh::Minor } else { seventh };

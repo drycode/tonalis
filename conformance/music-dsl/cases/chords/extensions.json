@@ -371,5 +371,69 @@
     "expect": {
       "value": 297088
     }
+  },
+  {
+    "name": "ext/C-dominant7-aug5-alt/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C7+alt"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "alt",
+            "#5"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-dominant7-aug5-alt/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C7+alt"
+    },
+    "expect": {
+      "value": 281942
+    }
+  },
+  {
+    "name": "ext/C-major7-aug5-alt/parse",
+    "op": "parse_chord",
+    "args": {
+      "input": "C^7+alt"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [
+            "alt",
+            "#5"
+          ],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "ext/C-major7-aug5-alt/encode",
+    "op": "encode_chord",
+    "args": {
+      "input": "C^7+alt"
+    },
+    "expect": {
+      "value": 281942
+    }
   }
 ]

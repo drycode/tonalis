@@ -277,6 +277,7 @@ function parseChordStringImpl(rawChord: string): ChordModel {
   const extToken = g["ext"] || "";
 
   let extensions: ExtensionsT[];
+  let resolvedSeventh = seventh;
   if (g["alt"]) {
     // alt on sus → reject
     if (triad === Triad.Sus || triad === Triad.Sus2 || triad === Triad.Sus4) {
@@ -285,26 +286,22 @@ function parseChordStringImpl(rawChord: string): ChordModel {
       );
     }
     // alt forces minor seventh; alt goes first in extensions
-    const overrideSeventh = Seventh.Minor;
+    resolvedSeventh = Seventh.Minor;
     extensions = [Extensions.alt, ...getExtensions(extToken)];
-    // Re-assign seventh to minor
-    const altSeventh = overrideSeventh;
-    const harmFunc = getHarmonicFunction(triad, altSeventh);
-    checkMakeChordAttrsRejection(root, triad, altSeventh, extensions);
-    return { root, triad, seventh: altSeventh, extensions, harmonic_function: harmFunc, substitution: false };
   } else {
     extensions = getExtensions(extToken);
   }
 
   // aug5: "+" after seventh → append "#5" if not already present
+  // This runs for BOTH the alt and non-alt paths (mirrors Python reference behaviour).
   if (g["aug5"] && !extensions.includes(Extensions.s5)) {
     extensions = [...extensions, Extensions.s5];
   }
 
-  const harmFunc = getHarmonicFunction(triad, seventh);
-  checkMakeChordAttrsRejection(root, triad, seventh, extensions);
+  const harmFunc = getHarmonicFunction(triad, resolvedSeventh);
+  checkMakeChordAttrsRejection(root, triad, resolvedSeventh, extensions);
 
-  return { root, triad, seventh, extensions, harmonic_function: harmFunc, substitution: false };
+  return { root, triad, seventh: resolvedSeventh, extensions, harmonic_function: harmFunc, substitution: false };
 }
 
 // ---------------------------------------------------------------------------

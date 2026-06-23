@@ -109,6 +109,20 @@ describe("parseChord + serializeChord", () => {
     expect(model.harmonic_function).toBe("Dominant");
   });
 
+  it("C7+alt — aug5+alt both present: extensions ['alt', '#5']", () => {
+    const model = serializeChord(parseChord("C7+alt"));
+    expect(model.seventh).toBe("7");
+    expect(model.extensions).toEqual(["alt", "#5"]);
+    expect(model.harmonic_function).toBe("Dominant");
+  });
+
+  it("C^7+alt — major-7 with aug5+alt: same as C7+alt (alt forces minor 7th)", () => {
+    const model = serializeChord(parseChord("C^7+alt"));
+    expect(model.seventh).toBe("7");
+    expect(model.extensions).toEqual(["alt", "#5"]);
+    expect(model.harmonic_function).toBe("Dominant");
+  });
+
   it("harmonic function table: C-7 → Subdominant", () => {
     const model = serializeChord(parseChord("C-7"));
     expect(model.harmonic_function).toBe("Subdominant");
