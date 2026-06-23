@@ -1,10 +1,17 @@
-"""One-time LOCAL sweep: compare the OLD ``chord_grammar`` verdict to the NEW ``chords``
-wrapper over every distinct chord token in the dsl-core conformance corpus, and emit
-``tests/fixtures/chord_oracle.json`` (the frozen OLD verdicts).
+"""FROZEN — do not re-run (Task-4 retirement).
 
-Run from the tonalis repo root::
+The old ``chord_grammar`` regex was retired in Task 4, replaced by a shim that re-exports
+``tonalis.chords.is_valid_chord``.  Because the OLD validator no longer exists, this builder
+has no independent "old" verdict to compare against and **cannot produce a meaningful oracle**.
+Running it would overwrite ``tests/fixtures/chord_oracle.json`` with identical old/new verdicts
+(same function), silently destroying the frozen divergence record (``C7777 = true``) that
+``test_chord_reconciliation.py`` enforces.
 
-    python -m tonalis.tools.build_chord_oracle
+The committed ``chord_oracle.json`` is the **permanent frozen snapshot** of the pre-retirement
+``chord_grammar`` verdicts.  It is the ground truth; do not regenerate it.
+
+This builder is kept for historical/reference purposes only.  It will refuse to run and will
+print a clear explanation to stderr before exiting with code 2.
 
 CI never runs this — it consumes the committed fixture only (see
 ``tests/test_chord_reconciliation.py``).
@@ -74,6 +81,26 @@ def _corpus_tokens() -> list:
 
 
 def main() -> int:
+    # Guard: detect that chord_grammar is now the Task-4 shim (re-exports tonalis.chords).
+    # If old and new are the same function, there is no independent OLD validator left to sweep
+    # against, and running the builder would silently overwrite the frozen fixture with
+    # all-identical verdicts, destroying the C7777=true divergence record.
+    if chord_grammar.is_valid_chord is new_chords.is_valid_chord:
+        print(
+            "ERROR: The old chord_grammar regex was retired in Task 4; chord_grammar.is_valid_chord\n"
+            "is now a shim that re-exports tonalis.chords.is_valid_chord.  There is no independent\n"
+            "OLD validator remaining to compare against.\n"
+            "\n"
+            "The committed tests/fixtures/chord_oracle.json is the PERMANENT FROZEN record of the\n"
+            "pre-retirement chord_grammar verdicts.  Re-running this builder cannot produce an\n"
+            "honest oracle and would destroy the C7777=true divergence that the reconciliation test\n"
+            "enforces.  Do NOT regenerate.\n"
+            "\n"
+            "This builder is kept for historical/reference purposes only.",
+            file=sys.stderr,
+        )
+        return 2
+
     oracle, diverge = {}, []
     for tok in _corpus_tokens():
         old = chord_grammar.is_valid_chord(tok)

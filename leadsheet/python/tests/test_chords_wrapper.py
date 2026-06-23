@@ -40,6 +40,21 @@ def test_rejects_garbage_and_empty():
         assert not is_valid_chord(t), t
 
 
+def test_rejects_more_garbage():
+    """Additional negative coverage: tokens that look plausibly chord-shaped but are invalid.
+
+    ``Cmaj7``  — wrong dialect: MusicDSL uses ``^`` for major-7, not ``maj``
+    ``H7``     — no note letter H exists in Western notation
+    ``Cxyzzy`` — nonsense extension suffix
+    ``C#b``    — contradictory double accidental (sharp + flat on the same root)
+    """
+    for t in ["Cmaj7", "H7", "Cxyzzy", "C#b"]:
+        assert is_valid_chord(t) is False, (
+            f"Expected is_valid_chord({t!r}) to be False, but it returned True — "
+            "stop and report this as a real finding; do not weaken the assertion."
+        )
+
+
 def test_rejects_malformed_old_grammar_wrongly_accepted():
     # the genuinely-malformed token the OLD regex wrongly accepted; MusicDSL (correctly)
     # rejects it. This is the sole blessed divergence in the reconciliation oracle.

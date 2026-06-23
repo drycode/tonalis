@@ -394,3 +394,34 @@ def test_guard_passes_clean_tonalis_source():
     # sanity: a clean module must produce ZERO violations (the guard isn't trivially always-failing)
     clean = "import re\nfrom tonalis.ast import LeadSheet\nfrom dataclasses import dataclass\n"
     assert check_source(clean, extra_allowed=_DSL_CORE_EXTRA) == []
+
+
+# ---------------------------------------------------------------------------------------------------
+# Reverse-dependency guard: music_dsl must NOT import tonalis (one-way invariant).
+# ---------------------------------------------------------------------------------------------------
+
+def test_music_dsl_does_not_import_tonalis():
+    """Phase-1 rule: tonalis -> music_dsl is allowed; music_dsl -> tonalis is FORBIDDEN.
+
+    AST-scan every module under music-dsl/python/music_dsl/** and assert that none imports a
+    top-level name ``tonalis``.  This is the reverse of ``test_tonalis_imports_only_stdlib_and_self``;
+    together they enforce the one-way dependency invariant both ways.
+    """
+    # music-dsl lives in a sibling directory one level above leadsheet/python
+    music_dsl_pkg = _PYTHON_ROOT.parents[1] / "music-dsl" / "python" / "music_dsl"
+    if not music_dsl_pkg.is_dir():
+        pytest.skip(
+            f"music_dsl package not found at {music_dsl_pkg} "
+            "(music-dsl submodule absent or not checked out)"
+        )
+    violations = []
+    for path in _package_modules(music_dsl_pkg):
+        src = path.read_text(encoding="utf-8")
+        module_pkg = _module_pkg_of(path, music_dsl_pkg)
+        for kind, val in scan_imports(src, module_pkg=module_pkg):
+            if kind == "static" and _top_name(val) == "tonalis":
+                violations.append(f"{path.relative_to(music_dsl_pkg.parent)}: imports `{val}`")
+    assert not violations, (
+        "music_dsl MUST NOT import tonalis (one-way invariant violated):\n"
+        + "\n".join(violations)
+    )
