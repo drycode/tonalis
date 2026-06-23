@@ -179,6 +179,9 @@ class NumericChord(AbstractChord):
                     Intervals.Tritone.value,
                     scale_degree,
                 )
+            # A = ascending(chord.root -> key root) mod 12. A==8 IS the "m6 up / M3 down"
+            # root motion (both collapse to 8 here); structural == matches only that, not
+            # the M3-up inversion (A==4).
             elif (
                 Intervals(semitones_apart_ascending(chord.root, diatonic_key_root))
                 == Intervals.m6

@@ -135,15 +135,3 @@ class Intervals(int, JsonSerializableEnum):
     def down(self):
         return -self.value
 
-    def enharmonic(self):
-        return Intervals._enharmonic(self.up())
-
-    @staticmethod
-    def _enharmonic(x):
-        return Intervals(12 - x)
-
-    def __eq__(self, other):
-        return self.value == other.value or self.enharmonic().value == other.value
-
-    def __hash__(self) -> int:
-        return self.down()
