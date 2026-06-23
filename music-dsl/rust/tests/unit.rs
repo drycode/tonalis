@@ -1,7 +1,8 @@
 use music_dsl::{
-    chord_encoding, intervals_equal, interval_semitones, notes_equal, note_index,
-    parse_chord, scale_degrees_equal, encoding_value, scale_value,
-    semitones_apart_ascending, strip_left, strip_right,
+    chord_encoding, chord_pitches, interval_pitches, intervals_equal, interval_semitones,
+    midi_to_hz, note_index, note_to_midi, notes_equal, parse_chord, parse_measure,
+    scale_degree_pitch, scale_degrees_equal, scale_pitches, encoding_value, scale_value,
+    semitones_apart_ascending, strip_left, strip_right, TimeSignature,
 };
 
 #[test]
@@ -232,4 +233,110 @@ fn chord_encoding_minor7() {
     // Minor triad + minor seventh: should not be 280576
     let enc = chord_encoding("C-7").unwrap();
     assert!(enc != 280576);
+}
+
+// ---------------------------------------------------------------------------
+// Build 5: realize (note_to_midi, midi_to_hz, chord_pitches, scale_pitches,
+//           scale_degree_pitch) + time (parse_measure) unit tests
+// ---------------------------------------------------------------------------
+
+#[test]
+fn midi_middle_c_and_a440() {
+    assert_eq!(note_to_midi("C", 4), 60);
+    assert_eq!(note_to_midi("A", 4), 69);
+    assert_eq!(note_to_midi("C", 5), 72);
+}
+
+#[test]
+fn midi_to_hz_a440() {
+    // A4 = 69 → 440.0 Hz exactly
+    assert_eq!(midi_to_hz(69), 440.0_f64);
+}
+
+#[test]
+fn dim7_rule_fully_diminished() {
+    // Co7 → [60, 63, 66, 69] (seventh = 9, not 10)
+    let pitches = chord_pitches("Co7", 4).expect("Co7 should parse");
+    assert_eq!(pitches, vec![60, 63, 66, 69]);
+}
+
+#[test]
+fn half_dim_keeps_ten() {
+    // Ch7 → [60, 63, 66, 70] (seventh = 10)
+    let pitches = chord_pitches("Ch7", 4).expect("Ch7 should parse");
+    assert_eq!(pitches, vec![60, 63, 66, 70]);
+}
+
+#[test]
+fn scale_pitches_c_major() {
+    // C major octave 4 → [60, 62, 64, 65, 67, 69, 71, 72]
+    // Exercises the 36-bit mask read above bit 31 — a 32-bit truncation would corrupt
+    let pitches = scale_pitches("C", "Major", 4);
+    assert_eq!(pitches, vec![60, 62, 64, 65, 67, 69, 71, 72]);
+}
+
+#[test]
+fn measure_two_chords_doubled() {
+    // "C^7 D-7" in 4/4 → [C^7, C^7, D-7, D-7]
+    let ts = TimeSignature { numerator: 4, denominator: 4 };
+    let m = parse_measure(1, ts, "C^7 D-7").expect("should parse");
+    assert_eq!(m.beat_containers.len(), 4);
+    let roots: Vec<&str> = m.beat_containers.iter()
+        .map(|bc| bc.as_ref().unwrap().chord.root.as_str())
+        .collect();
+    assert_eq!(roots, vec!["C", "C", "D", "D"]);
+}
+
+#[test]
+fn measure_empty_all_none() {
+    // "" in 4/4 → [null, null, null, null]
+    let ts = TimeSignature { numerator: 4, denominator: 4 };
+    let m = parse_measure(2, ts, "").expect("empty measure should parse");
+    assert_eq!(m.beat_containers.len(), 4);
+    assert!(m.beat_containers.iter().all(|bc| bc.is_none()));
+}
+
+#[test]
+fn measure_trailing_delimiter_pads() {
+    // "C^7 " (trailing space) in 4/4 → [C^7 x4]
+    let ts = TimeSignature { numerator: 4, denominator: 4 };
+    let m = parse_measure(4, ts, "C^7 ").expect("should parse");
+    assert_eq!(m.beat_containers.len(), 4);
+    assert!(m.beat_containers.iter().all(|bc| bc.as_ref().unwrap().chord.root == "C"));
+}
+
+#[test]
+fn measure_literal_percent_errors() {
+    // "F^7 % Eh A7" → error (literal % → empty chord token)
+    let ts = TimeSignature { numerator: 4, denominator: 4 };
+    assert!(parse_measure(5, ts, "F^7 % Eh A7").is_err());
+}
+
+#[test]
+fn measure_overfull_five_beats() {
+    // "F^7 Eh A7" in 4/4 → 5 slots (over-full, no pad)
+    let ts = TimeSignature { numerator: 4, denominator: 4 };
+    let m = parse_measure(7, ts, "F^7 Eh A7").expect("should parse");
+    assert_eq!(m.beat_containers.len(), 5);
+}
+
+#[test]
+fn measure_six_eight_pads_to_denominator() {
+    // "C^7 D-7" in 6/8 → size = max(8, 3) = 8 slots
+    let ts = TimeSignature { numerator: 6, denominator: 8 };
+    let m = parse_measure(6, ts, "C^7 D-7").expect("should parse");
+    assert_eq!(m.beat_containers.len(), 8);
+}
+
+#[test]
+fn scale_degree_pitch_ii_in_c() {
+    // ii in C major octave 4 → D4 = 62
+    assert_eq!(scale_degree_pitch("ii", "C", 4), 62);
+}
+
+#[test]
+fn interval_pitches_c4_p5() {
+    // C4 + P5 → [60, 67]
+    let pitches = interval_pitches("C", "P5", 4);
+    assert_eq!(pitches, vec![60, 67]);
 }

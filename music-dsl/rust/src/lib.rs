@@ -14,8 +14,10 @@ pub mod chord_quality;
 pub mod encode;
 pub mod get_index;
 pub mod helpers;
+pub mod measure;
 pub mod notes;
 pub mod numeric_chord;
+pub mod realize;
 pub mod scale_degree;
 pub mod transactions;
 
@@ -26,8 +28,10 @@ pub use encode::{
     CHORD_ENCODING_BIT_LENGTH, DIMINISHED_ENCODING, EMPTY_CHORD_ENCODING,
 };
 pub use helpers::{semitones_apart_ascending, strip_left, strip_right};
+pub use measure::{parse_measure, MeasureModel, MeasureModelWrapper, TimeSignature};
 pub use notes::Note;
 pub use numeric_chord::{numeric_from_chord, parse_numeric, NumericChordAttrs, NumericChordModel, NumericParseError};
+pub use realize::{chord_pitches, interval_pitches, midi_to_hz, note_to_midi, scale_degree_pitch, scale_pitches};
 pub use scale_degree::ScaleDegree;
 pub use transactions::{chord_in_key, harmonic_function_in_key, is_diatonic, modulate, TWELVE_TONES};
 

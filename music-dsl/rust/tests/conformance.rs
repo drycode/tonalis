@@ -3,16 +3,17 @@
 //! frozen case count.
 //! Cases tree is read relative to CARGO_MANIFEST_DIR (music-dsl/rust/ -> ../../conformance/music-dsl/cases).
 use music_dsl::{
-    chord_encoding, chord_in_key, encoding_value, harmonic_function_in_key, interval_semitones,
-    intervals_equal, is_diatonic, modulate, note_index, notes_equal, numeric_from_chord,
-    parse_chord, parse_numeric, scale_degrees_equal, scale_value, semitones_apart_ascending,
-    strip_left, strip_right,
+    chord_encoding, chord_in_key, chord_pitches, encoding_value, harmonic_function_in_key,
+    interval_pitches, interval_semitones, intervals_equal, is_diatonic, midi_to_hz, modulate,
+    note_index, note_to_midi, notes_equal, numeric_from_chord, parse_chord, parse_measure,
+    parse_numeric, scale_degree_pitch, scale_degrees_equal, scale_pitches, scale_value,
+    semitones_apart_ascending, strip_left, strip_right, TimeSignature,
 };
 use serde_json::Value;
 use std::fs;
 use std::path::{Path, PathBuf};
 
-const EXPECTED_CASE_COUNT: usize = 273; // keep in sync with Python/TS runners
+const EXPECTED_CASE_COUNT: usize = 338; // keep in sync with Python/TS runners
 
 fn cases_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -171,6 +172,67 @@ fn dispatch(op: &str, args: &Value) -> Value {
                     let chord_val = serde_json::to_value(&model).unwrap();
                     let mut map = serde_json::Map::new();
                     map.insert("chord".to_string(), chord_val);
+                    Value::Object(map)
+                }
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
+            }
+        }
+
+        // Build 5 ops (realize + time)
+        "note_to_midi" => {
+            let note = s("note");
+            let octave = args.get("octave").and_then(|v| v.as_i64()).unwrap_or(4);
+            Value::from(note_to_midi(note, octave))
+        }
+
+        "midi_to_hz" => {
+            let midi = args.get("midi").and_then(|v| v.as_i64()).unwrap();
+            Value::from(midi_to_hz(midi))
+        }
+
+        "interval_pitches" => {
+            let root = s("root");
+            let interval = s("interval");
+            let octave = args.get("octave").and_then(|v| v.as_i64()).unwrap_or(4);
+            let pitches = interval_pitches(root, interval, octave);
+            serde_json::to_value(pitches).unwrap()
+        }
+
+        "chord_pitches" => {
+            let chord = s("chord");
+            let octave = args.get("octave").and_then(|v| v.as_i64()).unwrap_or(4);
+            match chord_pitches(chord, octave) {
+                Ok(pitches) => serde_json::to_value(pitches).unwrap(),
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
+            }
+        }
+
+        "scale_pitches" => {
+            let key_root = s("key_root");
+            let scale = s("scale");
+            let octave = args.get("octave").and_then(|v| v.as_i64()).unwrap_or(4);
+            let pitches = scale_pitches(key_root, scale, octave);
+            serde_json::to_value(pitches).unwrap()
+        }
+
+        "scale_degree_pitch" => {
+            let degree = s("degree");
+            let key_root = s("key_root");
+            let octave = args.get("octave").and_then(|v| v.as_i64()).unwrap_or(4);
+            Value::from(scale_degree_pitch(degree, key_root, octave))
+        }
+
+        "parse_measure" => {
+            let m_number = args.get("m_number").and_then(|v| v.as_i64()).unwrap();
+            let numerator = args.get("numerator").and_then(|v| v.as_i64()).unwrap();
+            let denominator = args.get("denominator").and_then(|v| v.as_i64()).unwrap();
+            let raw_measure = s("raw_measure");
+            let ts = TimeSignature { numerator, denominator };
+            match parse_measure(m_number, ts, raw_measure) {
+                Ok(model) => {
+                    let measure_val = serde_json::to_value(&model).unwrap();
+                    let mut map = serde_json::Map::new();
+                    map.insert("measure".to_string(), measure_val);
                     Value::Object(map)
                 }
                 Err(_) => Value::String(ERROR_SENTINEL.to_string()),
