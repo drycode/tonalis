@@ -60,18 +60,6 @@ const EXTENSION_MAP: Readonly<Record<string, readonly number[]>> = {
   alt:   [12, 14, 16, 17],
 } as const;
 
-/**
- * ENCODING_MAP — the unified flat map (keyed by enum VALUE, as in the Python
- * reference).  Exposed for consumers that already resolved enum type.
- * Note: collisions are expected ("Minor" = Triad value "-" vs. Seventh value "7");
- * callers that need role-disambiguation use TRIAD_MAP / SEVENTH_MAP / EXTENSION_MAP.
- */
-export const ENCODING_MAP: Readonly<Record<string, readonly number[]>> = {
-  ...TRIAD_MAP,
-  ...SEVENTH_MAP,
-  ...EXTENSION_MAP,
-} as const;
-
 /** Internal: build a bigint bitmask from a list of semitone shift positions. */
 function _encode(bitPositions: readonly number[]): bigint {
   if (bitPositions.length === 0) return 0n;

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { scaleValue, encodingValue, stripRight, semitonesApartAscending } from "./index";
+import { scaleValue, encodingValue, stripRight, stripLeft, semitonesApartAscending } from "./index";
 
 describe("encode (BigInt layer)", () => {
   it("Scales constants are the 36-bit reference integers", () => {
@@ -18,5 +18,9 @@ describe("encode (BigInt layer)", () => {
   it("semitonesApartAscending matches the reference", () => {
     expect(semitonesApartAscending("C", "G")).toBe(7);
     expect(semitonesApartAscending("G", "C")).toBe(5);
+  });
+  it("strip helpers throw on the reference raise conditions", () => {
+    expect(() => stripLeft(5n, 1)).toThrow();       // 5n < MIN_SUPPORTED
+    expect(() => stripRight(262144n, 99)).toThrow(); // shift > bit-length
   });
 });

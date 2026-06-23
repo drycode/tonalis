@@ -48,7 +48,6 @@ export {
 export {
   EMPTY_CHORD_ENCODING,
   DIMINISHED_ENCODING,
-  ENCODING_MAP,
   Scales,
   scaleValue,
   encodingValue,
