@@ -3,17 +3,25 @@
 //! Port of the Python `music_dsl` reference for the tonalis / HarmonicAnalyzer project.
 //! Build 1 scope: static domain only — Notes, Intervals, ScaleDegree, chord-quality enums,
 //! and the five conformance-op public functions.
+//! Build 2 scope: encode layer — EncodingMap, Scales, strip ops, semitones_apart_ascending.
 //!
 //! Public enums use `#[derive(PartialEq, Eq)]` for **structural** equality.
 //! Enharmonic / pitch-class equality is in the explicit `notes_equal` / `scale_degrees_equal`
 //! functions below — it is NEVER encoded in `PartialEq`.
 
 pub mod chord_quality;
+pub mod encode;
 pub mod get_index;
+pub mod helpers;
 pub mod notes;
 pub mod scale_degree;
 
 pub use chord_quality::{Extensions, HarmonicFunction, Seventh, Triad};
+pub use encode::{
+    encoding_value, scale_value,
+    CHORD_ENCODING_BIT_LENGTH, DIMINISHED_ENCODING, EMPTY_CHORD_ENCODING,
+};
+pub use helpers::{semitones_apart_ascending, strip_left, strip_right};
 pub use notes::Note;
 pub use scale_degree::ScaleDegree;
 
