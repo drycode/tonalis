@@ -178,5 +178,17 @@
     "expect": {
       "value": false
     }
+  },
+  {
+    "name": "is_diatonic-invalid-chord-error",
+    "op": "is_diatonic",
+    "args": {
+      "root": "G",
+      "scale": "Major",
+      "chord": "Eb9#9add9"
+    },
+    "expect": {
+      "error": true
+    }
   }
 ]

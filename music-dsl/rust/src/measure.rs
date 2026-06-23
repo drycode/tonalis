@@ -30,14 +30,6 @@ pub struct BeatLocation {
     pub beat_number: i64,
 }
 
-/// One beat container: a location + optional chord (None = empty beat).
-#[derive(Debug, Clone, Serialize)]
-pub struct BeatContainer {
-    pub beat_location: BeatLocation,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub chord: Option<ChordModel>,
-}
-
 /// Full measure model used for conformance serialisation.
 #[derive(Debug, Clone, Serialize)]
 pub struct MeasureModel {

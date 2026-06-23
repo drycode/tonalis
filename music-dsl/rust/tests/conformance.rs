@@ -13,7 +13,7 @@ use serde_json::Value;
 use std::fs;
 use std::path::{Path, PathBuf};
 
-const EXPECTED_CASE_COUNT: usize = 338; // keep in sync with Python/TS runners
+const EXPECTED_CASE_COUNT: usize = 339; // keep in sync with Python/TS runners
 
 fn cases_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -153,6 +153,12 @@ fn dispatch(op: &str, args: &Value) -> Value {
             let root = s("root");
             let scale_name = s("scale");
             let chord = s("chord");
+            // Pre-validate: if the chord string is invalid, return the error sentinel.
+            // Mirrors the Python (raises InvalidChordStringException) and TS (parseChord throws)
+            // behaviour — is_diatonic must error on invalid input, not silently return false.
+            if parse_chord(chord).is_err() {
+                return Value::String(ERROR_SENTINEL.to_string());
+            }
             let scale = scale_value(scale_name);
             Value::Bool(is_diatonic(root, scale, chord))
         }
