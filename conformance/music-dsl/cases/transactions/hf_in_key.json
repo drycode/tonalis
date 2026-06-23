@@ -1,0 +1,74 @@
+[
+  {
+    "name": "transactions/hf_in_key/C-minor-tonic-C-7",
+    "op": "harmonic_function_in_key",
+    "args": {
+      "key_root": "C",
+      "key_is_minor": true,
+      "chord": "C-7"
+    },
+    "expect": {
+      "value": "Tonic"
+    }
+  },
+  {
+    "name": "transactions/hf_in_key/C-major-tonic-C^7",
+    "op": "harmonic_function_in_key",
+    "args": {
+      "key_root": "C",
+      "key_is_minor": false,
+      "chord": "C^7"
+    },
+    "expect": {
+      "value": "Tonic"
+    }
+  },
+  {
+    "name": "transactions/hf_in_key/C-major-dominant-G7",
+    "op": "harmonic_function_in_key",
+    "args": {
+      "key_root": "C",
+      "key_is_minor": false,
+      "chord": "G7"
+    },
+    "expect": {
+      "value": "Dominant"
+    }
+  },
+  {
+    "name": "transactions/hf_in_key/C-major-blues-I7",
+    "op": "harmonic_function_in_key",
+    "args": {
+      "key_root": "C",
+      "key_is_minor": false,
+      "chord": "C7"
+    },
+    "expect": {
+      "value": "Dominant"
+    }
+  },
+  {
+    "name": "transactions/hf_in_key/C-major-subdominant-D-7",
+    "op": "harmonic_function_in_key",
+    "args": {
+      "key_root": "C",
+      "key_is_minor": false,
+      "chord": "D-7"
+    },
+    "expect": {
+      "value": "Subdominant"
+    }
+  },
+  {
+    "name": "transactions/hf_in_key/G-major-subdominant-A-7",
+    "op": "harmonic_function_in_key",
+    "args": {
+      "key_root": "G",
+      "key_is_minor": false,
+      "chord": "A-7"
+    },
+    "expect": {
+      "value": "Subdominant"
+    }
+  }
+]

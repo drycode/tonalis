@@ -1,0 +1,107 @@
+[
+  {
+    "name": "substitution/E-m7-in-C-no-sub",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "E-7",
+      "substitution": false
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "iii",
+          "triad": "-",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Subdominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "substitution/E-m7-in-C-with-sub",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "E-7",
+      "substitution": true
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "#vi",
+          "triad": "-",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Subdominant",
+          "substitution": true
+        }
+      }
+    }
+  },
+  {
+    "name": "substitution/Ab-m7-in-C-no-sub",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "Ab-7",
+      "substitution": false
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "bvi",
+          "triad": "-",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Subdominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "substitution/Ab-m7-in-C-with-sub",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "Ab-7",
+      "substitution": true
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "bvi",
+          "triad": "-",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Subdominant",
+          "substitution": true
+        }
+      }
+    }
+  },
+  {
+    "name": "substitution/Db7-in-C-with-sub",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "Db7",
+      "substitution": true
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "V",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Dominant",
+          "substitution": true
+        }
+      }
+    }
+  }
+]

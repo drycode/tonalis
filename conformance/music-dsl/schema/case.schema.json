@@ -44,7 +44,7 @@
         "value": { "type": ["boolean", "integer", "string", "array"], "items": { "type": "integer" } },
         "model": {
           "type": "object",
-          "description": "Model op result. For parse_chord: { chord: <ChordModel> }.",
+          "description": "Model op result. For parse_chord: { chord: <ChordModel> }. For parse_numeric/numeric_from_chord: { numeric: <NumericModel> }. For chord_in_key: { chord: <ChordModel> }.",
           "properties": {
             "chord": {
               "type": "object",
@@ -80,10 +80,70 @@
                   "description": "Whether this chord is a substitution. Always false for absolute Chord instances."
                 }
               }
+            },
+            "numeric": {
+              "description": "Numeric chord model. For parse_numeric: { numerator: <NumericChordModel>, denominator: <NumericChordModel>|null }. For numeric_from_chord: the ChordAttrs model directly (root is a ScaleDegree value).",
+              "oneOf": [
+                {
+                  "type": "object",
+                  "description": "parse_numeric result: numerator + denominator.",
+                  "additionalProperties": false,
+                  "required": ["numerator", "denominator"],
+                  "properties": {
+                    "numerator": { "$ref": "#/definitions/numericChordModel" },
+                    "denominator": {
+                      "oneOf": [
+                        { "$ref": "#/definitions/numericChordModel" },
+                        { "type": "null" }
+                      ],
+                      "description": "Denominator of a slash chord, or null."
+                    }
+                  }
+                },
+                { "$ref": "#/definitions/numericChordModel" }
+              ]
             }
           }
         },
         "error": { "const": true }
+      }
+    }
+  },
+  "definitions": {
+    "numericChordModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root", "triad", "seventh", "extensions", "harmonic_function", "substitution"],
+      "description": "A chord-model whose root is a ScaleDegree value (Roman numeral string).",
+      "properties": {
+        "root": {
+          "type": "string",
+          "description": "ScaleDegree value: Roman numeral like 'I', 'ii', 'bVI', '#iv', 'V', etc."
+        },
+        "triad": {
+          "type": "string",
+          "enum": ["", "-", "h", "o", "+", "sus", "sus2", "sus4"],
+          "description": "Triad quality value: empty string = major."
+        },
+        "seventh": {
+          "type": "string",
+          "enum": ["^7", "7", ""],
+          "description": "Seventh value: ^7 = major, 7 = minor, empty = none."
+        },
+        "extensions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Extension values in parse order."
+        },
+        "harmonic_function": {
+          "type": "string",
+          "enum": ["Tonic", "Dominant", "Subdominant"],
+          "description": "HarmonicFunctions enum NAME."
+        },
+        "substitution": {
+          "type": "boolean",
+          "description": "Whether this chord is a tritone substitution."
+        }
       }
     }
   }

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "transactions/modulate/C-up-P5",
+    "op": "modulate",
+    "args": {
+      "semitones": 7,
+      "note": "C"
+    },
+    "expect": {
+      "value": "G"
+    }
+  },
+  {
+    "name": "transactions/modulate/D-up-m3",
+    "op": "modulate",
+    "args": {
+      "semitones": 3,
+      "note": "D"
+    },
+    "expect": {
+      "value": "F"
+    }
+  },
+  {
+    "name": "transactions/modulate/Ab-up-M2",
+    "op": "modulate",
+    "args": {
+      "semitones": 2,
+      "note": "Ab"
+    },
+    "expect": {
+      "value": "Bb"
+    }
+  },
+  {
+    "name": "transactions/modulate/bVII-up-P5",
+    "op": "modulate",
+    "args": {
+      "semitones": 7,
+      "note": "bVII"
+    },
+    "expect": {
+      "value": "IV"
+    }
+  },
+  {
+    "name": "transactions/modulate/ii-minor-up-M2",
+    "op": "modulate",
+    "args": {
+      "semitones": 2,
+      "note": "ii"
+    },
+    "expect": {
+      "value": "iii"
+    }
+  },
+  {
+    "name": "transactions/modulate/V-up-Tritone",
+    "op": "modulate",
+    "args": {
+      "semitones": 6,
+      "note": "V"
+    },
+    "expect": {
+      "value": "#I"
+    }
+  }
+]

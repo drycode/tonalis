@@ -1,0 +1,134 @@
+[
+  {
+    "name": "numeric/parse/ii-7",
+    "op": "parse_numeric",
+    "args": {
+      "input": "ii-7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "ii",
+            "triad": "-",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Subdominant",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/V7",
+    "op": "parse_numeric",
+    "args": {
+      "input": "V7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "V",
+            "triad": "",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Dominant",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/I^7",
+    "op": "parse_numeric",
+    "args": {
+      "input": "I^7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "I",
+            "triad": "",
+            "seventh": "^7",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/bVI^7",
+    "op": "parse_numeric",
+    "args": {
+      "input": "bVI^7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "bVI",
+            "triad": "",
+            "seventh": "^7",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/sharp-ivo7",
+    "op": "parse_numeric",
+    "args": {
+      "input": "#ivo7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "#iv",
+            "triad": "o",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/sV7",
+    "op": "parse_numeric",
+    "args": {
+      "input": "sV7"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "V",
+            "triad": "",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Dominant",
+            "substitution": true
+          },
+          "denominator": null
+        }
+      }
+    }
+  }
+]

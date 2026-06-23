@@ -9,7 +9,9 @@ from music_dsl.encode import Encoding, Scales
 from music_dsl.helpers import get_index, strip_left, strip_right, semitones_apart_ascending
 from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
-from music_dsl.serialize import serialize_chord
+from music_dsl.domain.chords.numeric_chord import NumericChord, IncorrectHarmonicFunctionException
+from music_dsl.transactions import modulate, is_diatonic, harmonic_function_in_key, chord_in_key
+from music_dsl.serialize import serialize_chord, serialize_numeric_chord
 
 CASES = Path(__file__).resolve().parents[2] / "cases"
 
@@ -34,6 +36,55 @@ def _encode_chord(input):
     return Chord(input).encoding
 
 
+def _parse_numeric(input):
+    """parse_numeric op: returns {"numeric": <model>} where model has numerator/denominator."""
+    nc = NumericChord.from_chord_string(input)
+    return {"numeric": serialize_numeric_chord(nc)}
+
+
+def _numeric_from_chord(key_root, chord, substitution):
+    """numeric_from_chord op: build attrs from _from_chord and serialize.
+
+    Maps IncorrectHarmonicFunctionException / InvalidChordStringException -> error sentinel.
+    """
+    attrs = NumericChord._from_chord(Notes(key_root), Chord(chord), substitution)
+    from music_dsl.serialize import _serialize_chord_attrs
+    return {"numeric": _serialize_chord_attrs(attrs)}
+
+
+def _modulate(semitones, note):
+    """modulate op: transpose a Notes or ScaleDegree value by semitones.
+
+    ``note`` is treated as a ScaleDegree value if it matches one, else as a Notes value.
+    Returns the resulting .value string.
+    """
+    try:
+        n = ScaleDegree(note)
+    except ValueError:
+        n = Notes(note)
+    return modulate(semitones, n).value
+
+
+def _is_diatonic(root, scale, chord):
+    """is_diatonic op: bool — is chord diatonic to the scale rooted at root?
+
+    ``scale`` is a Scales member NAME (e.g. "Major", "Minor", "HarmonicMinor").
+    """
+    return is_diatonic(Notes(root), Scales[scale], Chord(chord))
+
+
+def _harmonic_function_in_key(key_root, key_is_minor, chord):
+    """harmonic_function_in_key op: returns the HarmonicFunctions NAME."""
+    return harmonic_function_in_key(Notes(key_root), key_is_minor, Chord(chord)).name
+
+
+def _chord_in_key(numeric, key_root):
+    """chord_in_key op: realize a numeric chord string to an absolute Chord and serialize."""
+    nc = NumericChord.from_chord_string(numeric)
+    realized = chord_in_key(nc, Notes(key_root))
+    return {"chord": serialize_chord(realized)}
+
+
 OPS = {
     "intervals_equal":   lambda a, b: Intervals[a] == Intervals[b],
     "interval_semitones": lambda x: int(Intervals[x]),
@@ -47,6 +98,13 @@ OPS = {
     "semitones_apart_ascending": lambda root, note: semitones_apart_ascending(Notes(root), Notes(note)),
     "parse_chord":               lambda input: _parse_chord(input),
     "encode_chord":              lambda input: _encode_chord(input),
+    # Build 4: numeric + transactions ops
+    "parse_numeric":             lambda input: _parse_numeric(input),
+    "numeric_from_chord":        lambda key_root, chord, substitution: _numeric_from_chord(key_root, chord, substitution),
+    "modulate":                  lambda semitones, note: _modulate(semitones, note),
+    "is_diatonic":               lambda root, scale, chord: _is_diatonic(root, scale, chord),
+    "harmonic_function_in_key":  lambda key_root, key_is_minor, chord: _harmonic_function_in_key(key_root, key_is_minor, chord),
+    "chord_in_key":              lambda numeric, key_root: _chord_in_key(numeric, key_root),
 }
 
 

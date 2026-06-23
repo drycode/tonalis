@@ -1,0 +1,24 @@
+[
+  {
+    "name": "numeric/errors/incorrect-hf-tritone-not-subdominant",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "F#",
+      "chord": "C7",
+      "substitution": true
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "numeric/errors/empty-numerator",
+    "op": "parse_numeric",
+    "args": {
+      "input": ""
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]

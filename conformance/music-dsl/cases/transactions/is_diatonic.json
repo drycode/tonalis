@@ -1,0 +1,182 @@
+[
+  {
+    "name": "transactions/is_diatonic/C-major-C^7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Major",
+      "chord": "C^7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-major-D-7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Major",
+      "chord": "D-7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-major-G7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Major",
+      "chord": "G7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-major-Db^7-non-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Major",
+      "chord": "Db^7"
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-major-Ab7-non-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Major",
+      "chord": "Ab7"
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-minor-C-7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Minor",
+      "chord": "C-7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-minor-Eb^7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Minor",
+      "chord": "Eb^7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-minor-Bb7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Minor",
+      "chord": "Bb7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-minor-E^7-non-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Minor",
+      "chord": "E^7"
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-minor-A^7-non-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Minor",
+      "chord": "A^7"
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-harm-minor-C-^7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "HarmonicMinor",
+      "chord": "C-^7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-harm-minor-G7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "HarmonicMinor",
+      "chord": "G7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/C-harm-minor-Bb^7-non-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "HarmonicMinor",
+      "chord": "Bb^7"
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/G-major-D7-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "G",
+      "scale": "Major",
+      "chord": "D7"
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "transactions/is_diatonic/G-major-Db7-non-diatonic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "G",
+      "scale": "Major",
+      "chord": "Db7"
+    },
+    "expect": {
+      "value": false
+    }
+  }
+]

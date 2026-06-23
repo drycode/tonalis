@@ -1,0 +1,60 @@
+[
+  {
+    "name": "numeric/slash/V7-slash-V",
+    "op": "parse_numeric",
+    "args": {
+      "input": "V7/V"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "V",
+            "triad": "",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Dominant",
+            "substitution": false
+          },
+          "denominator": {
+            "root": "V",
+            "triad": "",
+            "seventh": "",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/slash/ii-7-slash-IV",
+    "op": "parse_numeric",
+    "args": {
+      "input": "ii-7/IV"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "ii",
+            "triad": "-",
+            "seventh": "7",
+            "extensions": [],
+            "harmonic_function": "Subdominant",
+            "substitution": false
+          },
+          "denominator": {
+            "root": "IV",
+            "triad": "",
+            "seventh": "",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          }
+        }
+      }
+    }
+  }
+]

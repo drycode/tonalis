@@ -1,0 +1,122 @@
+[
+  {
+    "name": "transactions/chord_in_key/V7-in-C",
+    "op": "chord_in_key",
+    "args": {
+      "numeric": "V7",
+      "key_root": "C"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "G",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "transactions/chord_in_key/V7-slash-V-in-C",
+    "op": "chord_in_key",
+    "args": {
+      "numeric": "V7/V",
+      "key_root": "C"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "D",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "transactions/chord_in_key/ii-7-in-C",
+    "op": "chord_in_key",
+    "args": {
+      "numeric": "ii-7",
+      "key_root": "C"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "D",
+          "triad": "-",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Subdominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "transactions/chord_in_key/I^7-in-C",
+    "op": "chord_in_key",
+    "args": {
+      "numeric": "I^7",
+      "key_root": "C"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "C",
+          "triad": "",
+          "seventh": "^7",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "transactions/chord_in_key/V7-in-G",
+    "op": "chord_in_key",
+    "args": {
+      "numeric": "V7",
+      "key_root": "G"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "D",
+          "triad": "",
+          "seventh": "7",
+          "extensions": [],
+          "harmonic_function": "Dominant",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "transactions/chord_in_key/bVI^7-in-C",
+    "op": "chord_in_key",
+    "args": {
+      "numeric": "bVI^7",
+      "key_root": "C"
+    },
+    "expect": {
+      "model": {
+        "chord": {
+          "root": "Ab",
+          "triad": "",
+          "seventh": "^7",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  }
+]
