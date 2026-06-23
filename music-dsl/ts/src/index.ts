@@ -36,3 +36,20 @@ export {
   Extensions,
   type Extensions as ExtensionsT,
 } from "./chordQuality.js";
+
+export {
+  MIN_SUPPORTED,
+  MAX_SUPPORTED,
+  stripLeft,
+  stripRight,
+  semitonesApartAscending,
+} from "./helpers.js";
+
+export {
+  EMPTY_CHORD_ENCODING,
+  DIMINISHED_ENCODING,
+  ENCODING_MAP,
+  Scales,
+  scaleValue,
+  encodingValue,
+} from "./encode.js";

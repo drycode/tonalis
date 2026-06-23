@@ -11,20 +11,28 @@ import { fileURLToPath } from "node:url";
 
 import {
   intervalsEqual, intervalSemitones, notesEqual, noteIndex, scaleDegreesEqual,
+  scaleValue, encodingValue, stripLeft, stripRight, semitonesApartAscending,
 } from "music_dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const CASES_DIR = join(HERE, "..", "..", "cases");
 
-type Case = { name: string; op: string; args: Record<string, string>; expect: { value?: unknown } };
+type Case = { name: string; op: string; args: Record<string, unknown>; expect: { value?: unknown; error?: boolean } };
 
 // The op dispatch — the cross-port contract. Same op names as Python/Rust runners.
-const OPS: Record<string, (args: Record<string, string>) => unknown> = {
-  intervals_equal: (a) => intervalsEqual(a["a"]!, a["b"]!),
-  interval_semitones: (a) => intervalSemitones(a["x"]!),
-  notes_equal: (a) => notesEqual(a["a"]!, a["b"]!),
-  note_index: (a) => noteIndex(a["n"]!),
-  scale_degrees_equal: (a) => scaleDegreesEqual(a["a"]!, a["b"]!),
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const OPS: Record<string, (args: any) => unknown> = {
+  intervals_equal:           (a) => intervalsEqual(a["a"] as string, a["b"] as string),
+  interval_semitones:        (a) => intervalSemitones(a["x"] as string),
+  notes_equal:               (a) => notesEqual(a["a"] as string, a["b"] as string),
+  note_index:                (a) => noteIndex(a["n"] as string),
+  scale_degrees_equal:       (a) => scaleDegreesEqual(a["a"] as string, a["b"] as string),
+  // Encode / helpers ops (Build 2) — bigint layer; convert to number for JSON comparison
+  scale_value:               (a) => Number(scaleValue(a["name"] as string)),
+  encoding_value:            (a) => Number(encodingValue(a["triad"] as string, a["seventh"] as string, (a["extensions"] as string[]) ?? [])),
+  strip_left:                (a) => Number(stripLeft(BigInt(a["bits"] as number), Number(a["x"]))),
+  strip_right:               (a) => Number(stripRight(BigInt(a["bits"] as number), Number(a["x"]))),
+  semitones_apart_ascending: (a) => semitonesApartAscending(a["root"] as string, a["note"] as string),
 };
 
 function discover(dir: string): Array<{ relpath: string; case: Case }> {
@@ -44,7 +52,7 @@ function discover(dir: string): Array<{ relpath: string; case: Case }> {
   return out;
 }
 
-const EXPECTED_CASE_COUNT = 51; // keep in sync with the Python runner's frozen count
+const EXPECTED_CASE_COUNT = 103; // keep in sync with the Python runner's frozen count
 
 const cases = discover(CASES_DIR);
 
@@ -56,7 +64,11 @@ describe("music-dsl conformance suite (TypeScript port)", () => {
     it(`${c.name} (${relpath})`, () => {
       const op = OPS[c.op];
       if (!op) throw new Error(`unknown op ${c.op} in ${c.name}`);
-      expect(op(c.args)).toEqual(c.expect.value);
+      if (c.expect.error === true) {
+        expect(() => op(c.args)).toThrow();
+      } else {
+        expect(op(c.args)).toEqual(c.expect.value);
+      }
     });
   }
 });
