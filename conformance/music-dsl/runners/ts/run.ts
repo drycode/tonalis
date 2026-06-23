@@ -12,12 +12,13 @@ import { fileURLToPath } from "node:url";
 import {
   intervalsEqual, intervalSemitones, notesEqual, noteIndex, scaleDegreesEqual,
   scaleValue, encodingValue, stripLeft, stripRight, semitonesApartAscending,
+  parseChord, serializeChord, chordEncoding,
 } from "music_dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const CASES_DIR = join(HERE, "..", "..", "cases");
 
-type Case = { name: string; op: string; args: Record<string, unknown>; expect: { value?: unknown; error?: boolean } };
+type Case = { name: string; op: string; args: Record<string, unknown>; expect: { value?: unknown; model?: unknown; error?: boolean } };
 
 // The op dispatch — the cross-port contract. Same op names as Python/Rust runners.
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,6 +34,8 @@ const OPS: Record<string, (args: any) => unknown> = {
   strip_left:                (a) => Number(stripLeft(BigInt(a["bits"] as number), Number(a["x"]))),
   strip_right:               (a) => Number(stripRight(BigInt(a["bits"] as number), Number(a["x"]))),
   semitones_apart_ascending: (a) => semitonesApartAscending(a["root"] as string, a["note"] as string),
+  parse_chord:               (a) => ({ chord: serializeChord(parseChord(a["input"] as string)) }),
+  encode_chord:              (a) => Number(chordEncoding(a["input"] as string)),
 };
 
 function discover(dir: string): Array<{ relpath: string; case: Case }> {
@@ -52,7 +55,7 @@ function discover(dir: string): Array<{ relpath: string; case: Case }> {
   return out;
 }
 
-const EXPECTED_CASE_COUNT = 103; // keep in sync with the Python runner's frozen count
+const EXPECTED_CASE_COUNT = 212; // keep in sync with the Python runner's frozen count
 
 const cases = discover(CASES_DIR);
 
@@ -66,6 +69,8 @@ describe("music-dsl conformance suite (TypeScript port)", () => {
       if (!op) throw new Error(`unknown op ${c.op} in ${c.name}`);
       if (c.expect.error === true) {
         expect(() => op(c.args)).toThrow();
+      } else if (c.expect.model !== undefined) {
+        expect(op(c.args)).toEqual(c.expect.model);
       } else {
         expect(op(c.args)).toEqual(c.expect.value);
       }

@@ -52,3 +52,12 @@ export {
   scaleValue,
   encodingValue,
 } from "./encode.js";
+
+export {
+  InvalidChordStringError,
+  type ChordModel,
+  type ChordSerialized,
+  parseChord,
+  serializeChord,
+  chordEncoding,
+} from "./chord.js";
