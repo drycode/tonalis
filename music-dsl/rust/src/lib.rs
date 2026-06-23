@@ -9,6 +9,7 @@
 //! Enharmonic / pitch-class equality is in the explicit `notes_equal` / `scale_degrees_equal`
 //! functions below — it is NEVER encoded in `PartialEq`.
 
+pub mod chord;
 pub mod chord_quality;
 pub mod encode;
 pub mod get_index;
@@ -16,6 +17,7 @@ pub mod helpers;
 pub mod notes;
 pub mod scale_degree;
 
+pub use chord::{chord_encoding, parse_chord, ChordModel, ChordModelWrapper, ChordParseError};
 pub use chord_quality::{Extensions, HarmonicFunction, Seventh, Triad};
 pub use encode::{
     encoding_value, scale_value,

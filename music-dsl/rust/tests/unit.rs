@@ -1,6 +1,7 @@
 use music_dsl::{
-    intervals_equal, interval_semitones, notes_equal, note_index, scale_degrees_equal,
-    encoding_value, scale_value, semitones_apart_ascending, strip_left, strip_right,
+    chord_encoding, intervals_equal, interval_semitones, notes_equal, note_index,
+    parse_chord, scale_degrees_equal, encoding_value, scale_value,
+    semitones_apart_ascending, strip_left, strip_right,
 };
 
 #[test]
@@ -112,4 +113,121 @@ fn strip_left_out_of_range_errors() {
     // The conformance cases confirm 262144 with x=7 errors.
     assert!(strip_left(262144u64, 7).is_err());
     assert!(strip_left(299520u64, 7).is_err());
+}
+
+// ---------------------------------------------------------------------------
+// Chord parser tests (Build 3, Task 3)
+// ---------------------------------------------------------------------------
+
+#[test]
+fn chord_major7_sharp11() {
+    let m = parse_chord("C^7#11").expect("C^7#11 should parse");
+    assert_eq!(m.root, "C");
+    assert_eq!(m.triad, "");
+    assert_eq!(m.seventh, "^7");
+    assert_eq!(m.extensions, vec!["#11"]);
+    assert_eq!(m.harmonic_function, "Tonic");
+}
+
+#[test]
+fn chord_sharp_minor7_flat_normalised() {
+    // C#-7 → root normalised to Db
+    let m = parse_chord("C#-7").expect("C#-7 should parse");
+    assert_eq!(m.root, "Db");
+    assert_eq!(m.triad, "-");
+    assert_eq!(m.seventh, "7");
+    assert_eq!(m.harmonic_function, "Subdominant");
+}
+
+#[test]
+fn chord_sus_triad() {
+    let m = parse_chord("Csus").expect("Csus should parse");
+    assert_eq!(m.triad, "sus");
+    assert!(m.extensions.is_empty());
+}
+
+#[test]
+fn chord_c4_shorthand_sus4() {
+    // "C4" is shorthand for "Csus4"
+    let m = parse_chord("C4").expect("C4 should parse");
+    assert_eq!(m.triad, "sus4");
+    assert!(m.extensions.is_empty());
+}
+
+#[test]
+fn chord_c7_plus_aug5() {
+    // "C7+" → seventh=7, extensions=["#5"]
+    let m = parse_chord("C7+").expect("C7+ should parse");
+    assert_eq!(m.seventh, "7");
+    assert_eq!(m.extensions, vec!["#5"]);
+    assert_eq!(m.harmonic_function, "Dominant");
+}
+
+#[test]
+fn chord_slash_bass_discarded() {
+    // C^7/E should parse the same as C^7
+    let m_slash = parse_chord("C^7/E").expect("C^7/E should parse");
+    let m_plain = parse_chord("C^7").expect("C^7 should parse");
+    assert_eq!(m_slash.root, m_plain.root);
+    assert_eq!(m_slash.triad, m_plain.triad);
+    assert_eq!(m_slash.seventh, m_plain.seventh);
+    assert_eq!(m_slash.extensions, m_plain.extensions);
+}
+
+#[test]
+fn chord_b_sharp_maps_to_c() {
+    let m = parse_chord("B#").expect("B# should parse");
+    assert_eq!(m.root, "C");
+}
+
+#[test]
+fn chord_b_sharp_b9_rejected() {
+    // B# → C (1-char root), major triad, no seventh, b9 extension → error
+    assert!(parse_chord("B#b9").is_err(), "B#b9 should be rejected");
+}
+
+// ---------------------------------------------------------------------------
+// Sus ambiguity regression suite (15 inputs from C3 probe)
+// ---------------------------------------------------------------------------
+
+#[test]
+fn sus_ambiguity_regression() {
+    struct Case { input: &'static str, triad: &'static str, seventh: &'static str, exts: Vec<&'static str> }
+    let cases = [
+        Case { input: "Csus",     triad: "sus",  seventh: "",    exts: vec![] },
+        Case { input: "Csus4",    triad: "sus4", seventh: "",    exts: vec![] },
+        Case { input: "Csus2",    triad: "sus2", seventh: "",    exts: vec![] },
+        Case { input: "C4",       triad: "sus4", seventh: "",    exts: vec![] },
+        Case { input: "C9sus",    triad: "sus",  seventh: "",    exts: vec!["9"] },
+        Case { input: "C9sus4",   triad: "sus4", seventh: "",    exts: vec!["9"] },
+        Case { input: "C7susb9",  triad: "sus",  seventh: "7",   exts: vec!["b9"] },
+        Case { input: "C7b9sus",  triad: "sus",  seventh: "7",   exts: vec!["b9"] },
+        Case { input: "Csus7b9",  triad: "sus",  seventh: "7",   exts: vec!["b9"] },
+        Case { input: "Csus9",    triad: "sus",  seventh: "",    exts: vec!["9"] },
+        Case { input: "C^",       triad: "",     seventh: "^7",  exts: vec![] },
+        Case { input: "C7+",      triad: "",     seventh: "7",   exts: vec!["#5"] },
+        Case { input: "Cadd9",    triad: "",     seventh: "",    exts: vec!["9"] },
+        Case { input: "C69",      triad: "",     seventh: "",    exts: vec!["6","9"] },
+        Case { input: "C7alt",    triad: "",     seventh: "7",   exts: vec!["alt"] },
+    ];
+    for c in &cases {
+        let m = parse_chord(c.input).unwrap_or_else(|e| panic!("{}: {}", c.input, e));
+        assert_eq!(m.triad, c.triad, "{}: triad", c.input);
+        assert_eq!(m.seventh, c.seventh, "{}: seventh", c.input);
+        let got_exts: Vec<&str> = m.extensions.iter().map(|s| s.as_str()).collect();
+        assert_eq!(got_exts, c.exts, "{}: extensions", c.input);
+    }
+}
+
+#[test]
+fn chord_encoding_major_triad() {
+    // Major triad = sentinel(18) | triad(4,7) → 262144 | 16384 | 2048 = 280576
+    assert_eq!(chord_encoding("C").unwrap(), 280576);
+}
+
+#[test]
+fn chord_encoding_minor7() {
+    // Minor triad + minor seventh: should not be 280576
+    let enc = chord_encoding("C-7").unwrap();
+    assert!(enc != 280576);
 }
