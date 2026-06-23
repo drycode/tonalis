@@ -35,6 +35,25 @@ class Cell:
     beats: Optional[int] = None  # explicit :N, else None (even split of the bar)
     alt: Optional[str] = None  # raw "(A-7 D7)" alt-chord text, if any
 
+    @property
+    def chord_obj(self):
+        """Lazy MusicDSL Chord for a present chord token; None for empty / no-chord /
+        bare-slash cells; raises InvalidChordStringException for a malformed-present token."""
+        from music_dsl.domain.chords.chord import Chord  # lazy: keeps the dep at use-time
+        t = (self.chord or "").replace("*", "")
+        if not t or t in ("N.C.", "n") or t.startswith("/"):
+            return None
+        return Chord(t)
+
+    @property
+    def chord_obj_or_none(self):
+        """Non-raising form of chord_obj (None for malformed tokens too)."""
+        from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
+        try:
+            return self.chord_obj
+        except InvalidChordStringException:
+            return None
+
 
 @dataclass
 class Measure:
