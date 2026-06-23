@@ -11,7 +11,11 @@
 //! Run from repo root:
 //!   cargo run --manifest-path music-dsl/rust/Cargo.toml --bin fuzz_runner
 
-use music_dsl::{parse_chord, parse_numeric, numeric_from_chord};
+use music_dsl::{
+    parse_chord, parse_numeric, numeric_from_chord,
+    note_to_midi, chord_pitches, scale_pitches, scale_degree_pitch,
+    modulate, is_diatonic, chord_in_key, scale_value,
+};
 use serde_json::{json, Value};
 use std::fs;
 
@@ -44,6 +48,54 @@ fn run_numeric_from_chord(key_root: &str, chord: &str, substitution: bool) -> Va
         Ok(attrs) => {
             let numeric_val = serde_json::to_value(&attrs).unwrap();
             json!({"result": {"numeric": numeric_val}})
+        }
+        Err(_) => json!({"error": true}),
+    }
+}
+
+fn run_chord_pitches(chord_str: &str, octave: i64) -> Value {
+    match chord_pitches(chord_str, octave) {
+        Ok(pitches) => json!({"result": {"pitches": pitches}}),
+        Err(_) => json!({"error": true}),
+    }
+}
+
+fn run_scale_pitches(root: &str, scale_name: &str, octave: i64) -> Value {
+    let pitches = scale_pitches(root, scale_name, octave);
+    json!({"result": {"pitches": pitches}})
+}
+
+fn run_scale_degree_pitch(degree: &str, key_root: &str, octave: i64) -> Value {
+    let pitch = scale_degree_pitch(degree, key_root, octave);
+    json!({"result": {"pitch": pitch}})
+}
+
+fn run_note_to_midi(note: &str, octave: i64) -> Value {
+    let pitch = note_to_midi(note, octave);
+    json!({"result": {"pitch": pitch}})
+}
+
+fn run_modulate(semitones: i64, note: &str) -> Value {
+    let result = modulate(semitones, note);
+    json!({"result": {"note": result}})
+}
+
+fn run_is_diatonic(root: &str, scale_name: &str, chord_str: &str) -> Value {
+    // Pre-validate chord: if it doesn't parse, emit error (matches Python oracle which
+    // raises InvalidChordStringException rather than silently returning false).
+    if let Err(_) = music_dsl::parse_chord(chord_str) {
+        return json!({"error": true});
+    }
+    let sv = scale_value(scale_name);
+    let result = is_diatonic(root, sv, chord_str);
+    json!({"result": {"diatonic": result}})
+}
+
+fn run_chord_in_key(numeric_str: &str, key_root: &str) -> Value {
+    match chord_in_key(numeric_str, key_root) {
+        Ok(model) => {
+            let chord_val = serde_json::to_value(&model).unwrap();
+            json!({"result": {"chord": chord_val}})
         }
         Err(_) => json!({"error": true}),
     }
@@ -84,6 +136,44 @@ fn main() {
                 let sub = record["substitution"].as_bool().unwrap_or(false);
                 run_numeric_from_chord(key_root, chord, sub)
             }
+            "chord_pitches" => {
+                let chord = record["chord"].as_str().unwrap_or("");
+                let octave = record["octave"].as_i64().unwrap_or(4);
+                run_chord_pitches(chord, octave)
+            }
+            "scale_pitches" => {
+                let root = record["root"].as_str().unwrap_or("");
+                let scale = record["scale"].as_str().unwrap_or("");
+                let octave = record["octave"].as_i64().unwrap_or(4);
+                run_scale_pitches(root, scale, octave)
+            }
+            "scale_degree_pitch" => {
+                let degree = record["degree"].as_str().unwrap_or("");
+                let key_root = record["key_root"].as_str().unwrap_or("");
+                let octave = record["octave"].as_i64().unwrap_or(4);
+                run_scale_degree_pitch(degree, key_root, octave)
+            }
+            "note_to_midi" => {
+                let note = record["note"].as_str().unwrap_or("");
+                let octave = record["octave"].as_i64().unwrap_or(4);
+                run_note_to_midi(note, octave)
+            }
+            "modulate" => {
+                let semitones = record["semitones"].as_i64().unwrap_or(0);
+                let note = record["note"].as_str().unwrap_or("");
+                run_modulate(semitones, note)
+            }
+            "is_diatonic" => {
+                let root = record["root"].as_str().unwrap_or("");
+                let scale = record["scale"].as_str().unwrap_or("");
+                let chord = record["chord"].as_str().unwrap_or("");
+                run_is_diatonic(root, scale, chord)
+            }
+            "chord_in_key" => {
+                let numeric = record["numeric"].as_str().unwrap_or("");
+                let key_root = record["key_root"].as_str().unwrap_or("");
+                run_chord_in_key(numeric, key_root)
+            }
             _ => {
                 eprintln!("WARNING: unknown kind {} at index {}", kind, i);
                 continue;
@@ -106,6 +196,37 @@ fn main() {
                 entry["chord"] = record["chord"].clone();
                 entry["substitution"] = record["substitution"].clone();
             }
+            "chord_pitches" => {
+                entry["chord"] = record["chord"].clone();
+                entry["octave"] = record["octave"].clone();
+            }
+            "scale_pitches" => {
+                entry["root"] = record["root"].clone();
+                entry["scale"] = record["scale"].clone();
+                entry["octave"] = record["octave"].clone();
+            }
+            "scale_degree_pitch" => {
+                entry["degree"] = record["degree"].clone();
+                entry["key_root"] = record["key_root"].clone();
+                entry["octave"] = record["octave"].clone();
+            }
+            "note_to_midi" => {
+                entry["note"] = record["note"].clone();
+                entry["octave"] = record["octave"].clone();
+            }
+            "modulate" => {
+                entry["semitones"] = record["semitones"].clone();
+                entry["note"] = record["note"].clone();
+            }
+            "is_diatonic" => {
+                entry["root"] = record["root"].clone();
+                entry["scale"] = record["scale"].clone();
+                entry["chord"] = record["chord"].clone();
+            }
+            "chord_in_key" => {
+                entry["numeric"] = record["numeric"].clone();
+                entry["key_root"] = record["key_root"].clone();
+            }
             _ => {}
         }
         if is_error {
@@ -124,8 +245,12 @@ fn main() {
     println!("Rust fuzz runner: {} outputs -> {}", outputs.len(), out_path);
 
     let _ok = outputs.len() - errors;
-    println!("  chord / numeric / numeric_from_chord breakdown:");
-    for kind in &["chord", "numeric", "numeric_from_chord"] {
+    println!("  breakdown by kind:");
+    for kind in &[
+        "chord", "numeric", "numeric_from_chord",
+        "chord_pitches", "scale_pitches", "scale_degree_pitch", "note_to_midi",
+        "modulate", "is_diatonic", "chord_in_key",
+    ] {
         let ok_k = outputs.iter().filter(|o| o["kind"] == *kind && !o.get("error").and_then(|v| v.as_bool()).unwrap_or(false)).count();
         let err_k = outputs.iter().filter(|o| o["kind"] == *kind && o.get("error").and_then(|v| v.as_bool()).unwrap_or(false)).count();
         println!("    {}: {} ok, {} error", kind, ok_k, err_k);

@@ -21,11 +21,14 @@ import json
 import sys
 from pathlib import Path
 
-from music_dsl.domain.static import Notes
+from music_dsl.domain.static import Notes, ScaleDegree
 from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.chords.numeric_chord import NumericChord
 from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
 from music_dsl.serialize import serialize_chord, serialize_numeric_chord, _serialize_chord_attrs
+from music_dsl.realize import chord_pitches, scale_pitches, scale_degree_pitch, note_to_midi
+from music_dsl.transactions import modulate, is_diatonic, chord_in_key
+from music_dsl.encode import Scales
 
 HERE = Path(__file__).resolve().parent
 INPUTS = HERE / "inputs.json"
@@ -63,10 +66,83 @@ def _run_numeric_from_chord(record: dict) -> dict:
         return {"error": True}
 
 
+def _try_note_or_degree(s: str):
+    """Return Notes(s) if valid, else ScaleDegree(s). Raises ValueError if neither."""
+    try:
+        return Notes(s)
+    except ValueError:
+        return ScaleDegree(s)
+
+
+def _run_chord_pitches(record: dict) -> dict:
+    try:
+        pitches = chord_pitches(Chord(record["chord"]), record["octave"])
+        return {"result": {"pitches": pitches}}
+    except Exception:
+        return {"error": True}
+
+
+def _run_scale_pitches(record: dict) -> dict:
+    try:
+        pitches = scale_pitches(Notes(record["root"]), Scales[record["scale"]], record["octave"])
+        return {"result": {"pitches": pitches}}
+    except Exception:
+        return {"error": True}
+
+
+def _run_scale_degree_pitch(record: dict) -> dict:
+    try:
+        pitch = scale_degree_pitch(ScaleDegree(record["degree"]), Notes(record["key_root"]), record["octave"])
+        return {"result": {"pitch": pitch}}
+    except Exception:
+        return {"error": True}
+
+
+def _run_note_to_midi(record: dict) -> dict:
+    try:
+        pitch = note_to_midi(Notes(record["note"]), record["octave"])
+        return {"result": {"pitch": pitch}}
+    except Exception:
+        return {"error": True}
+
+
+def _run_modulate(record: dict) -> dict:
+    try:
+        note_or_degree = _try_note_or_degree(record["note"])
+        result = modulate(record["semitones"], note_or_degree)
+        return {"result": {"note": result.value}}
+    except Exception:
+        return {"error": True}
+
+
+def _run_is_diatonic(record: dict) -> dict:
+    try:
+        result = is_diatonic(Notes(record["root"]), Scales[record["scale"]], Chord(record["chord"]))
+        return {"result": {"diatonic": bool(result)}}
+    except Exception:
+        return {"error": True}
+
+
+def _run_chord_in_key(record: dict) -> dict:
+    try:
+        nc = NumericChord.from_chord_string(record["numeric"])
+        chord = chord_in_key(nc, Notes(record["key_root"]))
+        return {"result": {"chord": serialize_chord(chord)}}
+    except Exception:
+        return {"error": True}
+
+
 RUNNERS = {
     "chord":              _run_chord,
     "numeric":            _run_numeric,
     "numeric_from_chord": _run_numeric_from_chord,
+    "chord_pitches":      _run_chord_pitches,
+    "scale_pitches":      _run_scale_pitches,
+    "scale_degree_pitch": _run_scale_degree_pitch,
+    "note_to_midi":       _run_note_to_midi,
+    "modulate":           _run_modulate,
+    "is_diatonic":        _run_is_diatonic,
+    "chord_in_key":       _run_chord_in_key,
 }
 
 
@@ -96,6 +172,30 @@ def run() -> list[dict]:
             entry["key_root"] = record["key_root"]
             entry["chord"] = record["chord"]
             entry["substitution"] = record["substitution"]
+        elif kind == "chord_pitches":
+            entry["chord"] = record["chord"]
+            entry["octave"] = record["octave"]
+        elif kind == "scale_pitches":
+            entry["root"] = record["root"]
+            entry["scale"] = record["scale"]
+            entry["octave"] = record["octave"]
+        elif kind == "scale_degree_pitch":
+            entry["degree"] = record["degree"]
+            entry["key_root"] = record["key_root"]
+            entry["octave"] = record["octave"]
+        elif kind == "note_to_midi":
+            entry["note"] = record["note"]
+            entry["octave"] = record["octave"]
+        elif kind == "modulate":
+            entry["semitones"] = record["semitones"]
+            entry["note"] = record["note"]
+        elif kind == "is_diatonic":
+            entry["root"] = record["root"]
+            entry["scale"] = record["scale"]
+            entry["chord"] = record["chord"]
+        elif kind == "chord_in_key":
+            entry["numeric"] = record["numeric"]
+            entry["key_root"] = record["key_root"]
 
         if "error" in outcome:
             entry["error"] = True

@@ -28,6 +28,13 @@ import {
   fromChordString,
   fromChord,
   serializeNumericChord,
+  noteToMidi,
+  chordPitches,
+  scalePitches,
+  scaleDegreePitch,
+  modulate,
+  isDiatonic,
+  chordInKey,
 } from "music_dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -35,7 +42,14 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 type FuzzInput =
   | { kind: "chord"; input: string }
   | { kind: "numeric"; input: string }
-  | { kind: "numeric_from_chord"; key_root: string; chord: string; substitution: boolean };
+  | { kind: "numeric_from_chord"; key_root: string; chord: string; substitution: boolean }
+  | { kind: "chord_pitches"; chord: string; octave: number }
+  | { kind: "scale_pitches"; root: string; scale: string; octave: number }
+  | { kind: "scale_degree_pitch"; degree: string; key_root: string; octave: number }
+  | { kind: "note_to_midi"; note: string; octave: number }
+  | { kind: "modulate"; semitones: number; note: string }
+  | { kind: "is_diatonic"; root: string; scale: string; chord: string }
+  | { kind: "chord_in_key"; numeric: string; key_root: string };
 
 type FuzzOutput =
   | { name: string; kind: string; error: true }
@@ -86,6 +100,95 @@ function tsRunNumericFromChord(
     const attrs = fromChord(keyRoot, chord, substitution);
     const serialized = serializeNumericChord({ numerator: attrs, denominator: null });
     return { result: { numeric: serialized.numerator } };
+  } catch {
+    return { error: true };
+  }
+}
+
+function tsRunChordPitches(
+  chordStr: string,
+  octave: number,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const chord = parseChord(chordStr);
+    const pitches = chordPitches(chord, octave);
+    return { result: { pitches } };
+  } catch {
+    return { error: true };
+  }
+}
+
+function tsRunScalePitches(
+  root: string,
+  scale: string,
+  octave: number,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const pitches = scalePitches(root, scale, octave);
+    return { result: { pitches } };
+  } catch {
+    return { error: true };
+  }
+}
+
+function tsRunScaleDegreePitch(
+  degree: string,
+  keyRoot: string,
+  octave: number,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const pitch = scaleDegreePitch(degree, keyRoot, octave);
+    return { result: { pitch } };
+  } catch {
+    return { error: true };
+  }
+}
+
+function tsRunNoteToMidi(
+  note: string,
+  octave: number,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const pitch = noteToMidi(note, octave);
+    return { result: { pitch } };
+  } catch {
+    return { error: true };
+  }
+}
+
+function tsRunModulate(
+  semitones: number,
+  note: string,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const result = modulate(semitones, note);
+    return { result: { note: result } };
+  } catch {
+    return { error: true };
+  }
+}
+
+function tsRunIsDiatonic(
+  root: string,
+  scale: string,
+  chordStr: string,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const chord = parseChord(chordStr);
+    const diatonic = isDiatonic(root, scale, chord);
+    return { result: { diatonic } };
+  } catch {
+    return { error: true };
+  }
+}
+
+function tsRunChordInKey(
+  numericStr: string,
+  keyRoot: string,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    const chord = chordInKey(numericStr, keyRoot);
+    return { result: { chord } };
   } catch {
     return { error: true };
   }
@@ -148,6 +251,20 @@ describe("Python↔TypeScript↔Rust 3-way differential fuzzer (music-dsl)", () 
         tsOut = tsRunNumeric(inp.input);
       } else if (inp.kind === "numeric_from_chord") {
         tsOut = tsRunNumericFromChord(inp.key_root, inp.chord, inp.substitution);
+      } else if (inp.kind === "chord_pitches") {
+        tsOut = tsRunChordPitches(inp.chord, inp.octave);
+      } else if (inp.kind === "scale_pitches") {
+        tsOut = tsRunScalePitches(inp.root, inp.scale, inp.octave);
+      } else if (inp.kind === "scale_degree_pitch") {
+        tsOut = tsRunScaleDegreePitch(inp.degree, inp.key_root, inp.octave);
+      } else if (inp.kind === "note_to_midi") {
+        tsOut = tsRunNoteToMidi(inp.note, inp.octave);
+      } else if (inp.kind === "modulate") {
+        tsOut = tsRunModulate(inp.semitones, inp.note);
+      } else if (inp.kind === "is_diatonic") {
+        tsOut = tsRunIsDiatonic(inp.root, inp.scale, inp.chord);
+      } else if (inp.kind === "chord_in_key") {
+        tsOut = tsRunChordInKey(inp.numeric, inp.key_root);
       } else {
         throw new Error(`Unknown kind in input record ${i}: ${JSON.stringify(inp)}`);
       }
