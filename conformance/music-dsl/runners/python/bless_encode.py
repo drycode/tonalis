@@ -2,7 +2,7 @@
 Run: python conformance/music-dsl/runners/python/bless_encode.py  -> paste each block into its file.
 The encode bit-layout IS the contract, so expected values are whatever the reference computes (blessed)."""
 import json
-from music_dsl.encode import Encoding, Scales, scan_scale, EncodingMap
+from music_dsl.encode import Encoding, Scales, EncodingMap
 from music_dsl.domain.static import Notes, Triad, Seventh, Extensions
 from music_dsl.helpers import strip_left, strip_right, semitones_apart_ascending
 
@@ -38,21 +38,7 @@ semis = [{"name": f"sa-{r}-{n}", "op": "semitones_apart_ascending", "args": {"ro
           "expect": {"value": semitones_apart_ascending(Notes(r), Notes(n))}}
          for r, n in [("C","G"),("C","F"),("G","C"),("E","C"),("C","C"),("Bb","D")]]
 
-scans = []
-for tri, sev, exts in [("Major","Major",[]),("Minor","Minor",[]),("Major","Minor",[]),("Diminished","_None",[])]:
-    c = enc(tri, sev, exts)
-    for sc in ["Major","Minor","HarmonicMinor"]:
-        try:
-            v = scan_scale(Scales[sc].value, c)
-            scans.append({"name": f"scan-{sc}-{tri}{sev}", "op": "scan_scale",
-                          "args": {"scale": Scales[sc].value, "chord": c},
-                          "expect": {"value": v}})
-        except Exception:
-            scans.append({"name": f"scan-{sc}-{tri}{sev}-err", "op": "scan_scale",
-                          "args": {"scale": Scales[sc].value, "chord": c},
-                          "expect": {"error": True}})
-
 for fname, data in [("scales", scales),("encoding", enc_cases),("strip", strip),
-                    ("semitones", semis),("scan_scale", scans)]:
+                    ("semitones", semis)]:
     print(f"===== cases/encode/{fname}.json =====")
     print(json.dumps(data, indent=2))

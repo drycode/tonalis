@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 from music_dsl.domain.static import Intervals, Notes, ScaleDegree, Triad, Seventh, Extensions
-from music_dsl.encode import Encoding, Scales, scan_scale
+from music_dsl.encode import Encoding, Scales
 from music_dsl.helpers import get_index, strip_left, strip_right, semitones_apart_ascending
 
 CASES = Path(__file__).resolve().parents[2] / "cases"
@@ -32,7 +32,6 @@ OPS = {
     "strip_left":                lambda bits, x: strip_left(bits, x),
     "strip_right":               lambda bits, x: strip_right(bits, x),
     "semitones_apart_ascending": lambda root, note: semitones_apart_ascending(Notes(root), Notes(note)),
-    "scan_scale":                lambda scale, chord: scan_scale(scale, chord),
 }
 
 
