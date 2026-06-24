@@ -16,58 +16,10 @@ import { stripLeft, stripRight } from "./helpers.js";
 import { semitonesApartAscending } from "./helpers.js";
 import { type ChordModel, type ChordSerialized, parseChord, serializeChord } from "./chord.js";
 import { fromChordString } from "./numericChord.js";
-
-// ---------------------------------------------------------------------------
-// ScaleDegree helpers (mirrors Python ScaleDegree methods)
-// ---------------------------------------------------------------------------
-
-const SHARPS_TO_FLATS: Readonly<Record<string, string>> = {
-  "#I": "bII", "#i": "bii", "#II": "bIII", "#ii": "biii",
-  "#IV": "bV", "#iv": "bv", "#V": "bVI", "#v": "bvi",
-  "#VI": "bVII", "#vi": "bvii",
-};
-
-const FLATS_TO_SHARPS: Readonly<Record<string, string>> = {
-  "bII": "#I", "bii": "#i", "bIII": "#II", "biii": "#ii",
-  "bV": "#IV", "bv": "#iv", "bVI": "#V", "bvi": "#v",
-  "bVII": "#VI", "bvii": "#vi",
-};
-
-const MINOR_TO_MAJOR: Readonly<Record<string, string>> = {
-  "i": "I", "#i": "#I", "bii": "bII", "ii": "II", "#ii": "#II",
-  "biii": "bIII", "iii": "III", "iv": "IV", "#iv": "#IV",
-  "bv": "bV", "v": "V", "#v": "#V", "bvi": "bVI", "vi": "VI",
-  "#vi": "#VI", "bvii": "bVII", "vii": "VII",
-};
-
-const MAJOR_TO_MINOR: Readonly<Record<string, string>> = {
-  "I": "i", "#I": "#i", "bII": "bii", "II": "ii", "#II": "#ii",
-  "bIII": "biii", "III": "iii", "IV": "iv", "#IV": "#iv",
-  "bV": "bv", "V": "v", "#V": "#v", "bVI": "bvi", "VI": "vi",
-  "#VI": "#vi", "bVII": "bvii", "VII": "vii",
-};
-
-function sdToFlat(d: string): string { return SHARPS_TO_FLATS[d] ?? d; }
-function sdToSharp(d: string): string { return FLATS_TO_SHARPS[d] ?? d; }
-function sdToMajor(d: string): string { return MINOR_TO_MAJOR[d] ?? d; }
-function sdToMinor(d: string): string { return MAJOR_TO_MINOR[d] ?? d; }
-function sdIsFlat(d: string): boolean { return d in FLATS_TO_SHARPS; }
-function sdIsMinor(d: string): boolean { return d in MINOR_TO_MAJOR; }
-
-function sdNormalize(d: string, isFlat: boolean, isMinor: boolean): string {
-  let r = isFlat ? sdToFlat(d) : sdToSharp(d);
-  r = isMinor ? sdToMinor(r) : sdToMajor(r);
-  return r;
-}
-
-/** get_index for a ScaleDegree: SCALE_DEGREES.indexOf(d.to_major().to_flat()) */
-function sdGetIndex(d: string): number {
-  const major = sdToMajor(d);
-  const flat = sdToFlat(major);
-  const idx = SCALE_DEGREES.indexOf(flat as ScaleDegreeT);
-  if (idx === -1) throw new Error(`Unknown scale degree for get_index: ${d}`);
-  return idx;
-}
+import {
+  sdToFlat, sdToSharp, sdToMajor, sdToMinor,
+  sdIsFlat, sdIsMinor, sdNormalize, sdGetIndex,
+} from "./scaleDegreeHelpers.js";
 
 /** True if the string matches a roman numeral pattern (scale degree). */
 function isScaleDegree(value: string): boolean {
@@ -146,7 +98,7 @@ export function modulate(semitones: number, note: string): string {
   const newIdx = ((idx + semitones) % 12 + 12) % 12;
 
   if (isScaleDegree(note)) {
-    const base = SCALE_DEGREES[newIdx];
+    const base = SCALE_DEGREES[newIdx]!;
     return sdNormalize(base, sdIsFlat(note), sdIsMinor(note));
   }
 

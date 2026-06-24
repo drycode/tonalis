@@ -212,7 +212,7 @@ function checkMakeChordAttrsRejection(
     seventh === Seventh._None &&
     root.length === 1 &&
     extensions.length > 0 &&
-    (extensions[0][0] === "b" || extensions[0][0] === "#")
+    (extensions[0]![0] === "b" || extensions[0]![0] === "#")
   ) {
     throw new InvalidChordStringError(
       `${root}${extensions[0]}: an altered tension with no seventh ` +
@@ -229,7 +229,7 @@ function parseChordStringImpl(rawChord: string): ChordModel {
   // Bass split: discard bass note
   let s = rawChord;
   if (s.includes("/")) {
-    s = s.split("/")[0];
+    s = s.split("/")[0]!;
   }
 
   // Pipe check
@@ -247,7 +247,7 @@ function parseChordStringImpl(rawChord: string): ChordModel {
   }
 
   const g = match.groups;
-  const root = parseRoot(g["root"]);
+  const root = parseRoot(g["root"]!);
 
   // Collect sus from sus1/sus2 positions
   let _sus: string | undefined = g["sus1"] || g["sus2"] || undefined;

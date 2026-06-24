@@ -114,8 +114,9 @@ export function chordPitches(chord: ChordModel | string, octave: number): number
   if (c.triad === Triad.Diminished && c.seventh === Seventh.Minor) {
     seventhOffsets = [9];
   } else {
-    seventhOffsets = SEVENTH_OFFSETS[c.seventh];
-    if (seventhOffsets === undefined) throw new Error(`Unknown seventh value: ${c.seventh}`);
+    const raw = SEVENTH_OFFSETS[c.seventh];
+    if (raw === undefined) throw new Error(`Unknown seventh value: ${c.seventh}`);
+    seventhOffsets = raw;
   }
 
   // Collect extension offsets

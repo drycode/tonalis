@@ -96,7 +96,7 @@ export function parseMeasure(
   }
 
   // Step 2: total beats
-  const totalBeats = chordsList.reduce((sum, tok) => sum + 1 + countChar(tok, "%"), 0);
+  const totalBeats = chordsList.reduce((sum: number, tok: string) => sum + 1 + countChar(tok, "%"), 0);
 
   // Step 3: size
   const size = Math.max(timeSignature.denominator, totalBeats);

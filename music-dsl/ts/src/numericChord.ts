@@ -35,6 +35,10 @@ import {
 import { semitonesApartAscending } from "./helpers.js";
 import { type ChordModel, type ChordSerialized, parseChord, serializeChord, InvalidChordStringError } from "./chord.js";
 import { intervalSemitones } from "./intervals.js";
+import {
+  sdToFlat, sdToSharp, sdToMajor, sdToMinor,
+  sdIsFlat, sdIsMinor, sdNormalize, sdGetIndex,
+} from "./scaleDegreeHelpers.js";
 
 // ---------------------------------------------------------------------------
 // Interval constants (semitone values used in substitution branches)
@@ -117,85 +121,6 @@ const NUMERIC_REGEX = new RegExp(
 );
 
 // ---------------------------------------------------------------------------
-// ScaleDegree helpers (minimal subset needed here)
-// ---------------------------------------------------------------------------
-
-/** Helpers that mirror Python ScaleDegree.to_minor, .to_major, .to_sharp, .to_flat, .is_flat, .is_minor */
-
-const SHARPS_TO_FLATS: Readonly<Record<string, ScaleDegreeT>> = {
-  "#I": "bII", "#i": "bii", "#II": "bIII", "#ii": "biii",
-  "#IV": "bV", "#iv": "bv", "#V": "bVI", "#v": "bvi",
-  "#VI": "bVII", "#vi": "bvii",
-};
-
-const FLATS_TO_SHARPS: Readonly<Record<string, ScaleDegreeT>> = {
-  "bII": "#I", "bii": "#i", "bIII": "#II", "biii": "#ii",
-  "bV": "#IV", "bv": "#iv", "bVI": "#V", "bvi": "#v",
-  "bVII": "#VI", "bvii": "#vi",
-};
-
-const MAJOR_TO_MINOR: Readonly<Record<string, ScaleDegreeT>> = {
-  "I": "i", "#I": "#i", "bII": "bii", "II": "ii", "#II": "#ii",
-  "bIII": "biii", "III": "iii", "IV": "iv", "#IV": "#iv",
-  "bV": "bv", "V": "v", "#V": "#v", "bVI": "bvi", "VI": "vi",
-  "#VI": "#vi", "bVII": "bvii", "VII": "vii",
-};
-
-const MINOR_TO_MAJOR: Readonly<Record<string, ScaleDegreeT>> = {
-  "i": "I", "#i": "#I", "bii": "bII", "ii": "II", "#ii": "#II",
-  "biii": "bIII", "iii": "III", "iv": "IV", "#iv": "#IV",
-  "bv": "bV", "v": "V", "#v": "#V", "bvi": "bVI", "vi": "VI",
-  "#vi": "#VI", "bvii": "bVII", "vii": "VII",
-};
-
-function sdIsFlat(d: string): boolean {
-  return d in FLATS_TO_SHARPS;
-}
-
-function sdIsMinor(d: string): boolean {
-  return d in MINOR_TO_MAJOR;
-}
-
-function sdToFlat(d: string): ScaleDegreeT {
-  return (SHARPS_TO_FLATS[d] ?? d) as ScaleDegreeT;
-}
-
-function sdToSharp(d: string): ScaleDegreeT {
-  return (FLATS_TO_SHARPS[d] ?? d) as ScaleDegreeT;
-}
-
-function sdToMajor(d: string): ScaleDegreeT {
-  return (MINOR_TO_MAJOR[d] ?? d) as ScaleDegreeT;
-}
-
-function sdToMinor(d: string): ScaleDegreeT {
-  return (MAJOR_TO_MINOR[d] ?? d) as ScaleDegreeT;
-}
-
-/**
- * get_index for a ScaleDegree value — mirror of Python get_index(ScaleDegree):
- * SCALE_DEGREES.index(note.to_major())
- * Note: SCALE_DEGREES uses flat canonical values, so we also flatten.
- */
-function sdGetIndex(d: string): number {
-  const major = sdToMajor(d);
-  const flat = sdToFlat(major);
-  const idx = SCALE_DEGREES.indexOf(flat as ScaleDegreeT);
-  if (idx === -1) throw new Error(`Unknown scale degree for get_index: ${d}`);
-  return idx;
-}
-
-/**
- * normalize(is_flat, is_minor) — mirror of Python ScaleDegree.normalize.
- * Port:  to_flat() if is_flat else to_sharp(), then to_minor() if is_minor else to_major()
- */
-function sdNormalize(d: string, isFlat: boolean, isMinor: boolean): ScaleDegreeT {
-  let r = isFlat ? sdToFlat(d) : sdToSharp(d);
-  r = isMinor ? sdToMinor(r) : sdToMajor(r);
-  return r as ScaleDegreeT;
-}
-
-// ---------------------------------------------------------------------------
 // modulate for ScaleDegree — mirrors Python transactions.modulate (ScaleDegree branch)
 // ---------------------------------------------------------------------------
 
@@ -207,7 +132,7 @@ function sdNormalize(d: string, isFlat: boolean, isMinor: boolean): ScaleDegreeT
 function modulateDegree(semitones: number, degree: ScaleDegreeT): ScaleDegreeT {
   const idx = sdGetIndex(degree);
   const newIdx = ((idx + semitones) % 12 + 12) % 12;
-  const base = SCALE_DEGREES[newIdx];
+  const base = SCALE_DEGREES[newIdx]!;
   const isFlat = sdIsFlat(degree);
   const isMinor = sdIsMinor(degree);
   return sdNormalize(base, isFlat, isMinor);
@@ -220,7 +145,7 @@ function modulateDegree(semitones: number, degree: ScaleDegreeT): ScaleDegreeT {
 // ---------------------------------------------------------------------------
 
 function mOrMScaleDegree(degree: ScaleDegreeT, triad: TriadT): ScaleDegreeT {
-  if (triad && triad !== Triad.Major && triad !== Triad.Augmented && triad !== Triad.Sus4) {
+  if (triad && triad !== Triad.Augmented && triad !== Triad.Sus4) {
     return sdToMinor(degree) as ScaleDegreeT;
   }
   return degree;
@@ -232,10 +157,10 @@ function mOrMScaleDegree(degree: ScaleDegreeT, triad: TriadT): ScaleDegreeT {
 
 function findScaleDegree(keyRoot: string, chordRoot: string, triad: TriadT): ScaleDegreeT {
   const semitones = semitonesApartAscending(keyRoot, chordRoot);
-  let degree = SCALE_DEGREES[semitones];
+  let degree = SCALE_DEGREES[semitones]!;
   // Diminished chords are conventionally spelled with a sharp on a chromatic degree
   if (triad === Triad.Diminished && sdIsFlat(degree)) {
-    degree = sdToSharp(degree) as ScaleDegreeT;
+    degree = sdToSharp(degree);
   }
   return mOrMScaleDegree(degree, triad);
 }
@@ -332,7 +257,7 @@ function parseNumericString(s: string, substitution: boolean): NumericChordAttrs
     );
   }
   const g = match.groups;
-  const rawRoot = parseNumericRoot(g["root"]);
+  const rawRoot = parseNumericRoot(g["root"]!);
 
   // Collect sus
   let _sus: string | undefined = g["sus1"] || g["sus2"] || undefined;
