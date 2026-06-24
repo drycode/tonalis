@@ -31,7 +31,7 @@ from pathlib import Path
 from tonalis.chords import is_valid_chord
 
 _ORACLE = json.loads(
-    (Path(__file__).parent / "fixtures" / "chord_oracle.json").read_text(encoding="utf-8")
+    (Path(__file__).parents[2] / "fixtures" / "chord_oracle.json").read_text(encoding="utf-8")
 )
 
 # Tokens where new != old by an explicit decision (see this module's docstring).

@@ -46,7 +46,7 @@ from tonalis import chords as new_chords  # NEW MusicDSL-backed wrapper
 _HERE = Path(__file__).resolve()
 _REPO_ROOT = _HERE.parents[4]
 _CASES_DIR = _REPO_ROOT / "conformance" / "dsl-core" / "cases"
-_FIXTURE = _HERE.parents[2] / "tests" / "fixtures" / "chord_oracle.json"
+_FIXTURE = _HERE.parents[3] / "fixtures" / "chord_oracle.json"
 
 # A chord-looking token: starts with a note letter (opt. accidental) or a slash-bass.
 _CHORDISH = re.compile(r"^(?:[A-G][b#]?.*|/[A-G][b#]?|N\.C\.|n)$")
