@@ -76,19 +76,18 @@ fn run_note_to_midi(note: &str, octave: i64) -> Value {
 }
 
 fn run_modulate(semitones: i64, note: &str) -> Value {
-    let result = modulate(semitones, note);
-    json!({"result": {"note": result}})
+    match modulate(semitones, note) {
+        Ok(result) => json!({"result": {"note": result}}),
+        Err(_) => json!({"error": true}),
+    }
 }
 
 fn run_is_diatonic(root: &str, scale_name: &str, chord_str: &str) -> Value {
-    // Pre-validate chord: if it doesn't parse, emit error (matches Python oracle which
-    // raises InvalidChordStringException rather than silently returning false).
-    if let Err(_) = music_dsl::parse_chord(chord_str) {
-        return json!({"error": true});
-    }
     let sv = scale_value(scale_name);
-    let result = is_diatonic(root, sv, chord_str);
-    json!({"result": {"diatonic": result}})
+    match is_diatonic(root, sv, chord_str) {
+        Ok(result) => json!({"result": {"diatonic": result}}),
+        Err(_) => json!({"error": true}),
+    }
 }
 
 fn run_chord_in_key(numeric_str: &str, key_root: &str) -> Value {
@@ -102,14 +101,10 @@ fn run_chord_in_key(numeric_str: &str, key_root: &str) -> Value {
 }
 
 fn run_harmonic_function_in_key(key_root: &str, key_is_minor: bool, chord_str: &str) -> Value {
-    // Pre-validate: if chord is invalid, emit error — mirrors Python (raises on Chord(invalid))
-    // and TS (parseChord throws).  The lib function itself returns "Tonic" on Err (intentional
-    // for the analysis engine), but the fuzz runner must match Python's error semantics.
-    if let Err(_) = parse_chord(chord_str) {
-        return json!({"error": true});
+    match harmonic_function_in_key(key_root, key_is_minor, chord_str) {
+        Ok(result) => json!({"result": {"value": result}}),
+        Err(_) => json!({"error": true}),
     }
-    let result = harmonic_function_in_key(key_root, key_is_minor, chord_str);
-    json!({"result": {"value": result}})
 }
 
 fn main() {

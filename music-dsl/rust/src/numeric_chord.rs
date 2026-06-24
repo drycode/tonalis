@@ -307,21 +307,24 @@ pub fn numeric_from_chord(
             }
             // modulate(6 + 2, degree) = modulate(8, degree)
             let deg_val = base_degree.value();
-            let modulated = crate::transactions::modulate(8, deg_val);
+            let modulated = crate::transactions::modulate(8, deg_val)
+                .map_err(|e| NumericParseError::UnknownDegree(format!("{}", e)))?;
             let new_deg = ScaleDegree::from_value(&modulated)
                 .ok_or_else(|| NumericParseError::UnknownDegree(modulated.clone()))?;
             (new_deg, true)
         } else if chord.harmonic_function == "Dominant" {
             // Tritone (Dominant) sub: modulate(6, degree)
             let deg_val = base_degree.value();
-            let modulated = crate::transactions::modulate(6, deg_val);
+            let modulated = crate::transactions::modulate(6, deg_val)
+                .map_err(|e| NumericParseError::UnknownDegree(format!("{}", e)))?;
             let new_deg = ScaleDegree::from_value(&modulated)
                 .ok_or_else(|| NumericParseError::UnknownDegree(modulated.clone()))?;
             (new_deg, true)
         } else if a == 8 {
             // Min6 sub: modulate(-6, degree)
             let deg_val = base_degree.value();
-            let modulated = crate::transactions::modulate(-6, deg_val);
+            let modulated = crate::transactions::modulate(-6, deg_val)
+                .map_err(|e| NumericParseError::UnknownDegree(format!("{}", e)))?;
             let new_deg = ScaleDegree::from_value(&modulated)
                 .ok_or_else(|| NumericParseError::UnknownDegree(modulated.clone()))?;
             (new_deg, true)

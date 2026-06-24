@@ -184,6 +184,7 @@ pub fn scale_degree_pitch(degree: &str, key_root: &str, octave: i64) -> i64 {
     let sd = ScaleDegree::from_value(degree)
         .unwrap_or_else(|| panic!("unknown scale degree: {}", degree));
     let semitones = sd.scale_degree_index();
-    let note = modulate(semitones, key_root);
+    let note = modulate(semitones, key_root)
+        .unwrap_or_else(|e| panic!("scale_degree_pitch: {}", e));
     note_to_midi(&note, octave)
 }

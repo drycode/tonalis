@@ -146,36 +146,31 @@ fn dispatch(op: &str, args: &Value) -> Value {
         "modulate" => {
             let semitones = args.get("semitones").and_then(|v| v.as_i64()).unwrap();
             let note = s("note");
-            Value::String(modulate(semitones, note))
+            match modulate(semitones, note) {
+                Ok(result) => Value::String(result),
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
+            }
         }
 
         "is_diatonic" => {
             let root = s("root");
             let scale_name = s("scale");
             let chord = s("chord");
-            // Pre-validate: if the chord string is invalid, return the error sentinel.
-            // Mirrors the Python (raises InvalidChordStringException) and TS (parseChord throws)
-            // behaviour — is_diatonic must error on invalid input, not silently return false.
-            if parse_chord(chord).is_err() {
-                return Value::String(ERROR_SENTINEL.to_string());
-            }
             let scale = scale_value(scale_name);
-            Value::Bool(is_diatonic(root, scale, chord))
+            match is_diatonic(root, scale, chord) {
+                Ok(v) => Value::Bool(v),
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
+            }
         }
 
         "harmonic_function_in_key" => {
             let key_root = s("key_root");
             let key_is_minor = args.get("key_is_minor").and_then(|v| v.as_bool()).unwrap_or(false);
             let chord = s("chord");
-            // Pre-validate: if the chord string is invalid, return the error sentinel.
-            // Mirrors the Python (raises InvalidChordStringException on Chord(invalid)) and TS
-            // (parseChord throws) behaviour — harmonic_function_in_key must error on invalid
-            // input, not silently return "Tonic".  Do NOT change the lib function itself; only
-            // the conformance op must match Python's error semantics.
-            if parse_chord(chord).is_err() {
-                return Value::String(ERROR_SENTINEL.to_string());
+            match harmonic_function_in_key(key_root, key_is_minor, chord) {
+                Ok(result) => Value::String(result),
+                Err(_) => Value::String(ERROR_SENTINEL.to_string()),
             }
-            Value::String(harmonic_function_in_key(key_root, key_is_minor, chord))
         }
 
         "chord_in_key" => {

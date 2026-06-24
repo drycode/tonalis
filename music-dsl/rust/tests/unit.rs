@@ -1,8 +1,9 @@
 use music_dsl::{
-    chord_encoding, chord_pitches, interval_pitches, intervals_equal, interval_semitones,
-    midi_to_hz, note_index, note_to_midi, notes_equal, parse_chord, parse_measure,
-    scale_degree_pitch, scale_degrees_equal, scale_pitches, encoding_value, scale_value,
-    semitones_apart_ascending, strip_left, strip_right, TimeSignature,
+    chord_encoding, chord_in_key, chord_pitches, harmonic_function_in_key, interval_pitches,
+    intervals_equal, interval_semitones, is_diatonic, midi_to_hz, modulate, note_index,
+    note_to_midi, notes_equal, parse_chord, parse_measure, scale_degree_pitch,
+    scale_degrees_equal, scale_pitches, encoding_value, scale_value, semitones_apart_ascending,
+    strip_left, strip_right, TimeSignature,
 };
 
 #[test]
@@ -339,4 +340,83 @@ fn interval_pitches_c4_p5() {
     // C4 + P5 → [60, 67]
     let pitches = interval_pitches("C", "P5", 4);
     assert_eq!(pitches, vec![60, 67]);
+}
+
+// ---------------------------------------------------------------------------
+// publish-prep: Result-returning transaction fns — error path tests
+// ---------------------------------------------------------------------------
+
+#[test]
+fn modulate_unknown_note_is_err() {
+    assert!(modulate(1, "ZZ").is_err());
+    assert!(modulate(0, "xyzzy").is_err());
+}
+
+#[test]
+fn modulate_valid_note_ok() {
+    assert_eq!(modulate(2, "C").unwrap(), "D");
+    assert_eq!(modulate(0, "G").unwrap(), "G");
+}
+
+#[test]
+fn modulate_valid_scale_degree_ok() {
+    // ii (minor II, 2 semitones) transposed up 2 semitones → iii (minor III, 4 semitones)
+    assert_eq!(modulate(2, "ii").unwrap(), "iii");
+}
+
+#[test]
+fn is_diatonic_invalid_chord_is_err() {
+    let major = scale_value("Major");
+    assert!(is_diatonic("C", major, "xyzzy").is_err());
+    assert!(is_diatonic("C", major, "").is_err());
+}
+
+#[test]
+fn is_diatonic_valid_diatonic_ok_true() {
+    let major = scale_value("Major");
+    // C major: Cmaj7 is diatonic
+    assert_eq!(is_diatonic("C", major, "C^7").unwrap(), true);
+}
+
+#[test]
+fn is_diatonic_valid_non_diatonic_ok_false() {
+    let major = scale_value("Major");
+    // C major: C#7 is NOT diatonic — must be Ok(false) not Err
+    assert_eq!(is_diatonic("C", major, "C#7").unwrap(), false);
+}
+
+#[test]
+fn harmonic_function_in_key_invalid_chord_is_err() {
+    assert!(harmonic_function_in_key("C", false, "xyzzy").is_err());
+    assert!(harmonic_function_in_key("C", false, "").is_err());
+}
+
+#[test]
+fn harmonic_function_in_key_valid_tonic_ok() {
+    // C in C major → Tonic
+    assert_eq!(harmonic_function_in_key("C", false, "C^7").unwrap(), "Tonic");
+}
+
+#[test]
+fn harmonic_function_in_key_minor_root_tonic_ok() {
+    // C- in C minor → Tonic (minor-root override path)
+    assert_eq!(harmonic_function_in_key("C", true, "C-7").unwrap(), "Tonic");
+}
+
+#[test]
+fn harmonic_function_in_key_dominant_ok() {
+    // G7 in C major → Dominant
+    assert_eq!(harmonic_function_in_key("C", false, "G7").unwrap(), "Dominant");
+}
+
+#[test]
+fn chord_in_key_unknown_key_root_is_err() {
+    assert!(chord_in_key("V7", "ZZ").is_err());
+}
+
+#[test]
+fn chord_in_key_valid_is_ok() {
+    // V7 in C → G7
+    let chord = chord_in_key("V7", "C").unwrap();
+    assert_eq!(chord.root, "G");
 }
