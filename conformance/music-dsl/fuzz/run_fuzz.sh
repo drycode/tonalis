@@ -17,6 +17,10 @@ set -euo pipefail
 SEED="${1:-1}"
 N="${2:-500}"
 
+# Python interpreter: defaults to `python` (CI installs editable music_dsl into it). For a local
+# run from a bare shell, point it at the project venv: PYTHON=.venv/bin/python ./run_fuzz.sh
+PYTHON="${PYTHON:-python}"
+
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../../.." && pwd)"
 FUZZ_DIR="${REPO_ROOT}/conformance/music-dsl/fuzz"
 RUST_DIR="${REPO_ROOT}/music-dsl/rust"
@@ -26,11 +30,11 @@ echo "=== music-dsl 3-way differential fuzzer (seed=${SEED}, N=${N}) ==="
 
 echo ""
 echo "--- Step 1: Generate inputs ---"
-(cd "${REPO_ROOT}" && python conformance/music-dsl/fuzz/gen.py "${SEED}" "${N}")
+(cd "${REPO_ROOT}" && "${PYTHON}" conformance/music-dsl/fuzz/gen.py "${SEED}" "${N}")
 
 echo ""
 echo "--- Step 2: Python oracle ---"
-(cd "${REPO_ROOT}" && python conformance/music-dsl/fuzz/oracle.py)
+(cd "${REPO_ROOT}" && "${PYTHON}" conformance/music-dsl/fuzz/oracle.py)
 
 echo ""
 echo "--- Step 3: Rust fuzz runner ---"
