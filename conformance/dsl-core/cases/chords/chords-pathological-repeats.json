@@ -84,6 +84,9 @@
         }
       ]
     },
-    "text": "title: T\nkey: C\ntime: 4/4\n\n[A]\n| C7777 | Csussus | C6 | C6 ||\n"
+    "text": "title: T\nkey: C\ntime: 4/4\n\n[A]\n| C7777 | Csussus | C6 | C6 ||\n",
+    "findings": [
+      { "code": "bad-chord", "severity": "error", "line": 5 }
+    ]
   }
 }
