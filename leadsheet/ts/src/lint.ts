@@ -1,6 +1,6 @@
 /**
  * DSL linter: structural + chord-grammar checks over a parsed DslChart (SPEC.md §3–§5).
- * Errors block compilation; warnings don't. Uses the real chord grammar (chordGrammar).
+ * Errors block compilation; warnings don't. Uses the music_dsl-backed chord validator (chords.ts).
  *
  * Faithful port of `SCRUBBED/dsl/lint.py`.
  */
