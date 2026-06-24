@@ -1,11 +1,11 @@
 """DSL abstract syntax — frozen-ish dataclasses produced by the parser, consumed by the
-linter and the iReal codec.
+linter and a downstream codec.
 
 Phase 2: the IR is NEUTRAL. The root is ``LeadSheet`` (was ``DslChart``); a section carries a
-neutral ``kind`` enum (was the iReal ``marker`` string); a measure carries a ``barline`` enum
-(was the raw ``bar_close`` glyph) plus an opaque ``hints`` list (where ``@break`` lives — it has
-no lead-sheet semantics). No field stores an iReal-ism; the codec maps kind/barline/hints to
-``*A``/``Z``/``}``/``Y`` itself.
+neutral ``kind`` enum (derived by the parser from the bracket name); a measure carries a
+``barline`` enum (was the raw ``bar_close`` glyph) plus an opaque ``hints`` list (where
+``@break`` lives — it has no lead-sheet semantics). No field stores a format-specific value; a
+downstream codec maps kind/barline/hints to the target format's section/barline markers itself.
 """
 from dataclasses import dataclass, field
 from enum import Enum
@@ -62,14 +62,14 @@ class Measure:
     bar_open: bool = False  # preceded by '{'
     barline: Barline = Barline.NORMAL  # neutral right-barline (was bar_close: str)
     nav: Tuple = ()  # ('segno',), ('coda',), ('fine',), ('text', '<...>'), ('time', (n, d))
-    hints: Tuple[str, ...] = ()  # opaque iReal render-hints, e.g. ('break',); NO semantics
+    hints: Tuple[str, ...] = ()  # opaque render-hints, e.g. ('break',); NO semantics
     line: int = 0  # source line for findings
 
 
 @dataclass
 class Section:
     label: str
-    kind: SectionKind  # neutral role (was the iReal marker string)
+    kind: SectionKind  # neutral role (the parser derives it from the bracket name)
     measures: List[Measure] = field(default_factory=list)
 
 

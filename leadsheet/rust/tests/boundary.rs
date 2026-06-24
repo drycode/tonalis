@@ -1,11 +1,11 @@
-//! Import-boundary guard (Rust) — the dsl-core half of the §7 one-way-dependency invariant.
+//! Import-boundary guard (Rust) — the language-core half of the one-way-dependency invariant.
 //!
-//! In Rust the COMPILER is the guard: a forbidden `use SCRUBBED::...` in this crate simply would
+//! In Rust the COMPILER is the guard: a forbidden `use some_adapter::...` in this crate simply would
 //! not resolve (the crate has no such dependency), so the fact that `cargo test` builds + runs THIS
-//! file standalone already proves tonalis does not depend on any adapter. This test makes the
-//! invariant explicit and fails loudly with a clear message by asserting the crate's `Cargo.toml`
-//! dependency table contains ONLY an allow-list of crates and NEVER an adapter crate
-//! (`SCRUBBED`/`ireal-codec`/`text_target`/`text-target`).
+//! file standalone already proves tonalis does not depend on any out-of-tree adapter. This test makes
+//! the invariant explicit and fails loudly with a clear message by asserting the crate's `Cargo.toml`
+//! dependency table contains ONLY an allow-list of crates (the allow-list check is the real
+//! guarantee; anything outside it — adapter or otherwise — trips the test).
 //!
 //! No TOML parser is pulled in (that would add a dependency to the pure core's dev surface and muddy
 //! the point); a tiny line scanner over the `[dependencies]` section is sufficient and dependency-free.
@@ -19,8 +19,10 @@ use std::path::PathBuf;
 // (FORBIDDEN_DEPS), so adding it here keeps tonalis_has_no_adapter_dependency biting.
 const ALLOWED_DEPS: &[&str] = &["regex", "serde", "serde_json", "music_dsl"];
 
-/// Adapter crates that must NEVER appear (named explicitly for a crisp failure message).
-const FORBIDDEN_DEPS: &[&str] = &["SCRUBBED", "ireal-codec", "text_target", "text-target"];
+/// Example out-of-tree adapter crate names that must NEVER appear (illustrative — the allow-list
+/// test below is the real guarantee; this list only drives a crisp failure message + the negative
+/// self-test). Any crate not in ALLOWED_DEPS trips `tonalis_dependencies_are_within_the_allow_list`.
+const FORBIDDEN_DEPS: &[&str] = &["some_adapter", "some-adapter"];
 
 /// Parse dependency crate names out of every `[dependencies]` / `[dev-dependencies]` /
 /// `[build-dependencies]` table in the Cargo.toml text. Returns the set of left-hand names.
@@ -59,7 +61,7 @@ fn tonalis_has_no_adapter_dependency() {
         assert!(
             !deps.contains(*forbidden),
             "tonalis Cargo.toml depends on adapter crate `{forbidden}` — the pure core must NOT \
-             depend on SCRUBBED/text_target (one-way dep violated). deps = {deps:?}"
+             depend on any out-of-tree adapter (one-way dep violated). deps = {deps:?}"
         );
     }
 }
@@ -85,12 +87,12 @@ name = \"tonalis\"
 
 [dependencies]
 regex = \"1\"
-SCRUBBED = { path = \"../../ireal-codec/rust\" }
+some_adapter = { path = \"../../some-adapter/rust\" }
 ";
     let deps = dependency_names(poisoned);
     assert!(
-        deps.contains("SCRUBBED"),
-        "the dependency scanner FAILED to see `SCRUBBED` in a poisoned Cargo.toml: {deps:?}"
+        deps.contains("some_adapter"),
+        "the dependency scanner FAILED to see `some_adapter` in a poisoned Cargo.toml: {deps:?}"
     );
     // and the allow-list check would reject it
     let allowed: BTreeSet<&str> = ALLOWED_DEPS.iter().copied().collect();

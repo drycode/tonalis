@@ -1,8 +1,8 @@
-"""iReal sus shorthand: a bare ``4`` immediately after the root is sus4.
+"""Sus shorthand (common lead-sheet notation): a bare ``4`` immediately after the root is sus4.
 
-iReal Pro writes ``C4`` for a C sus4 chord (the "4" is the suspended fourth, NOT an
+Lead-sheet notation writes ``C4`` for a C sus4 chord (the "4" is the suspended fourth, NOT an
 added/extension degree). MusicDSL must construct ``C4`` identically to ``Csus`` (and
-``Csus4`` — in iReal a bare ``sus`` defaults to sus4). The slash-bass form ``A4/C``
+``Csus4`` — a bare ``sus`` defaults to sus4). The slash-bass form ``A4/C``
 must also parse (sus4 with the bass discarded, mirroring every other slash chord).
 
 The companion bare ``2`` shorthand is intentionally NOT remapped here: ``C2`` already
@@ -21,9 +21,9 @@ from music_dsl.domain.static import Seventh, Triad
 
 @pytest.mark.parametrize("root", ["C", "G", "A", "D", "E", "F", "B"])
 def test_bare_four_is_sus4(root):
-    """``X4`` constructs the SAME chord as ``Xsus4`` (iReal sus shorthand).
+    """``X4`` constructs the SAME chord as ``Xsus4`` (sus shorthand, common lead-sheet notation).
 
-    It is also musically identical to the bare ``Xsus`` (which in iReal defaults to
+    It is also musically identical to the bare ``Xsus`` (which defaults to
     sus4): the two carry distinct triad enums (``Sus4`` vs the bare ``Sus``) — a
     pre-existing MusicDSL distinction — but encode the exact same pitch set.
     """

@@ -1,6 +1,6 @@
 //! Native unit tests for the pure language core (`tonalis`) — chord-grammar acceptance/rejection
-//! and parser-level findings. The codec asserts (SCRUBBED involution, compile_dsl roundtrip) live
-//! in the `SCRUBBED` crate's tests. Complements the data-driven conformance gate.
+//! and parser-level findings. Vendor-format encode/decode round-trip assertions live in a
+//! downstream codec's tests. Complements the data-driven conformance gate.
 
 use tonalis::{is_valid_chord, lint, parse_dsl};
 use tonalis::ast::Severity;

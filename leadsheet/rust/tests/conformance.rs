@@ -3,7 +3,7 @@
 //!   - `ast`     — deep-equal to `expect.ast` when present (the canonical §2.1 JSON);
 //!   - `findings`— the SET of `(code, severity, line)` tuples (messages are non-normative).
 //!
-//! There is NO `url` assertion here — the iReal URL is the codec crate's concern. The cases tree
+//! There is NO `url` assertion here — any vendor-format URL is out of scope here; it is a downstream codec's concern. The cases tree
 //! is read via a path relative to `CARGO_MANIFEST_DIR` (`leadsheet/rust/` -> `../../conformance/dsl-core/cases`).
 
 use tonalis::ast::{ast_from_json, ast_to_json, LeadSheet};

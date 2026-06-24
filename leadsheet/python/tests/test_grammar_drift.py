@@ -42,7 +42,7 @@ def test_every_documented_valid_chord_passes_parser():
 
 def test_every_banned_construct_fails_to_lint():
     # The banned snippets must each yield an error-severity finding from the pure parse+lint
-    # pipeline (the iReal codec is out of scope for the standalone language core).
+    # pipeline (a downstream codec is out of scope for the standalone language core).
     snippets = [
         s.strip() for s in _block("banned-dsl", _grammar_text()).split("\n---\n")
     ]

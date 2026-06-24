@@ -4,10 +4,10 @@
 //! TypeScript port `ts/src/ast.ts`.
 //!
 //! Phase 2: the IR is NEUTRAL. The root is [`LeadSheet`] (was `DslChart`); a section carries a
-//! neutral [`SectionKind`] (was the iReal `marker` string); a measure carries a [`Barline`] enum
-//! (was the raw `bar_close` glyph) plus an opaque `hints` list (where `@break` lives — it has no
-//! lead-sheet semantics). No field stores an iReal-ism; the codec maps kind/barline/hints to
-//! `*A`/`Z`/`}`/`Y` itself.
+//! neutral [`SectionKind`] (derived by the parser from the bracket name); a measure carries a
+//! [`Barline`] enum (was the raw `bar_close` glyph) plus an opaque `hints` list (where `@break`
+//! lives — it has no lead-sheet semantics). No field stores a format-specific value; a downstream
+//! codec maps kind/barline/hints to the target format's section/barline markers itself.
 
 use serde_json::{json, Map, Value};
 
@@ -52,7 +52,7 @@ impl Barline {
     }
 }
 
-/// Neutral section role (was the iReal marker string), derived by the parser from the bracket name.
+/// Neutral section role, derived by the parser from the bracket name.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum SectionKind {
     A,
@@ -99,7 +99,7 @@ pub struct Measure {
     pub barline: Barline,
     /// semantic navigation items, in render order
     pub nav: Vec<NavItem>,
-    /// opaque iReal render-hints, e.g. "break"; NO lead-sheet semantics
+    /// opaque render-hints, e.g. "break"; NO lead-sheet semantics
     pub hints: Vec<String>,
     /// source line for findings
     pub line: u32,
@@ -108,7 +108,7 @@ pub struct Measure {
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Section {
     pub label: String,
-    /// neutral role (was the iReal marker string)
+    /// neutral role (the parser derives it from the bracket name)
     pub kind: SectionKind,
     pub measures: Vec<Measure>,
 }

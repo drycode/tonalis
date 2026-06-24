@@ -1,27 +1,27 @@
 """Import-boundary guard — ships WITH tonalis (spec §7).
 
-Statically proves the one-way dependency invariant by AST-scanning each PACKAGE module's imports
-against an allow-LIST (whitelist, not blacklist — a name-prefix blacklist can be slipped by a
-string-built import like ``import_module("SCRUBBED"+"Parser.cst")``; an allow-list cannot):
+Statically proves the dependency invariant by AST-scanning each PACKAGE module's imports against an
+allow-LIST (whitelist, not blacklist — a name-prefix blacklist can be slipped by a string-built
+import like ``import_module("for" + "bidden")``; an allow-list cannot):
 
   - ``tonalis/**``       may import ONLY stdlib + other ``tonalis`` submodules + ``music_dsl``,
-                         the theory library it stands on. The Phase-1 dependency rule is one-way
-                         (leadsheet/tonalis -> music_dsl): tonalis MAY import music_dsl (e.g. the
-                         chord validator delegates to ``music_dsl ... Chord``), but ``music_dsl``
-                         must NEVER import tonalis. Nothing else outside (stdlib + tonalis +
-                         music_dsl) is permitted.
+                         the theory library it stands on. The dependency rule is one-way
+                         (tonalis -> music_dsl): tonalis MAY import music_dsl (e.g. the chord
+                         validator delegates to ``music_dsl ... Chord``), but ``music_dsl`` must
+                         NEVER import tonalis. Nothing else outside (stdlib + tonalis + music_dsl)
+                         is permitted.
 
-The ``SCRUBBED``/``text_target`` adapter packages live in a separate (private) repository and are
-not part of this standalone library; their boundary tests below ``pytest.skip`` here. The negative
-guard tests still run against synthetic in-memory sources to prove the scanner itself bites.
+The pure language core has no other runtime dependency. Notation-format codecs are separate adapter
+packages built on top of this core (not shipped here); this guard is what keeps the core free of any
+reach into such an adapter.
 
 ANY ``importlib.import_module`` / ``__import__`` call is flagged as a violation outright (a dynamic
 import is opaque to the allow-list and is exactly how a blacklist gets slipped). Pure AST walk — no
 execution, so it can't be fooled by lazy/conditional imports.
 
-The guard travels with the tonalis OSS package so the purity invariant ships with the core. A NEGATIVE
-test (``test_guard_bites_on_forbidden_import``) proves the guard FAILS when a forbidden import is
-present, scanning a synthetic in-memory module so the real tonalis package is never poisoned.
+The guard travels with the tonalis OSS package so the purity invariant ships with the core. NEGATIVE
+tests (``test_guard_bites_on_*``) prove the guard FAILS when a forbidden import is present, scanning
+synthetic in-memory modules so the real tonalis package is never poisoned.
 """
 
 import ast
@@ -34,27 +34,8 @@ import pytest
 _PYTHON_ROOT = Path(__file__).resolve().parents[1]
 _STDLIB = set(sys.stdlib_module_names)
 
-# Per-package allow-lists of TOP-LEVEL import names beyond stdlib. Submodule-prefix entries (with a
-# trailing-dot meaning) are handled by `_top_name`/`_extra_allowed` below.
+# Top-level import names allowed beyond stdlib for the language runtime.
 _DSL_CORE_EXTRA = {"tonalis", "music_dsl"}
-_SCRUBBED = {"tonalis", "SCRUBBED", "SCRUBBED"}
-_TEXT_TARGET_EXTRA = {"tonalis", "text_target"}
-
-# The codec may ONLY reach these SCRUBBED surfaces (the iReal reader + the cst/SCRUBBED codec).
-# Anything else under SCRUBBED (e.g. the old `SCRUBBED.dsl`) is forbidden even though the
-# top-level name is allowed. `SCRUBBED.cst` is a PREFIX allow (the cst subpackage + its modules:
-# cst.chart / cst.url / cst.encoder / cst.lexer); the others are exact.
-_SCRUBBED = {
-    "SCRUBBED",  # bare: the Tune reader (`from SCRUBBED import Tune`)
-    "SCRUBBED.SCRUBBED",
-}
-_SCRUBBED = (
-    "SCRUBBED.cst",  # the iReal CST codec subpackage (cst.chart/url/encoder/lexer)
-)
-# Forbidden SCRUBBED SUBPACKAGES — reached via either `import SCRUBBED.dsl` or the
-# adapter-surface bypass `from SCRUBBED import dsl`. `dsl` is the OLD codec subpackage the split
-# extracted into SCRUBBED; the codec must reach the reader/cst/SCRUBBED, never the old dsl codec.
-_SCRUBBED = ("dsl",)
 
 _DYNAMIC_IMPORT_NAMES = {"import_module", "__import__"}
 
@@ -66,7 +47,7 @@ def _top_name(dotted: str) -> str:
 def _resolve_relative(level: int, module: str | None, names, module_pkg: str | None):
     """Resolve a relative import to absolute dotted targets against ``module_pkg``.
 
-    ``module_pkg`` is the dotted package the importing module LIVES IN (e.g. ``SCRUBBED.foo``).
+    ``module_pkg`` is the dotted package the importing module LIVES IN (e.g. ``tonalis.foo``).
     A ``from .x import y`` / ``from ..a import b`` is resolved like CPython: drop ``level-1``
     trailing components of the package, then append ``module`` (and, when ``module`` is None — a
     bare ``from . import x`` / ``from .. import y`` — append each imported member name).
@@ -108,7 +89,7 @@ def scan_imports(source: str, *, module_pkg: str | None = None):
 
       ('static', dotted_module)   — an absolute import target (every alias of `import a, b`, and
                                     every member of `from pkg import x, y` is yielded as pkg.x/pkg.y
-                                    so adapter-surface members are visible to the allow-list).
+                                    so member-surface imports are visible to the allow-list).
       ('dynamic', call_name)      — an importlib.import_module/__import__ call (forbidden outright).
 
     Relative imports (`from . import x`, `from ..a import b`) are resolved against ``module_pkg``
@@ -118,7 +99,7 @@ def scan_imports(source: str, *, module_pkg: str | None = None):
     tree = ast.parse(source)
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
-            # scan ALL aliases: `import os, SCRUBBED` must surface BOTH, not just names[0].
+            # scan ALL aliases: `import os, some_adapter` must surface BOTH, not just names[0].
             for alias in node.names:
                 yield ("static", alias.name)
         elif isinstance(node, ast.ImportFrom):
@@ -130,9 +111,8 @@ def scan_imports(source: str, *, module_pkg: str | None = None):
             if node.module is None:
                 continue
             # absolute `from pkg.sub import a, b`: surface the module AND each member as a candidate
-            # target (pkg.sub.a, pkg.sub.b) so an adapter-surface member (e.g. the `dsl` codec
-            # subpackage in `from SCRUBBED import dsl`) is checked against the allow-list, not
-            # just the bare `node.module`.
+            # target (pkg.sub.a, pkg.sub.b) so a member-surface import (e.g. `from somepkg import x`)
+            # is checked against the allow-list, not just the bare `node.module`.
             yield ("static", node.module)
             for alias in node.names:
                 if alias.name == "*":
@@ -150,28 +130,9 @@ def scan_imports(source: str, *, module_pkg: str | None = None):
                 yield ("dynamic", name)
 
 
-def _SCRUBBED(val: str) -> bool:
-    # Forbidden subpackages (the old `SCRUBBED.dsl` codec) are rejected FIRST, before any allow:
-    # this catches both `import SCRUBBED.dsl` and the member-bypass `from SCRUBBED import dsl`
-    # (which the scanner surfaces as the dotted target `SCRUBBED.dsl`).
-    for sub in _SCRUBBED:
-        if val == f"SCRUBBED.{sub}" or val.startswith(f"SCRUBBED.{sub}."):
-            return False
-    if val in _SCRUBBED:
-        return True
-    if any(val == p or val.startswith(p + ".") for p in _SCRUBBED):
-        return True
-    # A bare member of the reader (`from SCRUBBED import Tune` -> target `SCRUBBED.Tune`)
-    # that is NOT a forbidden subpackage is an ordinary symbol off the reader surface — allowed.
-    # (Only known-forbidden subpackages are rejected; everything else off the bare reader is fine.)
-    return val == "SCRUBBED" or val.startswith("SCRUBBED.")
-
-
-def check_source(source: str, *, extra_allowed: set, codec_SCRUBBED: bool = False,
-                 module_pkg: str | None = None):
+def check_source(source: str, *, extra_allowed: set, module_pkg: str | None = None):
     """Return a list of violation strings for one module's source ([] = clean).
 
-    ``codec_SCRUBBED`` enables the codec's narrow SCRUBBED allow (reader + cst/SCRUBBED only).
     ``module_pkg`` is the dotted package the source lives in, used to resolve relative imports.
     """
     violations = []
@@ -189,16 +150,6 @@ def check_source(source: str, *, extra_allowed: set, codec_SCRUBBED: bool = Fals
             continue
         if top not in extra_allowed:
             violations.append(f"import `{val}` is outside the allow-list")
-            continue
-        # SCRUBBED is allow-listed for the codec but only for the reader + cst/SCRUBBED surfaces.
-        if top == "SCRUBBED":
-            if not codec_SCRUBBED:
-                violations.append(f"import `{val}` (SCRUBBED) is outside the allow-list")
-            elif not _SCRUBBED(val):
-                violations.append(
-                    f"import `{val}` is not an allowed SCRUBBED codec surface "
-                    f"(reader / SCRUBBED.cst / SCRUBBED.SCRUBBED only)"
-                )
     return violations
 
 
@@ -215,8 +166,8 @@ def _package_modules(pkg_dir: Path, *, exclude_parts=()):
 def _module_pkg_of(path: Path, pkg_dir: Path) -> str:
     """Dotted package the module at ``path`` LIVES IN, rooted at ``pkg_dir`` (the top package).
 
-    e.g. pkg_dir=.../SCRUBBED, path=.../SCRUBBED/sub/mod.py -> "SCRUBBED.sub"
-    (a package __init__.py is itself the package, so .../SCRUBBED/sub/__init__.py -> "SCRUBBED.sub").
+    e.g. pkg_dir=.../tonalis, path=.../tonalis/sub/mod.py -> "tonalis.sub"
+    (a package __init__.py is itself the package, so .../tonalis/sub/__init__.py -> "tonalis.sub").
     """
     top = pkg_dir.name
     rel = path.relative_to(pkg_dir)
@@ -228,14 +179,12 @@ def _module_pkg_of(path: Path, pkg_dir: Path) -> str:
     return ".".join([top, *parts]) if parts else top
 
 
-def _check_package(pkg_dir: Path, *, extra_allowed: set, codec_SCRUBBED: bool = False,
-                   exclude_parts=()):
+def _check_package(pkg_dir: Path, *, extra_allowed: set, exclude_parts=()):
     failures = []
     for path in _package_modules(pkg_dir, exclude_parts=exclude_parts):
         src = path.read_text(encoding="utf-8")
         module_pkg = _module_pkg_of(path, pkg_dir)
-        for v in check_source(src, extra_allowed=extra_allowed,
-                              codec_SCRUBBED=codec_SCRUBBED, module_pkg=module_pkg):
+        for v in check_source(src, extra_allowed=extra_allowed, module_pkg=module_pkg):
             failures.append(f"{path.relative_to(_PYTHON_ROOT)}: {v}")
     return failures
 
@@ -247,12 +196,12 @@ def _check_package(pkg_dir: Path, *, extra_allowed: set, codec_SCRUBBED: bool = 
 def test_tonalis_imports_only_stdlib_and_self():
     """The language runtime imports nothing outside stdlib + itself + ``music_dsl``.
 
-    Phase 1 folded the MusicDSL theory lib in as a one-way dependency (tonalis -> music_dsl):
-    tonalis MAY lean on it (the chord validator delegates to ``music_dsl ... Chord``), so
-    ``music_dsl`` is in the allow-list; ``music_dsl`` must never reach back into tonalis.
+    The theory lib is a one-way dependency (tonalis -> music_dsl): tonalis MAY lean on it (the chord
+    validator delegates to ``music_dsl ... Chord``), so ``music_dsl`` is in the allow-list;
+    ``music_dsl`` must never reach back into tonalis.
 
     The offline ``tools/`` developer subpackage (the chord-oracle builder) is excluded here and
-    checked separately by ``test_tonalis_tools_imports_only_dslcore_codec_and_stdlib``.
+    checked separately by ``test_tonalis_tools_imports_only_self_and_stdlib``.
     """
     pkg = _PYTHON_ROOT / "tonalis"
     assert pkg.is_dir(), pkg
@@ -260,122 +209,79 @@ def test_tonalis_imports_only_stdlib_and_self():
     assert not failures, "tonalis PURITY violated:\n" + "\n".join(failures)
 
 
-def test_tonalis_tools_imports_only_dslcore_codec_and_stdlib():
+def test_tonalis_tools_imports_only_self_and_stdlib():
     """The offline ``tonalis.tools`` developer subpackage. The chord-oracle builder imports only
-    stdlib + ``tonalis`` (chord_grammar + the chords wrapper), so the existing allow-list
-    (``tonalis`` + the codec-direction ``SCRUBBED``) covers it. The boundary scan is per-module
-    and DIRECT-import only, so the wrapper's transitive ``music_dsl`` use is checked at its own
-    module by the test above, not here."""
+    stdlib + ``tonalis`` (chord_grammar + the chords wrapper). The boundary scan is per-module and
+    DIRECT-import only, so the wrapper's transitive ``music_dsl`` use is checked at its own module
+    by the test above, not here."""
     tools = _PYTHON_ROOT / "tonalis" / "tools"
     if not tools.is_dir():
         pytest.skip(f"tonalis.tools not present at {tools} (offline tool dropped from the OSS lib)")
-    failures = _check_package(tools, extra_allowed={"tonalis", "SCRUBBED"})
+    failures = _check_package(tools, extra_allowed={"tonalis"})
     assert not failures, "tonalis.tools boundary violated:\n" + "\n".join(failures)
 
 
-def test_SCRUBBED():
-    pkg = _PYTHON_ROOT.parent / "ireal-codec" / "python" / "SCRUBBED"
-    if not pkg.is_dir():
-        pytest.skip(f"SCRUBBED package not present at {pkg} (private repo, out of scope)")
-    failures = _check_package(pkg, extra_allowed=_SCRUBBED, codec_SCRUBBED=True)
-    assert not failures, "SCRUBBED boundary violated:\n" + "\n".join(failures)
-
-
-def test_text_target_imports_only_dslcore_and_stdlib():
-    pkg = _PYTHON_ROOT.parent / "text-target" / "text_target"
-    if not pkg.is_dir():
-        pytest.skip(f"text_target package not present at {pkg} (private repo, out of scope)")
-    failures = _check_package(pkg, extra_allowed=_TEXT_TARGET_EXTRA)
-    assert not failures, "text_target boundary violated:\n" + "\n".join(failures)
-
-
 # ---------------------------------------------------------------------------------------------------
-# NEGATIVE test: the guard must BITE on a forbidden import (proves it isn't a no-op).
+# NEGATIVE tests: the guard must BITE on a forbidden import (proves it isn't a no-op).
 # Scans synthetic in-memory sources — the real tonalis is NEVER poisoned.
 # ---------------------------------------------------------------------------------------------------
 
 def test_guard_bites_on_forbidden_import():
-    # a tonalis-style module that illegally imports an adapter
-    poisoned = "import SCRUBBED\nfrom tonalis.ast import LeadSheet\n"
+    # a tonalis-style module that illegally imports an out-of-tree package
+    poisoned = "import some_adapter\nfrom tonalis.ast import LeadSheet\n"
     v = check_source(poisoned, extra_allowed=_DSL_CORE_EXTRA)
-    assert any("SCRUBBED" in s for s in v), f"guard FAILED to flag `import SCRUBBED`: {v}"
+    assert any("some_adapter" in s for s in v), f"guard FAILED to flag `import some_adapter`: {v}"
 
 
-def test_guard_bites_on_from_import_of_adapter():
-    poisoned = "from text_target.render import render\n"
+def test_guard_bites_on_from_import_of_forbidden_package():
+    poisoned = "from some_adapter.render import render\n"
     v = check_source(poisoned, extra_allowed=_DSL_CORE_EXTRA)
-    assert any("text_target" in s for s in v), f"guard FAILED to flag adapter from-import: {v}"
+    assert any("some_adapter" in s for s in v), f"guard FAILED to flag forbidden from-import: {v}"
 
 
 def test_guard_bites_on_dynamic_import():
-    poisoned = "import importlib\nm = importlib.import_module('SCRUBBED' + 'Parser.cst')\n"
+    poisoned = "import importlib\nm = importlib.import_module('some' + '_adapter')\n"
     v = check_source(poisoned, extra_allowed=_DSL_CORE_EXTRA)
     assert any("dynamic import" in s for s in v), f"guard FAILED to flag dynamic import: {v}"
 
 
 def test_guard_bites_on_dunder_import():
-    poisoned = "x = __import__('SCRUBBED')\n"
+    poisoned = "x = __import__('some_adapter')\n"
     v = check_source(poisoned, extra_allowed=_DSL_CORE_EXTRA)
     assert any("dynamic import" in s for s in v), f"guard FAILED to flag __import__: {v}"
 
 
-def test_guard_bites_on_codec_importing_text_target():
-    # the adapter-vs-adapter rule: SCRUBBED must not see text_target
-    poisoned = "from tonalis.ast import LeadSheet\nimport text_target\n"
-    v = check_source(poisoned, extra_allowed=_SCRUBBED, codec_SCRUBBED=True)
-    assert any("text_target" in s for s in v), f"guard FAILED to flag codec->text_target: {v}"
-
-
-def test_guard_bites_on_codec_reaching_disallowed_SCRUBBED():
-    # SCRUBBED is allow-listed, but only cst/SCRUBBED/the reader — not arbitrary internals
-    poisoned = "from SCRUBBED.dsl.compiler import compile_dsl\n"
-    v = check_source(poisoned, extra_allowed=_SCRUBBED, codec_SCRUBBED=True)
-    assert any("SCRUBBED.dsl" in s for s in v), f"guard FAILED to flag disallowed surface: {v}"
-
-
 def test_guard_bites_on_multi_alias_import():
-    # (a) `import os, SCRUBBED`: the forbidden alias is NOT names[0], so a names[0]-only scanner
+    # `import os, some_adapter`: the forbidden alias is NOT names[0], so a names[0]-only scanner
     # would wave it through. ALL aliases must be scanned.
-    poisoned = "import os, SCRUBBED\nfrom tonalis.ast import LeadSheet\n"
+    poisoned = "import os, some_adapter\nfrom tonalis.ast import LeadSheet\n"
     v = check_source(poisoned, extra_allowed=_DSL_CORE_EXTRA)
-    assert any("SCRUBBED" in s for s in v), (
-        f"guard FAILED to flag forbidden 2nd alias of `import os, SCRUBBED`: {v}"
+    assert any("some_adapter" in s for s in v), (
+        f"guard FAILED to flag forbidden 2nd alias of `import os, some_adapter`: {v}"
     )
 
 
-def test_guard_bites_on_from_import_of_dsl_codec_member():
-    # (b) the adapter-surface bypass: `from SCRUBBED import dsl` pulls the FORBIDDEN
-    # `SCRUBBED.dsl` codec subpackage in as a member — a node.module-only scanner sees only the
-    # allowed bare `SCRUBBED` and waves it through. The member must be checked too.
-    poisoned = "from SCRUBBED import dsl\n"
-    v = check_source(poisoned, extra_allowed=_SCRUBBED, codec_SCRUBBED=True)
-    assert any("SCRUBBED.dsl" in s for s in v), (
-        f"guard FAILED to flag `from SCRUBBED import dsl` (forbidden codec subpackage): {v}"
+def test_guard_bites_on_from_import_of_member_surface():
+    # the member-surface bypass: `from somepkg import forbidden_sub` pulls a member in — a
+    # node.module-only scanner sees only the bare `somepkg` and waves it through. The member must
+    # be checked too (here `somepkg` itself is already out of the allow-list, so both are flagged).
+    poisoned = "from some_adapter import sub\n"
+    v = check_source(poisoned, extra_allowed=_DSL_CORE_EXTRA)
+    assert any("some_adapter" in s for s in v), (
+        f"guard FAILED to flag `from some_adapter import sub`: {v}"
     )
-
-
-def test_guard_allows_from_import_of_legitimate_reader_surfaces():
-    # the flip side of (b): the legitimate reader surfaces stay allowed (the member check must NOT
-    # over-reject Tune / cst / SCRUBBED).
-    ok = (
-        "from SCRUBBED import Tune\n"
-        "from SCRUBBED.cst.chart import Chart\n"
-        "from SCRUBBED.SCRUBBED import SCRUBBED\n"
-    )
-    v = check_source(ok, extra_allowed=_SCRUBBED, codec_SCRUBBED=True)
-    assert v == [], f"guard wrongly flagged a legitimate reader/cst/SCRUBBED surface: {v}"
 
 
 def test_guard_bites_on_relative_import_that_escapes_package():
-    # (c) `from ..adapter import x` from a TOP-LEVEL module (`tonalis/x.py`, package = "tonalis")
-    # climbs one level ABOVE `tonalis` — it escapes the package entirely. The OLD guard
-    # unconditionally allowed any level>0 relative import; this must now be caught.
+    # `from ..adapter import x` from a TOP-LEVEL module (`tonalis/x.py`, package = "tonalis")
+    # climbs one level ABOVE `tonalis` — it escapes the package entirely. A naive guard that
+    # unconditionally allowed any level>0 relative import would miss this.
     poisoned = "from ..adapter import render\nfrom tonalis.ast import LeadSheet\n"
     v = check_source(poisoned, extra_allowed=_DSL_CORE_EXTRA, module_pkg="tonalis")
     assert any("escapes the package" in s for s in v), (
         f"guard FAILED to flag a relative import that escapes the package: {v}"
     )
-    # also: deeper module climbing two levels above its top escapes too.
+    # also: a deeper module climbing two levels above its top escapes too.
     deeper = "from ...other import x\n"
     v2 = check_source(deeper, extra_allowed=_DSL_CORE_EXTRA, module_pkg="tonalis.sub")
     assert any("escapes the package" in s for s in v2), (
@@ -384,7 +290,7 @@ def test_guard_bites_on_relative_import_that_escapes_package():
 
 
 def test_guard_allows_within_package_relative_import():
-    # the flip side of (c): a same-package `from . import x` / `from .sib import y` stays allowed.
+    # the flip side: a same-package `from . import x` / `from .sib import y` stays allowed.
     ok = "from . import ast\nfrom .lint import lint\n"
     v = check_source(ok, extra_allowed=_DSL_CORE_EXTRA, module_pkg="tonalis")
     assert v == [], f"guard wrongly flagged a within-package relative import: {v}"
@@ -396,12 +302,19 @@ def test_guard_passes_clean_tonalis_source():
     assert check_source(clean, extra_allowed=_DSL_CORE_EXTRA) == []
 
 
+def test_guard_allows_music_dsl_runtime_dep():
+    # the production runtime dep the chord validator stands on is allowed from any module.
+    ok = "from music_dsl.domain.chords import Chord\n"
+    v = check_source(ok, extra_allowed=_DSL_CORE_EXTRA, module_pkg="tonalis")
+    assert v == [], f"guard wrongly flagged the music_dsl runtime dep: {v}"
+
+
 # ---------------------------------------------------------------------------------------------------
 # Reverse-dependency guard: music_dsl must NOT import tonalis (one-way invariant).
 # ---------------------------------------------------------------------------------------------------
 
 def test_music_dsl_does_not_import_tonalis():
-    """Phase-1 rule: tonalis -> music_dsl is allowed; music_dsl -> tonalis is FORBIDDEN.
+    """Rule: tonalis -> music_dsl is allowed; music_dsl -> tonalis is FORBIDDEN.
 
     AST-scan every module under music-dsl/python/music_dsl/** and assert that none imports a
     top-level name ``tonalis``.  This is the reverse of ``test_tonalis_imports_only_stdlib_and_self``;

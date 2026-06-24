@@ -2,7 +2,7 @@
 //! violations and structural problems become findings. The parser records structure; the linter
 //! (`lint.rs`) judges chord validity, beat sums, etc. Header values are read literally to EOL.
 //!
-//! Faithful port of `SCRUBBED/dsl/parser.py` and `ts/src/parser.ts`.
+//! Faithful port of the Python `parser.py` reference (mirrored by the `ts/src/parser.ts` port).
 
 use crate::ast::{
     Barline, Cell, LeadSheet, LintFinding, Measure, Meta, MetaValue, NavItem, ParseResult, Section,
@@ -40,7 +40,7 @@ fn meta_keys() -> &'static [&'static str] {
     &["title", "composer", "style", "key", "time"]
 }
 
-/// Section name -> neutral kind (SPEC.md §4.1). The iReal `*A` marker is the codec's job.
+/// Section name -> neutral kind (SPEC.md §4.1). A downstream codec generates the target format's section marker.
 fn section_kind(name: &str) -> Option<SectionKind> {
     match name {
         "A" => Some(SectionKind::A),
@@ -428,8 +428,8 @@ pub fn parse_dsl(text: &str) -> ParseResult {
             } else if line.contains("coda") {
                 pending_nav.push(NavItem::Coda);
             } else if line.contains("break") || line.contains("newline") {
-                // iReal page-layout only — NO lead-sheet semantics. Demoted to an opaque
-                // render-hint (Phase 2 §3.3); the codec reads it, the text target ignores it.
+                // page-layout only — NO lead-sheet semantics. Demoted to an opaque
+                // render-hint (Phase 2 §3.3); a downstream codec reads it, the text target ignores it.
                 pending_hints.push("break".to_string());
             } else {
                 f.warn(ln, "unknown-nav", &format!("unknown @directive: {}", line));

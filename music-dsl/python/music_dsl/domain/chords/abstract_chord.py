@@ -107,14 +107,14 @@ class InvalidChordStringException(Exception): ...
 
 class AbstractChord:
     __regex__ = ...
-    # sus can appear in three places across iReal/legacy notations:
+    # sus can appear in three places across common lead-sheet / legacy notations:
     #   * before the 7th, as a triad  (Csus, Gsus4)
     #   * after the 7th, canonical    (Bb7sus#9)
     #   * after the extensions        (F9sus, G7b9sus)
     # Each is captured separately and consolidated in _parse_chord_string.
     #
-    # ``sus_short`` captures iReal's bare-``4`` sus shorthand: ``C4`` == ``Csus4`` (in
-    # iReal a bare ``sus`` defaults to sus4). It sits in the triad/quality position,
+    # ``sus_short`` captures the bare-``4`` sus shorthand (common lead-sheet notation): ``C4`` ==
+    # ``Csus4`` (a bare ``sus`` defaults to sus4). It sits in the triad/quality position,
     # right after the root and BEFORE the ``triad`` alternation, so a lone ``4``
     # immediately after the root is read as a suspended fourth rather than falling
     # through to the extension tokenizer (where ``Extensions("4")`` does not exist and
@@ -126,7 +126,7 @@ class AbstractChord:
     # in real charts. The companion bare ``2`` is deliberately NOT remapped: ``C2`` already
     # parses as an added-2nd (``Extensions.add2``), a long-standing, separately-tested semantic.
     #
-    # ``aug5`` captures a ``+`` appearing AFTER the seventh: iReal writes ``C7+`` for a
+    # ``aug5`` captures a ``+`` appearing AFTER the seventh: lead-sheet notation writes ``C7+`` for a
     # dominant 7 with a RAISED 5th (== ``C7#5``), distinct from the augmented *triad*
     # ``+`` that sits BEFORE the seventh (``C+``, ``C+7``). The ``triad`` alternation is
     # greedy and comes first, so a ``+`` directly after the root is still consumed there
@@ -178,7 +178,7 @@ class AbstractChord:
     def _get_extensions(cls, ext_string: str) -> Tuple[Extensions, ...]:
         if not ext_string:
             return tuple()
-        # iReal writes "add9" for an added 9th and "69" as a compound 6/9 token;
+        # Lead-sheet notation writes "add9" for an added 9th and "69" as a compound 6/9 token;
         # normalise both before tokenising into individual extensions.
         ext_string = ext_string.replace("add", "")
         ext_string = ext_string.replace("69", "6,9")
@@ -201,7 +201,7 @@ class AbstractChord:
 
     @staticmethod
     def _normalize_seventh(token: str) -> str:
-        # iReal uses a bare "^" as shorthand for a major 7th ("C^" == "C^7").
+        # Lead-sheet notation uses a bare "^" as shorthand for a major 7th ("C^" == "C^7").
         if token == "^":
             return "^7"
         return token or ""
@@ -263,7 +263,7 @@ class AbstractChord:
         else:
             _extensions = cls._get_extensions(_ext_token)
 
-        # A ``+`` after the seventh (``C7+``) is iReal shorthand for a raised 5th: fold it
+        # A ``+`` after the seventh (``C7+``) is lead-sheet shorthand for a raised 5th: fold it
         # into the extensions as ``#5`` so ``C7+`` represents the same chord as ``C7#5``.
         if match_groups["aug5"] and Extensions.s5 not in _extensions:
             _extensions = _extensions + (Extensions.s5,)

@@ -31,7 +31,7 @@ add `:N` for an explicit beat count.
 `{ ... }` is a repeat; `1.`/`2.` mark first/second endings; `@segno`, `@coda`,
 `[time: 3/4]` mid-chart, and `<staff text>` are supported. `@break` (or
 `@newline`) on its own line forces the next section/measure onto a new line
-(iReal's vertical-space); use it for layout, e.g. to put an intro on its own row.
+(a vertical-space / line-break layout hint); use it for layout, e.g. to put an intro on its own row.
 For a D.S./D.C. al Coda: `@segno` marks the jump-back point, `@tocoda` (placed
 *after* a measure) marks the "To Coda" jump-from, and `@coda` marks the coda
 section (the destination). `@fine` marks the Fine (end) point for a D.C./D.S. al Fine.

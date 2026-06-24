@@ -1,4 +1,4 @@
-"""Pure lead-sheet / chord-chart language core (parse/lint/AST/JSON/text). iReal-agnostic."""
+"""Pure lead-sheet / chord-chart language core (parse/lint/AST/JSON/text). Format-agnostic."""
 
 from tonalis.ast import (
     Barline,

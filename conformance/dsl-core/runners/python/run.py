@@ -6,8 +6,8 @@ Discovers every ``conformance/dsl-core/cases/**/*.json``, parses+lints each case
   - ``ast``      OPTIONAL, deep-equal canonical LeadSheet JSON when present
   - ``findings`` compared on (code, severity, line) only, order-independent
 
-There is NO ``url`` assertion here — the iReal URL is the codec suite's concern
-(``conformance/ireal-codec/runners/python/run.py``).
+There is NO ``url`` assertion here — any vendor-format URL is out of scope here; it is a
+downstream codec's concern.
 
 Runnable two ways:
   - standalone: ``python conformance/dsl-core/runners/python/run.py``  (prints PASS/FAIL summary)

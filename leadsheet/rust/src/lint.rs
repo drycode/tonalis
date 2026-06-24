@@ -1,7 +1,7 @@
 //! DSL linter: structural + chord-grammar checks over a parsed DslChart (SPEC.md §3–§5).
 //! Errors block compilation; warnings don't. Uses the music_dsl-backed chord validator (`crate::chords`).
 //!
-//! Faithful port of `SCRUBBED/dsl/lint.py` and `ts/src/lint.ts`.
+//! Faithful port of the Python `lint.py` reference (mirrored by the `ts/src/lint.ts` port).
 
 use crate::ast::{Barline, LeadSheet, LintFinding, Measure, NavItem, Severity};
 use crate::chords::is_valid_chord;

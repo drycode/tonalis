@@ -1,6 +1,6 @@
 //! Tonalis — a generic, format-agnostic music-harmony DSL: parse · lint · chord-grammar · AST · AST→JSON.
 //!
-//! This crate is the pure language core — it contains NO notation-format SCRUBBED, URL assembly, or
+//! This crate is the pure language core — it contains NO vendor-format encoding, URL assembly, or
 //! body renderer; format-specific codecs live in separate adapter crates. It is the Rust port of
 //! the polyglot conformance spec, mirroring the Python and TypeScript members.
 //!

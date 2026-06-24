@@ -8,8 +8,8 @@ rejects but the linter must still accept are preserved here verbatim:
   * ``N.C.`` / ``n`` — explicit no-chord markers.
   * a standalone slash-bass continuation (``/A``) — a bass note carried over from the
     previous chord, with no quality of its own.
-  * the augmented layout-star artifact (``Bb*7+*``) — iReal sometimes glues a ``*`` to a
-    chord as a layout marker; strip it before validating.
+  * the augmented layout-star artifact (``Bb*7+*``) — lead-sheet notation sometimes glues a
+    ``*`` to a chord as a layout marker; strip it before validating.
 
 This module may import ``music_dsl`` (the theory lib tonalis stands on) per the Phase 1
 one-way dependency rule (leadsheet -> music_dsl); ``music_dsl`` must never import tonalis.

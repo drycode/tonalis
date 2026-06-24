@@ -24,7 +24,7 @@ dev = [
 ]
 # viz extra is intentionally omitted: no runtime module in music_dsl imports
 # matplotlib, networkx, Pillow, or numpy. Those were transitive/dev-tool noise
-# in the monorepo setup.py freeze dump.
+# in an earlier build's setup.py freeze dump.
 
 [tool.setuptools.packages.find]
 include = ["music_dsl*"]

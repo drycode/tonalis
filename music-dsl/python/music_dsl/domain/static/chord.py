@@ -1,5 +1,5 @@
 """
-SCRUBBED format supported chords can be found here https://www.irealpro.com/ireal-pro-file-format
+Supported chord qualities follow common lead-sheet / chord-chart notation.
 """
 
 from enum import auto

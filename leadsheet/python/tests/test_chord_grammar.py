@@ -28,8 +28,7 @@ def test_rejects_typos(s):
     assert not is_valid_chord(s)
 
 
-# NOTE: the original monorepo also ran a corpus gate asserting that the grammar accepts every
-# distinct chord token in the iReal Pro corpus sqlite, tokenized via `SCRUBBED.cst.lexer`.
-# Both the corpus DB and the iReal lexer live in private packages that are out of scope for this
-# standalone library, so that gate is dropped here. The GOOD/BAD cases above are the pure
-# `is_valid_chord` corpus that belongs to tonalis.
+# NOTE: an earlier build also ran a corpus gate asserting that the grammar accepts every
+# distinct chord token in a private corpus, tokenized via a format-specific reader. Both the
+# corpus and that reader are out of scope for this standalone library, so that gate is dropped
+# here. The GOOD/BAD cases above are the pure `is_valid_chord` corpus that belongs to tonalis.

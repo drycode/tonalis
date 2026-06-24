@@ -222,8 +222,8 @@ def parse_dsl(text):
             elif "coda" in line:
                 pending_nav.append(("coda",))
             elif "break" in line or "newline" in line:
-                # iReal page-layout only — NO lead-sheet semantics. Demoted to an opaque
-                # render-hint (Phase 2 §3.3); the codec reads it, text-target ignores it.
+                # page-layout only — NO lead-sheet semantics. Demoted to an opaque
+                # render-hint (Phase 2 §3.3); a downstream codec reads it, text-target ignores it.
                 pending_hints.append("break")
             else:
                 warn(ln, "unknown-nav", f"unknown @directive: {line}")
@@ -318,7 +318,7 @@ def _parse_cells(content, ln, err, warn):
                 warn(ln, "alt-without-chord", f"alt group {tok} has no preceding chord")
             continue
         # Split an inline alt off the chord, e.g. "G7(Db7)" -> chord "G7" + alt "(Db7)"
-        # (iReal writes alts with no space; the space-separated "G7 (Db7)" form is handled
+        # (lead-sheet notation writes alts with no space; the space-separated "G7 (Db7)" form is handled
         # by the `tok.startswith("(")` branch above).
         inline_alt = None
         am = _INLINE_ALT_RE.match(tok)

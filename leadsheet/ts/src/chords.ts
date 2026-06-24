@@ -6,7 +6,7 @@
  * The non-chord lead-sheet tokens parseChord rightly rejects but the linter must accept are kept:
  *   - "N.C." / "n"      — explicit no-chord markers.
  *   - a standalone slash-bass continuation ("/A") — a carried-over bass note, no quality.
- *   - the augmented layout-star artifact ("Bb*7+*") — iReal glues a "*"; strip it before validating.
+ *   - the augmented layout-star artifact ("Bb*7+*") — lead-sheet notation glues a "*"; strip it before validating.
  *
  * One-way dependency rule (Phase 1/3): leadsheet -> music_dsl; music_dsl must never import leadsheet.
  */

@@ -59,7 +59,7 @@ def test_altered_dominant():
     ],
 )
 def test_sus_with_extensions(token, expected_triad, expected_7th):
-    """Sus chords may carry extensions in either iReal position."""
+    """Sus chords may carry extensions in either lead-sheet position."""
     chord = Chord(token)
     assert chord.triad == expected_triad
     assert chord._7th == expected_7th

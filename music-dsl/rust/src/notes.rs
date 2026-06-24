@@ -48,7 +48,7 @@ impl Note {
         }
     }
 
-    /// Display value string (the canonical iReal Pro spelling).
+    /// Display value string (the canonical chord-spelling).
     pub fn value(self) -> &'static str {
         match self {
             Note::C  => "C",

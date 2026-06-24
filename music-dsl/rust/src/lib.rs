@@ -1,6 +1,6 @@
 //! MusicDSL — music-theory domain (notes, intervals, scale-degrees, chords, encoding).
 //!
-//! Port of the Python `music_dsl` reference for the tonalis / HarmonicAnalyzer project.
+//! Port of the Python `music_dsl` reference for the tonalis project.
 //! Build 1 scope: static domain only — Notes, Intervals, ScaleDegree, chord-quality enums,
 //! and the five conformance-op public functions.
 //! Build 2 scope: encode layer — EncodingMap, Scales, strip ops, semitones_apart_ascending.

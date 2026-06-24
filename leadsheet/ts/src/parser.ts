@@ -3,7 +3,7 @@
  * violations and structural problems become findings. The parser records structure; the linter
  * (lint.ts) judges chord validity, beat sums, etc. Header values are read literally to EOL.
  *
- * Faithful port of `SCRUBBED/dsl/parser.py`.
+ * Faithful port of the Python `parser.py` reference.
  */
 
 import type {
@@ -300,8 +300,8 @@ export function parseDsl(text: string): ParseResult {
       } else if (line.includes("coda")) {
         pendingNav.push(["coda"]);
       } else if (line.includes("break") || line.includes("newline")) {
-        // iReal page-layout only — NO lead-sheet semantics. Demoted to an opaque render-hint
-        // (Phase 2 §3.3); the codec reads it, the text-target ignores it.
+        // page-layout only — NO lead-sheet semantics. Demoted to an opaque render-hint
+        // (Phase 2 §3.3); a downstream codec reads it, the text-target ignores it.
         pendingHints.push("break");
       } else {
         warn(ln, "unknown-nav", `unknown @directive: ${line}`);

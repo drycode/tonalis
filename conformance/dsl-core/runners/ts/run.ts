@@ -7,8 +7,8 @@
  *   - `ast`      OPTIONAL, deep-equal canonical LeadSheet JSON when present
  *   - `findings` compared on (code, severity, line) only, order-independent
  *
- * There is NO `url` assertion here — the iReal URL is the codec suite's concern
- * (`conformance/ireal-codec/runners/ts/run.ts`). Mirrors the Python runner. Node-only APIs
+ * There is NO `url` assertion here — any vendor-format URL is out of scope here; it is a
+ * downstream codec's concern. Mirrors the Python runner. Node-only APIs
  * (fs/path/url) are confined to this test harness — the core `dsl-core/ts/src` package stays
  * browser-safe.
  */

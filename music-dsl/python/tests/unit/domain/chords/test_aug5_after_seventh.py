@@ -1,10 +1,10 @@
-"""iReal ``X7+`` means a dominant 7 with a raised 5th (``X7#5``).
+"""``X7+`` means a dominant 7 with a raised 5th (``X7#5``).
 
-In iReal Pro notation a ``+`` glued AFTER a numeric seventh raises the fifth: ``C7+`` is
+In common lead-sheet notation a ``+`` glued AFTER a numeric seventh raises the fifth: ``C7+`` is
 ``C7#5`` (dominant 7, augmented 5th), NOT an augmented triad. The augmented-triad ``+``
 appears BEFORE the seventh (``C+``, ``C+7``); that long-standing semantic must be
 preserved. MusicDSL is the source of truth for what a chord is, and ``7+`` is a real
-iReal chord form the permissive linter regex used to accept, so MusicDSL must construct
+chord form the permissive linter regex used to accept, so MusicDSL must construct
 it identically to the canonical ``7#5`` spelling.
 """
 

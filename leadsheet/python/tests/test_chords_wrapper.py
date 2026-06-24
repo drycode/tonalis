@@ -16,13 +16,13 @@ def test_real_chords_valid():
         assert is_valid_chord(t), t
 
 
-def test_ireal_sus_shorthand_valid():
-    # bare-4 sus shorthand: MusicDSL now constructs these (taught in Task 3)
+def test_sus_shorthand_valid():
+    # bare-4 sus shorthand (common lead-sheet notation): MusicDSL now constructs these (taught in Task 3)
     for t in ["C4", "A4", "G4", "A4/C", "D#4", "Gb4", "E4/G"]:
         assert is_valid_chord(t), t
 
 
-def test_ireal_seven_plus_valid():
+def test_seven_plus_valid():
     # X7+ raised-5th form (== X7#5): MusicDSL now constructs these (taught in Task 4).
     # The layout-star variant Bb*7+* strips to Bb7+ and is likewise valid.
     for t in ["C7+", "Bb7+", "Eb7+", "Bb7+/F", "Bb*7+*"]:

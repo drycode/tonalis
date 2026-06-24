@@ -2,7 +2,7 @@
  * Port-level adversarial unit tests for the pure DSL parser/linter — complement the data-driven
  * conformance gate (../../conformance/dsl-core/runners/ts/run.ts, wired in Task 8) with focused
  * regression checks. These exercise the PURE surface only (parseDsl + lint + isValidChord +
- * astToJson); URL-shaped assertions live in ireal-codec's compileDsl tests.
+ * astToJson); URL-shaped assertions live in a downstream codec's compileDsl tests.
  */
 
 import { describe, it, expect } from "vitest";

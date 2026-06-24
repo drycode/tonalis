@@ -1,12 +1,12 @@
 /**
  * Import-boundary guard (TS) — the dsl-core half of the §7 one-way-dependency invariant.
  *
- * Statically scans every `dsl-core/ts/src/**` module's import/export specifiers and forbids any
- * cross-package reach: no `../ireal-codec`, no `../text-target`, no bare third-party package import
- * (the pure language core has ZERO runtime deps). Only relative-WITHIN-package specifiers (`./...`
- * that don't climb out of `src/`) are allowed; `vitest` and type-only imports are allowed in test
- * files. The compiler-as-guard (TS path resolution) would already fail a broken `../ireal-codec`
- * import, but this test makes the invariant explicit + fails loudly with the offending file.
+ * Statically scans every `src/**` module's import/export specifiers and forbids any cross-package
+ * reach: no climb out of `src/` (no separate adapter package), no bare third-party package import
+ * beyond the `music_dsl` runtime dep. Only relative-WITHIN-package specifiers (`./...` that don't
+ * climb out of `src/`) are allowed; `vitest` and type-only imports are allowed in test files. The
+ * compiler-as-guard (TS path resolution) would already fail a broken cross-package import, but this
+ * test makes the invariant explicit + fails loudly with the offending file.
  *
  * A NEGATIVE block proves the guard BITES: it runs the same specifier classifier over synthetic
  * forbidden specifiers and asserts each is flagged (the real src is never modified).
@@ -34,9 +34,9 @@ function listTs(dir: string): string[] {
  *
  * The statement-start anchor is `(?:^|[\n;{}])` — line-start OR after a `;`/`{`/`}` — NOT just
  * `(?:^|\n)`. A bare `(?:^|\n)` anchor has a real HOLE: a SECOND import on the same physical line
- * (`import a from "./ast.js"; import b from "../ireal-codec";`) starts after a `;`, not a newline,
- * so the forbidden second specifier is silently skipped (the TS-analogue of Python's multi-alias
- * `import os, SCRUBBED` hole). Anchoring on `;`/`{`/`}` too closes it.
+ * (`import a from "./ast.js"; import b from "../../some-adapter";`) starts after a `;`, not a
+ * newline, so the forbidden second specifier is silently skipped (the TS-analogue of Python's
+ * multi-alias `import os, some_adapter` hole). Anchoring on `;`/`{`/`}` too closes it.
  */
 function specifiers(source: string): string[] {
   const out: string[] = [];
@@ -68,10 +68,10 @@ function classify(spec: string, fileAbsPath: string, isTest: boolean): string | 
   }
   if (spec.startsWith("node:")) return null; // node stdlib (used only by this guard test itself)
   if (spec.startsWith(".")) {
-    // relative — must NOT climb out of src/ (no ../ireal-codec, ../text-target, ../../anything)
+    // relative — must NOT climb out of src/ (no ../<adapter>, ../../anything outside src/)
     const target = resolve(dirname(fileAbsPath), spec);
     if (!target.startsWith(SRC_ROOT)) {
-      return `relative import "${spec}" escapes dsl-core/ts/src (cross-package reach)`;
+      return `relative import "${spec}" escapes src/ (cross-package reach)`;
     }
     return null;
   }
@@ -82,11 +82,11 @@ function classify(spec: string, fileAbsPath: string, isTest: boolean): string | 
 }
 
 describe("dsl-core/ts import boundary", () => {
-  it("no src module reaches outside dsl-core/ts/src (no ../ireal-codec, ../text-target, bare deps)", () => {
+  it("no src module reaches outside src/ (no climb-out adapter import, no bare deps)", () => {
     const violations: string[] = [];
     for (const file of listTs(SRC_ROOT)) {
       // This guard file itself contains forbidden-looking specifier STRINGS as negative-test
-      // fixtures (e.g. "import(...)" / "../ireal-codec"); excluding it avoids scanning its fixtures.
+      // fixtures (e.g. "import(...)" / "../../some-adapter"); excluding it avoids scanning them.
       if (file.endsWith("boundary.test.ts")) continue;
       const isTest = file.endsWith(".test.ts");
       const src = readFileSync(file, "utf-8");
@@ -99,21 +99,21 @@ describe("dsl-core/ts import boundary", () => {
   });
 
   // NEGATIVE: prove the guard BITES on forbidden specifiers (the classifier is not a no-op).
-  it("flags a cross-package ../ireal-codec import", () => {
+  it("flags a cross-package climb-out import", () => {
     const fake = join(SRC_ROOT, "parser.ts");
-    expect(classify("../../../ireal-codec/ts/src/index.js", fake, false)).not.toBeNull();
+    expect(classify("../../../some-adapter/ts/src/index.js", fake, false)).not.toBeNull();
   });
-  it("flags a cross-package ../text-target import", () => {
+  it("flags another cross-package climb-out import", () => {
     const fake = join(SRC_ROOT, "parser.ts");
-    expect(classify("../../text-target/render.js", fake, false)).not.toBeNull();
+    expect(classify("../../another-pkg/render.js", fake, false)).not.toBeNull();
   });
   it("flags a bare third-party package import", () => {
     const fake = join(SRC_ROOT, "parser.ts");
-    expect(classify("ireal-codec", fake, false)).not.toBeNull();
+    expect(classify("forbidden-pkg", fake, false)).not.toBeNull();
   });
   it("flags a dynamic import()", () => {
     const fake = join(SRC_ROOT, "parser.ts");
-    expect(classify("DYNAMIC:../ireal-codec", fake, false)).not.toBeNull();
+    expect(classify("DYNAMIC:../../some-adapter", fake, false)).not.toBeNull();
   });
   it("ALLOWS a relative within-package import (sanity: guard isn't always-failing)", () => {
     const fake = join(SRC_ROOT, "index.ts");
@@ -134,23 +134,23 @@ describe("dsl-core/ts import boundary", () => {
   });
 
   // NEGATIVE: the same-line second-import hole. `import a from "./ast.js"; import b from
-  // "../ireal-codec";` starts the 2nd statement after a `;`, not a newline — a `(?:^|\n)`-anchored
+  // "../../some-adapter";` starts the 2nd statement after a `;`, not a newline — a `(?:^|\n)`-anchored
   // scanner skips it. The fixed `(?:^|[\n;{}])` anchor must surface BOTH specifiers so the forbidden
   // cross-package reach is flagged.
   it("surfaces a SECOND same-line import after a semicolon (multi-specifier hole)", () => {
-    const src = 'import a from "./ast.js"; import b from "../../../ireal-codec/index.js";';
+    const src = 'import a from "./ast.js"; import b from "../../../some-adapter/index.js";';
     const specs = specifiers(src);
     expect(specs).toContain("./ast.js");
-    expect(specs).toContain("../../../ireal-codec/index.js");
+    expect(specs).toContain("../../../some-adapter/index.js");
     const fake = join(SRC_ROOT, "parser.ts");
     const flagged = specs.map((s) => classify(s, fake, false)).filter((v) => v !== null);
     expect(flagged.length).toBeGreaterThan(0); // the forbidden second import IS caught
   });
 
   it("surfaces a SECOND same-line BARE import after a semicolon", () => {
-    const src = 'import "./side.js"; import "../../../ireal-codec/side.js";';
+    const src = 'import "./side.js"; import "../../../some-adapter/side.js";';
     const specs = specifiers(src);
     expect(specs).toContain("./side.js");
-    expect(specs).toContain("../../../ireal-codec/side.js");
+    expect(specs).toContain("../../../some-adapter/side.js");
   });
 });

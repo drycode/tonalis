@@ -18,7 +18,7 @@ one — the oracle just records the old (wrong) ``true``, hence the bless.
 
   * ``C7777``   — a repeated-digit run; not a real extension.
 
-The iReal ``X4`` sus shorthand (``C4``, ``A4/C`` …) and the ``X7+`` raised-5th form (``C7+``,
+The ``X4`` sus shorthand (``C4``, ``A4/C`` …) and the ``X7+`` raised-5th form (``C7+``,
 ``Bb*7+*`` -> ``Bb7+`` == ``Bb7#5``) are NOT blessed: MusicDSL was taught both (sus shorthand
 in Task 3, ``7+`` in Task 4), so those tokens now validate and agree with the old grammar
 (true == true). ``C7+`` and ``Bb*7+*`` were previously blessed (when MusicDSL rejected ``7+``);
@@ -59,7 +59,7 @@ def test_blessed_differences_are_real_and_minimal():
 
 def test_oracle_is_nonempty_and_clean():
     """Guard against an empty/garbage oracle: it must hold a substantial corpus of
-    chord-looking tokens only (no iReal control junk)."""
+    chord-looking tokens only (no control-token junk)."""
     import re
 
     assert len(_ORACLE) > 500, f"oracle suspiciously small: {len(_ORACLE)} tokens"

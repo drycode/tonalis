@@ -21,16 +21,14 @@ Corpus source
 The token universe is the **conformance corpus** (``conformance/dsl-core/cases/**/*.json``):
 every ``"chord"`` string anywhere under a case's ``expect.ast``, PLUS every chord-looking
 token inside the compound ``"alt"`` strings (``"(A4 Gh7)"`` -> ``A4``, ``Gh7``). This is the
-corpus the Phase-1 debate swept to find the divergences, and it carries clean chord tokens
-only (no iReal control junk), so it is the reliable, reproducible oracle source.
+corpus that surfaced the divergences, and it carries clean chord tokens only, so it is the
+reliable, reproducible oracle source.
 
-The iReal **sqlite** corpus is intentionally NOT used here. Its real shape is Core Data
-(table ``SCRUBBED``, column ``SCRUBBED``) holding RAW SCRUBBED iReal — markers, time
-signatures, ``x`` repeats, ``N1``/``N2`` endings, ``<Fine>``/``<D.C...>`` glued to chords —
-which cannot be split into chord tokens without the SCRUBBED reader. SCRUBBED is not a
-dependency of this standalone repo, and the monorepo's copy ships the OLD ``music_dsl`` (no
-``X4`` teaching), so importing it would give wrong verdicts. The conformance corpus is what
-surfaced every divergence, so the sqlite breadth is a deliberate, documented residual.
+A broader external chart corpus is intentionally NOT used here: raw third-party chart data
+needs a format-specific reader (not a dependency of this standalone library) to split into
+clean chord tokens, and would only add breadth this frozen oracle does not need. The
+conformance corpus is what surfaced every divergence, so that narrower breadth is a
+deliberate, documented choice.
 """
 
 import json

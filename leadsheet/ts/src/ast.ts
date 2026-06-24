@@ -1,7 +1,7 @@
 /**
  * DSL abstract syntax (Phase 2 — NEUTRAL IR) + the canonical JSON projection (SPEC.md §2.1).
  * The root is `LeadSheet`; sections carry a neutral `kind`; measures carry a `barline` enum and an
- * opaque `hints` list (where `@break` lives). No iReal-ism is stored — the codec maps these.
+ * opaque `hints` list (where `@break` lives). No format-specific value is stored — a downstream codec maps these.
  * Mirrors the Python reference `tonalis/ast.py` + `tonalis/serialize.py`.
  */
 
@@ -41,7 +41,7 @@ export interface Measure {
   barline: Barline;
   /** semantic navigation items, in render order */
   nav: NavItem[];
-  /** opaque iReal render-hints, e.g. "break"; NO lead-sheet semantics */
+  /** opaque render-hints, e.g. "break"; NO lead-sheet semantics */
   hints: string[];
   /** source line for findings */
   line: number;
@@ -49,7 +49,7 @@ export interface Measure {
 
 export interface Section {
   label: string;
-  /** neutral role (was the iReal marker string) */
+  /** neutral role (the parser derives it from the bracket name) */
   kind: SectionKind;
   measures: Measure[];
 }
