@@ -1,7 +1,7 @@
 {
   "name": "tonalis",
   "version": "0.1.0",
-  "description": "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text). Zero runtime deps, browser + Node safe.",
+  "description": "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text). Depends only on the pure, zero-dependency music_dsl theory library; browser + Node safe.",
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
@@ -19,6 +19,9 @@
   ],
   "license": "MIT",
   "private": false,
+  "dependencies": {
+    "music_dsl": "file:../../music-dsl/ts"
+  },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "typescript": "^5.6.3",

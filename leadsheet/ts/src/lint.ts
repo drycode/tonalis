@@ -6,7 +6,8 @@
  */
 
 import type { LeadSheet, LintFinding, Measure, NavItem, Section, Severity } from "./ast.js";
-import { isValidChord } from "./chordGrammar.js";
+import { isValidChord } from "./chords.js";
+import { MAX_CHORD_TOKEN_LEN } from "./parser.js";
 
 // corpus-derived known-good uneven :N layouts (4/4); all-equal splits are always fine.
 const ALLOWED_UNEVEN: ReadonlySet<string> = new Set(
@@ -88,7 +89,10 @@ export function lint(chart: LeadSheet): LintFinding[] {
 
     // chords
     for (const c of m.cells) {
-      if (c.chord && !isValidChord(c.chord)) {
+      // skip is_valid_chord for tokens that already triggered token-too-long (parser error already
+      // emitted; music_dsl would reject them as bad-chord too but the conformance spec treats
+      // over-length tokens as a single token-too-long error). Mirrors Python lint.py:79.
+      if (c.chord && [...c.chord].length <= MAX_CHORD_TOKEN_LEN && !isValidChord(c.chord)) {
         err(m.line, "bad-chord", `invalid chord token: ${c.chord}`);
       }
       if (c.alt) {

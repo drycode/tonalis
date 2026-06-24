@@ -53,6 +53,10 @@ function specifiers(source: string): string[] {
 }
 
 const ALLOWED_BARE = new Set<string>(["vitest"]); // test runner only; allowed in *.test.ts
+// Phase 3: the one-way leadsheet → music_dsl theory-lib dependency. Unlike vitest (a dev-only
+// test dep), this is a PRODUCTION runtime dep — allowed from any file (incl. chords.ts), so it is
+// NOT gated on isTest. Exact-membership one-entry set: not a blanket bare-import pass.
+const ALLOWED_RUNTIME_DEP = new Set<string>(["music_dsl"]);
 
 /**
  * Classify one specifier from a file. Returns a violation string, or null if allowed.
@@ -71,9 +75,10 @@ function classify(spec: string, fileAbsPath: string, isTest: boolean): string | 
     }
     return null;
   }
-  // bare specifier (a package). The pure core has no runtime deps; only vitest in test files.
-  if (isTest && ALLOWED_BARE.has(spec)) return null;
-  return `bare package import "${spec}" is forbidden (dsl-core is dependency-free)`;
+  // bare specifier (a package).
+  if (ALLOWED_RUNTIME_DEP.has(spec)) return null; // production runtime dep, allowed in any file
+  if (isTest && ALLOWED_BARE.has(spec)) return null; // vitest: dev test dep, test files only
+  return `bare package import "${spec}" is forbidden (only music_dsl runtime + vitest in tests)`;
 }
 
 describe("dsl-core/ts import boundary", () => {
@@ -118,6 +123,14 @@ describe("dsl-core/ts import boundary", () => {
     const fake = join(SRC_ROOT, "x.test.ts");
     expect(classify("vitest", fake, true)).toBeNull();
     expect(classify("vitest", join(SRC_ROOT, "x.ts"), false)).not.toBeNull();
+  });
+  it("ALLOWS the music_dsl runtime dep from production source", () => {
+    const fake = join(SRC_ROOT, "chords.ts");
+    expect(classify("music_dsl", fake, false)).toBeNull();
+  });
+  it("still flags an unapproved bare dep from production source", () => {
+    const fake = join(SRC_ROOT, "chords.ts");
+    expect(classify("lodash", fake, false)).not.toBeNull();
   });
 
   // NEGATIVE: the same-line second-import hole. `import a from "./ast.js"; import b from

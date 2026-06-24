@@ -14,6 +14,7 @@ export default defineConfig({
     // local source so the in-repo suite resolves without a built/published artifact.
     alias: {
       tonalis: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+      music_dsl: fileURLToPath(new URL("../../music-dsl/ts/src/index.ts", import.meta.url)),
     },
   },
 });
