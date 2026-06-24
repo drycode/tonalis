@@ -15,7 +15,9 @@ use std::path::PathBuf;
 
 /// Crate names the pure language core is allowed to depend on. (Forbidding everything else makes
 /// the test an allow-LIST, so a future stray dep — adapter or otherwise — trips it.)
-const ALLOWED_DEPS: &[&str] = &["regex", "serde", "serde_json"];
+// music_dsl is the one-way leadsheet → theory-lib dependency (Phase 3). It is NOT an adapter
+// (FORBIDDEN_DEPS), so adding it here keeps tonalis_has_no_adapter_dependency biting.
+const ALLOWED_DEPS: &[&str] = &["regex", "serde", "serde_json", "music_dsl"];
 
 /// Adapter crates that must NEVER appear (named explicitly for a crisp failure message).
 const FORBIDDEN_DEPS: &[&str] = &["SCRUBBED", "ireal-codec", "text_target", "text-target"];

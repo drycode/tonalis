@@ -10,6 +10,7 @@ license = "MIT"
 crate-type = ["rlib"]
 
 [dependencies]
+music_dsl = { path = "../../music-dsl/rust" }
 regex = "1"
 serde = { version = "1", features = ["derive"] }
 # preserve_order keeps serialized AST object keys in insertion order (matching the Python/TS

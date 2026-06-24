@@ -10,13 +10,14 @@
 
 pub mod ast;
 pub mod chord_grammar;
+pub mod chords;
 pub mod lint;
 pub mod parser;
 pub mod serialize_text;
 
 // Re-exports mirroring the TS/Python ports' pure public surface.
 pub use ast::{ast_from_json, ast_to_json, SCHEMA_VERSION};
-pub use chord_grammar::is_valid_chord;
+pub use chords::is_valid_chord;
 pub use lint::lint;
 pub use parser::parse_dsl;
 pub use serialize_text::serialize_text;

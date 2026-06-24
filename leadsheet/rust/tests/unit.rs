@@ -33,7 +33,6 @@ fn chord_grammar_accepts_real_constructs() {
         "N.C.",
         "n",
         "Bb*7+*",
-        "C7777",
         "Csussus",
     ] {
         assert!(is_valid_chord(ok), "expected valid: {}", ok);

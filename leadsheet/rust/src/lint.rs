@@ -4,7 +4,8 @@
 //! Faithful port of `SCRUBBED/dsl/lint.py` and `ts/src/lint.ts`.
 
 use crate::ast::{Barline, LeadSheet, LintFinding, Measure, NavItem, Severity};
-use crate::chord_grammar::is_valid_chord;
+use crate::chords::is_valid_chord;
+use crate::parser::MAX_CHORD_TOKEN_LEN;
 
 /// Corpus-derived known-good uneven :N layouts (4/4); all-equal splits are always fine.
 fn allowed_uneven(pattern: &[u32]) -> bool {
@@ -107,7 +108,8 @@ pub fn lint(chart: &LeadSheet) -> Vec<LintFinding> {
 
         // chords
         for c in &m.cells {
-            if !c.chord.is_empty() && !is_valid_chord(&c.chord) {
+            // Skip is_valid_chord for tokens already flagged token-too-long (mirrors Python lint.py:79).
+            if !c.chord.is_empty() && c.chord.chars().count() <= MAX_CHORD_TOKEN_LEN && !is_valid_chord(&c.chord) {
                 f.err(m.line, "bad-chord", &format!("invalid chord token: {}", c.chord));
             }
             if let Some(alt) = &c.alt {
