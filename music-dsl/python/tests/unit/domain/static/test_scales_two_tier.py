@@ -18,7 +18,7 @@ def test_scales_carry_descriptors():
     assert isinstance(d, ScaleDescriptor)
     assert d.mask == int("101011010101" * 3, 2)
     assert d.name == "Major (Ionian)"
-    assert d.category == "major"
+    assert d.category == "major-mode"
     assert d.supports_diatonic_function is True
     # The three original scales are functional (the catalog also has non-functional
     # symmetric scales — see test_scale_catalog).
