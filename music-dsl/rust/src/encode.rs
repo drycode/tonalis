@@ -20,10 +20,13 @@ pub const CHORD_ENCODING_BIT_LENGTH: u32 = 19;
 pub const DIMINISHED_ENCODING: u64 = 0b1001001001000000000;
 
 // ---------------------------------------------------------------------------
-// Scale constants (36-bit, twelve-tone pattern × 3)
+// Scale catalog (36-bit masks, twelve-tone pattern × 3) + two-tier descriptors
 // ---------------------------------------------------------------------------
 
-/// Scale masks as 36-bit integers: the 12-bit chromatic pattern repeated ×3.
+/// Build a scale's 36-bit mask from its pitch classes (semitones above the
+/// tonic, 0–11). The 12-bit pattern (MSB = tonic) is repeated ×3 so the modal
+/// scan can rotate to any root without the sliding window falling off the
+/// most-significant end.
 ///
 /// # Why three copies
 ///
@@ -36,25 +39,125 @@ pub const DIMINISHED_ENCODING: u64 = 0b1001001001000000000;
 /// Concatenating the pattern three times (36 bits) turns every rotation into a
 /// straight left/right shift into the middle copy: `strip_left`/`strip_right`
 /// can align any window from root to the octave-plus-a-fifth without special
-/// wrap-around handling, and the top and bottom copies supply the overhang on
-/// both sides. Two copies would only cover a half-turn; three guarantees any
-/// 12-slot window is contiguous. The values below are `int("<12-bit>" * 3, 2)`.
-pub struct Scales;
-
-impl Scales {
-    pub const MAJOR: u64 = 46534580949;          // int("101011010101" * 3, 2)
-    pub const MINOR: u64 = 48766495578;          // int("101101011010" * 3, 2)
-    pub const HARMONIC_MINOR: u64 = 48749714265; // int("101101011001" * 3, 2)
+/// wrap-around handling. This mirrors Python's `_scale_mask` exactly, so the
+/// masks are derived — never hand-written literals.
+pub const fn scale_mask(pitch_classes: &[u32]) -> u64 {
+    let mut pattern: u64 = 0;
+    let mut i = 0;
+    while i < pitch_classes.len() {
+        pattern |= 1u64 << (11 - pitch_classes[i]);
+        i += 1;
+    }
+    (pattern << 24) | (pattern << 12) | pattern
 }
 
-/// Return the numeric scale value by name (`"Major"`, `"Minor"`, `"HarmonicMinor"`).
+/// Everything the library needs to know about a scale.
+///
+/// `mask` is the 12-bit pitch-class set repeated ×3 (36 bits). `name` is the
+/// canonical display name and `category` its family. `supports_diatonic_function`
+/// drives the two-tier model: membership (`contains`) is defined for every scale,
+/// but functional queries (`is_diatonic` / harmonic function) are only meaningful
+/// where a tonal hierarchy exists. Symmetric/atonal scales set this `false` and
+/// those queries refuse (`Err`) rather than return an authoritative-looking answer.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct ScaleDescriptor {
+    pub mask: u64,
+    pub name: &'static str,
+    pub category: &'static str,
+    pub supports_diatonic_function: bool,
+}
+
+/// A functional scale (has a tonal hierarchy; diatonic queries are defined).
+const fn fscale(pcs: &[u32], name: &'static str, category: &'static str) -> ScaleDescriptor {
+    ScaleDescriptor { mask: scale_mask(pcs), name, category, supports_diatonic_function: true }
+}
+
+/// A symmetric/atonal scale (no tonal-function model; membership only).
+const fn sscale(pcs: &[u32], name: &'static str, category: &'static str) -> ScaleDescriptor {
+    ScaleDescriptor { mask: scale_mask(pcs), name, category, supports_diatonic_function: false }
+}
+
+/// The frozen scale catalog, keyed by enum-member name (the conformance lookup key).
+///
+/// Mirrors `music_dsl.encode.Scales` (37 scales). Masks are derived from pitch-class
+/// sets via [`scale_mask`], so they equal the blessed `scale_value` numbers exactly.
+pub static SCALES: &[(&str, ScaleDescriptor)] = &[
+    // --- Modes of the major scale (functional) --------------------------------
+    ("Major",           fscale(&[0, 2, 4, 5, 7, 9, 11], "Major (Ionian)", "major-mode")),
+    ("Dorian",          fscale(&[0, 2, 3, 5, 7, 9, 10], "Dorian", "major-mode")),
+    ("Phrygian",        fscale(&[0, 1, 3, 5, 7, 8, 10], "Phrygian", "major-mode")),
+    ("Lydian",          fscale(&[0, 2, 4, 6, 7, 9, 11], "Lydian", "major-mode")),
+    ("Mixolydian",      fscale(&[0, 2, 4, 5, 7, 9, 10], "Mixolydian", "major-mode")),
+    ("Minor",           fscale(&[0, 2, 3, 5, 7, 8, 10], "Natural minor (Aeolian)", "major-mode")),
+    ("Locrian",         fscale(&[0, 1, 3, 5, 6, 8, 10], "Locrian", "major-mode")),
+
+    // --- Melodic minor and its modes (functional) -----------------------------
+    ("MelodicMinor",    fscale(&[0, 2, 3, 5, 7, 9, 11], "Melodic minor", "melodic-minor")),
+    ("DorianFlat2",     fscale(&[0, 1, 3, 5, 7, 9, 10], "Dorian b2", "melodic-minor")),
+    ("LydianAugmented", fscale(&[0, 2, 4, 6, 8, 9, 11], "Lydian augmented", "melodic-minor")),
+    ("LydianDominant",  fscale(&[0, 2, 4, 6, 7, 9, 10], "Lydian dominant", "melodic-minor")),
+    ("MixolydianFlat6", fscale(&[0, 2, 4, 5, 7, 8, 10], "Mixolydian b6", "melodic-minor")),
+    ("LocrianNatural2", fscale(&[0, 2, 3, 5, 6, 8, 10], "Locrian natural 2", "melodic-minor")),
+    ("Altered",         fscale(&[0, 1, 3, 4, 6, 8, 10], "Altered (Super Locrian)", "melodic-minor")),
+
+    // --- Harmonic minor and its modes (functional) ----------------------------
+    ("HarmonicMinor",   fscale(&[0, 2, 3, 5, 7, 8, 11], "Harmonic minor", "harmonic-minor")),
+    ("LocrianNatural6", fscale(&[0, 1, 3, 5, 6, 9, 10], "Locrian natural 6", "harmonic-minor")),
+    ("IonianSharp5",    fscale(&[0, 2, 4, 5, 8, 9, 11], "Ionian #5", "harmonic-minor")),
+    ("DorianSharp4",    fscale(&[0, 2, 3, 6, 7, 9, 10], "Dorian #4 (Ukrainian)", "harmonic-minor")),
+    ("PhrygianDominant", fscale(&[0, 1, 4, 5, 7, 8, 10], "Phrygian dominant", "harmonic-minor")),
+    ("LydianSharp2",    fscale(&[0, 3, 4, 6, 7, 9, 11], "Lydian #2", "harmonic-minor")),
+    ("Ultralocrian",    fscale(&[0, 1, 3, 4, 6, 8, 9], "Ultralocrian", "harmonic-minor")),
+
+    // --- Harmonic major and other named heptatonics (functional) --------------
+    ("HarmonicMajor",   fscale(&[0, 2, 4, 5, 7, 8, 11], "Harmonic major", "harmonic-major")),
+    ("DoubleHarmonic",  fscale(&[0, 1, 4, 5, 7, 8, 11], "Double harmonic (Byzantine)", "exotic")),
+    ("HungarianMinor",  fscale(&[0, 2, 3, 6, 7, 8, 11], "Hungarian minor", "exotic")),
+    ("HungarianMajor",  fscale(&[0, 3, 4, 6, 7, 9, 10], "Hungarian major", "exotic")),
+    ("NeapolitanMajor", fscale(&[0, 1, 3, 5, 7, 9, 11], "Neapolitan major", "exotic")),
+    ("NeapolitanMinor", fscale(&[0, 1, 3, 5, 7, 8, 11], "Neapolitan minor", "exotic")),
+
+    // --- Pentatonic and blues (functional) ------------------------------------
+    ("MajorPentatonic", fscale(&[0, 2, 4, 7, 9], "Major pentatonic", "pentatonic")),
+    ("MinorPentatonic", fscale(&[0, 3, 5, 7, 10], "Minor pentatonic", "pentatonic")),
+    ("Blues",           fscale(&[0, 3, 5, 6, 7, 10], "Blues (minor)", "blues")),
+
+    // --- Bebop (functional, 8-note; passing tone documented in SPEC) -----------
+    ("BebopDominant",   fscale(&[0, 2, 4, 5, 7, 9, 10, 11], "Bebop dominant", "bebop")),
+    ("BebopMajor",      fscale(&[0, 2, 4, 5, 7, 8, 9, 11], "Bebop major", "bebop")),
+
+    // --- Symmetric / atonal (NON-functional: membership only) -----------------
+    ("WholeTone",           sscale(&[0, 2, 4, 6, 8, 10], "Whole tone", "symmetric")),
+    ("DiminishedHalfWhole", sscale(&[0, 1, 3, 4, 6, 7, 9, 10], "Diminished (half-whole)", "symmetric")),
+    ("DiminishedWholeHalf", sscale(&[0, 2, 3, 5, 6, 8, 9, 11], "Diminished (whole-half)", "symmetric")),
+    ("Augmented",           sscale(&[0, 3, 4, 7, 8, 11], "Augmented", "symmetric")),
+    ("Chromatic",           sscale(&[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "Chromatic", "atonal")),
+];
+
+/// Look up a scale descriptor by its enum-member name (`"Major"`, `"WholeTone"`, …).
+///
+/// Panics on an unknown name, mirroring the Python reference's `Scales[...]` lookup.
+pub fn scale_descriptor(name: &str) -> &'static ScaleDescriptor {
+    SCALES
+        .iter()
+        .find(|(n, _)| *n == name)
+        .map(|(_, d)| d)
+        .unwrap_or_else(|| panic!("unknown scale name: {}", name))
+}
+
+/// Return the numeric scale value (36-bit mask) by name.
 pub fn scale_value(name: &str) -> u64 {
-    match name {
-        "Major"         => Scales::MAJOR,
-        "Minor"         => Scales::MINOR,
-        "HarmonicMinor" => Scales::HARMONIC_MINOR,
-        other           => panic!("unknown scale name: {}", other),
-    }
+    scale_descriptor(name).mask
+}
+
+/// Tier-1 membership: `true` if `pitch_class` (semitones above the tonic) is in
+/// the scale. Defined for EVERY scale — including symmetric/atonal scales whose
+/// functional queries refuse. Mirrors `music_dsl.encode.contains`.
+pub fn contains(scale: &ScaleDescriptor, pitch_class: u32) -> bool {
+    let mask = scale.mask;
+    let size = (64 - mask.leading_zeros()) / 3; // bit_length // 3
+    let pattern = mask >> (2 * size); // the leading 12-bit copy
+    (pattern >> (size - 1 - (pitch_class % size))) & 1 != 0
 }
 
 // ---------------------------------------------------------------------------

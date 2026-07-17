@@ -4,6 +4,7 @@
 //! `harmonic_function_in_key`, and `chord_in_key`.
 
 use crate::chord::{chord_encoding, parse_chord, ChordParseError};
+use crate::encode::ScaleDescriptor;
 use crate::helpers::{semitones_apart_ascending, strip_left, strip_right};
 use crate::notes::Note;
 use crate::numeric_chord::{parse_numeric, NumericParseError};
@@ -29,6 +30,11 @@ pub enum TransactionError {
     ParseNumeric(NumericParseError),
     /// A scale-degree string (key root, numerator, or denominator) was not recognised.
     UnknownDegree(String),
+    /// A functional query (diatonicity / harmonic function) was made against a scale
+    /// with no meaningful tonal-function model (whole-tone, diminished, augmented,
+    /// chromatic). Tier-1 membership via `encode::contains` still works for these.
+    /// Rust counterpart of Python's `NonFunctionalScaleError`.
+    NonFunctionalScale(String),
 }
 
 impl std::fmt::Display for TransactionError {
@@ -38,6 +44,11 @@ impl std::fmt::Display for TransactionError {
             TransactionError::ParseChord(e)     => write!(f, "TransactionError: chord parse error: {}", e),
             TransactionError::ParseNumeric(e)   => write!(f, "TransactionError: numeric parse error: {}", e),
             TransactionError::UnknownDegree(s)  => write!(f, "TransactionError: unknown scale degree {:?}", s),
+            TransactionError::NonFunctionalScale(s) => write!(
+                f,
+                "TransactionError: {} has no diatonic-function model; use encode::contains() for scale membership instead.",
+                s
+            ),
         }
     }
 }
@@ -105,13 +116,25 @@ pub fn modulate(semitones: i64, note: &str) -> Result<String, TransactionError> 
 // is_diatonic
 // ---------------------------------------------------------------------------
 
-/// Return `Ok(true)` if `chord_str` is diatonic to `root` in the given `scale` value,
-/// `Ok(false)` if valid but not diatonic, or `Err` if `chord_str` cannot be parsed.
+/// Return `Ok(true)` if `chord_str` is diatonic to `root` in the given `scale`,
+/// `Ok(false)` if valid but not diatonic, or `Err` on refusal / bad input.
 ///
-/// `scale` is the numeric scale value (e.g. from `scale_value("Major")`).
-/// Mirrors `music_dsl.transactions.is_diatonic` faithfully: the Python reference raises
-/// `InvalidChordStringException` on an unparseable chord string; this returns `Err` instead.
-pub fn is_diatonic(root: &str, scale: u64, chord_str: &str) -> Result<bool, TransactionError> {
+/// `scale` is a [`ScaleDescriptor`] (e.g. from `scale_descriptor("Major")`).
+/// Mirrors `music_dsl.transactions.is_diatonic` faithfully:
+/// - **Two-tier refusal (Tier 2):** on a non-functional scale (`supports_diatonic_function`
+///   is `false` — whole-tone, diminished, augmented, chromatic) it returns
+///   `Err(TransactionError::NonFunctionalScale)`. The Python reference raises
+///   `NonFunctionalScaleError`; this is the Rust `Result` conversion.
+/// - The Python reference raises `InvalidChordStringException` on an unparseable
+///   chord string; this returns `Err(TransactionError::ParseChord)` instead.
+pub fn is_diatonic(root: &str, scale: &ScaleDescriptor, chord_str: &str) -> Result<bool, TransactionError> {
+    // Tier 2 — functional queries are only defined on scales with a tonal
+    // hierarchy. Symmetric/atonal scales refuse here; membership lives in
+    // `encode::contains`.
+    if !scale.supports_diatonic_function {
+        return Err(TransactionError::NonFunctionalScale(scale.name.to_string()));
+    }
+    let scale = scale.mask;
     // ── Algorithm: align the modal window, then mask ──────────────────────────
     //
     // Both a scale and a chord are bit-arrays over semitone slots, MSB = root.

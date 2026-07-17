@@ -3,17 +3,17 @@
 //! frozen case count.
 //! Cases tree is read relative to CARGO_MANIFEST_DIR (music-dsl/rust/ -> ../../conformance/music-dsl/cases).
 use music_dsl::{
-    chord_encoding, chord_in_key, chord_pitches, encoding_value, harmonic_function_in_key,
-    interval_pitches, interval_semitones, intervals_equal, is_diatonic, midi_to_hz, modulate,
-    note_index, note_to_midi, notes_equal, numeric_from_chord, parse_chord, parse_measure,
-    parse_numeric, scale_degree_pitch, scale_degrees_equal, scale_pitches, scale_value,
-    semitones_apart_ascending, strip_left, strip_right, TimeSignature,
+    chord_encoding, chord_in_key, chord_pitches, contains, encoding_value,
+    harmonic_function_in_key, interval_pitches, interval_semitones, intervals_equal, is_diatonic,
+    midi_to_hz, modulate, note_index, note_to_midi, notes_equal, numeric_from_chord, parse_chord,
+    parse_measure, parse_numeric, scale_degree_pitch, scale_degrees_equal, scale_descriptor,
+    scale_pitches, scale_value, semitones_apart_ascending, strip_left, strip_right, TimeSignature,
 };
 use serde_json::Value;
 use std::fs;
 use std::path::{Path, PathBuf};
 
-const EXPECTED_CASE_COUNT: usize = 340; // keep in sync with Python/TS runners
+const EXPECTED_CASE_COUNT: usize = 427; // keep in sync with Python/TS runners
 
 fn cases_dir() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
@@ -56,6 +56,12 @@ fn dispatch(op: &str, args: &Value) -> Value {
 
         // Build 2 ops
         "scale_value" => Value::from(scale_value(s("name"))),
+
+        "scale_contains" => {
+            let name = s("name");
+            let pitch_class = u("pitch_class") as u32;
+            Value::Bool(contains(scale_descriptor(name), pitch_class))
+        }
 
         "encoding_value" => {
             let triad = s("triad");
@@ -156,7 +162,7 @@ fn dispatch(op: &str, args: &Value) -> Value {
             let root = s("root");
             let scale_name = s("scale");
             let chord = s("chord");
-            let scale = scale_value(scale_name);
+            let scale = scale_descriptor(scale_name);
             match is_diatonic(root, scale, chord) {
                 Ok(v) => Value::Bool(v),
                 Err(_) => Value::String(ERROR_SENTINEL.to_string()),

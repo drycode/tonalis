@@ -24,8 +24,9 @@ pub mod transactions;
 pub use chord::{chord_encoding, parse_chord, ChordModel, ChordModelWrapper, ChordParseError};
 pub use chord_quality::{Extensions, HarmonicFunction, Seventh, Triad};
 pub use encode::{
-    encoding_value, encoding_value_from_enums, scale_value,
-    CHORD_ENCODING_BIT_LENGTH, DIMINISHED_ENCODING, EMPTY_CHORD_ENCODING,
+    contains, encoding_value, encoding_value_from_enums, scale_descriptor, scale_mask,
+    scale_value, ScaleDescriptor, CHORD_ENCODING_BIT_LENGTH, DIMINISHED_ENCODING,
+    EMPTY_CHORD_ENCODING, SCALES,
 };
 pub use helpers::{semitones_apart_ascending, strip_left, strip_right};
 pub use measure::{parse_measure, MeasureModel, MeasureModelWrapper, TimeSignature};

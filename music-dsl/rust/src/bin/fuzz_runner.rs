@@ -14,7 +14,7 @@
 use music_dsl::{
     parse_chord, parse_numeric, numeric_from_chord,
     note_to_midi, chord_pitches, scale_pitches, scale_degree_pitch,
-    modulate, is_diatonic, chord_in_key, harmonic_function_in_key, scale_value,
+    modulate, is_diatonic, chord_in_key, harmonic_function_in_key, scale_descriptor,
 };
 use serde_json::{json, Value};
 use std::fs;
@@ -83,8 +83,8 @@ fn run_modulate(semitones: i64, note: &str) -> Value {
 }
 
 fn run_is_diatonic(root: &str, scale_name: &str, chord_str: &str) -> Value {
-    let sv = scale_value(scale_name);
-    match is_diatonic(root, sv, chord_str) {
+    let sd = scale_descriptor(scale_name);
+    match is_diatonic(root, sd, chord_str) {
         Ok(result) => json!({"result": {"diatonic": result}}),
         Err(_) => json!({"error": true}),
     }

@@ -2,9 +2,10 @@ use music_dsl::{
     chord_encoding, chord_in_key, chord_pitches, harmonic_function_in_key, interval_pitches,
     intervals_equal, interval_semitones, is_diatonic, midi_to_hz, modulate, note_index,
     note_to_midi, notes_equal, parse_chord, parse_measure, scale_degree_pitch,
-    scale_degrees_equal, scale_pitches, encoding_value, scale_value, semitones_apart_ascending,
-    strip_left, strip_right, TimeSignature,
+    scale_degrees_equal, scale_pitches, encoding_value, scale_descriptor, scale_value,
+    semitones_apart_ascending, strip_left, strip_right, TimeSignature,
 };
+use music_dsl::{contains, ScaleDescriptor};
 
 #[test]
 fn notes_enharmonic_equality() {
@@ -366,23 +367,59 @@ fn modulate_valid_scale_degree_ok() {
 
 #[test]
 fn is_diatonic_invalid_chord_is_err() {
-    let major = scale_value("Major");
+    let major = scale_descriptor("Major");
     assert!(is_diatonic("C", major, "xyzzy").is_err());
     assert!(is_diatonic("C", major, "").is_err());
 }
 
 #[test]
 fn is_diatonic_valid_diatonic_ok_true() {
-    let major = scale_value("Major");
+    let major = scale_descriptor("Major");
     // C major: Cmaj7 is diatonic
     assert!(is_diatonic("C", major, "C^7").unwrap());
 }
 
 #[test]
 fn is_diatonic_valid_non_diatonic_ok_false() {
-    let major = scale_value("Major");
+    let major = scale_descriptor("Major");
     // C major: C#7 is NOT diatonic — must be Ok(false) not Err
     assert!(!is_diatonic("C", major, "C#7").unwrap());
+}
+
+#[test]
+fn is_diatonic_non_functional_scale_is_err() {
+    // Tier-2 refusal: functional queries against symmetric/atonal scales return Err.
+    for name in ["WholeTone", "DiminishedHalfWhole", "DiminishedWholeHalf", "Augmented", "Chromatic"] {
+        let scale = scale_descriptor(name);
+        assert!(!scale.supports_diatonic_function, "{name} must be non-functional");
+        assert!(is_diatonic("C", scale, "C").is_err(), "{name} must refuse");
+    }
+}
+
+#[test]
+fn scale_catalog_has_37_entries() {
+    assert_eq!(music_dsl::SCALES.len(), 37);
+}
+
+#[test]
+fn scale_masks_match_blessed_reference() {
+    // Spot-check derived masks against the frozen conformance numbers.
+    assert_eq!(scale_value("Dorian"), 48699370326u64);
+    assert_eq!(scale_value("BebopDominant"), 46568143575u64);
+    assert_eq!(scale_value("Chromatic"), 68719476735u64);
+    assert_eq!(scale_value("WholeTone"), 45812984490u64);
+}
+
+#[test]
+fn contains_membership_tier_defined_for_all_scales() {
+    // Tier-1 membership works for functional and non-functional scales alike.
+    let major: &ScaleDescriptor = scale_descriptor("Major");
+    assert!(contains(major, 0));
+    assert!(!contains(major, 1));
+    assert!(contains(major, 11));
+    let whole_tone = scale_descriptor("WholeTone");
+    assert!(contains(whole_tone, 2));
+    assert!(!contains(whole_tone, 1));
 }
 
 #[test]
