@@ -27,3 +27,7 @@ target/
 .superpowers/
 .venv/
 .claude/
+
+# Docs (mkdocs build output + generated API references)
+site/
+docs/api/

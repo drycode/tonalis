@@ -1,0 +1,56 @@
+site_name: Tonalis
+site_description: >-
+  A spec-driven, polyglot music-theory library — one normative conformance suite,
+  three ports (Python reference, TypeScript, Rust) kept in lockstep by a
+  differential fuzzer.
+site_author: Tonalis
+# site_url is set once the repo is public and GitHub Pages is live, e.g.
+#   https://<org>.github.io/tonalis/
+# Leave unset until then; the deploy step is gated on the repo being public.
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.top
+    - content.code.copy
+    - toc.follow
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - tables
+  - toc:
+      permalink: true
+
+# Keep build tooling out of the published site (they live in docs/ for locality).
+exclude_docs: |
+  requirements.txt
+  build_api.sh
+
+nav:
+  - Home: index.md
+  - Quickstart: quickstart.md
+  - Lead-sheet DSL: dsl.md
+  - Theory model: theory.md
+  - Scale catalog: scales.md
+  - API reference: api.md

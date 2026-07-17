@@ -1,0 +1,3 @@
+# Documentation build dependencies for the Tonalis site.
+# Install with: pip install -r docs/requirements.txt
+mkdocs-material
