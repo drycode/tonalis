@@ -32,6 +32,12 @@ add `:N` for an explicit beat count.
 `[time: 3/4]` mid-chart, and `<staff text>` are supported. `@break` (or
 `@newline`) on its own line forces the next section/measure onto a new line
 (a vertical-space / line-break layout hint); use it for layout, e.g. to put an intro on its own row.
+
+Layout model: iReal displays a fixed **4-cell bar** regardless of meter (the
+time signature affects playback only) and auto-wraps every **4 bars per row**.
+So rows come out clean by default; emit `@break` only where a section must
+start on a fresh row after a short tail (e.g. a 2-bar second ending). Bars
+holding 4+ chords render wider than the grid — unavoidable in v1.
 For a D.S./D.C. al Coda: `@segno` marks the jump-back point, `@tocoda` (placed
 *after* a measure) marks the "To Coda" jump-from, and `@coda` marks the coda
 section (the destination). `@fine` marks the Fine (end) point for a D.C./D.S. al Fine.
