@@ -1,3 +1,4 @@
+from collections import namedtuple
 from enum import Enum
 from functools import cache, reduce
 from typing import List
@@ -8,9 +9,6 @@ from music_dsl.helpers import strip_left, strip_right
 EMPTY_CHORD_ENCODING = int("1000000000000000000", 2)
 CHORD_ENCODING_BIT_LENGTH = int.bit_length(EMPTY_CHORD_ENCODING)
 DIMINISHED_ENCODING = int("1001001001000000000", 2)
-
-
-from collections import namedtuple
 
 Context = namedtuple("Context", "chord_root, contextual_tonic")
 
@@ -48,11 +46,10 @@ EncodingMap = {
 
 
 class Encoding:
-    """
-    TODO: Currently we're going to store the core and extensions in a
-    CHORD_ENCODING_BIT_LENGTH array, but there's opportunity here to combine disparate
-    pieces of the arrays using bit manipulation. this will allow us to compare smaller
-    arrays against the Scale for Diatonicity as well, reducing time and space
+    """A chord's interval content packed into a CHORD_ENCODING_BIT_LENGTH-bit vector.
+
+    The bit layout lets diatonicity be checked with a single bitwise AND against a
+    scale mask (see ``scan_scale`` / ``transactions.is_diatonic``).
     """
 
     def __init__(
@@ -99,6 +96,9 @@ class Encoding:
 
 
 class Scales(Enum):
+    # Each scale is a 12-bit pitch-class mask repeated 3x (36 bits). The triple
+    # copy lets the sliding-window scan in scan_scale/is_diatonic rotate the scale
+    # to any mode/root without the window falling off the most-significant end.
     Major = int("101011010101" * 3, 2)
     # Natural minor (Aeolian). Repeated 3x like Major so the modal-distance
     # scan in `is_diatonic`/`scan_scale` can align the scale to any root.

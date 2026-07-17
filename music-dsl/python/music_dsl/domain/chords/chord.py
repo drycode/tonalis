@@ -9,8 +9,6 @@ from music_dsl.encode import Encoding, EncodingMap
 
 from .abstract_chord import AbstractChord, make_chord_attrs
 
-EMPTY_CHORD_ENCODING = int("1000000000000000000", 2)
-
 from music_dsl.domain.static import (
     Extensions,
     Notes,
@@ -27,7 +25,6 @@ class Chord(AbstractChord):
         self._chord_attrs = self._parse_chord_string(raw_chord)
         self._chord_str = raw_chord
         self._root = self._chord_attrs.root
-        self.transposed = False
         self._encode()
 
     @property
@@ -37,7 +34,6 @@ class Chord(AbstractChord):
     @root.setter
     def root(self, note: Notes):
         self._root = note
-        self.transposed = self._root == self._chord_attrs.root
 
     @property
     def encoding(self):

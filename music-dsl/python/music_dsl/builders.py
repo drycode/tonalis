@@ -12,7 +12,7 @@ def build_from_chord_string(chord_str: str, parser_type=Chord):
         return Chord(chord_str)
     elif parser_type == NumericChord:
         return NumericChord.from_chord_string(chord_str)
-    raise Exception
+    raise ValueError(f"Unsupported parser_type: {parser_type}")
 
 
 # TODO: need a more sophisticated wrapper around the ChordAttrs tuple; a builder to prevent illegal

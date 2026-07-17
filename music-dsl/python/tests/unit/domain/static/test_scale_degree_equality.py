@@ -1,9 +1,9 @@
 from music_dsl.domain.static import ScaleDegree
+from music_dsl.domain.static.scale_degree import _SHARPS_TO_FLATS
 
 
 def _enharmonic_degree_pairs():
-    smap = ScaleDegree.sharps_to_flats.value
-    return [(ScaleDegree(sharp_val), ScaleDegree(flat_val)) for sharp_val, flat_val in smap.items()]
+    return [(ScaleDegree(sharp_val), ScaleDegree(flat_val)) for sharp_val, flat_val in _SHARPS_TO_FLATS.items()]
 
 
 def test_enharmonic_scale_degrees_hash_equal():

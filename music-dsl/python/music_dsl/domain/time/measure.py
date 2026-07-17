@@ -80,7 +80,9 @@ class Measure:
         self._setup_beats(delimiter)
 
     def to_json(self):
-        result = self.__dict__
+        # Copy first — assigning into self.__dict__ would mutate the live instance,
+        # permanently replacing beat_type/chord_type with their string forms.
+        result = dict(self.__dict__)
         result["beat_type"] = str(self.beat_type)
         result["chord_type"] = str(self.chord_type)
         return result

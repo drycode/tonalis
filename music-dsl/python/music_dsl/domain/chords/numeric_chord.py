@@ -17,8 +17,6 @@ from .abstract_chord import (
 )
 from .chord import Chord
 
-EMPTY_CHORD_ENCODING = int("1000000000000000000", 2)
-
 from music_dsl.domain.static import (
     SCALE_DEGREES,
     Notes,
@@ -132,8 +130,8 @@ class NumericChord(AbstractChord):
         _new._chord_attrs = chord_attrs
         return _new
 
-    @cache
     @staticmethod
+    @cache
     def _find_scale_degree(
         root: Notes, note: Notes, triad: Triad = None
     ) -> ScaleDegree:
@@ -170,11 +168,7 @@ class NumericChord(AbstractChord):
                     Intervals.Tritone.value + Intervals.M2.value, scale_degree
                 )
             elif chord.harmonic_function == HarmonicFunctions.Dominant:
-                # Dominant Variations
-                if chord.harmonic_function != HarmonicFunctions.Dominant:
-                    raise IncorrectHarmonicFunctionException(
-                        chord, diatonic_key_root, HarmonicFunctions.Dominant
-                    )
+                # Dominant variations
                 scale_degree = modulate(
                     Intervals.Tritone.value,
                     scale_degree,

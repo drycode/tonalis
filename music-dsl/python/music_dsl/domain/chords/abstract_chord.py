@@ -2,7 +2,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 import re
-from abc import abstractclassmethod
+from abc import abstractmethod
 from functools import cache, reduce
 from typing import List, Tuple, Union
 from music_dsl.helpers import m_or_M_scaledegree, validate_attr_inputs
@@ -10,8 +10,6 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
-EMPTY_CHORD_ENCODING = int("1000000000000000000", 2)
 
 from music_dsl.domain.static import (
     Extensions,
@@ -285,7 +283,8 @@ class AbstractChord:
                 f'Attempted to parse "{raw_chord}" which is invalid'
             )
 
-    @abstractclassmethod
+    @classmethod
+    @abstractmethod
     def _parse_root(cls, match): ...
 
     @staticmethod
@@ -316,13 +315,27 @@ class AbstractChord:
         cls.__instances__[key] = _new
         return _new
 
+    def _identity(self):
+        # The tuple that defines chord identity: enharmonically-normalized root
+        # plus quality and extensions. Shared by __eq__ and __hash__ so they stay
+        # consistent. Previously __hash__ hashed repr(chord_attrs) (which includes
+        # extensions) while __eq__ omitted extensions — violating the eq/hash
+        # contract (e.g. Chord("C") == Chord("Cadd9") yet the two hashed apart).
+        # Root comes from _chord_attrs (always set, incl. for from_attrs-built
+        # singletons) — matching the old repr-based hash basis; the property-backed
+        # self.root is not always initialized.
+        return (
+            self._chord_attrs.root.to_flat(),
+            self.harmonic_function,
+            self.triad,
+            self._7th,
+            self.extensions,
+        )
+
     def __hash__(self) -> int:
-        return hash(repr(self._chord_attrs))
+        return hash(self._identity())
 
     def __eq__(self, __o: object) -> bool:
-        return (
-            self.root.to_flat() == __o.root.to_flat()
-            and self.harmonic_function == __o.harmonic_function
-            and self.triad == __o.triad
-            and self._7th == __o._7th
-        )
+        if not isinstance(__o, AbstractChord):
+            return NotImplemented
+        return self._identity() == __o._identity()

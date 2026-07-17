@@ -1,5 +1,24 @@
 from music_dsl.utils import JsonSerializableEnum
 
+# Roman-numeral spelling maps, keyed by degree string value. Defined at module
+# level (NOT inside the Enum body) so they don't become ScaleDegree members — a
+# dict assigned in an Enum class body is turned into a member and pollutes
+# iteration/len. The `_MINOR_TO_MAJOR` / `_FLATS_TO_SHARPS` inverses are derived,
+# so the two directions can't drift.
+_MAJOR_TO_MINOR = {
+    "I": "i", "#I": "#i", "bII": "bii", "II": "ii", "#II": "#ii",
+    "bIII": "biii", "III": "iii", "IV": "iv", "#IV": "#iv", "bV": "bv",
+    "V": "v", "#V": "#v", "bVI": "bvi", "VI": "vi", "#VI": "#vi",
+    "bVII": "bvii", "VII": "vii",
+}
+_MINOR_TO_MAJOR = {minor: major for major, minor in _MAJOR_TO_MINOR.items()}
+
+_SHARPS_TO_FLATS = {
+    "#I": "bII", "#i": "bii", "#II": "bIII", "#ii": "biii", "#IV": "bV",
+    "#iv": "bv", "#V": "bVI", "#v": "bvi", "#VI": "bVII", "#vi": "bvii",
+}
+_FLATS_TO_SHARPS = {flat: sharp for sharp, flat in _SHARPS_TO_FLATS.items()}
+
 
 class ScaleDegree(JsonSerializableEnum):
     I = "I"
@@ -37,115 +56,49 @@ class ScaleDegree(JsonSerializableEnum):
     VII = "VII"
     vii = "vii"
 
-    major_to_minor = {
-        I: i,
-        sI: si,
-        bII: bii,
-        II: ii,
-        sII: sii,
-        bIII: biii,
-        III: iii,
-        IV: iv,
-        sIV: siv,
-        bV: bv,
-        V: v,
-        sV: sv,
-        bVI: bvi,
-        VI: vi,
-        sVI: svi,
-        bVII: bvii,
-        VII: vii,
-    }
-
-    minor_to_major = {
-        i: I,
-        si: sI,
-        bii: bII,
-        ii: II,
-        sii: sII,
-        biii: bIII,
-        iii: III,
-        iv: IV,
-        siv: sIV,
-        bv: bV,
-        v: V,
-        sv: sV,
-        bvi: bVI,
-        vi: VI,
-        svi: sVI,
-        bvii: bVII,
-        vii: VII,
-    }
-
-    sharps_to_flats = {
-        sI: bII,
-        si: bii,
-        sII: bIII,
-        sii: biii,
-        sIV: bV,
-        siv: bv,
-        sV: bVI,
-        sv: bvi,
-        sVI: bVII,
-        svi: bvii,
-    }
-
-    flats_to_sharps = {
-        bII: sI,
-        bii: si,
-        bIII: sII,
-        biii: sii,
-        bV: sIV,
-        bv: siv,
-        bVI: sV,
-        bvi: sv,
-        bVII: sVI,
-        bvii: svi,
-    }
-
     @property
     def is_minor(self):
-        if self.value in ScaleDegree.minor_to_major.value:
+        if self.value in _MINOR_TO_MAJOR:
             return True
         return False
 
     @property
     def is_major(self):
-        if self.value in ScaleDegree.major_to_minor.value:
+        if self.value in _MAJOR_TO_MINOR:
             return True
         return False
 
     @property
     def is_flat(self):
-        if self.value in ScaleDegree.flats_to_sharps.value:
+        if self.value in _FLATS_TO_SHARPS:
             return True
         return False
 
     @property
     def is_sharps(self):
-        if self.value in ScaleDegree.sharps_to_flats.value:
+        if self.value in _SHARPS_TO_FLATS:
             return True
         return False
 
     def to_sharp(self):
-        if self.value not in ScaleDegree.flats_to_sharps.value:
+        if self.value not in _FLATS_TO_SHARPS:
             return self
-        return ScaleDegree(ScaleDegree.flats_to_sharps.value[self.value])
+        return ScaleDegree(_FLATS_TO_SHARPS[self.value])
 
     def to_flat(self):
-        if self.value not in ScaleDegree.sharps_to_flats.value:
+        if self.value not in _SHARPS_TO_FLATS:
             return self
-        return ScaleDegree(ScaleDegree.sharps_to_flats.value[self.value])
+        return ScaleDegree(_SHARPS_TO_FLATS[self.value])
 
     def to_major(self):
-        if self.value not in ScaleDegree.minor_to_major.value:
+        if self.value not in _MINOR_TO_MAJOR:
             return self
-        return ScaleDegree(ScaleDegree.minor_to_major.value[self.value])
+        return ScaleDegree(_MINOR_TO_MAJOR[self.value])
 
     def to_minor(self):
-        if self.value not in ScaleDegree.major_to_minor.value:
+        if self.value not in _MAJOR_TO_MINOR:
             return self
-        return ScaleDegree(ScaleDegree.major_to_minor.value[self.value])
+        return ScaleDegree(_MAJOR_TO_MINOR[self.value])
 
     def normalized(self):
         return self.to_major().to_flat()
@@ -156,16 +109,16 @@ class ScaleDegree(JsonSerializableEnum):
         return self
 
     def __eq__(self, other):
-        enharmonic = ScaleDegree.sharps_to_flats.value.get(
+        enharmonic = _SHARPS_TO_FLATS.get(
             other.value
-        ) or ScaleDegree.flats_to_sharps.value.get(other.value)
+        ) or _FLATS_TO_SHARPS.get(other.value)
         return self.value == other.value or self.value == enharmonic
 
     def __hash__(self):
         # Consistent with the enharmonic __eq__: a sharp degree normalizes to its flat
         # spelling so enharmonic-equal degrees hash equal. (Major/minor stay distinct,
         # matching __eq__, which does not equate them.)
-        return hash(ScaleDegree.sharps_to_flats.value.get(self.value, self.value))
+        return hash(_SHARPS_TO_FLATS.get(self.value, self.value))
 
 
 SCALE_DEGREES = [

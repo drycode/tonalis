@@ -1,5 +1,11 @@
 from music_dsl.utils import JsonSerializableEnum
 
+# Enharmonic spelling maps, keyed by note string value. Defined at module level
+# (NOT inside the Enum body) so they don't become Notes members — a dict assigned
+# in an Enum class body is turned into a member and pollutes iteration/len.
+_SHARPS_TO_FLATS = {"C#": "Db", "D#": "Eb", "F#": "Gb", "G#": "Ab", "A#": "Bb"}
+_FLATS_TO_SHARPS = {flat: sharp for sharp, flat in _SHARPS_TO_FLATS.items()}
+
 
 class Notes(JsonSerializableEnum):
     C = "C"
@@ -20,34 +26,18 @@ class Notes(JsonSerializableEnum):
     Bb = "Bb"
     B = "B"
 
-    sharps_to_flats = {
-        Cs: Db,
-        Ds: Eb,
-        Fs: Gb,
-        Gs: Ab,
-        As: Bb,
-    }
-
-    flats_to_sharps = {
-        Db: Cs,
-        Eb: Ds,
-        Gb: Fs,
-        Ab: Gs,
-        Bb: As,
-    }
-
     def to_flat(self):
-        if self.value not in Notes.sharps_to_flats.value:
+        if self.value not in _SHARPS_TO_FLATS:
             return self
-        return Notes(Notes.sharps_to_flats.value[self.value])
+        return Notes(_SHARPS_TO_FLATS[self.value])
 
     def normalized(self):
         return self.to_flat()
 
     def __eq__(self, other):
-        enharmonic = Notes.sharps_to_flats.value.get(
+        enharmonic = _SHARPS_TO_FLATS.get(other.value) or _FLATS_TO_SHARPS.get(
             other.value
-        ) or Notes.flats_to_sharps.value.get(other.value)
+        )
         return self.value == other.value or self.value == enharmonic
 
     def __hash__(self):
@@ -55,29 +45,10 @@ class Notes(JsonSerializableEnum):
         # (Cs/Db, ...) normalize to one flat spelling, so equal notes hash equal.
         return hash(self.to_flat().value)
 
-    def __dict__(self):
-        return {
-            note.value: note.name
-            for note in [
-                Notes.C,
-                Notes.Cs,
-                Notes.Db,
-                Notes.D,
-                Notes.Ds,
-                Notes.Eb,
-                Notes.E,
-                Notes.F,
-                Notes.Fs,
-                Notes.Gb,
-                Notes.G,
-                Notes.Gs,
-                Notes.Ab,
-                Notes.A,
-                Notes.As,
-                Notes.Bb,
-                Notes.B,
-            ]
-        }
+    @classmethod
+    def names_by_value(cls):
+        """Map each note's string value to its member name (e.g. ``'C#' -> 'Cs'``)."""
+        return {note.value: note.name for note in cls}
 
 
 TO_C = {
