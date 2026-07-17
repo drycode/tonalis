@@ -26,3 +26,4 @@ target/
 # SDD execution scratch
 .superpowers/
 .venv/
+.claude/
