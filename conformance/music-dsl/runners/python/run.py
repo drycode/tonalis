@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 from music_dsl.domain.static import Intervals, Notes, ScaleDegree, Triad, Seventh, Extensions
-from music_dsl.encode import Encoding, Scales
+from music_dsl.encode import Encoding, Scales, contains
 from music_dsl.helpers import get_index, strip_left, strip_right, semitones_apart_ascending
 from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
@@ -139,6 +139,7 @@ OPS = {
     "note_index":        lambda n: get_index(Notes(n)),  # chromatic index 0-11 (TWELVE_TONES position)
     "scale_degrees_equal": lambda a, b: ScaleDegree(a) == ScaleDegree(b),
     "scale_value":               lambda name: Scales[name].value.mask,
+    "scale_contains":            lambda name, pitch_class: contains(Scales[name], pitch_class),
     "encoding_value":            _encoding_value,
     "strip_left":                lambda bits, x: strip_left(bits, x),
     "strip_right":               lambda bits, x: strip_right(bits, x),

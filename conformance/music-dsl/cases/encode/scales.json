@@ -10,6 +10,46 @@
     }
   },
   {
+    "name": "scale-Dorian",
+    "op": "scale_value",
+    "args": {
+      "name": "Dorian"
+    },
+    "expect": {
+      "value": 48699370326
+    }
+  },
+  {
+    "name": "scale-Phrygian",
+    "op": "scale_value",
+    "args": {
+      "name": "Phrygian"
+    },
+    "expect": {
+      "value": 57358527834
+    }
+  },
+  {
+    "name": "scale-Lydian",
+    "op": "scale_value",
+    "args": {
+      "name": "Lydian"
+    },
+    "expect": {
+      "value": 45997578933
+    }
+  },
+  {
+    "name": "scale-Mixolydian",
+    "op": "scale_value",
+    "args": {
+      "name": "Mixolydian"
+    },
+    "expect": {
+      "value": 46551362262
+    }
+  },
+  {
     "name": "scale-Minor",
     "op": "scale_value",
     "args": {
@@ -20,6 +60,86 @@
     }
   },
   {
+    "name": "scale-Locrian",
+    "op": "scale_value",
+    "args": {
+      "name": "Locrian"
+    },
+    "expect": {
+      "value": 57627028842
+    }
+  },
+  {
+    "name": "scale-MelodicMinor",
+    "op": "scale_value",
+    "args": {
+      "name": "MelodicMinor"
+    },
+    "expect": {
+      "value": 48682589013
+    }
+  },
+  {
+    "name": "scale-DorianFlat2",
+    "op": "scale_value",
+    "args": {
+      "name": "DorianFlat2"
+    },
+    "expect": {
+      "value": 57291402582
+    }
+  },
+  {
+    "name": "scale-LydianAugmented",
+    "op": "scale_value",
+    "args": {
+      "name": "LydianAugmented"
+    },
+    "expect": {
+      "value": 45863328429
+    }
+  },
+  {
+    "name": "scale-LydianDominant",
+    "op": "scale_value",
+    "args": {
+      "name": "LydianDominant"
+    },
+    "expect": {
+      "value": 46014360246
+    }
+  },
+  {
+    "name": "scale-MixolydianFlat6",
+    "op": "scale_value",
+    "args": {
+      "name": "MixolydianFlat6"
+    },
+    "expect": {
+      "value": 46618487514
+    }
+  },
+  {
+    "name": "scale-LocrianNatural2",
+    "op": "scale_value",
+    "args": {
+      "name": "LocrianNatural2"
+    },
+    "expect": {
+      "value": 49034996586
+    }
+  },
+  {
+    "name": "scale-Altered",
+    "op": "scale_value",
+    "args": {
+      "name": "Altered"
+    },
+    "expect": {
+      "value": 58701032874
+    }
+  },
+  {
     "name": "scale-HarmonicMinor",
     "op": "scale_value",
     "args": {
@@ -27,6 +147,226 @@
     },
     "expect": {
       "value": 48749714265
+    }
+  },
+  {
+    "name": "scale-LocrianNatural6",
+    "op": "scale_value",
+    "args": {
+      "name": "LocrianNatural6"
+    },
+    "expect": {
+      "value": 57559903590
+    }
+  },
+  {
+    "name": "scale-IonianSharp5",
+    "op": "scale_value",
+    "args": {
+      "name": "IonianSharp5"
+    },
+    "expect": {
+      "value": 46400330445
+    }
+  },
+  {
+    "name": "scale-DorianSharp4",
+    "op": "scale_value",
+    "args": {
+      "name": "DorianSharp4"
+    },
+    "expect": {
+      "value": 48162368310
+    }
+  },
+  {
+    "name": "scale-PhrygianDominant",
+    "op": "scale_value",
+    "args": {
+      "name": "PhrygianDominant"
+    },
+    "expect": {
+      "value": 55210519770
+    }
+  },
+  {
+    "name": "scale-LydianSharp2",
+    "op": "scale_value",
+    "args": {
+      "name": "LydianSharp2"
+    },
+    "expect": {
+      "value": 41701562805
+    }
+  },
+  {
+    "name": "scale-Ultralocrian",
+    "op": "scale_value",
+    "args": {
+      "name": "Ultralocrian"
+    },
+    "expect": {
+      "value": 58734595500
+    }
+  },
+  {
+    "name": "scale-HarmonicMajor",
+    "op": "scale_value",
+    "args": {
+      "name": "HarmonicMajor"
+    },
+    "expect": {
+      "value": 46601706201
+    }
+  },
+  {
+    "name": "scale-DoubleHarmonic",
+    "op": "scale_value",
+    "args": {
+      "name": "DoubleHarmonic"
+    },
+    "expect": {
+      "value": 55193738457
+    }
+  },
+  {
+    "name": "scale-HungarianMinor",
+    "op": "scale_value",
+    "args": {
+      "name": "HungarianMinor"
+    },
+    "expect": {
+      "value": 48212712249
+    }
+  },
+  {
+    "name": "scale-HungarianMajor",
+    "op": "scale_value",
+    "args": {
+      "name": "HungarianMajor"
+    },
+    "expect": {
+      "value": 41718344118
+    }
+  },
+  {
+    "name": "scale-NeapolitanMajor",
+    "op": "scale_value",
+    "args": {
+      "name": "NeapolitanMajor"
+    },
+    "expect": {
+      "value": 57274621269
+    }
+  },
+  {
+    "name": "scale-NeapolitanMinor",
+    "op": "scale_value",
+    "args": {
+      "name": "NeapolitanMinor"
+    },
+    "expect": {
+      "value": 57341746521
+    }
+  },
+  {
+    "name": "scale-MajorPentatonic",
+    "op": "scale_value",
+    "args": {
+      "name": "MajorPentatonic"
+    },
+    "expect": {
+      "value": 45443795604
+    }
+  },
+  {
+    "name": "scale-MinorPentatonic",
+    "op": "scale_value",
+    "args": {
+      "name": "MinorPentatonic"
+    },
+    "expect": {
+      "value": 40040212818
+    }
+  },
+  {
+    "name": "scale-Blues",
+    "op": "scale_value",
+    "args": {
+      "name": "Blues"
+    },
+    "expect": {
+      "value": 40577214834
+    }
+  },
+  {
+    "name": "scale-BebopDominant",
+    "op": "scale_value",
+    "args": {
+      "name": "BebopDominant"
+    },
+    "expect": {
+      "value": 46568143575
+    }
+  },
+  {
+    "name": "scale-BebopMajor",
+    "op": "scale_value",
+    "args": {
+      "name": "BebopMajor"
+    },
+    "expect": {
+      "value": 46668831453
+    }
+  },
+  {
+    "name": "scale-WholeTone",
+    "op": "scale_value",
+    "args": {
+      "name": "WholeTone"
+    },
+    "expect": {
+      "value": 45812984490
+    }
+  },
+  {
+    "name": "scale-DiminishedHalfWhole",
+    "op": "scale_value",
+    "args": {
+      "name": "DiminishedHalfWhole"
+    },
+    "expect": {
+      "value": 58902408630
+    }
+  },
+  {
+    "name": "scale-DiminishedWholeHalf",
+    "op": "scale_value",
+    "args": {
+      "name": "DiminishedWholeHalf"
+    },
+    "expect": {
+      "value": 49085340525
+    }
+  },
+  {
+    "name": "scale-Augmented",
+    "op": "scale_value",
+    "args": {
+      "name": "Augmented"
+    },
+    "expect": {
+      "value": 41231686041
+    }
+  },
+  {
+    "name": "scale-Chromatic",
+    "op": "scale_value",
+    "args": {
+      "name": "Chromatic"
+    },
+    "expect": {
+      "value": 68719476735
     }
   }
 ]

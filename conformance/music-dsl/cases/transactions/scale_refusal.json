@@ -1,0 +1,62 @@
+[
+  {
+    "name": "refuse-WholeTone",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "WholeTone",
+      "chord": "C"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "refuse-DiminishedHalfWhole",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "DiminishedHalfWhole",
+      "chord": "C"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "refuse-DiminishedWholeHalf",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "DiminishedWholeHalf",
+      "chord": "C"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "refuse-Augmented",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Augmented",
+      "chord": "C"
+    },
+    "expect": {
+      "error": true
+    }
+  },
+  {
+    "name": "refuse-Chromatic",
+    "op": "is_diatonic",
+    "args": {
+      "root": "C",
+      "scale": "Chromatic",
+      "chord": "C"
+    },
+    "expect": {
+      "error": true
+    }
+  }
+]

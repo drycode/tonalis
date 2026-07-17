@@ -1,0 +1,530 @@
+[
+  {
+    "name": "contains-Major-0",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 0
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Major-1",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 1
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-Major-2",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 2
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Major-3",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 3
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-Major-4",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 4
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Major-5",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 5
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Major-6",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 6
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-Major-7",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 7
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Major-8",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 8
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-Major-9",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 9
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Major-10",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 10
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-Major-11",
+    "op": "scale_contains",
+    "args": {
+      "name": "Major",
+      "pitch_class": 11
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-WholeTone-0",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 0
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-WholeTone-1",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 1
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-WholeTone-2",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 2
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-WholeTone-3",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 3
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-WholeTone-4",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 4
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-WholeTone-5",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 5
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-WholeTone-6",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 6
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-WholeTone-7",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 7
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-WholeTone-8",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 8
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-WholeTone-9",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 9
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-WholeTone-10",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 10
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-WholeTone-11",
+    "op": "scale_contains",
+    "args": {
+      "name": "WholeTone",
+      "pitch_class": 11
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-0",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 0
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-1",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 1
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-2",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 2
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-3",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 3
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-4",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 4
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-5",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 5
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-6",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 6
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-7",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 7
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-8",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 8
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-9",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 9
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-10",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 10
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-DiminishedHalfWhole-11",
+    "op": "scale_contains",
+    "args": {
+      "name": "DiminishedHalfWhole",
+      "pitch_class": 11
+    },
+    "expect": {
+      "value": false
+    }
+  },
+  {
+    "name": "contains-Chromatic-0",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 0
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-1",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 1
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-2",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 2
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-3",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 3
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-4",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 4
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-5",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 5
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-6",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 6
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-7",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 7
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-8",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 8
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-9",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 9
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-10",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 10
+    },
+    "expect": {
+      "value": true
+    }
+  },
+  {
+    "name": "contains-Chromatic-11",
+    "op": "scale_contains",
+    "args": {
+      "name": "Chromatic",
+      "pitch_class": 11
+    },
+    "expect": {
+      "value": true
+    }
+  }
+]
