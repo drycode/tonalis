@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://tonalis/conformance/dsl-core/case.schema.json",
-  "title": "dsl-core conformance case",
-  "description": "A single language-agnostic conformance case for the pure lead-sheet language. The runner parses+lints `dsl` and asserts `ast`/`findings`. Format-agnostic: there is NO `url`. See conformance/dsl-core/SPEC.md for the assertion hierarchy.",
+  "$id": "https://tonalis/conformance/leadsheet/case.schema.json",
+  "title": "leadsheet conformance case",
+  "description": "A single language-agnostic conformance case for the pure lead-sheet language. The runner parses+lints `dsl` and asserts `ast`/`findings`. Format-agnostic: there is NO `url`. See conformance/leadsheet/SPEC.md for the assertion hierarchy.",
   "type": "object",
   "additionalProperties": false,
   "required": ["name", "tags", "dsl", "expect"],
@@ -28,7 +28,7 @@
         { "required": ["ast"] },
         { "required": ["findings"] }
       ],
-      "description": "At least one of ast/findings MUST be present (the dsl-core conformance bar). There is NO `url` here.",
+      "description": "At least one of ast/findings MUST be present (the leadsheet conformance bar). There is NO `url` here.",
       "properties": {
         "ast": {
           "type": ["object", "null"],

@@ -11,8 +11,8 @@ built on top of this core.
 
 The same language is implemented three times — in **Python**, **TypeScript**, and **Rust** — and all
 three pass one shared, language-agnostic conformance suite (255 cases under
-[`conformance/dsl-core/`](conformance/dsl-core/), specified in
-[`conformance/dsl-core/SPEC.md`](conformance/dsl-core/SPEC.md)).
+[`conformance/leadsheet/`](conformance/leadsheet/), specified in
+[`conformance/leadsheet/SPEC.md`](conformance/leadsheet/SPEC.md)).
 
 ## What it does
 
@@ -56,7 +56,7 @@ no-chord. The full grammar lives in
 python -m venv .venv && source .venv/bin/activate
 pip install -e ./leadsheet/python
 pytest leadsheet/python/tests             # unit tests + import-boundary guard
-pytest conformance/dsl-core/runners/python  # the 255-case conformance suite
+pytest conformance/leadsheet/runners/python  # the 255-case conformance suite
 ```
 
 ```python

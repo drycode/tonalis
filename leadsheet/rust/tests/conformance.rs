@@ -1,10 +1,10 @@
-//! dsl-core conformance gate (SPEC.md §0.1). Loads every
-//! `conformance/dsl-core/cases/**/*.json`, parses+lints each `dsl`, and asserts:
+//! leadsheet conformance gate (SPEC.md §0.1). Loads every
+//! `conformance/leadsheet/cases/**/*.json`, parses+lints each `dsl`, and asserts:
 //!   - `ast`     — deep-equal to `expect.ast` when present (the canonical §2.1 JSON);
 //!   - `findings`— the SET of `(code, severity, line)` tuples (messages are non-normative).
 //!
 //! There is NO `url` assertion here — any vendor-format URL is out of scope here; it is a downstream codec's concern. The cases tree
-//! is read via a path relative to `CARGO_MANIFEST_DIR` (`leadsheet/rust/` -> `../../conformance/dsl-core/cases`).
+//! is read via a path relative to `CARGO_MANIFEST_DIR` (`leadsheet/rust/` -> `../../conformance/leadsheet/cases`).
 
 use tonalis::ast::{ast_from_json, ast_to_json, LeadSheet};
 use tonalis::{lint, parse_dsl, serialize_text};
@@ -33,7 +33,7 @@ fn cases_dir() -> PathBuf {
         .join("..")
         .join("..")
         .join("conformance")
-        .join("dsl-core")
+        .join("leadsheet")
         .join("cases")
 }
 
@@ -184,10 +184,10 @@ fn conformance_all_cases() {
     }
 
     let total = files.len();
-    eprintln!("dsl-core conformance: {}/{} cases passed", passed, total);
+    eprintln!("leadsheet conformance: {}/{} cases passed", passed, total);
     if !failures.is_empty() {
         panic!(
-            "{} of {} dsl-core conformance cases FAILED:\n\n{}",
+            "{} of {} leadsheet conformance cases FAILED:\n\n{}",
             failures.len(),
             total,
             failures.join("\n\n")

@@ -49,7 +49,7 @@ Re-exports: `Note`/`TWELVE_TONES`/`noteValue`/`noteFromValue`/`noteToFlat`/`note
 `parse_dsl`, `lint`, `is_valid_chord`, `serialize_text`, `ast::ast_to_json`. rlib-only.
 
 ## Conformance (`conformance/`)
-Data-driven cross-port suites (`music-dsl/`, `dsl-core/`) + the normative `SPEC.md`, blessed from the
+Data-driven cross-port suites (`music-dsl/`, `leadsheet/`) + the normative `SPEC.md`, blessed from the
 Python reference. Runners per language; a Python↔TS↔Rust differential fuzzer under
 `conformance/music-dsl/fuzz/` (`make fuzz` / `make fuzz-seed2`).
 
@@ -63,7 +63,7 @@ Commands run from repo root (`.venv/bin/python`; `PYTHON=.venv/bin/python` for t
 |-------|---------|--------|
 | music-dsl python | `pytest music-dsl/python/tests` | **360 passed** |
 | leadsheet python | `pytest leadsheet/python/tests` | **97 passed** |
-| conformance python | `pytest conformance/{music-dsl,dsl-core}/runners/python` | **5 passed** |
+| conformance python | `pytest conformance/{music-dsl,leadsheet}/runners/python` | **5 passed** |
 | music-dsl ts | `npm test` (music-dsl/ts) | **452 passed** |
 | music-dsl ts typecheck | `npx tsc --noEmit` | **clean** |
 | leadsheet ts | `npm test` (leadsheet/ts) | **294 passed** |

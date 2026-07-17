@@ -1,7 +1,7 @@
 /**
- * dsl-core TypeScript conformance runner (vitest suite).
+ * leadsheet TypeScript conformance runner (vitest suite).
  *
- * Discovers every `conformance/dsl-core/cases/**\/*.json`, parses+lints each case's `dsl` with the
+ * Discovers every `conformance/leadsheet/cases/**\/*.json`, parses+lints each case's `dsl` with the
  * TS port, and asserts per the SPEC.md §0.1 hierarchy:
  *
  *   - `ast`      OPTIONAL, deep-equal canonical LeadSheet JSON when present
@@ -9,7 +9,7 @@
  *
  * There is NO `url` assertion here — any vendor-format URL is out of scope here; it is a
  * downstream codec's concern. Mirrors the Python runner. Node-only APIs
- * (fs/path/url) are confined to this test harness — the core `dsl-core/ts/src` package stays
+ * (fs/path/url) are confined to this test harness — the core `leadsheet/ts/src` package stays
  * browser-safe.
  */
 
@@ -28,7 +28,7 @@ import {
 } from "tonalis";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-// conformance/dsl-core/runners/ts -> conformance/dsl-core/cases
+// conformance/leadsheet/runners/ts -> conformance/leadsheet/cases
 const CASES_DIR = join(HERE, "..", "..", "cases");
 
 interface ExpectedFinding {
@@ -84,10 +84,10 @@ function findingKeys(
 
 const cases = discoverCases(CASES_DIR);
 
-describe("dsl-core conformance suite (TypeScript port)", () => {
+describe("leadsheet conformance suite (TypeScript port)", () => {
   if (cases.length === 0) {
     it("found conformance cases", () => {
-      throw new Error(`no dsl-core conformance cases discovered under ${CASES_DIR}`);
+      throw new Error(`no leadsheet conformance cases discovered under ${CASES_DIR}`);
     });
   }
 

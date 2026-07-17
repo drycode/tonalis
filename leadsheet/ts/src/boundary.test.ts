@@ -1,5 +1,5 @@
 /**
- * Import-boundary guard (TS) — the dsl-core half of the §7 one-way-dependency invariant.
+ * Import-boundary guard (TS) — the leadsheet half of the §7 one-way-dependency invariant.
  *
  * Statically scans every `src/**` module's import/export specifiers and forbids any cross-package
  * reach: no climb out of `src/` (no separate adapter package), no bare third-party package import
@@ -16,7 +16,7 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const HERE = dirname(fileURLToPath(import.meta.url)); // dsl-core/ts/src
+const HERE = dirname(fileURLToPath(import.meta.url)); // leadsheet/ts/src
 const SRC_ROOT = HERE;
 
 /** Recursively list .ts files under dir. */
@@ -64,7 +64,7 @@ const ALLOWED_RUNTIME_DEP = new Set<string>(["music_dsl"]);
  */
 function classify(spec: string, fileAbsPath: string, isTest: boolean): string | null {
   if (spec.startsWith("DYNAMIC:")) {
-    return `dynamic import(${JSON.stringify(spec.slice(8))}) is forbidden in dsl-core/ts/src`;
+    return `dynamic import(${JSON.stringify(spec.slice(8))}) is forbidden in leadsheet/ts/src`;
   }
   if (spec.startsWith("node:")) return null; // node stdlib (used only by this guard test itself)
   if (spec.startsWith(".")) {
@@ -81,7 +81,7 @@ function classify(spec: string, fileAbsPath: string, isTest: boolean): string | 
   return `bare package import "${spec}" is forbidden (only music_dsl runtime + vitest in tests)`;
 }
 
-describe("dsl-core/ts import boundary", () => {
+describe("leadsheet/ts import boundary", () => {
   it("no src module reaches outside src/ (no climb-out adapter import, no bare deps)", () => {
     const violations: string[] = [];
     for (const file of listTs(SRC_ROOT)) {

@@ -2,7 +2,7 @@
 ``chord_grammar`` regex over the whole corpus — except a tiny, explicitly-blessed set.
 
 ``fixtures/chord_oracle.json`` is a **permanent frozen snapshot** of the OLD
-``chord_grammar.is_valid_chord`` verdicts for every distinct chord token in the dsl-core
+``chord_grammar.is_valid_chord`` verdicts for every distinct chord token in the leadsheet
 conformance corpus.  It was built once (before Task 4 retired the regex shim) and is NOT
 regenerable: ``tonalis.tools.build_chord_oracle`` now refuses to run because no independent
 OLD validator remains.  The committed fixture IS the ground truth; do not overwrite it.

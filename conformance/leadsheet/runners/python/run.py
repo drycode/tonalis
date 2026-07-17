@@ -1,6 +1,6 @@
-"""dsl-core Python reference conformance runner (the pure language).
+"""leadsheet Python reference conformance runner (the pure language).
 
-Discovers every ``conformance/dsl-core/cases/**/*.json``, parses+lints each case's ``dsl`` with the
+Discovers every ``conformance/leadsheet/cases/**/*.json``, parses+lints each case's ``dsl`` with the
 ``tonalis`` reference, and asserts per the SPEC.md §0.1 hierarchy:
 
   - ``ast``      OPTIONAL, deep-equal canonical LeadSheet JSON when present
@@ -10,8 +10,8 @@ There is NO ``url`` assertion here — any vendor-format URL is out of scope her
 downstream codec's concern.
 
 Runnable two ways:
-  - standalone: ``python conformance/dsl-core/runners/python/run.py``  (prints PASS/FAIL summary)
-  - via pytest: ``conformance/dsl-core/runners/python/test_run.py`` subprocess-invokes it
+  - standalone: ``python conformance/leadsheet/runners/python/run.py``  (prints PASS/FAIL summary)
+  - via pytest: ``conformance/leadsheet/runners/python/test_run.py`` subprocess-invokes it
 """
 
 import json
@@ -22,8 +22,8 @@ from tonalis.parser import parse_dsl
 from tonalis.serialize import ast_from_json, ast_to_json
 from tonalis.serialize_text import serialize
 
-# this file: <repo>/conformance/dsl-core/runners/python/run.py
-#   parents[0]=python  parents[1]=runners  parents[2]=dsl-core
+# this file: <repo>/conformance/leadsheet/runners/python/run.py
+#   parents[0]=python  parents[1]=runners  parents[2]=leadsheet
 CONFORMANCE_DIR = Path(__file__).resolve().parents[2]
 CASES_DIR = CONFORMANCE_DIR / "cases"
 
@@ -120,7 +120,7 @@ def main() -> int:
         print(f"FAIL {name} ({relpath})")
         for line in f:
             print(f"   {line}")
-    print(f"\n{passed}/{total} dsl-core conformance cases passed")
+    print(f"\n{passed}/{total} leadsheet conformance cases passed")
     return 0 if passed == total else 1
 
 

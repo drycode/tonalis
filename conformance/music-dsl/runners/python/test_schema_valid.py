@@ -1,6 +1,6 @@
 """Every conformance/music-dsl case validates against case.schema.json (additionalProperties:false).
 This is the C1 guard: a port that emits an extra/renamed/missing field, or a malformed case,
-fails loudly instead of 'agreeing by accident'. (dsl-core has the schema but no validator; we add one.)"""
+fails loudly instead of 'agreeing by accident'. (leadsheet has the schema but no validator; we add one.)"""
 import json
 from pathlib import Path
 

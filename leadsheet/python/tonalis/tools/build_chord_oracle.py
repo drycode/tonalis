@@ -18,7 +18,7 @@ CI never runs this — it consumes the committed fixture only (see
 
 Corpus source
 -------------
-The token universe is the **conformance corpus** (``conformance/dsl-core/cases/**/*.json``):
+The token universe is the **conformance corpus** (``conformance/leadsheet/cases/**/*.json``):
 every ``"chord"`` string anywhere under a case's ``expect.ast``, PLUS every chord-looking
 token inside the compound ``"alt"`` strings (``"(A4 Gh7)"`` -> ``A4``, ``Gh7``). This is the
 corpus that surfaced the divergences, and it carries clean chord tokens only, so it is the
@@ -43,7 +43,7 @@ from tonalis import chords as new_chords  # NEW MusicDSL-backed wrapper
 #   parents[0]=tools  parents[1]=tonalis  parents[2]=python  parents[3]=leadsheet  parents[4]=repo
 _HERE = Path(__file__).resolve()
 _REPO_ROOT = _HERE.parents[4]
-_CASES_DIR = _REPO_ROOT / "conformance" / "dsl-core" / "cases"
+_CASES_DIR = _REPO_ROOT / "conformance" / "leadsheet" / "cases"
 _FIXTURE = _HERE.parents[3] / "fixtures" / "chord_oracle.json"
 
 # A chord-looking token: starts with a note letter (opt. accidental) or a slash-bass.
