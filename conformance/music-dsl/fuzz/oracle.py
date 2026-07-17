@@ -28,7 +28,7 @@ from music_dsl.domain.chords.abstract_chord import InvalidChordStringException
 from music_dsl.serialize import serialize_chord, serialize_numeric_chord, _serialize_chord_attrs
 from music_dsl.realize import chord_pitches, scale_pitches, scale_degree_pitch, note_to_midi
 from music_dsl.transactions import modulate, is_diatonic, chord_in_key, harmonic_function_in_key
-from music_dsl.encode import Scales
+from music_dsl.encode import Scales, contains
 
 HERE = Path(__file__).resolve().parent
 INPUTS = HERE / "inputs.json"
@@ -123,6 +123,10 @@ def _run_is_diatonic(record: dict) -> dict:
         return {"error": True}
 
 
+def _run_scale_contains(record: dict) -> dict:
+    return {"result": {"contains": contains(Scales[record["scale"]], record["pitch_class"])}}
+
+
 def _run_chord_in_key(record: dict) -> dict:
     try:
         nc = NumericChord.from_chord_string(record["numeric"])
@@ -153,6 +157,7 @@ RUNNERS = {
     "note_to_midi":               _run_note_to_midi,
     "modulate":                   _run_modulate,
     "is_diatonic":                _run_is_diatonic,
+    "scale_contains":             _run_scale_contains,
     "chord_in_key":               _run_chord_in_key,
     "harmonic_function_in_key":   _run_harmonic_function_in_key,
 }
@@ -205,6 +210,9 @@ def run() -> list[dict]:
             entry["root"] = record["root"]
             entry["scale"] = record["scale"]
             entry["chord"] = record["chord"]
+        elif kind == "scale_contains":
+            entry["scale"] = record["scale"]
+            entry["pitch_class"] = record["pitch_class"]
         elif kind == "chord_in_key":
             entry["numeric"] = record["numeric"]
             entry["key_root"] = record["key_root"]

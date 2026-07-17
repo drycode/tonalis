@@ -36,6 +36,8 @@ import {
   isDiatonic,
   chordInKey,
   harmonicFunctionInKey,
+  Scales,
+  contains,
 } from "music_dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -50,6 +52,7 @@ type FuzzInput =
   | { kind: "note_to_midi"; note: string; octave: number }
   | { kind: "modulate"; semitones: number; note: string }
   | { kind: "is_diatonic"; root: string; scale: string; chord: string }
+  | { kind: "scale_contains"; scale: string; pitch_class: number }
   | { kind: "chord_in_key"; numeric: string; key_root: string }
   | { kind: "harmonic_function_in_key"; key_root: string; key_is_minor: boolean; chord: string };
 
@@ -183,6 +186,16 @@ function tsRunIsDiatonic(
     return { error: true };
   }
 }
+function tsRunScaleContains(
+  scale: string,
+  pitchClass: number,
+): { result: Record<string, unknown> } | { error: true } {
+  try {
+    return { result: { contains: contains(Scales[scale]!, pitchClass) } };
+  } catch {
+    return { error: true };
+  }
+}
 
 function tsRunChordInKey(
   numericStr: string,
@@ -279,6 +292,8 @@ describe("Python↔TypeScript↔Rust 3-way differential fuzzer (music-dsl)", () 
         tsOut = tsRunModulate(inp.semitones, inp.note);
       } else if (inp.kind === "is_diatonic") {
         tsOut = tsRunIsDiatonic(inp.root, inp.scale, inp.chord);
+      } else if (inp.kind === "scale_contains") {
+        tsOut = tsRunScaleContains(inp.scale, inp.pitch_class);
       } else if (inp.kind === "chord_in_key") {
         tsOut = tsRunChordInKey(inp.numeric, inp.key_root);
       } else if (inp.kind === "harmonic_function_in_key") {

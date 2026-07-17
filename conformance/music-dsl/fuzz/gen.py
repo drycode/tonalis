@@ -35,6 +35,8 @@ import random
 import sys
 from pathlib import Path
 
+from music_dsl.encode import Scales as _Scales
+
 OUT = Path(__file__).resolve().parent / "inputs.json"
 
 # ---------------------------------------------------------------------------
@@ -69,8 +71,9 @@ SCALE_DEGREE_ROOTS = [
 # Sharp-prefixed roman degrees (less common, still in grammar)
 SHARP_DEGREE_ROOTS = ["#I", "#i", "#II", "#ii", "#IV", "#iv", "#V", "#v", "#VI", "#vi"]
 
-# Scale names for realize/transactions ops
-SCALE_NAMES = ["Major", "Minor", "HarmonicMinor"]
+# Scale names for realize/transactions ops — the full catalog (DRY-415), so the
+# fuzzer exercises every scale incl. the non-functional ones (is_diatonic refusal parity).
+SCALE_NAMES = [s.name for s in _Scales]
 
 # ScaleDegree values (major variants)
 SCALE_DEGREES_MAJOR = ["I", "bII", "II", "bIII", "III", "IV", "bV", "V", "bVI", "VI", "bVII", "VII"]
@@ -191,6 +194,11 @@ def _build_chord_pitches(rng: random.Random) -> dict:
     """Build one chord_pitches record. Only valid chord strings (no deliberate errors)."""
     chord = _build_chord_string(rng)
     return {"kind": "chord_pitches", "chord": chord, "octave": 4}
+
+
+def _build_scale_contains(rng: random.Random) -> dict:
+    """Build one scale_contains record (membership, any scale, any pitch class)."""
+    return {"kind": "scale_contains", "scale": rng.choice(SCALE_NAMES), "pitch_class": rng.randint(0, 11)}
 
 
 def _build_scale_pitches(rng: random.Random) -> dict:
@@ -462,6 +470,8 @@ def generate(seed: int = 1, n: int = 500) -> list[dict]:
             records.append(_build_chord_in_key(rng))
         elif roll < 0.86:
             records.append(_build_harmonic_function_in_key(rng))
+        elif roll < 0.91:
+            records.append(_build_scale_contains(rng))
         else:
             records.append({"kind": "chord", "input": _build_chord_string(rng)})
 

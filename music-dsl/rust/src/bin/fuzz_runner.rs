@@ -14,7 +14,7 @@
 use music_dsl::{
     parse_chord, parse_numeric, numeric_from_chord,
     note_to_midi, chord_pitches, scale_pitches, scale_degree_pitch,
-    modulate, is_diatonic, chord_in_key, harmonic_function_in_key, scale_descriptor,
+    modulate, is_diatonic, chord_in_key, harmonic_function_in_key, scale_descriptor, contains,
 };
 use serde_json::{json, Value};
 use std::fs;
@@ -88,6 +88,11 @@ fn run_is_diatonic(root: &str, scale_name: &str, chord_str: &str) -> Value {
         Ok(result) => json!({"result": {"diatonic": result}}),
         Err(_) => json!({"error": true}),
     }
+}
+
+fn run_scale_contains(scale_name: &str, pitch_class: i64) -> Value {
+    let sd = scale_descriptor(scale_name);
+    json!({"result": {"contains": contains(sd, pitch_class as u32)}})
 }
 
 fn run_chord_in_key(numeric_str: &str, key_root: &str) -> Value {
@@ -175,6 +180,11 @@ fn main() {
                 let chord = record["chord"].as_str().unwrap_or("");
                 run_is_diatonic(root, scale, chord)
             }
+            "scale_contains" => {
+                let scale = record["scale"].as_str().unwrap_or("");
+                let pc = record["pitch_class"].as_i64().unwrap_or(0);
+                run_scale_contains(scale, pc)
+            }
             "chord_in_key" => {
                 let numeric = record["numeric"].as_str().unwrap_or("");
                 let key_root = record["key_root"].as_str().unwrap_or("");
@@ -234,6 +244,10 @@ fn main() {
                 entry["root"] = record["root"].clone();
                 entry["scale"] = record["scale"].clone();
                 entry["chord"] = record["chord"].clone();
+            }
+            "scale_contains" => {
+                entry["scale"] = record["scale"].clone();
+                entry["pitch_class"] = record["pitch_class"].clone();
             }
             "chord_in_key" => {
                 entry["numeric"] = record["numeric"].clone();
