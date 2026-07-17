@@ -13,7 +13,7 @@ from music_dsl.domain.static import (
     ScaleDegree,
     Triad,
 )
-from music_dsl.encode import Scales, strip_left, strip_right
+from music_dsl.encode import NonFunctionalScaleError, Scales, strip_left, strip_right
 from music_dsl.helpers import get_index, semitones_apart_ascending
 
 if TYPE_CHECKING:
@@ -78,6 +78,13 @@ def is_diatonic(root: Notes, scale: Scales, chord: Chord):
     """
     Determines if a chord encoding matches the target scale at a particular modal distance from the root
     """
+    # Two-tier model: functional queries are only defined on scales with a tonal
+    # hierarchy. Symmetric/atonal scales refuse here; membership lives in contains().
+    if not scale.value.supports_diatonic_function:
+        raise NonFunctionalScaleError(
+            f"{scale.value.name} has no diatonic-function model; "
+            "use encode.contains() for scale membership instead."
+        )
 
     def get_least_significant_note_position():
         y = chord.encoding - 1
@@ -88,10 +95,10 @@ def is_diatonic(root: Notes, scale: Scales, chord: Chord):
         return x
 
     def _root_is_diatonic(scale, scale_length, semitones):
-        return scale.value & 1 << (scale_length - semitones - 1)
+        return scale.value.mask & 1 << (scale_length - semitones - 1)
 
     semitones = semitones_apart_ascending(root, chord.root)
-    scale_length = int.bit_length(scale.value)
+    scale_length = int.bit_length(scale.value.mask)
 
     # Checks the Nth bit from the left is set, which determines if the root is diatonic to the scale
     if _root_is_diatonic(scale, scale_length, semitones):
@@ -101,14 +108,14 @@ def is_diatonic(root: Notes, scale: Scales, chord: Chord):
 
         # Cuts the 3x represented scale down to the size of the modal scale, and aligns it positionally
         # with the appropriate root
-        modal_scale = strip_left(scale.value, semitones)
+        modal_scale = strip_left(scale.value.mask, semitones)
 
         # Removes superflous bits from the right of the modal scale
         scale_bits = strip_right(
             modal_scale, int.bit_length(modal_scale) - int.bit_length(chord_bits)
         )
 
-        ############ All this needs to be extracted, renamed, and tested ###############
+        # Diatonic iff the chord's significant bits are a subset of the aligned modal scale.
         if chord_bits & scale_bits == chord_bits:
             return True
 

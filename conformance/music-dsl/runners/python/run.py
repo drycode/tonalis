@@ -138,7 +138,7 @@ OPS = {
     "notes_equal":       lambda a, b: Notes(a) == Notes(b),
     "note_index":        lambda n: get_index(Notes(n)),  # chromatic index 0-11 (TWELVE_TONES position)
     "scale_degrees_equal": lambda a, b: ScaleDegree(a) == ScaleDegree(b),
-    "scale_value":               lambda name: Scales[name].value,
+    "scale_value":               lambda name: Scales[name].value.mask,
     "encoding_value":            _encoding_value,
     "strip_left":                lambda bits, x: strip_left(bits, x),
     "strip_right":               lambda bits, x: strip_right(bits, x),

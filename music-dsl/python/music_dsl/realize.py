@@ -75,8 +75,8 @@ def scale_pitches(
 ) -> List[int]:
     """Ascending MIDI notes of a scale, tonic to tonic (inclusive octave)."""
     base = note_to_midi(key_root, octave)
-    size = scale.value.bit_length() // 3          # scale masks are a 12-bit pattern ×3
-    top = scale.value >> (2 * size)               # the leading pattern
+    size = scale.value.mask.bit_length() // 3     # scale masks are a 12-bit pattern ×3
+    top = scale.value.mask >> (2 * size)          # the leading pattern
     pitches = [base + i for i in range(size) if (top >> (size - 1 - i)) & 1]
     pitches.append(base + size)                   # close on the octave
     return pitches

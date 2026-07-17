@@ -1,4 +1,5 @@
 from collections import namedtuple
+from dataclasses import dataclass
 from enum import Enum
 from functools import cache, reduce
 from typing import List
@@ -95,16 +96,53 @@ class Encoding:
         return encoding
 
 
+@dataclass(frozen=True)
+class ScaleDescriptor:
+    """Everything the library needs to know about a scale.
+
+    ``mask`` is the 12-bit pitch-class set repeated 3x (36 bits). The triple copy
+    lets the sliding-window scan in ``scan_scale``/``is_diatonic`` rotate the scale
+    to any mode/root without the window falling off the most-significant end.
+
+    ``supports_diatonic_function`` drives the two-tier model: membership
+    (``contains``) is defined for every scale, but functional queries
+    (``is_diatonic`` / harmonic function) are only meaningful where a tonal
+    hierarchy exists. Symmetric/atonal scales set this False and those queries
+    refuse rather than return an answer that looks authoritative but isn't.
+    """
+
+    mask: int
+    name: str
+    category: str
+    supports_diatonic_function: bool
+
+
+class NonFunctionalScaleError(ValueError):
+    """A functional query (diatonicity / harmonic function) was made against a
+    scale with no meaningful tonal-function model (e.g. whole-tone, diminished,
+    augmented, chromatic). Membership via ``contains`` still works for these."""
+
+
 class Scales(Enum):
-    # Each scale is a 12-bit pitch-class mask repeated 3x (36 bits). The triple
-    # copy lets the sliding-window scan in scan_scale/is_diatonic rotate the scale
-    # to any mode/root without the window falling off the most-significant end.
-    Major = int("101011010101" * 3, 2)
-    # Natural minor (Aeolian). Repeated 3x like Major so the modal-distance
-    # scan in `is_diatonic`/`scan_scale` can align the scale to any root.
-    Minor = int("101101011010" * 3, 2)
-    # Harmonic minor: raised 7th gives the diatonic V7 of a minor key.
-    HarmonicMinor = int("101101011001" * 3, 2)
+    Major = ScaleDescriptor(int("101011010101" * 3, 2), "Major (Ionian)", "major", True)
+    Minor = ScaleDescriptor(
+        int("101101011010" * 3, 2), "Natural minor (Aeolian)", "minor", True
+    )
+    HarmonicMinor = ScaleDescriptor(
+        int("101101011001" * 3, 2), "Harmonic minor", "minor", True
+    )
+
+
+def contains(scale: "Scales", pitch_class: int) -> bool:
+    """True if ``pitch_class`` (0-11 semitones above the tonic) is in the scale.
+
+    Defined for EVERY scale — the membership tier of the two-tier model — including
+    symmetric/atonal scales whose functional queries are undefined.
+    """
+    mask = scale.value.mask
+    size = mask.bit_length() // 3
+    pattern = mask >> (2 * size)  # the leading 12-bit copy
+    return bool(pattern >> (size - 1 - (pitch_class % size)) & 1)
 
 
 @cache
