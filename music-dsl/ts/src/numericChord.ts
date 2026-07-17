@@ -19,10 +19,11 @@
  *       → modulate(m6.down()+M2 = -8+2 = -6, degree)
  */
 
-import { type Note } from "./notes.js";
 import {
   HarmonicFunction,
   Triad,
+  Seventh,
+  Extensions,
   type Triad as TriadT,
   type Seventh as SeventhT,
   type Extensions as ExtensionsT,
@@ -31,14 +32,18 @@ import {
 import {
   SCALE_DEGREES,
   type ScaleDegreeT,
+  sdToSharp, sdToMinor,
+  sdIsFlat, sdIsMinor, sdNormalize, sdGetIndex,
 } from "./scaleDegree.js";
 import { semitonesApartAscending } from "./helpers.js";
-import { type ChordModel, type ChordSerialized, parseChord, serializeChord, InvalidChordStringError } from "./chord.js";
-import { intervalSemitones } from "./intervals.js";
+import { type ChordModel } from "./chord.js";
 import {
-  sdToFlat, sdToSharp, sdToMajor, sdToMinor,
-  sdIsFlat, sdIsMinor, sdNormalize, sdGetIndex,
-} from "./scaleDegreeHelpers.js";
+  InvalidChordStringError,
+  normalizeSeventh,
+  getExtensions,
+  getHarmonicFunction,
+} from "./chordHelpers.js";
+import { intervalSemitones } from "./intervals.js";
 
 // ---------------------------------------------------------------------------
 // Interval constants (semitone values used in substitution branches)
@@ -46,7 +51,6 @@ import {
 
 const TRITONE = intervalSemitones("Tritone");  // 6
 const M2 = intervalSemitones("M2");            // 2
-const M6 = intervalSemitones("M6");            // 9  (unused but documented)
 const m6 = intervalSemitones("m6");            // 8
 // m6.down() = -8, so m6.down() + M2 = -8 + 2 = -6
 const BRANCH_C_MODULATE = -m6 + M2;           // -6
@@ -66,7 +70,11 @@ export class IncorrectHarmonicFunctionError extends Error {
 // NumericChord model (plain data — no singleton)
 // ---------------------------------------------------------------------------
 
-/** The attrs for one side (numerator or denominator) of a NumericChord. */
+/**
+ * The attrs for one side (numerator or denominator) of a NumericChord.
+ * Field names are snake_case (harmonic_function) because they ARE the wire
+ * contract — the serialized shape is byte-identical across the Py/TS/Rust ports.
+ */
 export interface NumericChordAttrs {
   root: ScaleDegreeT;
   triad: TriadT;
@@ -165,68 +173,8 @@ function findScaleDegree(keyRoot: string, chordRoot: string, triad: TriadT): Sca
   return mOrMScaleDegree(degree, triad);
 }
 
-// ---------------------------------------------------------------------------
-// getHarmonicFunction — mirror of AbstractChord._get_harmonic_function
-// ---------------------------------------------------------------------------
-
-function getHarmonicFunction(triad: TriadT, seventh: SeventhT): HarmonicFunctionT {
-  const key = `${triad}__${seventh}`;
-  const table: Record<string, HarmonicFunctionT> = {
-    [`${Triad.Minor}__7`]:          HarmonicFunction.Subdominant,
-    [`${Triad.HalfDiminished}__7`]: HarmonicFunction.Subdominant,
-    [`${Triad.Major}__7`]:          HarmonicFunction.Dominant,
-    [`${Triad.Major}__^7`]:         HarmonicFunction.Tonic,
-    [`${Triad.Minor}__^7`]:         HarmonicFunction.Tonic,
-  };
-  return table[key] ?? HarmonicFunction.Tonic;
-}
-
-// ---------------------------------------------------------------------------
-// Seventh normalization (shared with chord.ts logic)
-// ---------------------------------------------------------------------------
-
-function normalizeSeventh(token: string | undefined): SeventhT {
-  if (!token) return "" as SeventhT;
-  if (token === "^") return "^7" as SeventhT;
-  return token as SeventhT;
-}
-
-// ---------------------------------------------------------------------------
-// Extension parsing (mirrors AbstractChord._get_extensions)
-// ---------------------------------------------------------------------------
-
-// Known valid extension values (mirrors Python Extensions enum)
-const VALID_EXTENSIONS: ReadonlySet<string> = new Set(Object.values({
-  _None: "",
-  add2: "2", add3: "3", b5: "b5", add5: "5", s5: "#5", b6: "b6",
-  add6: "6", b9: "b9", add9: "9", s9: "#9", add11: "11", s11: "#11",
-  b13: "b13", add13: "13", alt: "alt",
-}).filter(v => v !== ""));
-
-function getExtensions(extToken: string): ExtensionsT[] {
-  if (!extToken) return [];
-  let s = extToken.replace(/add/g, "");
-  s = s.replace(/69/g, "6,9");
-  const EXT_RE = /[b#]?[0-9]{1,2}/g;
-  const results: ExtensionsT[] = [];
-  let pos = 0;
-  while (pos < s.length) {
-    EXT_RE.lastIndex = 0;
-    const sub = s.slice(pos);
-    const m = EXT_RE.exec(sub);
-    if (m === null || m.index !== 0) {
-      pos += 1;
-      continue;
-    }
-    const token = m[0];
-    if (!VALID_EXTENSIONS.has(token)) {
-      throw new InvalidChordStringError(`Unknown extension token: ${token}`);
-    }
-    results.push(token as ExtensionsT);
-    pos += token.length;
-  }
-  return results;
-}
+// getHarmonicFunction / normalizeSeventh / getExtensions live in chordHelpers.ts
+// (shared, single source of truth with chord.ts).
 
 // ---------------------------------------------------------------------------
 // parseNumericRoot — mirror of Python NumericChord._parse_root
@@ -276,6 +224,10 @@ function parseNumericString(s: string, substitution: boolean): NumericChordAttrs
 
   const triadStr = _sus || triadToken || "";
   const triad = triadStr as TriadT;
+  // Validate triad value (mirror chord.ts — reference a real enum member, not a bare cast)
+  if (!Object.values(Triad).includes(triad)) {
+    throw new InvalidChordStringError(`Unknown triad value: ${triadStr}`);
+  }
 
   // Mirror Python make_chord_attrs → m_or_M_scaledegree: lower the root case for minor-quality triads.
   const root = mOrMScaleDegree(rawRoot, triad);
@@ -286,19 +238,19 @@ function parseNumericString(s: string, substitution: boolean): NumericChordAttrs
   let extensions: ExtensionsT[];
   let resolvedSeventh = seventh;
   if (g["alt"]) {
-    if (triad === "sus" || triad === "sus2" || triad === "sus4") {
+    if (triad === Triad.Sus || triad === Triad.Sus2 || triad === Triad.Sus4) {
       throw new InvalidChordStringError(
         `Attempted to parse "${s}": "alt" cannot modify a sus chord`
       );
     }
-    resolvedSeventh = "7" as SeventhT;
-    extensions = ["alt" as ExtensionsT, ...getExtensions(extToken)];
+    resolvedSeventh = Seventh.Minor;
+    extensions = [Extensions.alt, ...getExtensions(extToken)];
   } else {
     extensions = getExtensions(extToken);
   }
 
-  if (g["aug5"] && !extensions.includes("#5" as ExtensionsT)) {
-    extensions = [...extensions, "#5" as ExtensionsT];
+  if (g["aug5"] && !extensions.includes(Extensions.s5)) {
+    extensions = [...extensions, Extensions.s5];
   }
 
   const harmFunc = getHarmonicFunction(triad, resolvedSeventh);

@@ -15,7 +15,6 @@
 
 import { type Note, noteToFlat } from "./notes.js";
 import {
-  HarmonicFunction,
   Triad,
   Seventh,
   Extensions,
@@ -25,20 +24,22 @@ import {
   type HarmonicFunction as HarmonicFunctionT,
 } from "./chordQuality.js";
 import { encodingValue } from "./encode.js";
+import {
+  InvalidChordStringError,
+  normalizeSeventh,
+  getExtensions,
+  getHarmonicFunction,
+} from "./chordHelpers.js";
 
-// ---------------------------------------------------------------------------
-// Public error type
-// ---------------------------------------------------------------------------
-
-export class InvalidChordStringError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "InvalidChordStringError";
-  }
-}
+// InvalidChordStringError is defined in chordHelpers.ts (so the shared parsing
+// primitives can throw it); re-export it here to keep chord.ts's public surface.
+export { InvalidChordStringError };
 
 // ---------------------------------------------------------------------------
 // Parsed chord model (structural, no singleton)
+//
+// Field names are snake_case (harmonic_function) because they ARE the wire
+// contract: the serialized shape is byte-identical across the Py/TS/Rust ports.
 // ---------------------------------------------------------------------------
 
 export interface ChordModel {
@@ -132,63 +133,6 @@ function extensionNameFromValue(value: ExtensionsT): string {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-/** Mirror of _normalize_seventh: "^" → "^7", else value or "". */
-function normalizeSeventh(token: string | undefined): SeventhT {
-  if (!token) return Seventh._None;
-  if (token === "^") return Seventh.Major; // "^7"
-  const v = token as SeventhT;
-  // Validate it's a real Seventh value
-  if (!Object.values(Seventh).includes(v)) {
-    throw new InvalidChordStringError(`Unknown seventh token: ${token}`);
-  }
-  return v;
-}
-
-/** Mirror of _get_extensions. */
-function getExtensions(extString: string): ExtensionsT[] {
-  if (!extString) return [];
-  // Normalize: strip "add" prefixes, expand "69" → "6,9"
-  let s = extString.replace(/add/g, "");
-  s = s.replace(/69/g, "6,9");
-
-  const EXT_TOKEN_RE = /[b#]?[0-9]{1,2}/g;
-  const results: ExtensionsT[] = [];
-  let pos = 0;
-  while (pos < s.length) {
-    // Reset lastIndex to pos and try to match at pos
-    EXT_TOKEN_RE.lastIndex = 0;
-    const sub = s.slice(pos);
-    const m = EXT_TOKEN_RE.exec(sub);
-    if (m === null || m.index !== 0) {
-      // Skip a separator char (comma, unexpected char)
-      pos += 1;
-      continue;
-    }
-    const token = m[0];
-    // Validate the token is a known Extensions value
-    const val = token as ExtensionsT;
-    if (!Object.values(Extensions).includes(val)) {
-      throw new InvalidChordStringError(`Unknown extension token: ${token}`);
-    }
-    results.push(val);
-    pos += token.length;
-  }
-  return results;
-}
-
-/** Mirror of _get_harmonic_function. */
-function getHarmonicFunction(triad: TriadT, seventh: SeventhT): HarmonicFunctionT {
-  const key = `${triad}__${seventh}`;
-  const table: Record<string, HarmonicFunctionT> = {
-    [`${Triad.Minor}__${Seventh.Minor}`]:          HarmonicFunction.Subdominant,
-    [`${Triad.HalfDiminished}__${Seventh.Minor}`]: HarmonicFunction.Subdominant,
-    [`${Triad.Major}__${Seventh.Minor}`]:          HarmonicFunction.Dominant,
-    [`${Triad.Major}__${Seventh.Major}`]:          HarmonicFunction.Tonic,
-    [`${Triad.Minor}__${Seventh.Major}`]:          HarmonicFunction.Tonic,
-  };
-  return table[key] ?? HarmonicFunction.Tonic;
-}
 
 /** Mirror of _parse_root: apply enharmonic map then flat-normalize. */
 function parseRoot(match: string): Note {

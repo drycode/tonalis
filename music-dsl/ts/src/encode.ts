@@ -15,7 +15,7 @@ export const EMPTY_CHORD_ENCODING: bigint = 1n << 18n; // 262144n
 const CHORD_ENCODING_BIT_LENGTH = 19;
 
 /** Special-cased fully-diminished core encoding. */
-export const DIMINISHED_ENCODING: bigint = BigInt(0b1001001001000000000); // 299520n
+export const DIMINISHED_ENCODING: bigint = 0b1001001001000000000n; // 299520n
 
 // ---------------------------------------------------------------------------
 // Separate maps keyed by member NAME, partitioned by role
@@ -114,9 +114,9 @@ export function encodingValue(
  * Mirrors Scales enum in encode.py.
  */
 export const Scales: Readonly<Record<string, bigint>> = {
-  Major:         BigInt(parseInt("101011010101".repeat(3), 2)),
-  Minor:         BigInt(parseInt("101101011010".repeat(3), 2)),
-  HarmonicMinor: BigInt(parseInt("101101011001".repeat(3), 2)),
+  Major:         BigInt("0b" + "101011010101".repeat(3)),
+  Minor:         BigInt("0b" + "101101011010".repeat(3)),
+  HarmonicMinor: BigInt("0b" + "101101011001".repeat(3)),
 } as const;
 
 /**

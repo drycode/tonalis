@@ -3,14 +3,13 @@
  * Port of music_dsl/realize.py
  */
 
-import { noteIndex } from "./notes.js";
 import { intervalSemitones } from "./intervals.js";
 import { Scales } from "./encode.js";
 import { parseChord, type ChordModel } from "./chord.js";
 import { Triad, Seventh } from "./chordQuality.js";
 import { scaleDegreeIndex } from "./scaleDegree.js";
 import { modulate } from "./transactions.js";
-import { semitonesApartAscending } from "./helpers.js";
+import { semitonesApartAscending, bigintBitLength } from "./helpers.js";
 
 // ---------------------------------------------------------------------------
 // Realize-internal encoding maps keyed by chord VALUE (not member NAME)
@@ -149,18 +148,6 @@ export function chordPitches(chord: ChordModel | string, octave: number): number
 export function scalePitches(keyRoot: string, scale: string, octave: number): number[] {
   const value = Scales[scale];
   if (value === undefined) throw new Error(`Unknown scale: ${scale}`);
-
-  // bigint bit-length: position of MSB
-  function bigintBitLength(n: bigint): number {
-    if (n === 0n) return 0;
-    let len = 0;
-    let v = n;
-    while (v > 0n) {
-      v >>= 1n;
-      len++;
-    }
-    return len;
-  }
 
   const bitLen = bigintBitLength(value);
   const size = Math.floor(bitLen / 3); // e.g. 36 / 3 = 12

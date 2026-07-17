@@ -6,20 +6,18 @@
  */
 
 import { TWELVE_TONES, noteIndex } from "./notes.js";
-import { SCALE_DEGREES, type ScaleDegreeT } from "./scaleDegree.js";
+import {
+  SCALE_DEGREES,
+  sdIsFlat, sdIsMinor, sdNormalize, sdGetIndex,
+} from "./scaleDegree.js";
 import {
   Triad,
   HarmonicFunction,
 } from "./chordQuality.js";
 import { Scales, encodingValue } from "./encode.js";
-import { stripLeft, stripRight } from "./helpers.js";
-import { semitonesApartAscending } from "./helpers.js";
+import { stripLeft, stripRight, semitonesApartAscending, bigintBitLength } from "./helpers.js";
 import { type ChordModel, type ChordSerialized, parseChord, serializeChord } from "./chord.js";
 import { fromChordString } from "./numericChord.js";
-import {
-  sdToFlat, sdToSharp, sdToMajor, sdToMinor,
-  sdIsFlat, sdIsMinor, sdNormalize, sdGetIndex,
-} from "./scaleDegreeHelpers.js";
 
 /** True if the string matches a roman numeral pattern (scale degree). */
 function isScaleDegree(value: string): boolean {
@@ -69,18 +67,6 @@ function computeEncoding(chord: ChordModel): bigint {
   const seventhName = seventhNameFromValue(chord.seventh);
   const extNames = chord.extensions.map(extensionNameFromValue);
   return encodingValue(triadName, seventhName, extNames);
-}
-
-// ---------------------------------------------------------------------------
-// bigint bit-length helper
-// ---------------------------------------------------------------------------
-
-function bigintBitLength(n: bigint): number {
-  if (n === 0n) return 0;
-  let len = 0;
-  let v = n;
-  while (v > 0n) { v >>= 1n; len++; }
-  return len;
 }
 
 // ---------------------------------------------------------------------------

@@ -40,6 +40,76 @@ const FLATS_TO_SHARPS: Readonly<Record<string, ScaleDegreeT>> = {
   "bvii": "#vi",
 };
 
+/** minor → major: lowercase roman numeral → uppercase (accidental preserved). */
+const MINOR_TO_MAJOR: Readonly<Record<string, ScaleDegreeT>> = {
+  "i": "I", "#i": "#I", "bii": "bII", "ii": "II", "#ii": "#II",
+  "biii": "bIII", "iii": "III", "iv": "IV", "#iv": "#IV",
+  "bv": "bV", "v": "V", "#v": "#V", "bvi": "bVI", "vi": "VI",
+  "#vi": "#VI", "bvii": "bVII", "vii": "VII",
+};
+
+/** major → minor: inverse of MINOR_TO_MAJOR. */
+const MAJOR_TO_MINOR: Readonly<Record<string, ScaleDegreeT>> = {
+  "I": "i", "#I": "#i", "bII": "bii", "II": "ii", "#II": "#ii",
+  "bIII": "biii", "III": "iii", "IV": "iv", "#IV": "#iv",
+  "bV": "bv", "V": "v", "#V": "#v", "bVI": "bvi", "VI": "vi",
+  "#VI": "#vi", "bVII": "bvii", "VII": "vii",
+};
+
+// ---------------------------------------------------------------------------
+// Scale-degree primitives (single source of truth; formerly duplicated in
+// scaleDegreeHelpers.ts and, map-vs-regex-divergently, inline below).
+// Mirror the Python ScaleDegree.to_flat / to_sharp / to_major / to_minor /
+// normalize / get_index methods.
+// ---------------------------------------------------------------------------
+
+/** to_flat(): sharp → flat enharmonic; pass through otherwise. */
+export function sdToFlat(d: string): ScaleDegreeT {
+  return (SHARPS_TO_FLATS[d] ?? d) as ScaleDegreeT;
+}
+
+/** to_sharp(): flat → sharp enharmonic; pass through otherwise. */
+export function sdToSharp(d: string): ScaleDegreeT {
+  return (FLATS_TO_SHARPS[d] ?? d) as ScaleDegreeT;
+}
+
+/** to_major(): minor → major; pass through otherwise. */
+export function sdToMajor(d: string): ScaleDegreeT {
+  return (MINOR_TO_MAJOR[d] ?? d) as ScaleDegreeT;
+}
+
+/** to_minor(): major → minor; pass through otherwise. */
+export function sdToMinor(d: string): ScaleDegreeT {
+  return (MAJOR_TO_MINOR[d] ?? d) as ScaleDegreeT;
+}
+
+/** is_flat: true iff the degree carries a flat accidental. */
+export function sdIsFlat(d: string): boolean {
+  return d in FLATS_TO_SHARPS;
+}
+
+/** is_minor: true iff the degree is a lowercase (minor) numeral. */
+export function sdIsMinor(d: string): boolean {
+  return d in MINOR_TO_MAJOR;
+}
+
+/**
+ * normalize(is_flat, is_minor) — mirror of Python ScaleDegree.normalize.
+ * to_flat() if is_flat else to_sharp(), then to_minor() if is_minor else to_major().
+ */
+export function sdNormalize(d: string, isFlat: boolean, isMinor: boolean): ScaleDegreeT {
+  let r: ScaleDegreeT = isFlat ? sdToFlat(d) : sdToSharp(d);
+  r = isMinor ? sdToMinor(r) : sdToMajor(r);
+  return r;
+}
+
+/** get_index: SCALE_DEGREES.indexOf(d.to_major().to_flat()). */
+export function sdGetIndex(d: string): number {
+  const idx = SCALE_DEGREES.indexOf(sdToFlat(sdToMajor(d)));
+  if (idx === -1) throw new Error(`Unknown scale degree for get_index: ${d}`);
+  return idx;
+}
+
 /**
  * Enharmonic equality for scale degrees.
  * #iv == bv (same pitch class), but major/minor remain distinct (II != ii).
@@ -66,22 +136,7 @@ export const SCALE_DEGREES: readonly ScaleDegreeT[] = [
 
 /** Return the scale degree's index in SCALE_DEGREES (after to_major().to_flat()). */
 export function scaleDegreeIndex(value: string): number {
-  // Convert to major if minor
-  const major = toMajorDegree(value);
-  // Normalize to flat
-  const flat = toFlatDegree(major);
-  const idx = SCALE_DEGREES.indexOf(flat as ScaleDegreeT);
+  const idx = SCALE_DEGREES.indexOf(sdToFlat(sdToMajor(value)));
   if (idx === -1) throw new Error(`Unknown scale degree: ${value}`);
   return idx;
-}
-
-/** Map minor → major (lowercase → uppercase roman numeral part). */
-function toMajorDegree(value: string): string {
-  // Replace the roman numeral part (after prefix) with uppercase
-  return value.replace(/([ivxIVX]+)/, (m) => m.toUpperCase());
-}
-
-/** Normalize a sharp degree to its flat enharmonic; pass through otherwise. */
-function toFlatDegree(value: string): string {
-  return SHARPS_TO_FLATS[value] ?? value;
 }

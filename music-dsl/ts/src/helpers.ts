@@ -8,15 +8,17 @@
 import { noteIndex } from "./notes.js";
 
 /** Minimum supported bit-array value (2^12 = 13-bit sentinel). */
-export const MIN_SUPPORTED: bigint = BigInt(0b1000000000000); // 4096
+export const MIN_SUPPORTED: bigint = 0b1000000000000n; // 4096
 
-/** Maximum supported bit-array value (39-bit, "1111111111111" × 3). */
-export const MAX_SUPPORTED: bigint = BigInt(
-  parseInt("1111111111111".repeat(3), 2),
-);
+/**
+ * Maximum supported bit-array value (39-bit, "1111111111111" × 3).
+ * Built straight to BigInt (no parseInt → Number round-trip) to stay in the
+ * exact-integer domain the 36–39-bit Scales constants require.
+ */
+export const MAX_SUPPORTED: bigint = BigInt("0b" + "1111111111111".repeat(3));
 
 /** bigint bit-length: position of the most-significant 1-bit. */
-function bigintBitLength(n: bigint): number {
+export function bigintBitLength(n: bigint): number {
   if (n === 0n) return 0;
   let len = 0;
   let v = n;

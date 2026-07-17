@@ -182,7 +182,9 @@ const BARLINES = new Set<Barline>(["normal", "repeat_end", "final"]);
  * the Python/Rust ports. Missing `schema_version` defaults to 1; a non-1 integer, a string ("2"),
  * or `null` are all rejected cleanly (NOT silently coerced to v1).
  */
-export function astFromJson(d: LeadSheetJson): LeadSheet {
+export function astFromJson(d: unknown): LeadSheet {
+  // Input is untrusted (typed `unknown`, not `LeadSheetJson`): the canonical JSON
+  // is a public interface, so we validate rather than assume the declared shape.
   const rawVer = (d as { schema_version?: unknown }).schema_version;
   // Missing -> default 1 (accept). Present must be exactly the integer SCHEMA_VERSION: a string,
   // null, boolean, or non-1 number all reject (do NOT let `null ?? 1` quietly accept null as v1).
@@ -193,12 +195,13 @@ export function astFromJson(d: LeadSheetJson): LeadSheet {
       );
     }
   }
+  const doc = d as LeadSheetJson;
   const meta: Meta = {};
-  for (const [k, v] of Object.entries(d.meta)) {
+  for (const [k, v] of Object.entries(doc.meta)) {
     if (k === "time" && Array.isArray(v)) meta.time = [v[0]!, v[1]!];
     else (meta as Record<string, unknown>)[k] = v;
   }
-  const sections: Section[] = d.sections.map((s) => {
+  const sections: Section[] = doc.sections.map((s) => {
     if (!SECTION_KINDS.has(s.kind)) {
       throw new Error(`unknown Section.kind ${JSON.stringify(s.kind)}`);
     }
