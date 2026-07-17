@@ -96,6 +96,16 @@ class Encoding:
         return encoding
 
 
+def _scale_mask(*pitch_classes: int) -> int:
+    """Build a scale's 36-bit mask from its pitch classes (semitones above the
+    tonic, 0-11). The 12-bit pattern (MSB = tonic) is repeated 3x so the modal
+    scan can rotate to any root. Reproduces the hand-written masks exactly."""
+    pattern = 0
+    for pc in pitch_classes:
+        pattern |= 1 << (11 - pc)
+    return (pattern << 24) | (pattern << 12) | pattern
+
+
 @dataclass(frozen=True)
 class ScaleDescriptor:
     """Everything the library needs to know about a scale.
@@ -123,14 +133,71 @@ class NonFunctionalScaleError(ValueError):
     augmented, chromatic). Membership via ``contains`` still works for these."""
 
 
+def _fn(mask: int, name: str, category: str) -> ScaleDescriptor:
+    """A functional scale (has a tonal hierarchy; diatonic queries are defined)."""
+    return ScaleDescriptor(mask, name, category, True)
+
+
+def _sym(mask: int, name: str, category: str) -> ScaleDescriptor:
+    """A symmetric/atonal scale (no tonal-function model; membership only)."""
+    return ScaleDescriptor(mask, name, category, False)
+
+
 class Scales(Enum):
-    Major = ScaleDescriptor(int("101011010101" * 3, 2), "Major (Ionian)", "major", True)
-    Minor = ScaleDescriptor(
-        int("101101011010" * 3, 2), "Natural minor (Aeolian)", "minor", True
+    # --- Modes of the major scale (functional) --------------------------------
+    Major = _fn(_scale_mask(0, 2, 4, 5, 7, 9, 11), "Major (Ionian)", "major-mode")
+    Dorian = _fn(_scale_mask(0, 2, 3, 5, 7, 9, 10), "Dorian", "major-mode")
+    Phrygian = _fn(_scale_mask(0, 1, 3, 5, 7, 8, 10), "Phrygian", "major-mode")
+    Lydian = _fn(_scale_mask(0, 2, 4, 6, 7, 9, 11), "Lydian", "major-mode")
+    Mixolydian = _fn(_scale_mask(0, 2, 4, 5, 7, 9, 10), "Mixolydian", "major-mode")
+    Minor = _fn(_scale_mask(0, 2, 3, 5, 7, 8, 10), "Natural minor (Aeolian)", "major-mode")
+    Locrian = _fn(_scale_mask(0, 1, 3, 5, 6, 8, 10), "Locrian", "major-mode")
+
+    # --- Melodic minor and its modes (functional) -----------------------------
+    MelodicMinor = _fn(_scale_mask(0, 2, 3, 5, 7, 9, 11), "Melodic minor", "melodic-minor")
+    DorianFlat2 = _fn(_scale_mask(0, 1, 3, 5, 7, 9, 10), "Dorian b2", "melodic-minor")
+    LydianAugmented = _fn(_scale_mask(0, 2, 4, 6, 8, 9, 11), "Lydian augmented", "melodic-minor")
+    LydianDominant = _fn(_scale_mask(0, 2, 4, 6, 7, 9, 10), "Lydian dominant", "melodic-minor")
+    MixolydianFlat6 = _fn(_scale_mask(0, 2, 4, 5, 7, 8, 10), "Mixolydian b6", "melodic-minor")
+    LocrianNatural2 = _fn(_scale_mask(0, 2, 3, 5, 6, 8, 10), "Locrian natural 2", "melodic-minor")
+    Altered = _fn(_scale_mask(0, 1, 3, 4, 6, 8, 10), "Altered (Super Locrian)", "melodic-minor")
+
+    # --- Harmonic minor and its modes (functional) ----------------------------
+    HarmonicMinor = _fn(_scale_mask(0, 2, 3, 5, 7, 8, 11), "Harmonic minor", "harmonic-minor")
+    LocrianNatural6 = _fn(_scale_mask(0, 1, 3, 5, 6, 9, 10), "Locrian natural 6", "harmonic-minor")
+    IonianSharp5 = _fn(_scale_mask(0, 2, 4, 5, 8, 9, 11), "Ionian #5", "harmonic-minor")
+    DorianSharp4 = _fn(_scale_mask(0, 2, 3, 6, 7, 9, 10), "Dorian #4 (Ukrainian)", "harmonic-minor")
+    PhrygianDominant = _fn(_scale_mask(0, 1, 4, 5, 7, 8, 10), "Phrygian dominant", "harmonic-minor")
+    LydianSharp2 = _fn(_scale_mask(0, 3, 4, 6, 7, 9, 11), "Lydian #2", "harmonic-minor")
+    Ultralocrian = _fn(_scale_mask(0, 1, 3, 4, 6, 8, 9), "Ultralocrian", "harmonic-minor")
+
+    # --- Harmonic major and other named heptatonics (functional) --------------
+    HarmonicMajor = _fn(_scale_mask(0, 2, 4, 5, 7, 8, 11), "Harmonic major", "harmonic-major")
+    DoubleHarmonic = _fn(_scale_mask(0, 1, 4, 5, 7, 8, 11), "Double harmonic (Byzantine)", "exotic")
+    HungarianMinor = _fn(_scale_mask(0, 2, 3, 6, 7, 8, 11), "Hungarian minor", "exotic")
+    HungarianMajor = _fn(_scale_mask(0, 3, 4, 6, 7, 9, 10), "Hungarian major", "exotic")
+    NeapolitanMajor = _fn(_scale_mask(0, 1, 3, 5, 7, 9, 11), "Neapolitan major", "exotic")
+    NeapolitanMinor = _fn(_scale_mask(0, 1, 3, 5, 7, 8, 11), "Neapolitan minor", "exotic")
+
+    # --- Pentatonic and blues (functional) ------------------------------------
+    MajorPentatonic = _fn(_scale_mask(0, 2, 4, 7, 9), "Major pentatonic", "pentatonic")
+    MinorPentatonic = _fn(_scale_mask(0, 3, 5, 7, 10), "Minor pentatonic", "pentatonic")
+    Blues = _fn(_scale_mask(0, 3, 5, 6, 7, 10), "Blues (minor)", "blues")
+
+    # --- Bebop (functional, 8-note; passing tone documented in SPEC) -----------
+    BebopDominant = _fn(_scale_mask(0, 2, 4, 5, 7, 9, 10, 11), "Bebop dominant", "bebop")
+    BebopMajor = _fn(_scale_mask(0, 2, 4, 5, 7, 8, 9, 11), "Bebop major", "bebop")
+
+    # --- Symmetric / atonal (NON-functional: membership only) -----------------
+    WholeTone = _sym(_scale_mask(0, 2, 4, 6, 8, 10), "Whole tone", "symmetric")
+    DiminishedHalfWhole = _sym(
+        _scale_mask(0, 1, 3, 4, 6, 7, 9, 10), "Diminished (half-whole)", "symmetric"
     )
-    HarmonicMinor = ScaleDescriptor(
-        int("101101011001" * 3, 2), "Harmonic minor", "minor", True
+    DiminishedWholeHalf = _sym(
+        _scale_mask(0, 2, 3, 5, 6, 8, 9, 11), "Diminished (whole-half)", "symmetric"
     )
+    Augmented = _sym(_scale_mask(0, 3, 4, 7, 8, 11), "Augmented", "symmetric")
+    Chromatic = _sym(_scale_mask(*range(12)), "Chromatic", "atonal")
 
 
 def contains(scale: "Scales", pitch_class: int) -> bool:

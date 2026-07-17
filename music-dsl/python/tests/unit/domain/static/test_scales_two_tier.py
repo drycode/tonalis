@@ -20,8 +20,11 @@ def test_scales_carry_descriptors():
     assert d.name == "Major (Ionian)"
     assert d.category == "major"
     assert d.supports_diatonic_function is True
-    # All three migrated scales are functional.
-    assert all(s.value.supports_diatonic_function for s in Scales)
+    # The three original scales are functional (the catalog also has non-functional
+    # symmetric scales — see test_scale_catalog).
+    assert Scales.Major.value.supports_diatonic_function
+    assert Scales.Minor.value.supports_diatonic_function
+    assert Scales.HarmonicMinor.value.supports_diatonic_function
 
 
 def test_contains_membership_major():
