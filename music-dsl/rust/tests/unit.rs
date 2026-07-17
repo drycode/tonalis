@@ -375,14 +375,14 @@ fn is_diatonic_invalid_chord_is_err() {
 fn is_diatonic_valid_diatonic_ok_true() {
     let major = scale_value("Major");
     // C major: Cmaj7 is diatonic
-    assert_eq!(is_diatonic("C", major, "C^7").unwrap(), true);
+    assert!(is_diatonic("C", major, "C^7").unwrap());
 }
 
 #[test]
 fn is_diatonic_valid_non_diatonic_ok_false() {
     let major = scale_value("Major");
     // C major: C#7 is NOT diatonic — must be Ok(false) not Err
-    assert_eq!(is_diatonic("C", major, "C#7").unwrap(), false);
+    assert!(!is_diatonic("C", major, "C#7").unwrap());
 }
 
 #[test]

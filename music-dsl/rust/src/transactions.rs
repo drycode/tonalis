@@ -36,7 +36,7 @@ impl std::fmt::Display for TransactionError {
         match self {
             TransactionError::UnknownNote(s)    => write!(f, "TransactionError: unknown note or scale degree {:?}", s),
             TransactionError::ParseChord(e)     => write!(f, "TransactionError: chord parse error: {}", e),
-            TransactionError::ParseNumeric(e)   => write!(f, "TransactionError: numeric parse error: {:?}", e),
+            TransactionError::ParseNumeric(e)   => write!(f, "TransactionError: numeric parse error: {}", e),
             TransactionError::UnknownDegree(s)  => write!(f, "TransactionError: unknown scale degree {:?}", s),
         }
     }
@@ -112,7 +112,27 @@ pub fn modulate(semitones: i64, note: &str) -> Result<String, TransactionError> 
 /// Mirrors `music_dsl.transactions.is_diatonic` faithfully: the Python reference raises
 /// `InvalidChordStringException` on an unparseable chord string; this returns `Err` instead.
 pub fn is_diatonic(root: &str, scale: u64, chord_str: &str) -> Result<bool, TransactionError> {
-    // Parse chord root note string — used only to get the root value for the chord model.
+    // ── Algorithm: align the modal window, then mask ──────────────────────────
+    //
+    // Both a scale and a chord are bit-arrays over semitone slots, MSB = root.
+    // A chord is diatonic to a key iff, once rotated so the chord's root lines
+    // up with the same slot in the scale, every chord tone falls on a scale
+    // tone. This is done in three moves, all on the shared `Scales` ×3 mask so
+    // any modal window (root at any of the 12 positions) can be read without a
+    // wrap-around:
+    //
+    //   1. Root-in-scale gate — is the chord's root itself a scale tone? If the
+    //      scale bit `semitones` slots below the top is clear, bail early.
+    //   2. Align — `strip_left(scale, semitones)` drops the `semitones` high bits,
+    //      rotating the scale so its window now *starts* at the chord's root
+    //      (the "modal" scale). `strip_right(enc, lsb)` drops the chord encoding's
+    //      trailing zero padding so its MSB is the chord root too.
+    //   3. Mask — right-trim the aligned scale to the chord's bit-length, then
+    //      test `chord_bits & scale_bits == chord_bits`: every set chord bit
+    //      must also be set in the scale window. Equality ⇒ diatonic.
+    //
+    // A `strip_left`/`strip_right` range error (operand outside the supported
+    // window) means the chord cannot be diatonic here, so it maps to `Ok(false)`.
     let chord = parse_chord(chord_str).map_err(TransactionError::ParseChord)?;
     let enc = chord_encoding(chord_str).map_err(TransactionError::ParseChord)?;
 
@@ -125,25 +145,22 @@ pub fn is_diatonic(root: &str, scale: u64, chord_str: &str) -> Result<bool, Tran
 
     let scale_length = 64 - scale.leading_zeros(); // bit_length
 
-    // _root_is_diatonic check: is the chord root in the scale?
+    // Step 1 — root-in-scale gate: is the chord root a scale tone?
     let shift = scale_length as i64 - semitones - 1;
     if shift >= 0 && scale & (1u64 << shift as u32) != 0 {
-        // chord_bits = strip_right(enc, lsb)
-        let chord_bits = match strip_right(enc, lsb) {
-            Ok(v) => v,
-            Err(_) => return Ok(false),
+        // Step 2 — align chord and scale windows to the chord root.
+        let Ok(chord_bits) = strip_right(enc, lsb) else {
+            return Ok(false);
         };
-        // modal_scale = strip_left(scale, semitones)
-        let modal_scale = match strip_left(scale, semitones as u32) {
-            Ok(v) => v,
-            Err(_) => return Ok(false),
+        let Ok(modal_scale) = strip_left(scale, semitones as u32) else {
+            return Ok(false);
         };
         let chord_bl = 64 - chord_bits.leading_zeros();
         let modal_bl = 64 - modal_scale.leading_zeros();
+        // Step 3 — trim the aligned scale to the chord's width, then mask.
         if modal_bl >= chord_bl {
-            let scale_bits = match strip_right(modal_scale, modal_bl - chord_bl) {
-                Ok(v) => v,
-                Err(_) => return Ok(false),
+            let Ok(scale_bits) = strip_right(modal_scale, modal_bl - chord_bl) else {
+                return Ok(false);
             };
             if chord_bits & scale_bits == chord_bits {
                 return Ok(true);

@@ -10,6 +10,7 @@
 //! codec maps kind/barline/hints to the target format's section/barline markers itself.
 
 use serde_json::{json, Map, Value};
+use std::str::FromStr;
 
 /// A meter as a (numerator, denominator) pair.
 pub type Time = (u32, u32);
@@ -75,15 +76,20 @@ impl SectionKind {
         }
     }
 
-    pub fn from_str(s: &str) -> Option<SectionKind> {
-        Some(match s {
+}
+
+impl FromStr for SectionKind {
+    type Err = ();
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        Ok(match s {
             "a" => SectionKind::A,
             "b" => SectionKind::B,
             "c" => SectionKind::C,
             "d" => SectionKind::D,
             "intro" => SectionKind::Intro,
             "verse" => SectionKind::Verse,
-            _ => return None,
+            _ => return Err(()),
         })
     }
 }
@@ -342,7 +348,7 @@ pub fn ast_from_json(v: &Value) -> Result<LeadSheet, String> {
                 .to_string();
             let kind_str = s.get("kind").and_then(|k| k.as_str()).unwrap_or("a");
             let kind = SectionKind::from_str(kind_str)
-                .ok_or_else(|| format!("unknown Section.kind {:?}", kind_str))?;
+                .map_err(|_| format!("unknown Section.kind {:?}", kind_str))?;
             let mut measures = Vec::new();
             if let Some(ms) = s.get("measures").and_then(|m| m.as_array()) {
                 for m in ms {

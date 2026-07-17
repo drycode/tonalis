@@ -18,6 +18,16 @@ impl HarmonicFunction {
             HarmonicFunction::Tonic       => "Tonic",
         }
     }
+
+    /// Inverse of [`HarmonicFunction::name`]: parse a member name back to the enum.
+    pub(crate) fn from_name(name: &str) -> Option<Self> {
+        match name {
+            "Dominant"    => Some(HarmonicFunction::Dominant),
+            "Subdominant" => Some(HarmonicFunction::Subdominant),
+            "Tonic"       => Some(HarmonicFunction::Tonic),
+            _             => None,
+        }
+    }
 }
 
 /// Triad quality. `Major.value() == ""`.

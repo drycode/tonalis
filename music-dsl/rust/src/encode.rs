@@ -23,7 +23,22 @@ pub const DIMINISHED_ENCODING: u64 = 0b1001001001000000000;
 // Scale constants (36-bit, twelve-tone pattern × 3)
 // ---------------------------------------------------------------------------
 
-/// Scales (36-bit integers, modal alignment via ×3 pattern).
+/// Scale masks as 36-bit integers: the 12-bit chromatic pattern repeated ×3.
+///
+/// # Why three copies
+///
+/// A scale is a 12-bit mask (MSB = root, one bit per semitone). Diatonicity and
+/// pitch queries ask about a *modal window* — the same scale read starting from
+/// an arbitrary degree — which means rotating the 12-bit pattern by up to 11
+/// positions. Storing a single 12-bit copy would force a wrap-around (bits that
+/// fall off the low end reappear at the top) that plain shifts can't express.
+///
+/// Concatenating the pattern three times (36 bits) turns every rotation into a
+/// straight left/right shift into the middle copy: `strip_left`/`strip_right`
+/// can align any window from root to the octave-plus-a-fifth without special
+/// wrap-around handling, and the top and bottom copies supply the overhang on
+/// both sides. Two copies would only cover a half-turn; three guarantees any
+/// 12-slot window is contiguous. The values below are `int("<12-bit>" * 3, 2)`.
 pub struct Scales;
 
 impl Scales {
@@ -47,7 +62,10 @@ pub fn scale_value(name: &str) -> u64 {
 // ---------------------------------------------------------------------------
 
 /// Semitone bit positions for a Triad variant.
-fn triad_bits(t: Triad) -> &'static [u32] {
+///
+/// Single source of truth for the triad→semitone table, shared with `realize.rs`
+/// (`chord_pitches`) so the two never drift.
+pub(crate) fn triad_bits(t: Triad) -> &'static [u32] {
     match t {
         Triad::Major          => &[4, 7],
         Triad::Minor          => &[3, 7],
@@ -61,7 +79,10 @@ fn triad_bits(t: Triad) -> &'static [u32] {
 }
 
 /// Semitone bit positions for a Seventh variant.
-fn seventh_bits(s: Seventh) -> &'static [u32] {
+///
+/// Shared with `realize.rs`; note `chord_pitches` overrides this for the fully
+/// diminished 7th (`Diminished` + `Minor` → offset 9) before consulting it.
+pub(crate) fn seventh_bits(s: Seventh) -> &'static [u32] {
     match s {
         Seventh::Minor => &[10],
         Seventh::Major => &[11],
@@ -70,7 +91,10 @@ fn seventh_bits(s: Seventh) -> &'static [u32] {
 }
 
 /// Semitone bit positions for an Extensions variant.
-fn extension_bits(e: Extensions) -> &'static [u32] {
+///
+/// Single source of truth for the extension→semitone table, shared with
+/// `realize.rs` (`chord_pitches`) so the two never drift.
+pub(crate) fn extension_bits(e: Extensions) -> &'static [u32] {
     match e {
         Extensions::None   => &[],
         Extensions::Add2   => &[2],
@@ -173,28 +197,12 @@ fn seventh_from_name(name: &str) -> Seventh {
 ///
 /// `root` and `contextual_tonic` are irrelevant to the integer value (fixed to `Notes.C`/`None`).
 pub fn encoding_value(triad: &str, seventh: &str, extensions: &[&str]) -> u64 {
+    // Resolve the member names to enums, then delegate — the integer logic lives
+    // in `encoding_value_from_enums` and is not duplicated here.
     let t = triad_from_name(triad);
     let s = seventh_from_name(seventh);
-
-    let core = if t == Triad::Diminished {
-        DIMINISHED_ENCODING
-    } else {
-        // Concatenate triad + seventh bit positions
-        let mut positions: Vec<u32> = Vec::new();
-        positions.extend_from_slice(triad_bits(t));
-        positions.extend_from_slice(seventh_bits(s));
-        encode(&positions)
-    };
-
-    // Accumulate all extension bits
-    let mut ext_positions: Vec<u32> = Vec::new();
-    for &ext_name in extensions {
-        let ext = extension_from_name(ext_name);
-        ext_positions.extend_from_slice(extension_bits(ext));
-    }
-    let exts = encode(&ext_positions);
-
-    core | exts
+    let exts: Vec<Extensions> = extensions.iter().map(|&n| extension_from_name(n)).collect();
+    encoding_value_from_enums(t, s, &exts)
 }
 
 /// Compute `Encoding.value` directly from enum types (avoids value→name round-trip).

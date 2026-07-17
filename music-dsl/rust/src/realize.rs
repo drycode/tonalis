@@ -6,7 +6,7 @@
 
 use crate::chord::{parse_chord, triad_from_value, seventh_from_value, extension_from_value};
 use crate::chord_quality::{Triad, Seventh};
-use crate::encode::scale_value;
+use crate::encode::{extension_bits, scale_value, seventh_bits, triad_bits};
 use crate::helpers::semitones_apart_ascending;
 use crate::scale_degree::ScaleDegree;
 use crate::transactions::modulate;
@@ -77,49 +77,22 @@ pub fn chord_pitches(chord_str: &str, octave: i64) -> Result<Vec<i64>, ChordPars
     let triad = triad_from_value(&model.triad)?;
     let seventh = seventh_from_value(&model.seventh)?;
 
-    // Triad offsets
-    let triad_offsets: Vec<i64> = match triad {
-        Triad::Major          => vec![4, 7],
-        Triad::Minor          => vec![3, 7],
-        Triad::Diminished     => vec![3, 6],
-        Triad::HalfDiminished => vec![3, 6],
-        Triad::Augmented      => vec![4, 8],
-        Triad::Sus2           => vec![2, 7],
-        Triad::Sus | Triad::Sus4 => vec![5, 7],
-    };
+    // Triad offsets — shared `encode.rs` table (single source of truth, `u32`→`i64`).
+    let triad_offsets: Vec<i64> = triad_bits(triad).iter().map(|&b| b as i64).collect();
 
-    // Seventh offset — dim7 rule
+    // Seventh offset — shared table, with the fully-diminished-7th override:
+    // `Diminished` + `Minor` collapses the b7 (10) to the dim7 (9); all other
+    // (triad, seventh) pairs read straight from `seventh_bits`.
     let seventh_offsets: Vec<i64> = match (triad, seventh) {
-        (Triad::Diminished, Seventh::Minor) => vec![9],  // fully diminished 7th
-        (_, Seventh::Minor) => vec![10],
-        (_, Seventh::Major) => vec![11],
-        (_, Seventh::None)  => vec![],
+        (Triad::Diminished, Seventh::Minor) => vec![9], // fully diminished 7th
+        _ => seventh_bits(seventh).iter().map(|&b| b as i64).collect(),
     };
 
-    // Extension offsets (from EncodingMap bit positions)
+    // Extension offsets — shared `encode.rs` table (b9 encoded as octave offset 12).
     let mut ext_offsets: Vec<i64> = Vec::new();
     for ext_val in &model.extensions {
         if let Some(ext) = extension_from_value(ext_val) {
-            use crate::chord_quality::Extensions;
-            let offsets: Vec<i64> = match ext {
-                Extensions::None   => vec![],
-                Extensions::Add2   => vec![2],
-                Extensions::Add3   => vec![4],
-                Extensions::B5     => vec![6],
-                Extensions::Add5   => vec![7],
-                Extensions::S5     => vec![8],
-                Extensions::B6     => vec![8],
-                Extensions::Add6   => vec![9],
-                Extensions::B9     => vec![12],  // b9 encoded as octave offset
-                Extensions::Add9   => vec![13],
-                Extensions::S9     => vec![14],
-                Extensions::Add11  => vec![15],
-                Extensions::S11    => vec![16],
-                Extensions::B13    => vec![17],
-                Extensions::Add13  => vec![18],
-                Extensions::Alt    => vec![12, 14, 16, 17],
-            };
-            ext_offsets.extend(offsets);
+            ext_offsets.extend(extension_bits(ext).iter().map(|&b| b as i64));
         }
     }
 

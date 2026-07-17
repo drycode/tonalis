@@ -25,6 +25,8 @@ impl std::fmt::Display for ChordParseError {
     }
 }
 
+impl std::error::Error for ChordParseError {}
+
 // ---------------------------------------------------------------------------
 // Public model
 // ---------------------------------------------------------------------------
@@ -238,18 +240,18 @@ pub fn parse_chord(input: &str) -> Result<ChordModel, ChordParseError> {
     let ext_str    = cap("ext");          // lazy extension substring
     let sus2_cap   = cap("sus2");         // "sus4"/"sus2"/"sus" or ""
 
-    // 5. Sus collection (Python: `_sus = sus1 or sus2; if sus_short: _sus = _sus or "sus4"`).
-    let _sus: &str = if !sus1.is_empty() {
+    // 5. Sus collection (Python: `sus = sus1 or sus2; if sus_short: sus = sus or "sus4"`).
+    let sus: &str = if !sus1.is_empty() {
         sus1
     } else if !sus2_cap.is_empty() {
         sus2_cap
     } else {
         ""
     };
-    let sus_effective: &str = if sus_short == "4" && _sus.is_empty() {
+    let sus_effective: &str = if sus_short == "4" && sus.is_empty() {
         "sus4"
     } else {
-        _sus
+        sus
     };
 
     // 6. Triad+sus coexistence check.

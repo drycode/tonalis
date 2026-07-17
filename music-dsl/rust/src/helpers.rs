@@ -8,7 +8,7 @@ use crate::notes::Note;
 /// 13-bit minimum for scale/encoding operands to strip_left.
 pub const MIN_SUPPORTED: u64 = 0b1_0000_0000_0000; // 4096
 /// 39-bit maximum (twelve-tone pattern × 3).
-pub const MAX_SUPPORTED: u64 = 0b111_1111_1111_111_1111_1111_111_1111_1111_1111_1111; // 549755813887
+pub const MAX_SUPPORTED: u64 = 0b111_1111_1111_1111_1111_1111_1111_1111_1111_1111; // 549755813887
 
 /// Bit-length of a u64 value (position of the highest set bit + 1).
 /// Returns 0 for 0.
@@ -29,7 +29,7 @@ pub fn strip_left(bits: u64, x: u32) -> Result<u64, &'static str> {
     if x == 0 {
         return Ok(bits);
     }
-    if bits < MIN_SUPPORTED || bits > MAX_SUPPORTED {
+    if !(MIN_SUPPORTED..=MAX_SUPPORTED).contains(&bits) {
         return Err("strip_left: bits out of supported range");
     }
     let bl = bit_length(bits);

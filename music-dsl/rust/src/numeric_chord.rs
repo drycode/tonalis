@@ -19,12 +19,44 @@ use std::sync::OnceLock;
 /// Error from numeric chord operations.
 #[derive(Debug)]
 pub enum NumericParseError {
+    /// The numerator was empty (before or after stripping a leading `s`).
     EmptyNumerator,
+    /// The segment did not match the numeric-chord regex.
     RegexNoMatch(String),
+    /// A triad and a sus were both specified, which cannot coexist.
+    TriadSusCoexist(String),
+    /// An extension token was not a recognised extension value.
+    UnknownExtension(String),
+    /// The Roman-numeral root was not a known scale degree.
     UnknownDegree(String),
+    /// A substitution required a harmonic function the chord does not have.
     IncorrectHarmonicFunction(String),
+    /// The underlying absolute-chord parse failed.
     ChordParseError(String),
 }
+
+impl std::fmt::Display for NumericParseError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            NumericParseError::EmptyNumerator =>
+                write!(f, "NumericParseError: empty numerator"),
+            NumericParseError::RegexNoMatch(s) =>
+                write!(f, "NumericParseError: no regex match for {:?}", s),
+            NumericParseError::TriadSusCoexist(s) =>
+                write!(f, "NumericParseError: a triad and a sus cannot coexist ({})", s),
+            NumericParseError::UnknownExtension(s) =>
+                write!(f, "NumericParseError: unknown extension token {:?}", s),
+            NumericParseError::UnknownDegree(s) =>
+                write!(f, "NumericParseError: unknown scale degree {:?}", s),
+            NumericParseError::IncorrectHarmonicFunction(s) =>
+                write!(f, "NumericParseError: {}", s),
+            NumericParseError::ChordParseError(s) =>
+                write!(f, "NumericParseError: chord parse error: {}", s),
+        }
+    }
+}
+
+impl std::error::Error for NumericParseError {}
 
 // ---------------------------------------------------------------------------
 // Public models
@@ -92,23 +124,23 @@ fn parse_one(segment: &str, substitution: bool) -> Result<NumericChordAttrs, Num
         .ok_or_else(|| NumericParseError::UnknownDegree(root_str.to_string()))?;
 
     // Sus collection (same logic as chord.rs)
-    let _sus: &str = if !sus1.is_empty() {
+    let sus: &str = if !sus1.is_empty() {
         sus1
     } else if !sus2_cap.is_empty() {
         sus2_cap
     } else {
         ""
     };
-    let sus_effective: &str = if sus_short == "4" && _sus.is_empty() {
+    let sus_effective: &str = if sus_short == "4" && sus.is_empty() {
         "sus4"
     } else {
-        _sus
+        sus
     };
 
     let triad_is_sus = matches!(triad_cap, "sus" | "sus2" | "sus4");
     if !sus_effective.is_empty() && !triad_cap.is_empty() && !triad_is_sus {
-        return Err(NumericParseError::RegexNoMatch(format!(
-            "triad and sus coexist: {} + {}",
+        return Err(NumericParseError::TriadSusCoexist(format!(
+            "{} + {}",
             triad_cap, sus_effective
         )));
     }
@@ -188,10 +220,7 @@ fn get_ext_strings(s: &str) -> Result<Vec<String>, NumericParseError> {
             if extension_from_value(token).is_some() {
                 result.push(token.to_string());
             } else {
-                return Err(NumericParseError::RegexNoMatch(format!(
-                    "Unknown extension token: {}",
-                    token
-                )));
+                return Err(NumericParseError::UnknownExtension(token.to_string()));
             }
         } else {
             // Skip separator chars (commas etc.)
@@ -348,19 +377,4 @@ pub fn numeric_from_chord(
         harmonic_function: hf.name().to_string(),
         substitution: effective_sub,
     })
-}
-
-// ---------------------------------------------------------------------------
-// HarmonicFunction name parsing helper
-// ---------------------------------------------------------------------------
-
-impl HarmonicFunction {
-    fn from_name(name: &str) -> Option<Self> {
-        match name {
-            "Dominant"    => Some(HarmonicFunction::Dominant),
-            "Subdominant" => Some(HarmonicFunction::Subdominant),
-            "Tonic"       => Some(HarmonicFunction::Tonic),
-            _             => None,
-        }
-    }
 }
