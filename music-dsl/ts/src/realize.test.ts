@@ -44,7 +44,7 @@ describe("scalePitches BigInt", () => {
     expect(scalePitches("C", "Minor", 4)).toEqual([60, 62, 63, 65, 67, 68, 70, 72]);
   });
   it("unknown scale throws", () => {
-    expect(() => scalePitches("C", "Chromatic", 4)).toThrow();
+    expect(() => scalePitches("C", "NotAScale", 4)).toThrow();
   });
 });
 

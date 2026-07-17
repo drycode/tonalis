@@ -146,8 +146,9 @@ export function chordPitches(chord: ChordModel | string, octave: number): number
  * 32-bit JS bitwise operator range. All >> and & operations use BigInt.
  */
 export function scalePitches(keyRoot: string, scale: string, octave: number): number[] {
-  const value = Scales[scale];
-  if (value === undefined) throw new Error(`Unknown scale: ${scale}`);
+  const descriptor = Scales[scale];
+  if (descriptor === undefined) throw new Error(`Unknown scale: ${scale}`);
+  const value = descriptor.mask;
 
   const bitLen = bigintBitLength(value);
   const size = Math.floor(bitLen / 3); // e.g. 36 / 3 = 12

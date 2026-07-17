@@ -48,8 +48,11 @@ export {
 export {
   EMPTY_CHORD_ENCODING,
   DIMINISHED_ENCODING,
+  type ScaleDescriptor,
+  NonFunctionalScaleError,
   Scales,
   scaleValue,
+  contains,
   encodingValue,
 } from "./encode.js";
 

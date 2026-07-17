@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 
 import {
   intervalsEqual, intervalSemitones, notesEqual, noteIndex, scaleDegreesEqual,
-  scaleValue, encodingValue, stripLeft, stripRight, semitonesApartAscending,
+  scaleValue, Scales, contains, encodingValue, stripLeft, stripRight, semitonesApartAscending,
   parseChord, serializeChord, chordEncoding,
   fromChordString, fromChord, serializeNumericChord,
   modulate, isDiatonic, harmonicFunctionInKey, chordInKey,
@@ -35,6 +35,7 @@ const OPS: Record<string, (args: any) => unknown> = {
   scale_degrees_equal:       (a) => scaleDegreesEqual(a["a"] as string, a["b"] as string),
   // Encode / helpers ops (Build 2) — bigint layer; convert to number for JSON comparison
   scale_value:               (a) => Number(scaleValue(a["name"] as string)),
+  scale_contains:            (a) => contains(Scales[a["name"] as string]!, a["pitch_class"] as number),
   encoding_value:            (a) => Number(encodingValue(a["triad"] as string, a["seventh"] as string, (a["extensions"] as string[]) ?? [])),
   strip_left:                (a) => Number(stripLeft(BigInt(a["bits"] as number), Number(a["x"]))),
   strip_right:               (a) => Number(stripRight(BigInt(a["bits"] as number), Number(a["x"]))),
@@ -83,7 +84,7 @@ function discover(dir: string): Array<{ relpath: string; case: Case }> {
   return out;
 }
 
-const EXPECTED_CASE_COUNT = 340; // keep in sync with the Python runner's frozen count
+const EXPECTED_CASE_COUNT = 427; // keep in sync with the Python runner's frozen count
 
 const cases = discover(CASES_DIR);
 

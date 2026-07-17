@@ -14,7 +14,7 @@ import {
   Triad,
   HarmonicFunction,
 } from "./chordQuality.js";
-import { Scales, encodingValue } from "./encode.js";
+import { Scales, encodingValue, NonFunctionalScaleError } from "./encode.js";
 import { stripLeft, stripRight, semitonesApartAscending, bigintBitLength } from "./helpers.js";
 import { type ChordModel, type ChordSerialized, parseChord, serializeChord } from "./chord.js";
 import { fromChordString } from "./numericChord.js";
@@ -107,9 +107,19 @@ export function modulate(semitones: number, note: string): string {
  * @param chord  - Parsed ChordModel
  */
 export function isDiatonic(root: string, scale: string, chord: ChordModel): boolean {
-  const scaleValue = Scales[scale];
-  if (scaleValue === undefined) throw new Error(`Unknown scale: ${scale}`);
+  const descriptor = Scales[scale];
+  if (descriptor === undefined) throw new Error(`Unknown scale: ${scale}`);
 
+  // Two-tier model: functional queries are only defined on scales with a tonal
+  // hierarchy. Symmetric/atonal scales refuse here; membership lives in contains().
+  if (!descriptor.supportsDiatonicFunction) {
+    throw new NonFunctionalScaleError(
+      `${descriptor.name} has no diatonic-function model; ` +
+        "use encode.contains() for scale membership instead.",
+    );
+  }
+
+  const scaleValue = descriptor.mask;
   const encoding = computeEncoding(chord);
 
   function getLeastSignificantNotePosition(): number {
