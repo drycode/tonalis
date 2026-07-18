@@ -222,6 +222,8 @@ export const Scales: Readonly<Record<string, ScaleDescriptor>> = {
   // --- Bebop (functional, 8-note; passing tone documented in SPEC) ----------
   BebopDominant: _fn(_scaleMask(0, 2, 4, 5, 7, 9, 10, 11), "Bebop dominant", "bebop"),
   BebopMajor:    _fn(_scaleMask(0, 2, 4, 5, 7, 8, 9, 11), "Bebop major", "bebop"),
+  BebopDorian:   _fn(_scaleMask(0, 2, 3, 4, 5, 7, 9, 10), "Bebop Dorian", "bebop"),
+  BebopMinor:    _fn(_scaleMask(0, 2, 3, 5, 7, 9, 10, 11), "Bebop minor", "bebop"),
 
   // --- Symmetric / atonal (NON-functional: membership only) -----------------
   WholeTone:           _sym(_scaleMask(0, 2, 4, 6, 8, 10), "Whole tone", "symmetric"),

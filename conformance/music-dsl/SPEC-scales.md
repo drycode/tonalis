@@ -67,6 +67,8 @@ Non-functional scales are the symmetric/atonal set (§3). Everything else is fun
 | Blues (minor) | blues | 0 3 5 6 7 10 |
 | Bebop dominant | bebop | 0 2 4 5 7 9 10 11 |
 | Bebop major | bebop | 0 2 4 5 7 8 9 11 |
+| Bebop Dorian | bebop | 0 2 3 4 5 7 9 10 |
+| Bebop minor | bebop | 0 2 3 5 7 9 10 11 |
 
 The bebop scales are the 7-note parent plus one chromatic passing tone (dominant: the major
 7th over Mixolydian; major: the #5 over the major scale).
@@ -81,9 +83,10 @@ The bebop scales are the 7-note parent plus one chromatic passing tone (dominant
 | Augmented | symmetric | 0 3 4 7 8 11 |
 | Chromatic | atonal | 0 1 2 3 4 5 6 7 8 9 10 11 |
 
-## 4. Deferred
+## 4. Bebop minor — both forms named
 
-**Bebop minor / bebop dorian** is intentionally omitted: the literature carries competing
-definitions (Dorian + major-3rd passing tone `0 2 3 4 5 7 9 10` vs Dorian + major-7th
-passing tone `0 2 3 5 7 9 10 11`). It will be added once a single definition is chosen, to
-avoid blessing a disputed set into the contract.
+"Bebop minor" names two different scales in the literature, so both are in the catalog under
+distinct names rather than blessing one as the sole "bebop minor":
+- **Bebop Dorian** — Dorian + a natural-3 passing tone (`0 2 3 4 5 7 9 10`), for the ii−7 chord.
+- **Bebop minor** — Dorian + a natural-7 passing tone (`0 2 3 5 7 9 10 11`), paralleling the
+  bebop dominant's added-note logic.

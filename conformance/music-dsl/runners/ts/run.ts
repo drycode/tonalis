@@ -84,7 +84,7 @@ function discover(dir: string): Array<{ relpath: string; case: Case }> {
   return out;
 }
 
-const EXPECTED_CASE_COUNT = 427; // keep in sync with the Python runner's frozen count
+const EXPECTED_CASE_COUNT = 429; // keep in sync with the Python runner's frozen count
 
 const cases = discover(CASES_DIR);
 

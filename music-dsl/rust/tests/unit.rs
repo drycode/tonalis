@@ -397,8 +397,8 @@ fn is_diatonic_non_functional_scale_is_err() {
 }
 
 #[test]
-fn scale_catalog_has_37_entries() {
-    assert_eq!(music_dsl::SCALES.len(), 37);
+fn scale_catalog_has_39_entries() {
+    assert_eq!(music_dsl::SCALES.len(), 39);
 }
 
 #[test]

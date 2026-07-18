@@ -320,6 +320,26 @@
     }
   },
   {
+    "name": "scale-BebopDorian",
+    "op": "scale_value",
+    "args": {
+      "name": "BebopDorian"
+    },
+    "expect": {
+      "value": 50847378390
+    }
+  },
+  {
+    "name": "scale-BebopMinor",
+    "op": "scale_value",
+    "args": {
+      "name": "BebopMinor"
+    },
+    "expect": {
+      "value": 48716151639
+    }
+  },
+  {
     "name": "scale-WholeTone",
     "op": "scale_value",
     "args": {
