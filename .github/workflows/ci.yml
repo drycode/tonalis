@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  # Python port: the pure language core + its in-package tests + the dsl-core conformance runner.
+  # Python port: the pure language core + its in-package tests + the leadsheet & music-dsl conformance runners.
   python:
     runs-on: ubuntu-latest
     steps:
@@ -29,13 +29,13 @@ jobs:
       - name: Leadsheet unit tests + import-boundary guard
         run: pytest leadsheet/python/tests -q
 
-      - name: dsl-core conformance (Python reference)
-        run: pytest conformance/dsl-core/runners/python -q
+      - name: Leadsheet conformance (Python reference)
+        run: pytest conformance/leadsheet/runners/python -q
 
       - name: MusicDSL conformance (Python reference)
         run: pytest conformance/music-dsl/runners/python -q
 
-  # TypeScript port: units + import-boundary guard + the dsl-core conformance runner.
+  # TypeScript port: units + import-boundary guard + the leadsheet & music-dsl conformance runners.
   node:
     runs-on: ubuntu-latest
     steps:
@@ -58,7 +58,7 @@ jobs:
           npm ci
           npm test
 
-  # Rust port: units + import-boundary guard + the dsl-core conformance gate. The crate is rlib-only
+  # Rust port: units + import-boundary guard + the conformance gate. The crate is rlib-only
   # (no cdylib / wasm-bindgen target), so there is no wasm32 build step.
   rust:
     runs-on: ubuntu-latest
