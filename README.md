@@ -56,9 +56,9 @@ Full docs — concept guides, the scale catalog, and generated per-language API
 references — are built with [mkdocs-material](https://squidfunk.github.io/mkdocs-material/)
 from [`docs/`](docs/) and deploy to **GitHub Pages** (`.github/workflows/docs.yml`).
 
-- **Site (once public):** `https://<org>.github.io/tonalis/` — the URL goes live
-  when this repository is made public; the Pages **deploy** step is gated on that
-  flip, while the docs **build** runs on every push to `main`.
+- **[Documentation site](https://drycode.github.io/tonalis/):** goes live when this
+  repository is made public; the Pages **deploy** step is gated on that flip, while
+  the docs **build** runs on every push to `main`.
 - **Normative specs:** the [lead-sheet SPEC](conformance/leadsheet/SPEC.md) and the
   [scale catalog SPEC](conformance/music-dsl/SPEC-scales.md).
 

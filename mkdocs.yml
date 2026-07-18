@@ -4,9 +4,9 @@ site_description: >-
   three ports (Python reference, TypeScript, Rust) kept in lockstep by a
   differential fuzzer.
 site_author: Tonalis
-# site_url is set once the repo is public and GitHub Pages is live, e.g.
-#   https://<org>.github.io/tonalis/
-# Leave unset until then; the deploy step is gated on the repo being public.
+# Canonical site URL (GitHub Pages project site for drycode/tonalis). The deploy
+# step is gated on the repo being public, so this only serves after the make-public flip.
+site_url: https://drycode.github.io/tonalis/
 
 theme:
   name: material
