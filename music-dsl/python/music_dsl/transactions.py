@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 from functools import cache
-from typing import TYPE_CHECKING, List, Union
+from typing import TYPE_CHECKING, Union
 
 from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.static import (
-    TO_C,
     TWELVE_TONES,
     HarmonicFunctions,
     Notes,
@@ -18,12 +17,6 @@ from music_dsl.helpers import get_index, semitones_apart_ascending
 
 if TYPE_CHECKING:
     from music_dsl.domain.chords.numeric_chord import NumericChord
-
-
-def normalize_to_c(root: Notes, chords: List[Chord]) -> None:
-    semitones = TO_C[root]
-    for chord in chords:
-        chord.root = modulate(semitones, chord.root)
 
 
 @cache

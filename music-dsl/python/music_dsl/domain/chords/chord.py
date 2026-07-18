@@ -31,10 +31,6 @@ class Chord(AbstractChord):
     def root(self) -> Notes:
         return self._root
 
-    @root.setter
-    def root(self, note: Notes):
-        self._root = note
-
     @property
     def encoding(self):
         return self.__encoding__.value
@@ -82,3 +78,9 @@ class Chord(AbstractChord):
 
     def __repr__(self) -> str:
         return f"<Chord {self._chord_str}>"
+
+    def __str__(self) -> str:
+        # Canonical, round-trippable chord string (normalized spelling). __repr__
+        # stays the dev form; str() is the public canonical serialization,
+        # consistent with NumericChord.__str__.
+        return repr(self._chord_attrs)

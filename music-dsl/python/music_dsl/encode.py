@@ -1,8 +1,7 @@
 from collections import namedtuple
 from dataclasses import dataclass
 from enum import Enum
-from functools import cache, reduce
-from typing import List
+from functools import reduce
 
 from music_dsl.domain.static import Extensions, Notes, Seventh, Triad
 from music_dsl.helpers import strip_left, strip_right
@@ -50,7 +49,7 @@ class Encoding:
     """A chord's interval content packed into a CHORD_ENCODING_BIT_LENGTH-bit vector.
 
     The bit layout lets diatonicity be checked with a single bitwise AND against a
-    scale mask (see ``scan_scale`` / ``transactions.is_diatonic``).
+    scale mask (see ``transactions.is_diatonic``).
     """
 
     def __init__(
@@ -111,7 +110,7 @@ class ScaleDescriptor:
     """Everything the library needs to know about a scale.
 
     ``mask`` is the 12-bit pitch-class set repeated 3x (36 bits). The triple copy
-    lets the sliding-window scan in ``scan_scale``/``is_diatonic`` rotate the scale
+    lets the modal scan in ``is_diatonic`` rotate the scale
     to any mode/root without the window falling off the most-significant end.
 
     ``supports_diatonic_function`` drives the two-tier model: membership
@@ -212,21 +211,3 @@ def contains(scale: "Scales", pitch_class: int) -> bool:
     size = mask.bit_length() // 3
     pattern = mask >> (2 * size)  # the leading 12-bit copy
     return bool(pattern >> (size - 1 - (pitch_class % size)) & 1)
-
-
-@cache
-def scan_scale(scale: int, chord: int) -> List[int]:
-    """
-    Returns a list of possible diatonic positions for a chord in a scale.
-    And empty list signals non-diatonicity
-    """
-    scale_size = int.bit_length(scale) // 3
-    chord_bits = strip_right(chord, 7)
-    count = 0
-    result = []
-    for i in range(scale_size):
-        scale_bits = strip_right(strip_left(scale, i), scale_size * 2 - i)
-        if chord_bits & scale_bits == chord_bits:
-            result.append(count)
-        count += 1
-    return result

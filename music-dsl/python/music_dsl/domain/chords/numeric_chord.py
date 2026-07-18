@@ -221,6 +221,12 @@ class NumericChord(AbstractChord):
             )
         )
 
+    def __str__(self) -> str:
+        # Canonical, round-trippable numeric-chord string, consistent with
+        # Chord.__str__. (__repr__ is currently also canonical for internal
+        # serialization reasons; str() is the public contract.)
+        return repr(self)
+
     def __repr__(self):
         numerator = repr(self._chord_attrs)
         if (

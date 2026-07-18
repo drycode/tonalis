@@ -51,13 +51,18 @@ def test_numeric_eq_implies_hash_eq(a_str, b_str):
 # --- repr idempotence (a chord's repr re-parses to the same repr) ----------
 
 @given(st.sampled_from(EXAMPLE_CHORD_STRS))
-def test_chord_canonical_string_round_trips(s):
-    # The canonical serialization (chord_attrs repr, what the codec uses) must
-    # re-parse to itself. NOTE: Chord.__repr__/__str__ is a debug form
-    # ("<Chord Ab^7>") and is intentionally NOT tested here — see the DRY-426
-    # note about the Chord-vs-NumericChord repr inconsistency.
-    canonical = repr(Chord(s)._chord_attrs)
-    assert repr(Chord(canonical)._chord_attrs) == canonical
+def test_chord_str_is_canonical_and_round_trips(s):
+    # str() is the public canonical form (== chord_attrs repr) and re-parses to
+    # itself; __repr__ stays the "<Chord ...>" dev form.
+    c = Chord(s)
+    assert str(c) == repr(c._chord_attrs)
+    assert str(Chord(str(c))) == str(c)
+
+
+@given(st.sampled_from(EXAMPLE_NUMERIC_STRS + EXAMPLE_MULTI_DIM_CHORDS))
+def test_numeric_str_round_trips(s):
+    nc = _numeric(s)
+    assert str(_numeric(str(nc))) == str(nc)
 
 
 @given(st.sampled_from(EXAMPLE_NUMERIC_STRS + EXAMPLE_MULTI_DIM_CHORDS))
