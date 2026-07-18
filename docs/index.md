@@ -8,7 +8,7 @@ shared, language-agnostic test corpus and a three-way differential fuzzer.
 It has two layers:
 
 - **`music_dsl`** — the theory core: notes, intervals, chords, numeric
-  (key-relative) chords, scale degrees, and a 37-scale catalog with a two-tier
+  (key-relative) chords, scale degrees, and a 39-scale catalog with a two-tier
   diatonicity model.
 - **`tonalis`** (leadsheet) — a generic, format-agnostic lead-sheet / chord-chart
   language. Write a harmony chart as plain text and get back a structured
@@ -50,7 +50,7 @@ crate is `rlib`-only (no cdylib / wasm-bindgen target).
 - **AST → text** — a canonical text printer; `parse(serialize(ir)) == ir`
   (modulo source line numbers) is gated by the conformance suite.
 - **Theory model** — notes/intervals/chords/scale degrees, key-relative
-  `NumericChord`s, and a 37-scale catalog with membership vs. functional
+  `NumericChord`s, and a 39-scale catalog with membership vs. functional
   (diatonic) queries cleanly separated.
 
 ## Where to go next
@@ -61,7 +61,7 @@ crate is `rlib`-only (no cdylib / wasm-bindgen target).
   spec.
 - [Theory model](theory.md) — notes, intervals, chords, scale degrees, numeric
   chords.
-- [Scale catalog](scales.md) — the full 37-scale catalog and the two-tier
+- [Scale catalog](scales.md) — the full 39-scale catalog and the two-tier
   diatonicity rules (the flagship reference).
 - [API reference](api.md) — generated per-language API docs.
 

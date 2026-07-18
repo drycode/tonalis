@@ -59,7 +59,7 @@ from, and what harmonic-function analysis reports against.
 ## Keys, scales, and realization
 
 A `Key` is a `(root, scale)` pair. Scales are modeled as bit-masks (see the
-[scale catalog](scales.md) for the representation and the full 37-scale set).
+[scale catalog](scales.md) for the representation and the full 39-scale set).
 Two families of query sit on top:
 
 - **Membership** — `contains(scale, pitch_class)` is defined for **every** scale.
