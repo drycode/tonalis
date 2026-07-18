@@ -10,9 +10,11 @@ file/URL format. Notation-format codecs (e.g. for a specific lead-sheet app) are
 built on top of this core.
 
 The same language is implemented three times — in **Python**, **TypeScript**, and **Rust** — and all
-three pass one shared, language-agnostic conformance suite (255 cases under
+three pass two shared, language-agnostic conformance suites: the **lead-sheet** suite (255 cases under
 [`conformance/leadsheet/`](conformance/leadsheet/), specified in
-[`conformance/leadsheet/SPEC.md`](conformance/leadsheet/SPEC.md)).
+[`conformance/leadsheet/SPEC.md`](conformance/leadsheet/SPEC.md)) and the **music-DSL scale/encode**
+suite (429 cases under [`conformance/music-dsl/`](conformance/music-dsl/), specified in
+[`conformance/music-dsl/SPEC-scales.md`](conformance/music-dsl/SPEC-scales.md)).
 
 ## What it does
 

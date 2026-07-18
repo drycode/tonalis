@@ -18,6 +18,8 @@
     "LICENSE"
   ],
   "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/drycode/tonalis.git", "directory": "leadsheet/ts" },
+  "homepage": "https://github.com/drycode/tonalis#readme",
   "private": false,
   "dependencies": {
     "music_dsl": "file:../../music-dsl/ts"
