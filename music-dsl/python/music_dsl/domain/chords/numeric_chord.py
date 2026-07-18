@@ -213,9 +213,12 @@ class NumericChord(AbstractChord):
         return _new
 
     def __hash__(self) -> int:
-        return self._singleton_key(
-            self._chord_attrs,
-            self.denominator._chord_attrs if self.denominator else None,
+        # _singleton_key is now a string identity; hash it to satisfy __hash__'s int contract.
+        return hash(
+            self._singleton_key(
+                self._chord_attrs,
+                self.denominator._chord_attrs if self.denominator else None,
+            )
         )
 
     def __repr__(self):

@@ -301,11 +301,15 @@ class AbstractChord:
 
     @staticmethod
     def _singleton_key(chord_attrs: ChordAttrs, resolves_to: ChordAttrs = None):
-        return (
-            hash(repr(chord_attrs) + repr(resolves_to))
-            if resolves_to
-            else hash(repr(chord_attrs))
-        )
+        # The instance-cache identity. MUST be the full repr string, NOT hash(...):
+        # Python's str hash is randomized per process and collision-prone, so hashing
+        # collapses distinct chords whose reprs collide into one __instances__ slot,
+        # aliasing them and leaking mutable state (e.g. _denominator) across unrelated
+        # chords. The "/" separator never appears inside a single ChordAttrs repr, so
+        # the string key stays injective for numerator/denominator pairs.
+        if resolves_to:
+            return f"{repr(chord_attrs)}/{repr(resolves_to)}"
+        return repr(chord_attrs)
 
     @classmethod
     def _new(cls, key):
