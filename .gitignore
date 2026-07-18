@@ -31,3 +31,7 @@ target/
 # Docs (mkdocs build output + generated API references)
 site/
 docs/api/
+
+# Coverage
+.coverage
+htmlcov/
