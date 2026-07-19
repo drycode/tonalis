@@ -59,27 +59,10 @@ impl std::error::Error for TransactionError {}
 // Constants
 // ---------------------------------------------------------------------------
 
-/// The 12-tone chromatic scale using flat spellings (indices 0–11).
-pub static TWELVE_TONES: [&str; 12] = [
-    "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B",
-];
-
-/// The 12 scale degrees in flat-major form at chromatic positions 0–11.
-/// Index 0 = I, 1 = bII, 2 = II, … 11 = VII.
-pub static SCALE_DEGREES: [ScaleDegree; 12] = [
-    ScaleDegree::I,
-    ScaleDegree::BII,
-    ScaleDegree::II,
-    ScaleDegree::BIII,
-    ScaleDegree::III,
-    ScaleDegree::IV,
-    ScaleDegree::BV,
-    ScaleDegree::V,
-    ScaleDegree::BVI,
-    ScaleDegree::VI,
-    ScaleDegree::BVII,
-    ScaleDegree::VII,
-];
+// Domain constants live in their domain modules (notes / scale_degree);
+// re-exported here for backward compatibility.
+pub use crate::notes::TWELVE_TONES;
+pub use crate::scale_degree::SCALE_DEGREES;
 
 // ---------------------------------------------------------------------------
 // modulate

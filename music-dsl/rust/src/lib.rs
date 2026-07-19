@@ -34,7 +34,8 @@ pub use notes::Note;
 pub use numeric_chord::{numeric_from_chord, parse_numeric, NumericChordAttrs, NumericChordModel, NumericParseError};
 pub use realize::{chord_pitches, interval_pitches, midi_to_hz, note_to_midi, scale_degree_pitch, scale_pitches};
 pub use scale_degree::ScaleDegree;
-pub use transactions::{chord_in_key, harmonic_function_in_key, is_diatonic, modulate, TransactionError, TWELVE_TONES};
+pub use notes::TWELVE_TONES;
+pub use transactions::{chord_in_key, harmonic_function_in_key, is_diatonic, modulate, TransactionError};
 
 // ---------------------------------------------------------------------------
 // Intervals (13-member int enum, structural ==)

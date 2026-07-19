@@ -7,7 +7,7 @@ use crate::chord::{extension_from_value, get_harmonic_function, parse_chord, sev
 use crate::chord_quality::{HarmonicFunction, Seventh, Triad};
 use crate::helpers::semitones_apart_ascending;
 use crate::scale_degree::ScaleDegree;
-use crate::transactions::SCALE_DEGREES;
+use crate::scale_degree::SCALE_DEGREES;
 use regex::Regex;
 use serde::Serialize;
 use std::sync::OnceLock;

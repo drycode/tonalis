@@ -14,9 +14,12 @@ import {
   Triad,
   HarmonicFunction,
 } from "./chordQuality.js";
-import { Scales, encodingValue, NonFunctionalScaleError } from "./encode.js";
+import { Scales, NonFunctionalScaleError } from "./encode.js";
 import { stripLeft, stripRight, semitonesApartAscending, bigintBitLength } from "./helpers.js";
-import { type ChordModel, type ChordSerialized, parseChord, serializeChord } from "./chord.js";
+import {
+  type ChordModel, type ChordSerialized,
+  parseChord, serializeChord, chordModelEncoding,
+} from "./chord.js";
 import { fromChordString } from "./numericChord.js";
 
 /** True if the string matches a roman numeral pattern (scale degree). */
@@ -27,46 +30,6 @@ function isScaleDegree(value: string): boolean {
 /** Unified get_index (Notes or ScaleDegree), mirrors Python get_index. */
 function getIndex(note: string): number {
   return isScaleDegree(note) ? sdGetIndex(note) : noteIndex(note);
-}
-
-// ---------------------------------------------------------------------------
-// Chord encoding helpers (value → name reverse maps)
-// ---------------------------------------------------------------------------
-
-function triadNameFromValue(value: string): string {
-  const map: Record<string, string> = {
-    "": "Major", "-": "Minor", "h": "HalfDiminished", "o": "Diminished",
-    "+": "Augmented", "sus": "Sus", "sus2": "Sus2", "sus4": "Sus4",
-  };
-  const name = map[value];
-  if (name === undefined) throw new Error(`Unknown triad value: ${value}`);
-  return name;
-}
-
-function seventhNameFromValue(value: string): string {
-  const map: Record<string, string> = { "^7": "Major", "7": "Minor", "": "_None" };
-  const name = map[value];
-  if (name === undefined) throw new Error(`Unknown seventh value: ${value}`);
-  return name;
-}
-
-function extensionNameFromValue(value: string): string {
-  const map: Record<string, string> = {
-    "": "_None", "2": "add2", "3": "add3", "b5": "b5", "5": "add5",
-    "#5": "s5", "b6": "b6", "6": "add6", "b9": "b9", "9": "add9",
-    "#9": "s9", "11": "add11", "#11": "s11", "b13": "b13", "13": "add13", "alt": "alt",
-  };
-  const name = map[value];
-  if (name === undefined) throw new Error(`Unknown extension value: ${value}`);
-  return name;
-}
-
-/** Compute the chord's encoding bigint (mirrors chord.encoding in Python). */
-function computeEncoding(chord: ChordModel): bigint {
-  const triadName = triadNameFromValue(chord.triad);
-  const seventhName = seventhNameFromValue(chord.seventh);
-  const extNames = chord.extensions.map(extensionNameFromValue);
-  return encodingValue(triadName, seventhName, extNames);
 }
 
 // ---------------------------------------------------------------------------
@@ -120,7 +83,7 @@ export function isDiatonic(root: string, scale: string, chord: ChordModel): bool
   }
 
   const scaleValue = descriptor.mask;
-  const encoding = computeEncoding(chord);
+  const encoding = chordModelEncoding(chord);
 
   function getLeastSignificantNotePosition(): number {
     let y = encoding - 1n;

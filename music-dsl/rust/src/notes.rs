@@ -106,3 +106,8 @@ impl Note {
         }
     }
 }
+
+/// The 12-tone chromatic scale using flat spellings (indices 0-11).
+pub static TWELVE_TONES: [&str; 12] = [
+    "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B",
+];

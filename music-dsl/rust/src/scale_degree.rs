@@ -254,3 +254,20 @@ impl ScaleDegree {
         }
     }
 }
+
+/// The 12 scale degrees in flat-major form at chromatic positions 0-11.
+/// Index 0 = I, 1 = bII, 2 = II, ... 11 = VII.
+pub static SCALE_DEGREES: [ScaleDegree; 12] = [
+    ScaleDegree::I,
+    ScaleDegree::BII,
+    ScaleDegree::II,
+    ScaleDegree::BIII,
+    ScaleDegree::III,
+    ScaleDegree::IV,
+    ScaleDegree::BV,
+    ScaleDegree::V,
+    ScaleDegree::BVI,
+    ScaleDegree::VI,
+    ScaleDegree::BVII,
+    ScaleDegree::VII,
+];

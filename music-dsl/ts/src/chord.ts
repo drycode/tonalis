@@ -286,14 +286,23 @@ export function serializeChord(chord: ChordModel): ChordSerialized {
 }
 
 /**
+ * Compute the encoding value for an already-parsed chord model (mirrors
+ * chord.encoding in Python and chord_encoding in Rust). Single source for the
+ * value→name reverse maps — they are derived from the enums above, so new or
+ * renamed members are picked up automatically.
+ */
+export function chordModelEncoding(chord: ChordModel): bigint {
+  const triadName = triadNameFromValue(chord.triad);
+  const seventhName = seventhNameFromValue(chord.seventh);
+  const extNames = chord.extensions.map(extensionNameFromValue);
+  return encodingValue(triadName, seventhName, extNames);
+}
+
+/**
  * Compute the encoding value for a chord string.
  * Parses the chord then delegates to encodingValue (from Build 2).
  * Throws InvalidChordStringError for invalid input.
  */
 export function chordEncoding(rawChord: string): bigint {
-  const chord = parseChord(rawChord); // throws on invalid
-  const triadName = triadNameFromValue(chord.triad);
-  const seventhName = seventhNameFromValue(chord.seventh);
-  const extNames = chord.extensions.map(extensionNameFromValue);
-  return encodingValue(triadName, seventhName, extNames);
+  return chordModelEncoding(parseChord(rawChord)); // throws on invalid
 }
