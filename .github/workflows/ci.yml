@@ -46,16 +46,18 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install + test
+      - name: Install + typecheck + test
         working-directory: leadsheet/ts
         run: |
           npm ci
+          npm run typecheck
           npm test
 
-      - name: MusicDSL TS port + conformance
+      - name: MusicDSL TS port + typecheck + conformance
         working-directory: music-dsl/ts
         run: |
           npm ci
+          npm run typecheck
           npm test
 
   # Rust port: units + import-boundary guard + the conformance gate. The crate is rlib-only
