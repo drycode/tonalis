@@ -36,20 +36,20 @@ Re-exports: `Note`/`TWELVE_TONES`/`noteValue`/`noteFromValue`/`noteToFlat`/`note
 `Note`; `numeric_from_chord`/`parse_numeric`/`NumericChordAttrs`; `chord_pitches`/`interval_pitches`/`midi_to_hz`/`note_to_midi`…;
 `ScaleDegree`; `transactions::{chord_in_key, harmonic_function_in_key, is_diatonic, modulate …}`; plus the `Interval` enum. rlib-only (no cdylib/wasm-bindgen).
 
-## Package: `tonalis` (lead-sheet language — `leadsheet/`)
+## Package: `tonalis` (lead-sheet language — `tonalis/`)
 
-### Python (`leadsheet/python/tonalis/`)
+### Python (`tonalis/python/tonalis/`)
 `__all__`: `parse_dsl`, `lint`, `is_valid_chord`, `serialize`, `ast_to_json`, `ast_from_json`, `to_json`, `from_json`,
 `LeadSheet`, `Cell`, `Measure`, `Section`, `SectionKind`, `Barline`, `LintFinding`, `ParseResult`. CLI: `python -m tonalis`.
 
-### TypeScript (`leadsheet/ts`, package `tonalis`)
+### TypeScript (`tonalis/ts`, package `tonalis`)
 `parseDsl`, `lint`, `isValidChord`, `astToJson`, `serialize` (+ AST types). Zero runtime deps; browser/Node-safe.
 
-### Rust (`leadsheet/rust`, crate `tonalis`)
+### Rust (`tonalis/rust`, crate `tonalis`)
 `parse_dsl`, `lint`, `is_valid_chord`, `serialize_text`, `ast::ast_to_json`. rlib-only.
 
 ## Conformance (`conformance/`)
-Data-driven cross-port suites (`music-dsl/`, `leadsheet/`) + the normative `SPEC.md`, blessed from the
+Data-driven cross-port suites (`music-dsl/`, `tonalis/`) + the normative `SPEC.md`, blessed from the
 Python reference. Runners per language; a Python↔TS↔Rust differential fuzzer under
 `conformance/music-dsl/fuzz/` (`make fuzz` / `make fuzz-seed2`).
 
@@ -62,11 +62,11 @@ Commands run from repo root (`.venv/bin/python`; `PYTHON=.venv/bin/python` for t
 | Suite | Command | Result |
 |-------|---------|--------|
 | music-dsl python | `pytest music-dsl/python/tests` | **360 passed** |
-| leadsheet python | `pytest leadsheet/python/tests` | **97 passed** |
-| conformance python | `pytest conformance/{music-dsl,leadsheet}/runners/python` | **5 passed** |
+| leadsheet python | `pytest tonalis/python/tests` | **97 passed** |
+| conformance python | `pytest conformance/{music-dsl,tonalis}/runners/python` | **5 passed** |
 | music-dsl ts | `npm test` (music-dsl/ts) | **452 passed** |
 | music-dsl ts typecheck | `npx tsc --noEmit` | **clean** |
-| leadsheet ts | `npm test` (leadsheet/ts) | **294 passed** |
+| leadsheet ts | `npm test` (tonalis/ts) | **294 passed** |
 | music-dsl rust | `cargo test` | **49 passed, 0 failed** |
 | leadsheet rust | `cargo test` | **13 passed, 0 failed** |
 | differential fuzzer | `make fuzz` / `make fuzz-seed2` | **502 / 502, 0 divergences** |

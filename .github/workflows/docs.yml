@@ -50,11 +50,11 @@ jobs:
       - name: Install packages for API generation (best-effort)
         run: |
           pip install pdoc
-          pip install -e ./music-dsl/python -e ./leadsheet/python
+          pip install -e ./music-dsl/python -e ./tonalis/python
           npm --prefix music-dsl/ts ci || true
           npm --prefix music-dsl/ts i -D typedoc || true
-          npm --prefix leadsheet/ts ci || true
-          npm --prefix leadsheet/ts i -D typedoc || true
+          npm --prefix tonalis/ts ci || true
+          npm --prefix tonalis/ts i -D typedoc || true
 
       - name: Generate API references
         run: bash docs/build_api.sh

@@ -15,8 +15,8 @@ then serves and the GitHub Pages workflow rebuilds on every deploy:
 | Port | Generator | Output directory | Served path on the built site |
 |------|-----------|------------------|-------------------------------|
 | Python (`music_dsl` + `tonalis`) | [`pdoc`](https://pdoc.dev) | `docs/api/python/` | `api/python/` |
-| TypeScript (`music-dsl/ts` + `leadsheet/ts`) | [`typedoc`](https://typedoc.org) | `docs/api/ts/` | `api/ts/` |
-| Rust (`music-dsl/rust` + `leadsheet/rust`) | `cargo doc --no-deps` | `docs/api/rust/` | `api/rust/` |
+| TypeScript (`music-dsl/ts` + `tonalis/ts`) | [`typedoc`](https://typedoc.org) | `docs/api/ts/` | `api/ts/` |
+| Rust (`music-dsl/rust` + `tonalis/rust`) | `cargo doc --no-deps` | `docs/api/rust/` | `api/rust/` |
 
 !!! note "Generated locally / in CI, not committed"
     The `docs/api/**` trees are git-ignored and are **not** present in a bare

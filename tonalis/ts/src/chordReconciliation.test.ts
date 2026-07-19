@@ -3,8 +3,8 @@ import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { isValidChord } from "./chords.js";
 
-// One shared frozen oracle (leadsheet/fixtures/chord_oracle.json), asserted by Python/TS/Rust alike.
-// From leadsheet/ts/src/ → ../../fixtures/ = leadsheet/fixtures/.
+// One shared frozen oracle (tonalis/fixtures/chord_oracle.json), asserted by Python/TS/Rust alike.
+// From tonalis/ts/src/ → ../../fixtures/ = tonalis/fixtures/.
 const ORACLE: Record<string, boolean> = JSON.parse(
   readFileSync(fileURLToPath(new URL("../../fixtures/chord_oracle.json", import.meta.url)), "utf-8"),
 );

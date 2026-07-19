@@ -1,6 +1,6 @@
 """leadsheet Python reference conformance runner (the pure language).
 
-Discovers every ``conformance/leadsheet/cases/**/*.json``, parses+lints each case's ``dsl`` with the
+Discovers every ``conformance/tonalis/cases/**/*.json``, parses+lints each case's ``dsl`` with the
 ``tonalis`` reference, and asserts per the SPEC.md §0.1 hierarchy:
 
   - ``ast``      OPTIONAL, deep-equal canonical LeadSheet JSON when present
@@ -10,8 +10,8 @@ There is NO ``url`` assertion here — any vendor-format URL is out of scope her
 downstream codec's concern.
 
 Runnable two ways:
-  - standalone: ``python conformance/leadsheet/runners/python/run.py``  (prints PASS/FAIL summary)
-  - via pytest: ``conformance/leadsheet/runners/python/test_run.py`` subprocess-invokes it
+  - standalone: ``python conformance/tonalis/runners/python/run.py``  (prints PASS/FAIL summary)
+  - via pytest: ``conformance/tonalis/runners/python/test_run.py`` subprocess-invokes it
 """
 
 import json
@@ -22,8 +22,8 @@ from tonalis.parser import parse_dsl
 from tonalis.serialize import ast_from_json, ast_to_json
 from tonalis.serialize_text import serialize
 
-# this file: <repo>/conformance/leadsheet/runners/python/run.py
-#   parents[0]=python  parents[1]=runners  parents[2]=leadsheet
+# this file: <repo>/conformance/tonalis/runners/python/run.py
+#   parents[0]=python  parents[1]=runners  parents[2]=tonalis
 CONFORMANCE_DIR = Path(__file__).resolve().parents[2]
 CASES_DIR = CONFORMANCE_DIR / "cases"
 

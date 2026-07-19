@@ -15,8 +15,8 @@ top of this core.
 
 !!! note "Normative reference"
     This page is an orientation. The authoritative contract is the **lead-sheet
-    SPEC** at `conformance/leadsheet/SPEC.md` in the repository, and the
-    machine-checkable case corpus under `conformance/leadsheet/cases/`. Where
+    SPEC** at `conformance/tonalis/SPEC.md` in the repository, and the
+    machine-checkable case corpus under `conformance/tonalis/cases/`. Where
     this prose and the spec disagree, the spec (and the blessed cases generated
     from the Python reference) win.
 

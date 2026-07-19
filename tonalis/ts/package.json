@@ -18,7 +18,7 @@
     "LICENSE"
   ],
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/drycode/tonalis.git", "directory": "leadsheet/ts" },
+  "repository": { "type": "git", "url": "git+https://github.com/drycode/tonalis.git", "directory": "tonalis/ts" },
   "homepage": "https://github.com/drycode/tonalis#readme",
   "private": false,
   "dependencies": {

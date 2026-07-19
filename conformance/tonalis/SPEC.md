@@ -7,7 +7,7 @@ canonical AST, and the findings codes) and produces **no vendor file/URL format*
 into any specific notation-app format (field layout, glyph mapping, target-specific beat rendering)
 is the job of a separate downstream codec built on top of this core, and is out of scope here.
 
-The conformance suite under `conformance/leadsheet/cases/` is the machine-checkable form of this
+The conformance suite under `conformance/tonalis/cases/` is the machine-checkable form of this
 document; where this prose and the suite disagree on a *blessed* value, the suite (generated from
 the Python reference) is the bug report — but no case may be blessed for behavior this document does
 not describe (see §0.2 Anti-circularity).
@@ -17,7 +17,7 @@ A conformant `leadsheet` implementation reads DSL **text** and produces (a) a ca
 conformance artifacts here (§0.1); any downstream vendor-format rendering is out of scope and is
 asserted separately by its own codec suite, if any.
 
-Reference implementation: `leadsheet/python/tonalis/` (`parser.py → ast.py → lint.py`, with
+Reference implementation: `tonalis/python/tonalis/` (`parser.py → ast.py → lint.py`, with
 `serialize.py` for the AST↔JSON projection and `serialize_text.py` for the AST→text printer).
 
 ---
@@ -374,7 +374,7 @@ _SLASH_BASS = ^/[A-G][b#]?$
 > no longer the executable validator. All three reference ports delegate `isValidChord` to the
 > `music_dsl` `Chord` parser (the executable source of truth); where the regex and the parser could
 > disagree, the parser is authoritative. A frozen 952-token reconciliation oracle
-> (`leadsheet/fixtures/chord_oracle.json`) pins their agreement, modulo one blessed token (`C7777`,
+> (`tonalis/fixtures/chord_oracle.json`) pins their agreement, modulo one blessed token (`C7777`,
 > which the old regex wrongly accepted and `music_dsl` correctly rejects).
 
 ### 5.2 Consequences (verified accepted)

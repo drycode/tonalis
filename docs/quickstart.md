@@ -16,15 +16,15 @@ time: 4/4
 | D-7 G7 | C^7 | C^7 | C^7 |
 ```
 
-## Python (`leadsheet/python/`)
+## Python (`tonalis/python/`)
 
 Install (editable), then run the tests:
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -e ./leadsheet/python
-pytest leadsheet/python/tests             # unit tests + import-boundary guard
-pytest conformance/leadsheet/runners/python  # the 255-case conformance suite
+pip install -e ./tonalis/python
+pytest tonalis/python/tests             # unit tests + import-boundary guard
+pytest conformance/tonalis/runners/python  # the 255-case conformance suite
 ```
 
 First runnable example:
@@ -42,10 +42,10 @@ text = serialize(chart)         # canonical text rendering
 A small CLI is included: `python -m tonalis chart.txt` prints lint findings
 (exit 1 if any error).
 
-## TypeScript (`leadsheet/ts/`)
+## TypeScript (`tonalis/ts/`)
 
 ```bash
-cd leadsheet/ts
+cd tonalis/ts
 npm ci
 npm test          # units + import-boundary guard + the conformance suite
 npm run typecheck
@@ -62,10 +62,10 @@ const findings = [...result.findings, ...(result.chart ? lint(result.chart) : []
 
 The TS port has **zero runtime dependencies** and is browser- and Node-safe.
 
-## Rust (`leadsheet/rust/`)
+## Rust (`tonalis/rust/`)
 
 ```bash
-cd leadsheet/rust
+cd tonalis/rust
 cargo test        # units + import-boundary guard + the conformance suite
 ```
 

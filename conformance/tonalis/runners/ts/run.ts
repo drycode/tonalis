@@ -1,7 +1,7 @@
 /**
  * leadsheet TypeScript conformance runner (vitest suite).
  *
- * Discovers every `conformance/leadsheet/cases/**\/*.json`, parses+lints each case's `dsl` with the
+ * Discovers every `conformance/tonalis/cases/**\/*.json`, parses+lints each case's `dsl` with the
  * TS port, and asserts per the SPEC.md §0.1 hierarchy:
  *
  *   - `ast`      OPTIONAL, deep-equal canonical LeadSheet JSON when present
@@ -9,7 +9,7 @@
  *
  * There is NO `url` assertion here — any vendor-format URL is out of scope here; it is a
  * downstream codec's concern. Mirrors the Python runner. Node-only APIs
- * (fs/path/url) are confined to this test harness — the core `leadsheet/ts/src` package stays
+ * (fs/path/url) are confined to this test harness — the core `tonalis/ts/src` package stays
  * browser-safe.
  */
 
@@ -28,7 +28,7 @@ import {
 } from "tonalis";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-// conformance/leadsheet/runners/ts -> conformance/leadsheet/cases
+// conformance/tonalis/runners/ts -> conformance/tonalis/cases
 const CASES_DIR = join(HERE, "..", "..", "cases");
 
 interface ExpectedFinding {

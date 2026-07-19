@@ -320,7 +320,7 @@ def test_music_dsl_does_not_import_tonalis():
     top-level name ``tonalis``.  This is the reverse of ``test_tonalis_imports_only_stdlib_and_self``;
     together they enforce the one-way dependency invariant both ways.
     """
-    # music-dsl lives in a sibling directory one level above leadsheet/python
+    # music-dsl lives in a sibling directory one level above tonalis/python
     music_dsl_pkg = _PYTHON_ROOT.parents[1] / "music-dsl" / "python" / "music_dsl"
     if not music_dsl_pkg.is_dir():
         pytest.skip(

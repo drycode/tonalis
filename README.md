@@ -11,8 +11,8 @@ built on top of this core.
 
 The same language is implemented three times — in **Python**, **TypeScript**, and **Rust** — and all
 three pass two shared, language-agnostic conformance suites: the **lead-sheet** suite (255 cases under
-[`conformance/leadsheet/`](conformance/leadsheet/), specified in
-[`conformance/leadsheet/SPEC.md`](conformance/leadsheet/SPEC.md)) and the **music-DSL scale/encode**
+[`conformance/tonalis/`](conformance/tonalis/), specified in
+[`conformance/tonalis/SPEC.md`](conformance/tonalis/SPEC.md)) and the **music-DSL scale/encode**
 suite (429 cases under [`conformance/music-dsl/`](conformance/music-dsl/), specified in
 [`conformance/music-dsl/SPEC-scales.md`](conformance/music-dsl/SPEC-scales.md)).
 
@@ -48,7 +48,7 @@ beat count. `{ ... }` is a repeat, `1.`/`2.` mark first/second endings, and `@se
 `@tocoda` / `@fine` express navigation. Chord quality uses `-` (minor), `^` (major-7), `o` (dim),
 `h` (half-dim), `+` (aug), `sus`; extensions include `b5 #5 6 b9 9 #9 11 #11 b13 13`; `N.C.` is
 no-chord. The full grammar lives in
-[`leadsheet/python/tonalis/GRAMMAR.md`](leadsheet/python/tonalis/GRAMMAR.md).
+[`tonalis/python/tonalis/GRAMMAR.md`](tonalis/python/tonalis/GRAMMAR.md).
 
 ## Documentation
 
@@ -59,7 +59,7 @@ from [`docs/`](docs/) and deploy to **GitHub Pages** (`.github/workflows/docs.ym
 - **[Documentation site](https://drycode.github.io/tonalis/):** goes live when this
   repository is made public; the Pages **deploy** step is gated on that flip, while
   the docs **build** runs on every push to `main`.
-- **Normative specs:** the [lead-sheet SPEC](conformance/leadsheet/SPEC.md) and the
+- **Normative specs:** the [lead-sheet SPEC](conformance/tonalis/SPEC.md) and the
   [scale catalog SPEC](conformance/music-dsl/SPEC-scales.md).
 
 Build the docs locally:
@@ -73,13 +73,13 @@ mkdocs serve              # or: mkdocs build --strict
 
 ## Ports — install & test
 
-### Python (`leadsheet/python/`)
+### Python (`tonalis/python/`)
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -e ./leadsheet/python
-pytest leadsheet/python/tests             # unit tests + import-boundary guard
-pytest conformance/leadsheet/runners/python  # the 255-case conformance suite
+pip install -e ./tonalis/python
+pytest tonalis/python/tests             # unit tests + import-boundary guard
+pytest conformance/tonalis/runners/python  # the 255-case conformance suite
 ```
 
 ```python
@@ -94,10 +94,10 @@ text = serialize(chart)         # canonical text rendering
 
 A small CLI is included: `python -m tonalis chart.txt` prints lint findings (exit 1 if any error).
 
-### TypeScript (`leadsheet/ts/`)
+### TypeScript (`tonalis/ts/`)
 
 ```bash
-cd leadsheet/ts
+cd tonalis/ts
 npm ci
 npm test          # units + import-boundary guard + the conformance suite
 npm run typecheck
@@ -112,10 +112,10 @@ const findings = [...result.findings, ...(result.chart ? lint(result.chart) : []
 
 The TS port has **zero runtime dependencies** and is browser- and Node-safe.
 
-### Rust (`leadsheet/rust/`)
+### Rust (`tonalis/rust/`)
 
 ```bash
-cd leadsheet/rust
+cd tonalis/rust
 cargo test        # units + import-boundary guard + the conformance suite
 ```
 

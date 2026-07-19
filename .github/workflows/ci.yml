@@ -21,16 +21,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e "./music-dsl/python[dev]"
-          pip install -e ./leadsheet/python pytest
+          pip install -e ./tonalis/python pytest
 
       - name: MusicDSL tests
         run: pytest music-dsl/python/tests -q
 
       - name: Leadsheet unit tests + import-boundary guard
-        run: pytest leadsheet/python/tests -q
+        run: pytest tonalis/python/tests -q
 
       - name: Leadsheet conformance (Python reference)
-        run: pytest conformance/leadsheet/runners/python -q
+        run: pytest conformance/tonalis/runners/python -q
 
       - name: MusicDSL conformance (Python reference)
         run: pytest conformance/music-dsl/runners/python -q
@@ -47,7 +47,7 @@ jobs:
           node-version: "22"
 
       - name: Install + typecheck + test
-        working-directory: leadsheet/ts
+        working-directory: tonalis/ts
         run: |
           npm ci
           npm run typecheck
@@ -71,7 +71,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: cargo test
-        working-directory: leadsheet/rust
+        working-directory: tonalis/rust
         run: cargo test
 
       - name: MusicDSL Rust port + conformance

@@ -1,10 +1,10 @@
 //! leadsheet conformance gate (SPEC.md §0.1). Loads every
-//! `conformance/leadsheet/cases/**/*.json`, parses+lints each `dsl`, and asserts:
+//! `conformance/tonalis/cases/**/*.json`, parses+lints each `dsl`, and asserts:
 //!   - `ast`     — deep-equal to `expect.ast` when present (the canonical §2.1 JSON);
 //!   - `findings`— the SET of `(code, severity, line)` tuples (messages are non-normative).
 //!
 //! There is NO `url` assertion here — any vendor-format URL is out of scope here; it is a downstream codec's concern. The cases tree
-//! is read via a path relative to `CARGO_MANIFEST_DIR` (`leadsheet/rust/` -> `../../conformance/leadsheet/cases`).
+//! is read via a path relative to `CARGO_MANIFEST_DIR` (`tonalis/rust/` -> `../../conformance/tonalis/cases`).
 
 use tonalis::ast::{ast_from_json, ast_to_json, LeadSheet};
 use tonalis::{lint, parse_dsl, serialize_text};
@@ -27,13 +27,13 @@ fn norm(mut chart: LeadSheet) -> LeadSheet {
 }
 
 fn cases_dir() -> PathBuf {
-    // after leadsheet/ restructure: `leadsheet/rust/` -> two `..` -> repo root -> `conformance/`.
+    // after the tonalis/ restructure: `tonalis/rust/` -> two `..` -> repo root -> `conformance/`.
     // Before: `rust/` and `conformance/` were siblings (one `..`).
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("..")
         .join("..")
         .join("conformance")
-        .join("leadsheet")
+        .join("tonalis")
         .join("cases")
 }
 

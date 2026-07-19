@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://tonalis/conformance/leadsheet/case.schema.json",
+  "$id": "https://tonalis/conformance/tonalis/case.schema.json",
   "title": "leadsheet conformance case",
-  "description": "A single language-agnostic conformance case for the pure lead-sheet language. The runner parses+lints `dsl` and asserts `ast`/`findings`. Format-agnostic: there is NO `url`. See conformance/leadsheet/SPEC.md for the assertion hierarchy.",
+  "description": "A single language-agnostic conformance case for the pure lead-sheet language. The runner parses+lints `dsl` and asserts `ast`/`findings`. Format-agnostic: there is NO `url`. See conformance/tonalis/SPEC.md for the assertion hierarchy.",
   "type": "object",
   "additionalProperties": false,
   "required": ["name", "tags", "dsl", "expect"],

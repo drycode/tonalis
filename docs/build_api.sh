@@ -9,8 +9,8 @@
 #
 # Output (all git-ignored, see .gitignore):
 #   docs/api/python/  <- pdoc  (music_dsl + tonalis)
-#   docs/api/ts/      <- typedoc (music-dsl/ts + leadsheet/ts)
-#   docs/api/rust/    <- cargo doc --no-deps (music-dsl/rust + leadsheet/rust)
+#   docs/api/ts/      <- typedoc (music-dsl/ts + tonalis/ts)
+#   docs/api/rust/    <- cargo doc --no-deps (music-dsl/rust + tonalis/rust)
 #
 # Usage:  bash docs/build_api.sh   (run from anywhere; paths are repo-relative)
 set -euo pipefail
@@ -44,7 +44,7 @@ if command -v pdoc >/dev/null 2>&1; then
   if pdoc -o "$API/python" music_dsl tonalis 2>/dev/null; then
     echo "  -> docs/api/python/"
   else
-    placeholder "$API/python" "Python" "pdoc ran but the packages are not importable (pip install -e ./music-dsl/python ./leadsheet/python)"
+    placeholder "$API/python" "Python" "pdoc ran but the packages are not importable (pip install -e ./music-dsl/python ./tonalis/python)"
   fi
 else
   placeholder "$API/python" "Python" "pdoc not installed (pip install pdoc)"
@@ -64,7 +64,7 @@ if command -v npx >/dev/null 2>&1 || [ -d "$ROOT/music-dsl/ts/node_modules" ]; t
   mkdir -p "$API/ts"
   ok=0
   gen_ts "music-dsl/ts" "music-dsl" && ok=1 || true
-  gen_ts "leadsheet/ts" "leadsheet" && ok=1 || true
+  gen_ts "tonalis/ts" "tonalis" && ok=1 || true
   if [ "$ok" -eq 0 ]; then
     placeholder "$API/ts" "TypeScript" "typedoc unavailable (cd music-dsl/ts && npm ci; npm i -D typedoc)"
   else
@@ -74,7 +74,7 @@ if command -v npx >/dev/null 2>&1 || [ -d "$ROOT/music-dsl/ts/node_modules" ]; t
 <h1>TypeScript API reference</h1>
 <ul>
   <li><a href="music-dsl/index.html">music-dsl</a> — theory core</li>
-  <li><a href="leadsheet/index.html">leadsheet (tonalis)</a> — lead-sheet language</li>
+  <li><a href="tonalis/index.html">leadsheet (tonalis)</a> — lead-sheet language</li>
 </ul>
 HTML
   fi
@@ -93,7 +93,7 @@ if command -v cargo >/dev/null 2>&1; then
   # cargo doc emits into <target>/doc; we point each crate at a scratch target and
   # then copy the rendered doc/ trees together under docs/api/rust/.
   ok=0
-  for crate in music-dsl/rust leadsheet/rust; do
+  for crate in music-dsl/rust tonalis/rust; do
     if gen_rust "$crate"; then
       name="$(basename "$(dirname "$ROOT/$crate")")-$(basename "$crate")"
       # Copy the generated doc tree (crate-name subdirs live inside doc/).

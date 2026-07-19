@@ -1,7 +1,7 @@
 """Pytest wrapper: subprocess-invoke the leadsheet conformance runner and assert exit 0.
 
 Keeps the leadsheet conformance suite (95 cases, ast/findings) gated by local ``pytest`` and CI.
-The runner (``run.py``) loads ``conformance/leadsheet/cases/`` and asserts against the ``tonalis``
+The runner (``run.py``) loads ``conformance/tonalis/cases/`` and asserts against the ``tonalis``
 reference; this wrapper just runs it and surfaces its output on failure.
 """
 
@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 RUN_PY = Path(__file__).resolve().parent / "run.py"
-# runner: <repo>/conformance/leadsheet/runners/python/run.py  ->  cases at parents[2]/cases
+# runner: <repo>/conformance/tonalis/runners/python/run.py  ->  cases at parents[2]/cases
 _CASES_DIR = Path(__file__).resolve().parents[2] / "cases"
 
 # Ledger M2/M3: the leadsheet conformance corpus is frozen at this many cases. A silently-dropped

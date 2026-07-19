@@ -1,5 +1,5 @@
 //! Frozen reconciliation: the music_dsl-backed validator must agree with the shared oracle
-//! (leadsheet/fixtures/chord_oracle.json) for every corpus token, except the blessed {C7777}.
+//! (tonalis/fixtures/chord_oracle.json) for every corpus token, except the blessed {C7777}.
 //! Same ground truth the Python + TS ports assert against.
 
 use std::collections::HashMap;
@@ -9,7 +9,7 @@ use std::path::PathBuf;
 use tonalis::is_valid_chord;
 
 fn oracle() -> HashMap<String, bool> {
-    // From leadsheet/rust/ (CARGO_MANIFEST_DIR) → ../fixtures/ = leadsheet/fixtures/.
+    // From tonalis/rust/ (CARGO_MANIFEST_DIR) → ../fixtures/ = tonalis/fixtures/.
     let path = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../fixtures/chord_oracle.json");
     let raw = fs::read_to_string(&path).expect("read shared chord_oracle.json");
     serde_json::from_str(&raw).expect("parse chord_oracle.json")

@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://tonalis/conformance/music-dsl/case.schema.json",
   "title": "music-dsl conformance case",
-  "description": "A single language-agnostic conformance case for the music_dsl theory library. Op-dispatched: the runner calls OPS[op](**args) and asserts `expect`. Mirrors conformance/leadsheet/schema. Function ops assert expect.value; model ops assert expect.model; error ops assert expect.error.",
+  "description": "A single language-agnostic conformance case for the music_dsl theory library. Op-dispatched: the runner calls OPS[op](**args) and asserts `expect`. Mirrors conformance/tonalis/schema. Function ops assert expect.value; model ops assert expect.model; error ops assert expect.error.",
   "type": "object",
   "additionalProperties": false,
   "required": ["name", "op", "args", "expect"],
