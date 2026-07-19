@@ -3,7 +3,7 @@
 Pure music-theory domain library: notes, intervals, scale degrees, chord
 qualities, scales, and chord encoding. Zero runtime dependencies. This is the
 Python reference implementation; TypeScript (`@tonalis/music-dsl` on npm) and
-Rust (`music-dsl` on crates.io) ports conform to the same spec and a shared
+Rust (`tonalis-music-dsl` on crates.io) ports conform to the same spec and a shared
 429-case conformance suite plus a seeded three-way differential fuzzer.
 
 `music-dsl` is the theory core underneath [`tonalis`](https://pypi.org/project/tonalis/),
@@ -12,7 +12,7 @@ the format-agnostic lead-sheet DSL, and is fully usable on its own.
 ## Install
 
 ```bash
-pip install music-dsl
+pip install tonalis-music-dsl
 ```
 
 ## Use
@@ -30,7 +30,7 @@ print(chord.encoding)      # canonical numeric chord encoding
 ```
 
 The import name is `music_dsl` (underscore); the distribution name is
-`music-dsl` (hyphen).
+`tonalis-music-dsl`.
 
 ## Links
 

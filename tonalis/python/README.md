@@ -7,7 +7,7 @@ TypeScript (`tonalis` on npm) and Rust (`tonalis` on crates.io) ports conform
 to the same normative spec and a shared 255-case conformance suite.
 
 Music-theory questions (chord validity, scales, keys) are delegated to the
-pure [`music-dsl`](https://pypi.org/project/music-dsl/) theory library.
+pure [`tonalis-music-dsl`](https://pypi.org/project/tonalis-music-dsl/) theory library.
 
 ## Install
 

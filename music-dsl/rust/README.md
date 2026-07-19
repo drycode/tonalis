@@ -6,7 +6,7 @@ Python `music-dsl` reference implementation — all three ports (Python /
 TypeScript / Rust) conform to the same spec via a shared 429-case conformance
 suite plus a seeded three-way differential fuzzer.
 
-The crate is named `music-dsl`; the library target (import path) is
+The crate is named `tonalis-music-dsl`; the library target (import path) is
 `music_dsl`. It is the theory core underneath the
 [`tonalis`](https://crates.io/crates/tonalis) lead-sheet DSL crate and is fully
 usable on its own.
@@ -14,7 +14,7 @@ usable on its own.
 ## Install
 
 ```bash
-cargo add music-dsl
+cargo add tonalis-music-dsl
 ```
 
 ## Use

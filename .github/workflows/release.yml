@@ -1,11 +1,11 @@
 name: release
 
-# Publishes the six artifacts — music-dsl (npm: @tonalis/music-dsl) + tonalis, each to PyPI / npm / crates.io —
+# Publishes the six artifacts — the theory lib (PyPI/crates: tonalis-music-dsl, npm: @tonalis/music-dsl) + tonalis, each to PyPI / npm / crates.io —
 # via OIDC trusted publishing. No stored tokens: each job mints a short-lived,
 # workflow-scoped credential from the registry.
 #
 # Prerequisites (one-time, human, in each registry UI) BEFORE the first tag:
-#   - PyPI:      configure a Trusted Publisher for music-dsl and for tonalis
+#   - PyPI:      configure a Trusted Publisher for tonalis-music-dsl and for tonalis
 #                (owner=drycode, repo=tonalis, workflow=release.yml).
 #   - npm:       configure a Trusted Publisher for each package (same coordinates).
 #   - crates.io: configure a Trusted Publisher for each crate (same coordinates).

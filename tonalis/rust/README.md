@@ -7,7 +7,7 @@ the Python reference and the TypeScript port via a shared 255-case conformance
 suite.
 
 Music-theory questions (chord validity, scales, keys) are delegated to the
-pure [`music-dsl`](https://crates.io/crates/music-dsl) theory crate — the
+pure [`tonalis-music-dsl`](https://crates.io/crates/tonalis-music-dsl) theory crate — the
 package's only dependency.
 
 ## Install
