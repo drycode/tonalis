@@ -35,6 +35,8 @@ class Notes(JsonSerializableEnum):
         return self.to_flat()
 
     def __eq__(self, other):
+        if not isinstance(other, Notes):
+            return NotImplemented  # note == None / str / ScaleDegree → False, not a crash
         enharmonic = _SHARPS_TO_FLATS.get(other.value) or _FLATS_TO_SHARPS.get(
             other.value
         )

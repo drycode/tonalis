@@ -109,6 +109,8 @@ class ScaleDegree(JsonSerializableEnum):
         return self
 
     def __eq__(self, other):
+        if not isinstance(other, ScaleDegree):
+            return NotImplemented  # sd == None / str / Notes → False, not a crash
         enharmonic = _SHARPS_TO_FLATS.get(
             other.value
         ) or _FLATS_TO_SHARPS.get(other.value)

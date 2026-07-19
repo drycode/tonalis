@@ -212,14 +212,23 @@ class NumericChord(AbstractChord):
         _new._denominator = cls._new(super()._singleton_key(chord_attrs))
         return _new
 
-    def __hash__(self) -> int:
-        # _singleton_key is now a string identity; hash it to satisfy __hash__'s int contract.
-        return hash(
-            self._singleton_key(
-                self._chord_attrs,
-                self.denominator._chord_attrs if self.denominator else None,
-            )
+    def _identity(self):
+        # Base identity + the slash denominator's enharmonically-normalized root.
+        # A tonic-degree denominator contributes None: X/I is canonically X
+        # (repr already renders it that way), so eq/hash must quotient it out
+        # the same way — one shared tuple keeps the relation symmetric,
+        # transitive, and hash-consistent. The old local __eq__/__hash__ pair
+        # ignored the denominator whenever the LEFT side's was I-or-missing
+        # (X/V == X, and X/I == X/V one-directionally) while hashing the full
+        # repr key — unsatisfiable contract, caught by the DRY-426 invariants.
+        denominator_root = (
+            self.denominator.root.to_flat()
+            if hasattr(self, "_denominator")
+            and self.denominator
+            and self.denominator.root.to_major() != ScaleDegree.I
+            else None
         )
+        return super()._identity() + (denominator_root,)
 
     def __str__(self) -> str:
         # Canonical, round-trippable numeric-chord string, consistent with
@@ -238,15 +247,6 @@ class NumericChord(AbstractChord):
             return numerator + denominator
 
         return numerator
-
-    def __eq__(self, __o: object) -> bool:
-        if (
-            self.denominator
-            and self.denominator.root.to_major() != ScaleDegree.I
-            and __o.denominator
-        ):
-            return super().__eq__(__o) and self.denominator.root == __o.denominator.root
-        return super().__eq__(__o)
 
     def in_key(self, key_root):
         """Realize this numeral into an absolute Chord in the given key.
