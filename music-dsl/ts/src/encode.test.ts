@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { scaleValue, encodingValue, stripRight, stripLeft, semitonesApartAscending } from "./index";
+import { scaleValue, encodingValue, stripRight, stripLeft, semitonesApartAscending } from "./index.js";
 
 describe("encode (BigInt layer)", () => {
   it("Scales constants are the 36-bit reference integers", () => {

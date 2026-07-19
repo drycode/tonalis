@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { notesEqual, noteIndex, noteToFlat, noteValue } from "./index";
+import { notesEqual, noteIndex, noteToFlat, noteValue } from "./index.js";
 
 describe("Notes", () => {
   it("enharmonic equality (C# == Db), distinct otherwise", () => {

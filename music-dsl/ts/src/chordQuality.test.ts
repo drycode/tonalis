@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { Triad, Seventh, Extensions } from "./index";
+import { Triad, Seventh, Extensions } from "./index.js";
 
 describe("chord-quality enum values (verbatim from reference)", () => {
   it("Triad.Major is the empty string; sus variants present", () => {

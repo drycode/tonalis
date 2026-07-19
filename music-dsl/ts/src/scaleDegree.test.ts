@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { scaleDegreesEqual } from "./index";
+import { scaleDegreesEqual } from "./index.js";
 
 describe("ScaleDegree", () => {
   it("enharmonic degree equality (#iv == bv), major/minor distinct", () => {

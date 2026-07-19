@@ -98,7 +98,8 @@ A small CLI is included: `python -m tonalis chart.txt` prints lint findings (exi
 ### TypeScript (`tonalis/ts/`)
 
 ```bash
-cd tonalis/ts
+cd music-dsl/ts && npm ci && npm run build   # theory lib first: tonalis resolves
+cd ../../tonalis/ts                          # @tonalis/music-dsl against its dist/
 npm ci
 npm test          # units + import-boundary guard + the conformance suite
 npm run typecheck

@@ -46,15 +46,19 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install + typecheck + test
-        working-directory: tonalis/ts
+      # music-dsl first: tonalis/ts resolves @tonalis/music-dsl via its file: link,
+      # whose exports point at dist/ — the theory lib must be built before the
+      # dependent package can typecheck or test.
+      - name: MusicDSL TS port + typecheck + build + conformance
+        working-directory: music-dsl/ts
         run: |
           npm ci
           npm run typecheck
+          npm run build
           npm test
 
-      - name: MusicDSL TS port + typecheck + conformance
-        working-directory: music-dsl/ts
+      - name: Install + typecheck + test
+        working-directory: tonalis/ts
         run: |
           npm ci
           npm run typecheck

@@ -75,6 +75,8 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
       - run: npm install -g npm@latest   # trusted publishing needs npm >= 11.5.1
+      - run: npm ci                      # prepack compiles dist/ and needs devDeps
+        working-directory: music-dsl/ts
       - run: npm publish --access public
         working-directory: music-dsl/ts
 
@@ -90,6 +92,12 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
       - run: npm install -g npm@latest
+      # prepack compiles tonalis against its file:-linked dep, so build the theory
+      # lib first, then install tonalis's own devDeps.
+      - run: npm ci && npm run build
+        working-directory: music-dsl/ts
+      - run: npm ci
+        working-directory: tonalis/ts
       # Approach A: the repo keeps a local `file:` link to @tonalis/music-dsl for monorepo dev;
       # rewrite it to the published version range only in the publish artifact.
       - run: npm pkg set 'dependencies[@tonalis/music-dsl]=^0.1.0'
