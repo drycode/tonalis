@@ -17,13 +17,13 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   resolve: {
     alias: {
-      music_dsl: join(HERE, "../../../music-dsl/ts/src/index.ts"),
+      "@tonalis/music-dsl": join(HERE, "../../../music-dsl/ts/src/index.ts"),
     },
   },
   test: {
     include: [join(HERE, "ts_diff.test.ts")],
     alias: {
-      music_dsl: join(HERE, "../../../music-dsl/ts/src/index.ts"),
+      "@tonalis/music-dsl": join(HERE, "../../../music-dsl/ts/src/index.ts"),
     },
   },
 });

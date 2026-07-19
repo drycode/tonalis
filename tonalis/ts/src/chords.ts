@@ -10,7 +10,7 @@
  *
  * One-way dependency rule (Phase 1/3): leadsheet -> music_dsl; music_dsl must never import leadsheet.
  */
-import { parseChord, InvalidChordStringError } from "music_dsl";
+import { parseChord, InvalidChordStringError } from "@tonalis/music-dsl";
 
 const SLASH_BASS = /^\/[A-G][b#]?$/; // standalone bass continuation, e.g. /A
 

@@ -8,7 +8,7 @@ export default defineConfig({
       "../../conformance/music-dsl/runners/ts/run.ts",
     ],
     alias: {
-      music_dsl: fileURLToPath(new URL("./src/index.ts", import.meta.url)),
+      "@tonalis/music-dsl": fileURLToPath(new URL("./src/index.ts", import.meta.url)),
     },
   },
 });

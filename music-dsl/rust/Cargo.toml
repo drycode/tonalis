@@ -1,5 +1,5 @@
 [package]
-name = "music_dsl"
+name = "music-dsl"
 version = "0.1.0"
 edition = "2021"
 description = "MusicDSL — music-theory domain (notes, intervals, scale-degrees, chords, encoding). Port of the Python music_dsl reference."
@@ -7,6 +7,7 @@ license = "MIT"
 repository = "https://github.com/drycode/tonalis"
 
 [lib]
+name = "music_dsl"
 crate-type = ["rlib"]
 
 [[bin]]

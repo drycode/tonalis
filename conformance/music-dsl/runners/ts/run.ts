@@ -18,7 +18,7 @@ import {
   IncorrectHarmonicFunctionError, InvalidChordStringError,
   noteToMidi, midiToHz, intervalPitches, chordPitches, scalePitches, scaleDegreePitch,
   parseMeasure, serializeMeasure,
-} from "music_dsl";
+} from "@tonalis/music-dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const CASES_DIR = join(HERE, "..", "..", "cases");

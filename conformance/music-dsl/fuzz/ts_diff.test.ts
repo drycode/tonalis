@@ -38,7 +38,7 @@ import {
   harmonicFunctionInKey,
   Scales,
   contains,
-} from "music_dsl";
+} from "@tonalis/music-dsl";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 

@@ -11,7 +11,7 @@ license = { file = "LICENSE" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
-dependencies = ["music_dsl==0.1.0"]
+dependencies = ["music-dsl==0.1.0"]
 
 [project.urls]
 Homepage = "https://github.com/drycode/tonalis"

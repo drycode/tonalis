@@ -1,5 +1,5 @@
 {
-  "name": "music_dsl",
+  "name": "@tonalis/music-dsl",
   "version": "0.1.0",
   "description": "MusicDSL — music-theory domain (notes, intervals, scale-degrees, chords, encoding). Port of the Python music_dsl reference. Zero runtime deps.",
   "type": "module",

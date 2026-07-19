@@ -56,7 +56,7 @@ const ALLOWED_BARE = new Set<string>(["vitest"]); // test runner only; allowed i
 // Phase 3: the one-way leadsheet → music_dsl theory-lib dependency. Unlike vitest (a dev-only
 // test dep), this is a PRODUCTION runtime dep — allowed from any file (incl. chords.ts), so it is
 // NOT gated on isTest. Exact-membership one-entry set: not a blanket bare-import pass.
-const ALLOWED_RUNTIME_DEP = new Set<string>(["music_dsl"]);
+const ALLOWED_RUNTIME_DEP = new Set<string>(["@tonalis/music-dsl"]);
 
 /**
  * Classify one specifier from a file. Returns a violation string, or null if allowed.
@@ -78,7 +78,7 @@ function classify(spec: string, fileAbsPath: string, isTest: boolean): string | 
   // bare specifier (a package).
   if (ALLOWED_RUNTIME_DEP.has(spec)) return null; // production runtime dep, allowed in any file
   if (isTest && ALLOWED_BARE.has(spec)) return null; // vitest: dev test dep, test files only
-  return `bare package import "${spec}" is forbidden (only music_dsl runtime + vitest in tests)`;
+  return `bare package import "${spec}" is forbidden (only the @tonalis/music-dsl runtime dep + vitest in tests)`;
 }
 
 describe("tonalis/ts import boundary", () => {
@@ -126,7 +126,7 @@ describe("tonalis/ts import boundary", () => {
   });
   it("ALLOWS the music_dsl runtime dep from production source", () => {
     const fake = join(SRC_ROOT, "chords.ts");
-    expect(classify("music_dsl", fake, false)).toBeNull();
+    expect(classify("@tonalis/music-dsl", fake, false)).toBeNull();
   });
   it("still flags an unapproved bare dep from production source", () => {
     const fake = join(SRC_ROOT, "chords.ts");

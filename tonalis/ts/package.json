@@ -22,7 +22,7 @@
   "homepage": "https://github.com/drycode/tonalis#readme",
   "private": false,
   "dependencies": {
-    "music_dsl": "file:../../music-dsl/ts"
+    "@tonalis/music-dsl": "file:../../music-dsl/ts"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
