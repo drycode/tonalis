@@ -77,7 +77,8 @@ mkdocs serve              # or: mkdocs build --strict
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -e ./tonalis/python
+pip install -e "./music-dsl/python[dev]"   # theory library first: tonalis depends on
+pip install -e ./tonalis/python            # music-dsl, which isn't on PyPI until publish
 pytest tonalis/python/tests             # unit tests + import-boundary guard
 pytest conformance/tonalis/runners/python  # the 255-case conformance suite
 ```
@@ -110,7 +111,9 @@ const result = parseDsl(text);
 const findings = [...result.findings, ...(result.chart ? lint(result.chart) : [])];
 ```
 
-The TS port has **zero runtime dependencies** and is browser- and Node-safe.
+The TS port's only runtime dependency is `@tonalis/music-dsl` (linked in-repo via
+`file:`, so `npm ci` needs no registry access; the publish workflow rewrites it to
+the published version range).
 
 ### Rust (`tonalis/rust/`)
 
