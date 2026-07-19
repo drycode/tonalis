@@ -7,6 +7,7 @@ name = "music-dsl"
 version = "0.1.0"
 description = "Music-theory domain: notes, chords, intervals, scales, harmonic function."
 requires-python = ">=3.11"
+readme = "README.md"
 license = { file = "LICENSE" }
 classifiers = ["License :: OSI Approved :: MIT License"]
 dependencies = [

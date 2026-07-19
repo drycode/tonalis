@@ -95,6 +95,11 @@ text = serialize(chart)         # canonical text rendering
 
 A small CLI is included: `python -m tonalis chart.txt` prints lint findings (exit 1 if any error).
 
+> Note: with your shell **at the repo root**, a bare `python -c "import tonalis"`
+> picks up the `tonalis/` source directory (a namespace portion) instead of the
+> installed package — run Python from any other directory (or via `pytest`,
+> which is unaffected).
+
 ### TypeScript (`tonalis/ts/`)
 
 ```bash

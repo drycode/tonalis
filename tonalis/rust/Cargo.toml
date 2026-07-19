@@ -3,6 +3,7 @@ name = "tonalis"
 version = "0.1.0"
 edition = "2021"
 description = "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text)."
+readme = "README.md"
 license = "MIT"
 repository = "https://github.com/drycode/tonalis"
 

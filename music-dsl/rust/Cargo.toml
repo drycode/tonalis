@@ -3,6 +3,7 @@ name = "music-dsl"
 version = "0.1.0"
 edition = "2021"
 description = "MusicDSL — music-theory domain (notes, intervals, scale-degrees, chords, encoding). Port of the Python music_dsl reference."
+readme = "README.md"
 license = "MIT"
 repository = "https://github.com/drycode/tonalis"
 
