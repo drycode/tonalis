@@ -35,3 +35,4 @@ docs/api/
 # Coverage
 .coverage
 htmlcov/
+handoff-*.md

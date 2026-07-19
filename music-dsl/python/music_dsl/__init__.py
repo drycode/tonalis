@@ -11,3 +11,7 @@ class Key:
 
 
 __version__ = "0.1.0"
+
+# The thin top-level surface (Key/Notes/Scales) is intentional: deeper theory is
+# submodule-scoped (see API-SURFACE.md). __all__ keeps `import *` to exactly this.
+__all__ = ["Key", "Notes", "Scales", "__version__"]
