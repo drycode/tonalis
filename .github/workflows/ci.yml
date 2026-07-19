@@ -35,6 +35,14 @@ jobs:
       - name: MusicDSL conformance (Python reference)
         run: pytest conformance/music-dsl/runners/python -q
 
+      # Informational coverage signal (not a gate). Uses the pytest binary, not
+      # `python -m pytest` — the latter puts the repo root on sys.path[0], where
+      # the tonalis/ source dir shadows the installed package.
+      - name: Coverage report (informational)
+        run: |
+          pip install pytest-cov
+          pytest music-dsl/python/tests tonalis/python/tests -q --cov=music_dsl --cov=tonalis --cov-report=term
+
   # TypeScript port: units + import-boundary guard + the leadsheet & music-dsl conformance runners.
   node:
     runs-on: ubuntu-latest

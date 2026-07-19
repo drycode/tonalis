@@ -14,7 +14,7 @@ from tonalis.ast import Barline, Cell, LeadSheet, Measure, Section, SectionKind
 from tonalis.parser import parse_dsl
 from tonalis.serialize import ast_from_json, ast_to_json
 
-FIX = Path(__file__).parent / "fixtures"
+FIX = Path(__file__).parents[1] / "fixtures"
 GOLDENS = sorted(FIX.glob("*.dsl"))
 
 

@@ -11,7 +11,7 @@ import pytest
 from tonalis.parser import parse_dsl
 from tonalis.serialize_text import serialize
 
-FIX = Path(__file__).parent / "fixtures"
+FIX = Path(__file__).parents[1] / "fixtures"
 GOLDENS = sorted(FIX.glob("*.dsl"))
 
 

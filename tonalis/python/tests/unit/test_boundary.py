@@ -31,7 +31,7 @@ from pathlib import Path
 import pytest
 
 # package root: <root>/python/tests/test_boundary.py -> parents[1] = <root>/python
-_PYTHON_ROOT = Path(__file__).resolve().parents[1]
+_PYTHON_ROOT = Path(__file__).resolve().parents[2]
 _STDLIB = set(sys.stdlib_module_names)
 
 # Top-level import names allowed beyond stdlib for the language runtime.

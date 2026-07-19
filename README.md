@@ -71,6 +71,22 @@ bash docs/build_api.sh    # optional: generate the API references (needs pdoc/ty
 mkdocs serve              # or: mkdocs build --strict
 ```
 
+## Test conventions
+
+Where a new test goes, per port:
+
+- **Python**: unit tests under `<pkg>/python/tests/unit/` (music-dsl further
+  nests by domain); shared fixtures in `tests/fixtures/`; conformance runners
+  live under `conformance/<pkg>/runners/python`.
+- **TypeScript**: colocated `src/*.test.ts` next to the module under test.
+- **Rust**: integration files in `<pkg>/rust/tests/` (`unit.rs`,
+  `conformance.rs`, plus focused files like `two_tier.rs`).
+
+The shared conformance corpora (`conformance/{music-dsl,tonalis}/cases/`) gate
+all three ports; the seeded differential fuzzer covers the music-dsl surface
+(the tonalis parser is corpus-gated only — its input space is line-oriented and
+the 255-case corpus plus port-identical conformance keeps divergence bounded).
+
 ## Ports — install & test
 
 ### Python (`tonalis/python/`)
