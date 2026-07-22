@@ -1,9 +1,11 @@
 # Quickstart
 
-Tonalis is implemented three times. Pick the port that fits your stack — all
-three expose the same public surface and pass the same conformance suite.
+Tonalis is implemented three times — a **Python** reference, a **TypeScript** port,
+and a **Rust** port. All three expose the same public surface and pass the same
+conformance suite, so pick the one that fits your stack. Choose a tab below; your
+choice follows you across every code block on the site.
 
-Every example below parses this chart:
+Every example parses this chart (save it as `chart.txt`):
 
 ```
 title: All The Things You Are
@@ -16,76 +18,110 @@ time: 4/4
 | D-7 G7 | C^7 | C^7 | C^7 |
 ```
 
-## Python (`tonalis/python/`)
+## Install & first parse
 
-Install (editable), then run the tests:
+=== "Python"
 
-```bash
-python -m venv .venv && source .venv/bin/activate
-pip install -e ./tonalis/python
-pytest tonalis/python/tests             # unit tests + import-boundary guard
-pytest conformance/tonalis/runners/python  # the 255-case conformance suite
-```
+    ```bash
+    pip install tonalis        # pulls in the music-dsl theory core
+    ```
 
-First runnable example:
+    ```python
+    from tonalis import parse_dsl, lint, serialize, to_json
 
-```python
-from tonalis import parse_dsl, lint, serialize, to_json
+    result = parse_dsl(open("chart.txt").read())
+    findings = list(result.findings) + (lint(result.chart) if result.chart else [])
 
-result = parse_dsl(open("chart.txt").read())
-findings = list(result.findings) + (lint(result.chart) if result.chart else [])
-chart = result.chart            # a LeadSheet AST
-json_obj = to_json(chart)       # canonical JSON (a dict)
-text = serialize(chart)         # canonical text rendering
-```
+    chart = result.chart      # a LeadSheet AST
+    json_obj = to_json(chart) # canonical JSON (a dict)
+    text = serialize(chart)   # canonical text rendering
 
-A small CLI is included: `python -m tonalis chart.txt` prints lint findings
-(exit 1 if any error).
+    print(len(findings), "findings")          # -> 0 findings
+    print(chart.sections[0].label)            # -> A
+    print(json_obj["sections"][0]["measures"][0]["cells"][0]["chord"])  # -> F-7
+    ```
 
-## TypeScript (`tonalis/ts/`)
+    A small CLI ships with it: `python -m tonalis chart.txt` prints lint findings
+    (exit 1 if any error).
 
-```bash
-cd tonalis/ts
-npm ci
-npm test          # units + import-boundary guard + the conformance suite
-npm run typecheck
-```
+=== "TypeScript"
 
-First runnable example:
+    ```bash
+    npm install tonalis        # zero runtime dependencies
+    ```
 
-```ts
-import { parseDsl, lint, isValidChord, astToJson, serialize } from "tonalis";
+    ```ts
+    import { parseDsl, lint, astToJson, serialize } from "tonalis";
 
-const result = parseDsl(text);
-const findings = [...result.findings, ...(result.chart ? lint(result.chart) : [])];
-```
+    const result = parseDsl(text);
+    const findings = [...result.findings, ...(result.chart ? lint(result.chart) : [])];
 
-The TS port has **zero runtime dependencies** and is browser- and Node-safe.
+    const chart = result.chart!;   // a LeadSheet AST
+    const json = astToJson(chart); // canonical JSON
+    const printed = serialize(chart);
 
-## Rust (`tonalis/rust/`)
+    console.log(findings.length, "findings");   // -> 0 findings
+    console.log(chart.sections[0].label);       // -> A
+    ```
 
-```bash
-cd tonalis/rust
-cargo test        # units + import-boundary guard + the conformance suite
-```
+    The TS port has **zero runtime dependencies** and is browser- and Node-safe.
+    It ships as ESM (`import`, not `require`).
 
-First runnable example:
+=== "Rust"
 
-```rust
-use tonalis::{parse_dsl, lint, is_valid_chord, serialize_text};
-use tonalis::ast::ast_to_json;
+    ```toml
+    # Cargo.toml
+    [dependencies]
+    tonalis = "0.1"
+    ```
 
-let parsed = parse_dsl(text);
-let chart = parsed.chart.unwrap();
-let json = ast_to_json(&chart);
-let printed = serialize_text(&chart);
-```
+    ```rust
+    use tonalis::{parse_dsl, lint, serialize_text};
+    use tonalis::ast::ast_to_json;
 
-The crate is `rlib`-only (no cdylib / wasm-bindgen target).
+    let parsed = parse_dsl(text);
+    let chart = parsed.chart.unwrap();   // a LeadSheet AST
+    let json = ast_to_json(&chart);
+    let printed = serialize_text(&chart);
 
-## The theory core (`music-dsl/`)
+    assert_eq!(chart.sections[0].label, "A");
+    ```
 
-The lead-sheet language sits on top of the `music_dsl` theory core, which is a
-separate package under `music-dsl/` with its own Python / TypeScript / Rust
-ports. See the [theory model](theory.md) and [scale catalog](scales.md) pages
-for what it exposes.
+    The crate is `rlib`-only (no cdylib / wasm-bindgen target).
+
+## Building from source
+
+Working on Tonalis itself, or want to run the conformance suite? The theory core
+(`music-dsl/`) must be built first — `tonalis` depends on it.
+
+=== "Python"
+
+    ```bash
+    python -m venv .venv && source .venv/bin/activate
+    pip install -e "./music-dsl/python[dev]"   # theory core first
+    pip install -e ./tonalis/python
+    pytest tonalis/python/tests                # units + import-boundary guard
+    pytest conformance/tonalis/runners/python  # the 255-case conformance suite
+    ```
+
+=== "TypeScript"
+
+    ```bash
+    cd music-dsl/ts && npm ci && npm run build  # theory core first
+    cd ../../tonalis/ts && npm ci
+    npm test                                    # units + guard + conformance
+    npm run typecheck
+    ```
+
+=== "Rust"
+
+    ```bash
+    cd tonalis/rust
+    cargo test                                  # units + guard + conformance
+    ```
+
+## Next
+
+- [Lead-sheet DSL](dsl.md) — the chart language and a full [chart→AST worked example](dsl.md#chart-to-ast-a-worked-example).
+- [Theory model](theory.md) — the `music_dsl` core the language sits on.
+- [Scale catalog](scales.md) — all 39 scales and the two-tier diatonicity rules.

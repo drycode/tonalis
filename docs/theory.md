@@ -1,9 +1,70 @@
 # The theory model
 
-The `music_dsl` package is the theory core the lead-sheet language sits on. It
-models notes, intervals, chords, key-relative chords, scale degrees, and scales.
-This page describes the model; the [scale catalog](scales.md) covers scales in
-full, and the [API reference](api.md) has the generated per-symbol docs.
+The `music_dsl` package is the theory core the lead-sheet language sits on. Its
+centerpiece is the pair of chord models — **`Chord`** (absolute) and
+**`NumericChord`** (key-relative) — which turn a chord token into a structured,
+queryable value and let you move harmony between keys. Scale degrees, scales, and
+realization are the supporting tools around them. This page describes the model;
+the [API reference](api.md) has the generated per-symbol docs.
+
+## Chords
+
+`Chord` parses a chord token (e.g. `"D-7"`, `"Ab^7"`, `"C7alt"`, `"D-/C"`) into a
+structured value: a `root` (a `Notes`), a triad quality, extension degrees, a
+`HarmonicFunction`, and a bit-packed **encoding** that membership and diatonicity
+queries operate on.
+
+```python
+from music_dsl.domain.chords.chord import Chord
+
+c = Chord("D-7")
+c.root                 # -> Notes.D
+c.triad                # -> Triad.Minor
+c.extensions           # -> ()
+c.harmonic_function    # -> HarmonicFunctions.Subdominant
+
+Chord("C7alt").extensions          # -> (Extensions.alt,)
+Chord("C7alt").harmonic_function   # -> HarmonicFunctions.Dominant
+Chord("Ab^7").harmonic_function    # -> HarmonicFunctions.Tonic
+```
+
+The bare `harmonic_function` is decided from quality alone; `harmonic_function_in_key`
+sharpens it against a key. `Chord` is the **executable definition of chord validity**:
+the lead-sheet layer's `is_valid_chord` delegates to this parser. The grammar is
+permissive by design — see the [DSL page](dsl.md) for the accepted/rejected token
+catalog.
+
+## Numeric (key-relative) chords
+
+`NumericChord` is the flagship: a chord expressed **relative to a key** rather than
+at an absolute pitch — its root is a `ScaleDegree` (a roman numeral) instead of a
+`Notes`. The same `NumericChord` realizes to different absolute chords in different
+keys, which is what makes it the right form for transposition, analysis, and
+key-independent chart storage.
+
+```python
+from music_dsl.domain.chords.numeric_chord import NumericChord
+from music_dsl import Notes
+
+ii = NumericChord.from_chord_string("ii-7")
+ii.root                 # -> ScaleDegree.ii
+ii.harmonic_function    # -> HarmonicFunctions.Subdominant
+ii.in_key(Notes.C)      # -> D-7
+ii.in_key(Notes.Eb)     # -> F-7
+```
+
+A whole **ii–V–I**, realized across two keys — same numerals, different pitches, same
+functions:
+
+| Numeral | `HarmonicFunction` | `.in_key(C)` | `.in_key(Eb)` |
+|---------|--------------------|--------------|----------------|
+| `ii-7`  | Subdominant | D-7 | F-7 |
+| `V7`    | Dominant    | G7  | Bb7 |
+| `bVII7` | Dominant    | Bb7 | Db7 |
+
+Realization is by pitch class (flat-spelled; slash chords resolve recursively against
+major parents). `harmonic_function_in_key` goes the other direction — from an absolute
+chord in a key to its function.
 
 ## Notes and intervals
 
@@ -16,37 +77,6 @@ no double accidentals).
 `Intervals` names the interval qualities/sizes; interval arithmetic is exposed
 through helpers like `semitones_apart_ascending` and, on the realization side,
 `interval_pitches`.
-
-## Chords
-
-`Chord` parses a chord token (e.g. `"D-7"`, `"Ab^7"`, `"C7alt"`, `"D-/C"`) into a
-structured value with a `root` (a `Notes`) and a bit-packed **encoding**. The
-encoding is what membership and diatonicity queries operate on. A chord is
-decomposed into:
-
-- **`Triad`** — the triad quality,
-- **`Seventh`** — the seventh, and
-- **`Extensions`** — an ordered set of extension degrees,
-
-plus a **`HarmonicFunction`** derived from quality alone (the bare
-`Chord.harmonic_function` is decided from quality; `harmonic_function_in_key`
-sharpens it against a key).
-
-`Chord` is the executable definition of chord validity: the lead-sheet layer's
-`is_valid_chord` delegates to this parser. The grammar is permissive by design —
-see the [DSL page](dsl.md) for the accepted/rejected token catalog.
-
-## Numeric (key-relative) chords
-
-`NumericChord` is a chord expressed **relative to a key** rather than at an
-absolute pitch — its root is a `ScaleDegree` (a roman numeral) instead of a
-`Notes`. This is the key-independent form: the same `NumericChord` realizes to
-different absolute chords in different keys.
-
-- `chord_in_key(numeric, key_root)` realizes a `NumericChord` into a playable
-  absolute `Chord` by pitch class (flat-spelled; slash chords resolve
-  recursively against major parents).
-- `numeric_from_chord` / `parse_numeric` go the other direction.
 
 ## Scale degrees
 
@@ -73,8 +103,12 @@ frequencies: `note_to_midi`, `midi_to_hz`, `note_to_hz`, `interval_pitches`,
 
 ## Cross-port surface
 
-The same model is implemented in all three ports. Names differ only by each
-language's idiom:
+The same model is implemented in all three ports, kept identical by the shared
+conformance corpus and the differential fuzzer:
+
+![Tonalis architecture: one normative spec generates blessed cases from the Python reference; Python, TypeScript, and Rust ports implement the same surface; a differential fuzzer proves 0 divergences.](assets/architecture.svg){ loading=lazy }
+
+Names differ only by each language's idiom:
 
 | Concept | Python | TypeScript | Rust |
 |---------|--------|-----------|------|

@@ -49,6 +49,94 @@ A document is a **header** followed by a **body**:
   `@break` / `@newline` render hints; `[time: n/d]` mid-body meter changes.
 - **No-chord** — `N.C.` (or `n`).
 
+## Chart to AST: a worked example
+
+Here is the whole round trip on a compact chart — the exact output shown is
+captured from the Python reference (the other ports are byte-identical by
+conformance). Input:
+
+```
+title: Blue Bossa
+composer: Kenny Dorham
+key: Cm
+time: 4/4
+
+[A]
+| C-7 | F-7 | D-7 G7 | C-7 |
+```
+
+`parse_dsl` returns `0` findings (a clean chart) and this `LeadSheet` AST — shown
+here as its canonical JSON projection (`to_json`):
+
+```json
+{
+  "schema_version": 1,
+  "meta": {
+    "title": "Blue Bossa",
+    "composer": "Kenny Dorham",
+    "key": "Cm",
+    "time": [4, 4]                       // (1)!
+  },
+  "sections": [
+    {
+      "label": "A",
+      "kind": "a",                       // (2)!
+      "measures": [
+        { "cells": [ { "chord": "C-7", "beats": null, "alt": null } ],
+          "ending": null, "bar_open": false, "barline": "normal",
+          "nav": [], "hints": [], "line": 7 },
+        { "cells": [ { "chord": "F-7", "beats": null, "alt": null } ],
+          "ending": null, "bar_open": false, "barline": "normal",
+          "nav": [], "hints": [], "line": 7 },
+        { "cells": [                      // (3)!
+            { "chord": "D-7", "beats": null, "alt": null },
+            { "chord": "G7",  "beats": null, "alt": null }
+          ],
+          "ending": null, "bar_open": false, "barline": "normal",
+          "nav": [], "hints": [], "line": 7 },
+        { "cells": [ { "chord": "C-7", "beats": null, "alt": null } ],
+          "ending": null, "bar_open": false, "barline": "normal",
+          "nav": [], "hints": [], "line": 7 }
+      ]
+    }
+  ]
+}
+```
+
+1.  Time signature is a `[numerator, denominator]` pair, not a string — so
+    consumers never re-parse `"4/4"`.
+2.  `label` is what you typed (`A`); `kind` is the neutral role a downstream codec
+    maps to its own section marker. `[Verse]` and `[v]` both yield `kind: "verse"`.
+3.  A measure with two chords produces **two cells**, each with `beats: null`. The
+    even split across the bar is *derived* by the consumer — the AST only stores an
+    explicit `beats` when you write `chord:N` (e.g. `C-7:3`). Nothing is invented on
+    your behalf.
+
+This projection round-trips losslessly (`from_json(to_json(ir)) == ir`), and the
+canonical text printer re-flows layout so `parse(serialize(ir)) == ir` modulo source
+line numbers. Both round-trips are gated by the conformance suite on every case.
+
+### When the linter has something to say
+
+The linter never throws — malformed input becomes findings, compared on
+`(code, severity, line)`. Feeding it a chart that uses **spelled-out** chord
+qualities:
+
+```
+[A]
+| Cmaj7 | Dm7 | G7 | Csus |
+```
+
+produces two `error`-severity findings (the chart fails to compile):
+
+```
+bad-chord  error  line 6   invalid chord token: 'Cmaj7'
+bad-chord  error  line 6   invalid chord token: 'Dm7'
+```
+
+`Cmaj7` and `Dm7` are rejected because quality is written with **glyphs, not words**
+— it's `C^7` and `D-7`. `G7` and `Csus` are fine. See the grammar below.
+
 ## Chord grammar
 
 Chord quality uses glyphs, not words:

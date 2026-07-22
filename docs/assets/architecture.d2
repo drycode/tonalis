@@ -1,0 +1,28 @@
+# Tonalis — one spec, three ports, fuzzer keeps them honest.
+direction: down
+
+classes: {
+  spec:   { style: { stroke: "#495057"; fill: "#f8f9fa"; stroke-width: 2 } }
+  ref:    { style: { stroke: "#2f9e44"; fill: "#d3f9d8" } }
+  port:   { style: { stroke: "#1971c2"; fill: "#dbe4ff" } }
+  fuzz:   { style: { stroke: "#7048e8"; fill: "#e5dbff" } }
+}
+
+spec: "Normative spec\n+ conformance corpus\n(blessed from the Python reference)" { class: spec }
+
+ports: "Three ports — identical public surface" {
+  style: { stroke: "#868e96"; fill: "#ffffff"; stroke-dash: 4 }
+  py: "Python\n(reference)" { class: ref }
+  ts: "TypeScript\n(zero runtime deps)" { class: port }
+  rs: "Rust\n(rlib)" { class: port }
+}
+
+fuzzer: "Differential fuzzer\n0 divergences required" { class: fuzz }
+
+spec -> ports.py: "generates blessed cases" { style.stroke: "#2f9e44" }
+spec -> ports.ts: "gates" { style.stroke: "#495057" }
+spec -> ports.rs: "gates" { style.stroke: "#495057" }
+
+ports.py <-> fuzzer: "" { style.stroke: "#7048e8" }
+ports.ts <-> fuzzer: "" { style.stroke: "#7048e8" }
+ports.rs <-> fuzzer: "byte-identical" { style.stroke: "#7048e8" }

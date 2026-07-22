@@ -67,6 +67,8 @@ Build the docs locally:
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r docs/requirements.txt
+pip install -e ./music-dsl/python   # build_scales.py imports the live scale catalog
+python docs/build_scales.py         # regenerate the 39-scale catalog table
 bash docs/build_api.sh    # optional: generate the API references (needs pdoc/typedoc/cargo)
 mkdocs serve              # or: mkdocs build --strict
 ```

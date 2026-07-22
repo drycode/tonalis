@@ -59,61 +59,69 @@ scales are exactly the symmetric/atonal set in §3; everything else is functiona
 
 ## 3. The catalog
 
-Pitch classes are semitones above the tonic.
+Pitch classes are the semitones above the tonic. **This table is generated from the
+live `music_dsl` catalog on every docs build**, so it cannot drift from the code or
+the conformance corpus.
 
-### Functional scales
+<!-- BEGIN GENERATED SCALES -->
+*39 scales — generated from the `music_dsl` catalog, so this table cannot drift from the conformance corpus.*
 
-| Name | Category | Pitch classes |
-|------|----------|---------------|
-| Major (Ionian) | major-mode | 0 2 4 5 7 9 11 |
-| Dorian | major-mode | 0 2 3 5 7 9 10 |
-| Phrygian | major-mode | 0 1 3 5 7 8 10 |
-| Lydian | major-mode | 0 2 4 6 7 9 11 |
-| Mixolydian | major-mode | 0 2 4 5 7 9 10 |
-| Natural minor (Aeolian) | major-mode | 0 2 3 5 7 8 10 |
-| Locrian | major-mode | 0 1 3 5 6 8 10 |
-| Melodic minor | melodic-minor | 0 2 3 5 7 9 11 |
-| Dorian b2 | melodic-minor | 0 1 3 5 7 9 10 |
-| Lydian augmented | melodic-minor | 0 2 4 6 8 9 11 |
-| Lydian dominant | melodic-minor | 0 2 4 6 7 9 10 |
-| Mixolydian b6 | melodic-minor | 0 2 4 5 7 8 10 |
-| Locrian natural 2 | melodic-minor | 0 2 3 5 6 8 10 |
-| Altered (Super Locrian) | melodic-minor | 0 1 3 4 6 8 10 |
-| Harmonic minor | harmonic-minor | 0 2 3 5 7 8 11 |
-| Locrian natural 6 | harmonic-minor | 0 1 3 5 6 9 10 |
-| Ionian #5 | harmonic-minor | 0 2 4 5 8 9 11 |
-| Dorian #4 (Ukrainian) | harmonic-minor | 0 2 3 6 7 9 10 |
-| Phrygian dominant | harmonic-minor | 0 1 4 5 7 8 10 |
-| Lydian #2 | harmonic-minor | 0 3 4 6 7 9 11 |
-| Ultralocrian | harmonic-minor | 0 1 3 4 6 8 9 |
-| Harmonic major | harmonic-major | 0 2 4 5 7 8 11 |
-| Double harmonic (Byzantine) | exotic | 0 1 4 5 7 8 11 |
-| Hungarian minor | exotic | 0 2 3 6 7 8 11 |
-| Hungarian major | exotic | 0 3 4 6 7 9 10 |
-| Neapolitan major | exotic | 0 1 3 5 7 9 11 |
-| Neapolitan minor | exotic | 0 1 3 5 7 8 11 |
-| Major pentatonic | pentatonic | 0 2 4 7 9 |
-| Minor pentatonic | pentatonic | 0 3 5 7 10 |
-| Blues (minor) | blues | 0 3 5 6 7 10 |
-| Bebop dominant | bebop | 0 2 4 5 7 9 10 11 |
-| Bebop major | bebop | 0 2 4 5 7 8 9 11 |
-| Bebop Dorian | bebop | 0 2 3 4 5 7 9 10 |
-| Bebop minor | bebop | 0 2 3 5 7 9 10 11 |
+### Functional scales (34)
+
+`contains` **and** `is_diatonic` / harmonic-function queries are defined.
+
+| Scale | Category | Semitones (from tonic) | Diatonic queries |
+|-------|----------|------------------------|------------------|
+| Major (Ionian) | `major-mode` | 0 2 4 5 7 9 11 | ✅ defined |
+| Dorian | `major-mode` | 0 2 3 5 7 9 10 | ✅ defined |
+| Phrygian | `major-mode` | 0 1 3 5 7 8 10 | ✅ defined |
+| Lydian | `major-mode` | 0 2 4 6 7 9 11 | ✅ defined |
+| Mixolydian | `major-mode` | 0 2 4 5 7 9 10 | ✅ defined |
+| Natural minor (Aeolian) | `major-mode` | 0 2 3 5 7 8 10 | ✅ defined |
+| Locrian | `major-mode` | 0 1 3 5 6 8 10 | ✅ defined |
+| Melodic minor | `melodic-minor` | 0 2 3 5 7 9 11 | ✅ defined |
+| Dorian b2 | `melodic-minor` | 0 1 3 5 7 9 10 | ✅ defined |
+| Lydian augmented | `melodic-minor` | 0 2 4 6 8 9 11 | ✅ defined |
+| Lydian dominant | `melodic-minor` | 0 2 4 6 7 9 10 | ✅ defined |
+| Mixolydian b6 | `melodic-minor` | 0 2 4 5 7 8 10 | ✅ defined |
+| Locrian natural 2 | `melodic-minor` | 0 2 3 5 6 8 10 | ✅ defined |
+| Altered (Super Locrian) | `melodic-minor` | 0 1 3 4 6 8 10 | ✅ defined |
+| Harmonic minor | `harmonic-minor` | 0 2 3 5 7 8 11 | ✅ defined |
+| Locrian natural 6 | `harmonic-minor` | 0 1 3 5 6 9 10 | ✅ defined |
+| Ionian #5 | `harmonic-minor` | 0 2 4 5 8 9 11 | ✅ defined |
+| Dorian #4 (Ukrainian) | `harmonic-minor` | 0 2 3 6 7 9 10 | ✅ defined |
+| Phrygian dominant | `harmonic-minor` | 0 1 4 5 7 8 10 | ✅ defined |
+| Lydian #2 | `harmonic-minor` | 0 3 4 6 7 9 11 | ✅ defined |
+| Ultralocrian | `harmonic-minor` | 0 1 3 4 6 8 9 | ✅ defined |
+| Harmonic major | `harmonic-major` | 0 2 4 5 7 8 11 | ✅ defined |
+| Double harmonic (Byzantine) | `exotic` | 0 1 4 5 7 8 11 | ✅ defined |
+| Hungarian minor | `exotic` | 0 2 3 6 7 8 11 | ✅ defined |
+| Hungarian major | `exotic` | 0 3 4 6 7 9 10 | ✅ defined |
+| Neapolitan major | `exotic` | 0 1 3 5 7 9 11 | ✅ defined |
+| Neapolitan minor | `exotic` | 0 1 3 5 7 8 11 | ✅ defined |
+| Major pentatonic | `pentatonic` | 0 2 4 7 9 | ✅ defined |
+| Minor pentatonic | `pentatonic` | 0 3 5 7 10 | ✅ defined |
+| Blues (minor) | `blues` | 0 3 5 6 7 10 | ✅ defined |
+| Bebop dominant | `bebop` | 0 2 4 5 7 9 10 11 | ✅ defined |
+| Bebop major | `bebop` | 0 2 4 5 7 8 9 11 | ✅ defined |
+| Bebop Dorian | `bebop` | 0 2 3 4 5 7 9 10 | ✅ defined |
+| Bebop minor | `bebop` | 0 2 3 5 7 9 10 11 | ✅ defined |
+
+### Symmetric / atonal scales (5)
+
+Membership (`contains`) works; functional queries **refuse** (Python raises, TS throws, Rust `Err`).
+
+| Scale | Category | Semitones (from tonic) | Diatonic queries |
+|-------|----------|------------------------|------------------|
+| Whole tone | `symmetric` | 0 2 4 6 8 10 | ⛔ refuses |
+| Diminished (half-whole) | `symmetric` | 0 1 3 4 6 7 9 10 | ⛔ refuses |
+| Diminished (whole-half) | `symmetric` | 0 2 3 5 6 8 9 11 | ⛔ refuses |
+| Augmented | `symmetric` | 0 3 4 7 8 11 | ⛔ refuses |
+| Chromatic | `atonal` | 0 1 2 3 4 5 6 7 8 9 10 11 | ⛔ refuses |
+<!-- END GENERATED SCALES -->
 
 The bebop scales are the 7-note parent plus one chromatic passing tone (dominant:
 the major 7th over Mixolydian; major: the #5 over the major scale).
-
-### Non-functional scales (membership only; functional queries refuse)
-
-| Name | Category | Pitch classes |
-|------|----------|---------------|
-| Whole tone | symmetric | 0 2 4 6 8 10 |
-| Diminished (half-whole) | symmetric | 0 1 3 4 6 7 9 10 |
-| Diminished (whole-half) | symmetric | 0 2 3 5 6 8 9 11 |
-| Augmented | symmetric | 0 3 4 7 8 11 |
-| Chromatic | atonal | 0 1 2 3 4 5 6 7 8 9 10 11 |
-
-That is **34 functional + 5 non-functional = 39 scales.**
 
 ## 4. Bebop minor — both forms named
 

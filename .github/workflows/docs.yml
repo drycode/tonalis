@@ -59,6 +59,9 @@ jobs:
       - name: Generate API references
         run: bash docs/build_api.sh
 
+      - name: Generate scale catalog table
+        run: python docs/build_scales.py
+
       - name: Build site (strict)
         run: mkdocs build --strict
 
