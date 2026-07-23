@@ -11,6 +11,12 @@ name: release
 #   - crates.io: configure a Trusted Publisher for each crate (same coordinates).
 # If a publisher is not configured, that package's job fails — the others are unaffected.
 #
+# Gating: nothing publishes until two jobs pass — `ci` (the full test suite, reused from
+# ci.yml via workflow_call) and `guard` (the pushed tag matches all six manifest versions).
+# The three base-library publish jobs `needs: [ci, guard]`; the dependent jobs inherit the
+# gate transitively through their library dependency. PyPI/npm/crates versions are immutable,
+# so a red suite or a mismatched tag must fail before any artifact is built.
+#
 # Ordering: tonalis depends on the music-dsl library in all three ecosystems, so the base library
 # publishes first and the dependent job `needs:` it. (crates.io: modern `cargo publish`
 # blocks until the new version is in the index, so the dependent resolve is race-free.)
@@ -29,8 +35,28 @@ permissions:
   contents: read
 
 jobs:
+  # ---------- gates ----------
+  # Full test suite (Python/TS/Rust units + conformance + 3-way differential fuzzer),
+  # reused verbatim from ci.yml. A tag can point at any commit, so re-run it here rather
+  # than trusting that CI happened to pass on this SHA.
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  # The tag must equal the version in all six manifests, and they must agree with each
+  # other. Logic + local tests: scripts/check_release_version.py.
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Tag matches all six manifest versions
+        run: python scripts/check_release_version.py "$GITHUB_REF_NAME"
+
   # ---------- PyPI ----------
   pypi-music-dsl:
+    needs: [ci, guard]
     runs-on: ubuntu-latest
     permissions:
       id-token: write   # OIDC
@@ -65,6 +91,7 @@ jobs:
 
   # ---------- npm ----------
   npm-music-dsl:
+    needs: [ci, guard]
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -107,6 +134,7 @@ jobs:
 
   # ---------- crates.io ----------
   crates-music-dsl:
+    needs: [ci, guard]
     runs-on: ubuntu-latest
     permissions:
       id-token: write

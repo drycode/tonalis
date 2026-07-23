@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Callable so the release workflow gates publishing on this exact suite
+  # rather than duplicating (or skipping) it.
+  workflow_call:
 
 jobs:
   # Python port: the pure language core + its in-package tests + the leadsheet & music-dsl conformance runners.
