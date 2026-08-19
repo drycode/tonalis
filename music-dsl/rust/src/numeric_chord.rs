@@ -12,6 +12,17 @@ use regex::Regex;
 use serde::Serialize;
 use std::sync::OnceLock;
 
+fn keeps_uppercase_degree(triad: Triad) -> bool {
+    matches!(
+        triad,
+        Triad::Major
+            | Triad::Augmented
+            | Triad::Sus
+            | Triad::Sus2
+            | Triad::Sus4
+    )
+}
+
 // ---------------------------------------------------------------------------
 // Error type
 // ---------------------------------------------------------------------------
@@ -176,11 +187,11 @@ fn parse_one(segment: &str, substitution: bool) -> Result<NumericChordAttrs, Num
 
     let hf = get_harmonic_function(triad, seventh);
 
-    // m_or_M_scaledegree: mirror Python make_chord_attrs — lower the root case for minor-quality triads.
-    // Major, Augmented, and Sus4 keep the major degree; everything else (Minor, Dim, HalfDim, Sus, Sus2) lowercases.
-    let root_final = match triad {
-        Triad::Major | Triad::Augmented | Triad::Sus4 => root_degree,
-        _ => root_degree.to_minor(),
+    // Major-third triads and no-third suspensions keep the uppercase degree.
+    let root_final = if keeps_uppercase_degree(triad) {
+        root_degree
+    } else {
+        root_degree.to_minor()
     };
 
     Ok(NumericChordAttrs {
@@ -313,11 +324,10 @@ pub fn numeric_from_chord(
         base_degree
     };
 
-    // m_or_M_scaledegree: minor triad quality → lowercase degree
-    let base_degree = if !matches!(triad, Triad::Major | Triad::Augmented | Triad::Sus4) {
-        base_degree.to_minor()
-    } else {
+    let base_degree = if keeps_uppercase_degree(triad) {
         base_degree
+    } else {
+        base_degree.to_minor()
     };
 
     // Substitution branches

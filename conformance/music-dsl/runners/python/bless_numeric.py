@@ -93,24 +93,24 @@ def _modulate_case(name: str, semitones: int, note: str) -> dict:
 
 def _is_diatonic_case(name: str, root: str, scale: str, chord: str) -> dict:
     """Build an is_diatonic case."""
-    result = is_diatonic(Notes(root), Scales[scale], Chord(chord))
-    return {
-        "name": name,
-        "op": "is_diatonic",
-        "args": {"root": root, "scale": scale, "chord": chord},
-        "expect": {"value": result},
-    }
+    args = {"root": root, "scale": scale, "chord": chord}
+    try:
+        result = is_diatonic(Notes(root), Scales[scale], Chord(chord))
+        expect = {"value": result}
+    except InvalidChordStringException:
+        expect = {"error": True}
+    return {"name": name, "op": "is_diatonic", "args": args, "expect": expect}
 
 
 def _hf_in_key_case(name: str, key_root: str, key_is_minor: bool, chord: str) -> dict:
     """Build a harmonic_function_in_key case."""
-    result = harmonic_function_in_key(Notes(key_root), key_is_minor, Chord(chord)).name
-    return {
-        "name": name,
-        "op": "harmonic_function_in_key",
-        "args": {"key_root": key_root, "key_is_minor": key_is_minor, "chord": chord},
-        "expect": {"value": result},
-    }
+    args = {"key_root": key_root, "key_is_minor": key_is_minor, "chord": chord}
+    try:
+        result = harmonic_function_in_key(Notes(key_root), key_is_minor, Chord(chord)).name
+        expect = {"value": result}
+    except InvalidChordStringException:
+        expect = {"error": True}
+    return {"name": name, "op": "harmonic_function_in_key", "args": args, "expect": expect}
 
 
 def _chord_in_key_case(name: str, numeric: str, key_root: str) -> dict:
@@ -136,9 +136,23 @@ parse_inputs = [
     ("numeric/parse/bVI^7", "bVI^7"),
     ("numeric/parse/sharp-ivo7", "#ivo7"),
     ("numeric/parse/sV7", "sV7"),
+    ("numeric/parse/mOrM-bVI-minor", "bVI-7"),
+    ("numeric/parse/mOrM-II-minor", "II-7"),
+    ("numeric/parse/mOrM-sII-dim", "#IIo7"),
+    ("numeric/parse/mOrM-V-halfdim", "Vh^7"),
+    ("numeric/parse/mOrM-bVII-sus", "bVIIsus"),
+    ("numeric/parse/mOrM-IV-minor-alt", "IV-7alt"),
+    ("numeric/parse/mOrM-III-sus2", "IIIsus2^7"),
+    ("numeric/parse/mOrM-II-sus4", "II7sus4"),
 ]
 
 parse_cases = [_numeric_case(name, input_str) for name, input_str in parse_inputs]
+
+from_chord_cases = [
+    _numeric_from_chord_case("numeric/from-chord/Csus-in-C", "C", "Csus", False),
+    _numeric_from_chord_case("numeric/from-chord/Csus2-in-C", "C", "Csus2", False),
+    _numeric_from_chord_case("numeric/from-chord/Csus4-in-C", "C", "Csus4", False),
+]
 
 # ---------------------------------------------------------------------------
 # NUMERIC / SLASH
@@ -182,28 +196,28 @@ _ab_no_sub = next(c for c in substitution_cases if c["name"] == "substitution/Ab
 _ab_with_sub = next(c for c in substitution_cases if c["name"] == "substitution/Ab-m7-in-C-with-sub")
 assert _ab_no_sub["expect"].get("model", {}).get("numeric", {}).get("root") == \
        _ab_with_sub["expect"].get("model", {}).get("numeric", {}).get("root"), \
-    f"BLESS FAILED: Ab-7 sub=True root should equal sub=False (branch-c must not fire for A==4)"
+    "BLESS FAILED: Ab-7 sub=True root should equal sub=False (branch-c must not fire for A==4)"
 
 print("Substitution anchor cross-checks PASSED.")
 
 # ---------------------------------------------------------------------------
 # NUMERIC / ERRORS
 # ---------------------------------------------------------------------------
-# IncorrectHarmonicFunctionException: chord whose harmonic function doesn't match
-# the substitution branch's requirement. Branch (a) requires Subdominant;
-# a Dominant-function chord at Tritone distance fires (a) and then raises.
-# Actually branch (a) is: semitones(chord.root->key_root)==Tritone AND chord.hf != Subdominant
-# Example: C7 in F# (F#->C ascending = 6 = Tritone; C7 is Dominant, not Subdominant) -> raises
 error_cases = [
-    # IncorrectHarmonicFunctionException: C7 at tritone from key F# is Dominant, not Subdominant
-    _numeric_from_chord_case("numeric/errors/incorrect-hf-tritone-not-subdominant", "F#", "C7", True),
-    # InvalidChordStringException: empty numerator
+    _numeric_from_chord_case(
+        "numeric/errors/incorrect-hf-tritone-not-subdominant", "F#", "C7", True
+    ),
     _numeric_case("numeric/errors/empty-numerator", ""),
+    _numeric_case("numeric/errors/b9add9-merges-to-b99-invalid", "Vsusb9add9"),
+    _numeric_case(
+        "numeric/errors/b9add9-lowercase-root-invalid", "visusb9add9"
+    ),
 ]
 
-# Verify they are indeed errors
-for ec in error_cases:
-    assert "error" in ec["expect"], f"BLESS FAILED: {ec['name']} expected error but got: {ec['expect']}"
+for error_case in error_cases:
+    assert "error" in error_case["expect"], (
+        f"BLESS FAILED: {error_case['name']} expected error but got: {error_case['expect']}"
+    )
 
 # ---------------------------------------------------------------------------
 # TRANSACTIONS / MODULATE
@@ -246,6 +260,9 @@ is_diatonic_cases = [
     _is_diatonic_case("transactions/is_diatonic/C-harm-minor-Bb^7-non-diatonic", "C", "HarmonicMinor", "Bb^7"),
     _is_diatonic_case("transactions/is_diatonic/G-major-D7-diatonic", "G", "Major", "D7"),
     _is_diatonic_case("transactions/is_diatonic/G-major-Db7-non-diatonic", "G", "Major", "Db7"),
+    _is_diatonic_case(
+        "is_diatonic-invalid-chord-error", "G", "Major", "Eb9#9add9"
+    ),
 ]
 
 # ---------------------------------------------------------------------------
@@ -264,6 +281,12 @@ hf_in_key_cases = [
     _hf_in_key_case("transactions/hf_in_key/C-major-subdominant-D-7", "C", False, "D-7"),
     # Different root: ii-7 in G = Subdominant
     _hf_in_key_case("transactions/hf_in_key/G-major-subdominant-A-7", "G", False, "A-7"),
+    _hf_in_key_case(
+        "transactions/hf_in_key/invalid-chord-error",
+        "C",
+        False,
+        "Eb9#9add9",
+    ),
 ]
 
 # ---------------------------------------------------------------------------
@@ -295,6 +318,7 @@ transactions_dir.mkdir(parents=True, exist_ok=True)
 
 files = [
     (numeric_dir / "parse.json", parse_cases),
+    (numeric_dir / "from_chord.json", from_chord_cases),
     (numeric_dir / "slash.json", slash_cases),
     (numeric_dir / "substitution.json", substitution_cases),
     (numeric_dir / "errors.json", error_cases),

@@ -18,9 +18,15 @@ logger = logging.getLogger(__name__)
 
 
 def m_or_M_scaledegree(root: ScaleDegree, triad) -> ScaleDegree:
-    # Major-third triads (major, augmented) and sus4 keep the major scale degree;
-    # everything else (minor, dim, half-dim) lowers it.
-    if triad and triad not in (Triad.Major, Triad.Augmented, Triad.Sus4):
+    # Chords without a defining third retain an uppercase degree; all others that
+    # are not major-third triads lower it.
+    if triad and triad not in (
+        Triad.Major,
+        Triad.Augmented,
+        Triad.Sus,
+        Triad.Sus2,
+        Triad.Sus4,
+    ):
         return root.to_minor()
     return root
 

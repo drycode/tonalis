@@ -1,6 +1,6 @@
 {
   "name": "tonalis",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text). Depends only on the pure @tonalis/music-dsl theory library; ships compiled ESM + type declarations, browser + Node safe.",
   "type": "module",
   "main": "./dist/index.js",
@@ -23,7 +23,11 @@
     "LICENSE"
   ],
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/drycode/tonalis.git", "directory": "tonalis/ts" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drycode/tonalis.git",
+    "directory": "tonalis/ts"
+  },
   "homepage": "https://github.com/drycode/tonalis#readme",
   "private": false,
   "dependencies": {

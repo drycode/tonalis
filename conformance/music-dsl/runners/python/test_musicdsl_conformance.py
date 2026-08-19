@@ -5,7 +5,7 @@ from pathlib import Path
 
 RUN_PY = Path(__file__).resolve().parent / "run.py"
 CASES = Path(__file__).resolve().parents[2] / "cases"
-EXPECTED_CASE_COUNT = 429  # 427 + 2 DRY-423 bebop-minor scale_value (BebopDorian, BebopMinor)
+EXPECTED_CASE_COUNT = 433  # 429 baseline + 4 no-third suspension casing cases
 
 
 def test_musicdsl_conformance_passes():

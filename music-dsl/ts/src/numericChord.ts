@@ -148,12 +148,18 @@ function modulateDegree(semitones: number, degree: ScaleDegreeT): ScaleDegreeT {
 
 // ---------------------------------------------------------------------------
 // mOrMScaleDegree — mirror of Python m_or_M_scaledegree
-// Major-third triads (Major, Augmented, Sus4) keep the major degree;
-// everything else (Minor, Dim, HalfDim, Sus, Sus2) lowers it.
+// Major-third triads and no-third suspensions keep the uppercase degree;
+// everything else (Minor, Dim, HalfDim) lowers it.
 // ---------------------------------------------------------------------------
 
 function mOrMScaleDegree(degree: ScaleDegreeT, triad: TriadT): ScaleDegreeT {
-  if (triad && triad !== Triad.Augmented && triad !== Triad.Sus4) {
+  if (
+    triad !== Triad.Major &&
+    triad !== Triad.Augmented &&
+    triad !== Triad.Sus &&
+    triad !== Triad.Sus2 &&
+    triad !== Triad.Sus4
+  ) {
     return sdToMinor(degree) as ScaleDegreeT;
   }
   return degree;

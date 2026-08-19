@@ -61,6 +61,14 @@ describe("fromChordString — basic", () => {
   });
 });
 
+describe("fromChord — suspended numeral casing", () => {
+  for (const token of ["Isus", "Isus2", "Isus4", "I7sus", "I7sus2", "I7sus4"]) {
+    it(`${token} keeps its uppercase degree`, () => {
+      expect(serializeNumericChord(fromChordString(token)).numerator.root).toBe("I");
+    });
+  }
+});
+
 // ---------------------------------------------------------------------------
 // fromChordString — slash chords
 // ---------------------------------------------------------------------------
