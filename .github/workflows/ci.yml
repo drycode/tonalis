@@ -1,11 +1,11 @@
 name: ci
 
 on:
-  push:
-    branches: [main]
   pull_request:
   # Callable so the release workflow gates publishing on this exact suite
-  # rather than duplicating (or skipping) it.
+  # rather than duplicating (or skipping) it. Pushes to main are covered that
+  # way — release.yml runs this suite on every merge — so there is no `push`
+  # trigger here, which would run the whole suite twice per merge.
   workflow_call:
 
 jobs:
@@ -37,6 +37,9 @@ jobs:
 
       - name: MusicDSL conformance (Python reference)
         run: pytest conformance/music-dsl/runners/python -q
+
+      - name: Release surface tests
+        run: pytest scripts/tests -q
 
       # Informational coverage signal (not a gate). Uses the pytest binary, not
       # `python -m pytest` — the latter puts the repo root on sys.path[0], where

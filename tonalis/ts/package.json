@@ -1,6 +1,6 @@
 {
   "name": "tonalis",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text). Depends only on the pure @tonalis/music-dsl theory library; ships compiled ESM + type declarations, browser + Node safe.",
   "type": "module",
   "main": "./dist/index.js",

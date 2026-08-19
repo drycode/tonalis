@@ -1,72 +1,59 @@
 #!/usr/bin/env python3
-"""Assert every published manifest agrees on version — and matches the release tag.
+"""Assert every authored location agrees on the version.
 
-Six artifacts (tonalis + tonalis-music-dsl, each in Python/Rust/TS) carry a
-hand-synced version across three file formats. A tag that disagrees with any of
-them means a partial or mismatched publish to registries where versions are
-immutable. The release workflow runs this in a guard job before anything builds.
+Six artifacts carry one hand-synced version across four file formats, plus two
+internal pins and four committed lockfiles. Disagreement means a partial or
+mismatched publish to registries where versions are immutable, so both the pull
+request gate and the release guard run this before anything builds.
 
 Usage:
-    check_release_version.py            # assert the six manifests agree
-    check_release_version.py v0.1.1     # also assert they equal this tag/version
+    check_release_version.py            # assert the surface agrees
+    check_release_version.py 0.1.2      # also assert it equals this version
+    check_release_version.py --print    # print the agreed version, nothing else
 
 Exit 0 on agreement (and match, if a version was given); 1 otherwise.
 """
 
 from __future__ import annotations
 
-import json
 import sys
-import tomllib
-from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
-
-# path -> (format, key path to the version string)
-MANIFESTS: dict[str, tuple[str, tuple[str, ...]]] = {
-    "tonalis/python/pyproject.toml": ("toml", ("project", "version")),
-    "music-dsl/python/pyproject.toml": ("toml", ("project", "version")),
-    "tonalis/rust/Cargo.toml": ("toml", ("package", "version")),
-    "music-dsl/rust/Cargo.toml": ("toml", ("package", "version")),
-    "tonalis/ts/package.json": ("json", ("version",)),
-    "music-dsl/ts/package.json": ("json", ("version",)),
-}
-
-
-def read_version(rel: str, kind: str, keypath: tuple[str, ...]) -> str:
-    text = (ROOT / rel).read_text()
-    obj = tomllib.loads(text) if kind == "toml" else json.loads(text)
-    for key in keypath:
-        obj = obj[key]
-    if not isinstance(obj, str):
-        raise TypeError(f"{rel}: version is {type(obj).__name__}, not a string")
-    return obj
-
-
-def manifest_versions() -> dict[str, str]:
-    return {rel: read_version(rel, kind, kp) for rel, (kind, kp) in MANIFESTS.items()}
+from release_surface import SLOTS, read_surface
 
 
 def main(argv: list[str]) -> int:
-    expected = argv[1].lstrip("v") if len(argv) > 1 else None
-    versions = manifest_versions()
+    args = [arg for arg in argv[1:] if arg != "--print"]
+    quiet = "--print" in argv[1:]
+    expected = args[0].lstrip("v") if args else None
 
-    for rel, v in versions.items():
-        mark = "" if expected is None else ("  ✓" if v == expected else "  ✗ MISMATCH")
-        print(f"{v:<10} {rel}{mark}")
+    versions = read_surface()
+    distinct = sorted(set(versions.values()))
 
-    distinct = set(versions.values())
+    if not quiet:
+        for group in ("manifest", "pin", "lock"):
+            print(f"-- {group}")
+            for slot in SLOTS:
+                if slot.group != group:
+                    continue
+                found = versions[slot.name]
+                mark = "" if expected is None else ("  ok" if found == expected else "  MISMATCH")
+                print(f"   {found:<10} {slot.name}{mark}")
+
     if len(distinct) != 1:
-        print(f"error: manifests disagree on version: {sorted(distinct)}", file=sys.stderr)
+        print(f"error: release surface disagrees on version: {distinct}", file=sys.stderr)
+        print("hint: run scripts/set_version.py to rewrite every location", file=sys.stderr)
         return 1
 
-    only = distinct.pop()
+    only = distinct[0]
     if expected is not None and only != expected:
         print(
-            f"error: tag version {expected!r} does not match manifest version {only!r}",
+            f"error: expected version {expected!r} but the surface says {only!r}",
             file=sys.stderr,
         )
         return 1
+
+    if quiet:
+        print(only)
     return 0
 
 
