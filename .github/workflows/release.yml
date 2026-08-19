@@ -127,7 +127,7 @@ jobs:
         working-directory: tonalis/ts
       # Approach A: the repo keeps a local `file:` link to @tonalis/music-dsl for monorepo dev;
       # rewrite it to the published version range only in the publish artifact.
-      - run: npm pkg set 'dependencies[@tonalis/music-dsl]=^0.1.0'
+      - run: npm pkg set 'dependencies[@tonalis/music-dsl]=^0.1.1'
         working-directory: tonalis/ts
       - run: npm publish --access public
         working-directory: tonalis/ts

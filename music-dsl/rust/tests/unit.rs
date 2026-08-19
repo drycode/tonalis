@@ -1,12 +1,29 @@
 use music_dsl::{
     chord_encoding, chord_in_key, chord_pitches, harmonic_function_in_key, interval_pitches,
     intervals_equal, interval_semitones, is_diatonic, midi_to_hz, modulate, note_index,
-    note_to_midi, notes_equal, parse_chord, parse_measure, scale_degree_pitch,
-    scale_degrees_equal, scale_pitches, encoding_value, scale_descriptor, scale_value,
-    semitones_apart_ascending, strip_left, strip_right, TimeSignature,
+    note_to_midi, notes_equal, numeric_from_chord, parse_chord, parse_measure, parse_numeric,
+    scale_degree_pitch, scale_degrees_equal, scale_pitches, encoding_value, scale_descriptor,
+    scale_value, semitones_apart_ascending, strip_left, strip_right, TimeSignature,
 };
 use music_dsl::{contains, ScaleDescriptor};
 
+
+#[test]
+fn suspended_numeric_chords_keep_uppercase_degrees() {
+    for token in ["Isus", "Isus2", "Isus4", "I7sus", "I7sus2", "I7sus4"] {
+        let parsed = parse_numeric(token).expect("suspended numeral should parse");
+        assert_eq!(parsed.numerator.root, "I", "{token}");
+    }
+}
+
+#[test]
+fn suspended_absolute_chords_map_to_uppercase_degrees() {
+    for chord in ["Csus", "Csus2", "Csus4", "C7sus", "C7sus2", "C7sus4"] {
+        let numeric = numeric_from_chord("C", chord, false)
+            .expect("suspended chord should map to a numeral");
+        assert_eq!(numeric.root, "I", "{chord}");
+    }
+}
 #[test]
 fn notes_enharmonic_equality() {
     assert!(notes_equal("C#", "Db"));

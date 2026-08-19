@@ -13,7 +13,7 @@ The same language is implemented three times — in **Python**, **TypeScript**, 
 three pass two shared, language-agnostic conformance suites: the **lead-sheet** suite (255 cases under
 [`conformance/tonalis/`](conformance/tonalis/), specified in
 [`conformance/tonalis/SPEC.md`](conformance/tonalis/SPEC.md)) and the **music-DSL scale/encode**
-suite (429 cases under [`conformance/music-dsl/`](conformance/music-dsl/), specified in
+suite (433 cases under [`conformance/music-dsl/`](conformance/music-dsl/), specified in
 [`conformance/music-dsl/SPEC-scales.md`](conformance/music-dsl/SPEC-scales.md)).
 
 ## What it does

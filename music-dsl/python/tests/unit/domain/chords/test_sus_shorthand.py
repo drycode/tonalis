@@ -17,6 +17,25 @@ import pytest
 
 from music_dsl.domain.chords.chord import Chord
 from music_dsl.domain.static import Seventh, Triad
+from music_dsl.domain.chords.numeric_chord import NumericChord
+
+
+@pytest.mark.parametrize(
+    "token",
+    ["Isus", "Isus2", "Isus4", "I7sus", "I7sus2", "I7sus4"],
+)
+def test_suspended_numeric_chords_keep_uppercase(token):
+    assert repr(NumericChord.from_chord_string(token)) == token
+
+
+def test_bare_sus_is_the_sus4_pitch_set_but_sus2_is_distinct():
+    bare = Chord("Csus")
+    two = Chord("Csus2")
+    four = Chord("Csus4")
+    assert bare.encoding == four.encoding
+    assert two.encoding != four.encoding
+
+
 
 
 @pytest.mark.parametrize("root", ["C", "G", "A", "D", "E", "F", "B"])

@@ -1,6 +1,6 @@
 [package]
 name = "tonalis"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text)."
 readme = "README.md"
@@ -12,7 +12,7 @@ repository = "https://github.com/drycode/tonalis"
 crate-type = ["rlib"]
 
 [dependencies]
-music_dsl = { package = "tonalis-music-dsl", path = "../../music-dsl/rust", version = "0.1.0" }
+music_dsl = { package = "tonalis-music-dsl", path = "../../music-dsl/rust", version = "0.1.1" }
 regex = "1"
 serde = { version = "1", features = ["derive"] }
 # preserve_order keeps serialized AST object keys in insertion order (matching the Python/TS

@@ -229,7 +229,7 @@
       "model": {
         "numeric": {
           "numerator": {
-            "root": "bvii",
+            "root": "bVII",
             "triad": "sus",
             "seventh": "",
             "extensions": [],
@@ -254,7 +254,9 @@
             "root": "iv",
             "triad": "-",
             "seventh": "7",
-            "extensions": ["alt"],
+            "extensions": [
+              "alt"
+            ],
             "harmonic_function": "Subdominant",
             "substitution": false
           },
@@ -273,9 +275,31 @@
       "model": {
         "numeric": {
           "numerator": {
-            "root": "iii",
+            "root": "III",
             "triad": "sus2",
             "seventh": "^7",
+            "extensions": [],
+            "harmonic_function": "Tonic",
+            "substitution": false
+          },
+          "denominator": null
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/parse/mOrM-II-sus4",
+    "op": "parse_numeric",
+    "args": {
+      "input": "II7sus4"
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "numerator": {
+            "root": "II",
+            "triad": "sus4",
+            "seventh": "7",
             "extensions": [],
             "harmonic_function": "Tonic",
             "substitution": false

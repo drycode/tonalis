@@ -1,6 +1,6 @@
 {
   "name": "@tonalis/music-dsl",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MusicDSL — music-theory domain (notes, intervals, scale-degrees, chords, encoding). Port of the Python music_dsl reference. Zero runtime deps.",
   "type": "module",
   "main": "./dist/index.js",
@@ -18,9 +18,16 @@
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
-  "files": ["dist", "LICENSE"],
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
   "license": "MIT",
-  "repository": { "type": "git", "url": "git+https://github.com/drycode/tonalis.git", "directory": "music-dsl/ts" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drycode/tonalis.git",
+    "directory": "music-dsl/ts"
+  },
   "homepage": "https://github.com/drycode/tonalis#readme",
   "private": false,
   "devDependencies": {

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "numeric/from-chord/Csus-in-C",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "Csus",
+      "substitution": false
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "I",
+          "triad": "sus",
+          "seventh": "",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/from-chord/Csus2-in-C",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "Csus2",
+      "substitution": false
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "I",
+          "triad": "sus2",
+          "seventh": "",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  },
+  {
+    "name": "numeric/from-chord/Csus4-in-C",
+    "op": "numeric_from_chord",
+    "args": {
+      "key_root": "C",
+      "chord": "Csus4",
+      "substitution": false
+    },
+    "expect": {
+      "model": {
+        "numeric": {
+          "root": "I",
+          "triad": "sus4",
+          "seventh": "",
+          "extensions": [],
+          "harmonic_function": "Tonic",
+          "substitution": false
+        }
+      }
+    }
+  }
+]

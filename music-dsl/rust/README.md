@@ -3,7 +3,7 @@
 Pure music-theory domain library: notes, intervals, scale degrees, chord
 qualities, scales, and chord encoding. No runtime dependencies. Port of the
 Python `music-dsl` reference implementation — all three ports (Python /
-TypeScript / Rust) conform to the same spec via a shared 429-case conformance
+TypeScript / Rust) conform to the same spec via a shared 433-case conformance
 suite plus a seeded three-way differential fuzzer.
 
 The crate is named `tonalis-music-dsl`; the library target (import path) is
