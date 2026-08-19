@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tonalis"
-version = "0.1.1"
+version = "0.1.2"
 description = "Tonalis — a generic, format-agnostic music-harmony DSL (parse/lint/AST/JSON/text)."
 requires-python = ">=3.11"
 readme = "README.md"
@@ -12,7 +12,7 @@ license = { file = "LICENSE" }
 classifiers = [
     "License :: OSI Approved :: MIT License",
 ]
-dependencies = ["tonalis-music-dsl==0.1.1"]
+dependencies = ["tonalis-music-dsl==0.1.2"]
 
 [project.urls]
 Homepage = "https://github.com/drycode/tonalis"

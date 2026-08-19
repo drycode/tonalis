@@ -52,10 +52,12 @@ markdown_extensions:
   - toc:
       permalink: true
 
-# Keep build tooling out of the published site (they live in docs/ for locality).
+# Keep build tooling and internal design docs out of the published site (they live
+# in docs/ for locality).
 exclude_docs: |
   requirements.txt
   build_api.sh
+  specs/
 
 nav:
   - Home: index.md

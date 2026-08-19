@@ -1,0 +1,66 @@
+name: version-gate
+
+# Every merge to main publishes a release (see release.yml), so every pull request
+# must declare the version it ships. This is the referee: the committer owns the
+# number, and nothing merges unless it is a legal, unclaimed, single step forward.
+#
+# Bump with `python scripts/set_version.py --bump patch|minor|major`, which rewrites
+# all sixteen authored locations at once. See RELEASING.md.
+#
+# Break glass: label the pull request `release:override` to skip the "previous
+# release is complete" check. That check exists to stop a version gap, but it would
+# otherwise deadlock a pull request that fixes a broken release.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: version-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      # The bump is measured against the base branch, which the default shallow
+      # pull request checkout does not fetch.
+      - name: Fetch the base branch
+        run: |
+          git fetch --depth=1 origin \
+            "+refs/heads/${GITHUB_BASE_REF}:refs/remotes/origin/${GITHUB_BASE_REF}"
+
+      - name: Every authored location agrees on the version
+        run: python scripts/check_release_version.py
+
+      - name: The version steps exactly once over the base branch
+        id: bump
+        run: python scripts/check_version_bump.py "origin/${GITHUB_BASE_REF}" --github-output
+
+      - name: The previous release is complete
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'release:override') }}
+        run: python scripts/registry_status.py "${{ steps.bump.outputs.previous }}" --require-present
+
+      - name: The declared version is unclaimed
+        run: python scripts/registry_status.py "${{ steps.bump.outputs.version }}" --require-absent
+
+      - name: Summary
+        run: |
+          {
+            echo "### Release on merge"
+            echo
+            echo "\`${{ steps.bump.outputs.previous }}\` → \`${{ steps.bump.outputs.version }}\`" \
+                 "(**${{ steps.bump.outputs.bump }}**)"
+            echo
+            echo "Merging this pull request publishes all six artifacts at" \
+                 "\`${{ steps.bump.outputs.version }}\`."
+          } >> "$GITHUB_STEP_SUMMARY"
